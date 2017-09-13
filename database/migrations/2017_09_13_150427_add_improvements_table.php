@@ -6,32 +6,30 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddImprovementsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-      Schema::create('improvements', function (Blueprint $table) {
-          $table->increments('id');
-          $table->string('title');
-          $table->longText('description');
-          $table->text('estimated_cost');
-          $table->text('benefits');
-          $table->text('who_can_do');
-          $table->text('assessor_guidance');
-          $table->timestamps();
-      });
-    }
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up() {
+    Schema::create('improvements', function (Blueprint $table) {
+      $table->increments('id');
+      $table->string('title');
+      $table->longText('description')->nullable();
+      $table->string('estimated_cost')->nullable();
+      $table->string('benefits')->nullable();
+      $table->string('who_can_do')->nullable();
+      $table->longText('assessor_guidance')->nullable();
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::drop('improvements');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down() {
+    Schema::drop('improvements');
+  }
 }
