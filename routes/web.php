@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::resource('improvements', 'ImprovementsController', ['only' => [
-    'index'
+    'index', 'edit', 'store'
 ]]);
