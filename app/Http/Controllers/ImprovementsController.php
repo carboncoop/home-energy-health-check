@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Improvement;
+use PDF;
 
 class ImprovementsController extends Controller {
 
@@ -45,6 +46,17 @@ class ImprovementsController extends Controller {
     $improvement->fill($fields);
     $improvement->save();
     return redirect()->action('ImprovementsController@index');
+  }
+
+  /**
+   * TODO: this is just a quick test
+   */
+  public function try_pdf() {
+    $improvements = Improvement::all()->toArray();
+    //dd($improvements);
+    $pdf = PDF::loadView('index', ['improvements' => $improvements])
+      ->setPaper('a4', 'portrait');
+    return $pdf->stream('this_should_just_say_hello_world.pdf');
   }
 
 }

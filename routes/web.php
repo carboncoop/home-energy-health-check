@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/pdf', 'ImprovementsController@try_pdf');
+
 Route::resource('improvements', 'ImprovementsController', ['only' => [
     'index', 'edit', 'update'
 ]]);
