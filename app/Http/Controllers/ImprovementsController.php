@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Improvement;
-use PDF;
+use App\Jobs\CreatePdfDocument;
 
 class ImprovementsController extends Controller {
 
@@ -57,6 +57,10 @@ class ImprovementsController extends Controller {
     $pdf = PDF::loadView('index', ['improvements' => $improvements])
       ->setPaper('a4', 'portrait');
     return $pdf->stream('this_should_just_say_hello_world.pdf');
+  }
+
+  public function try_queue() {
+    CreatePdfDocument::dispatch(['data' => 'foo']);
   }
 
 }

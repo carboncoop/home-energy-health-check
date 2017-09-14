@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::get('/pdf', 'ImprovementsController@try_pdf');
 
+Route::get('/queue', 'ImprovementsController@try_queue');
+
+
 Route::resource('improvements', 'ImprovementsController', ['only' => [
     'index', 'edit', 'update'
 ]]);
