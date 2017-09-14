@@ -28,8 +28,23 @@ class ImprovementsController extends Controller {
     return view('edit', compact('improvement'));
   }
 
-  public function store($data) {
-
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, $id) {
+    $improvement = Improvement::findOrFail($id);
+    $fields = [
+      'title' => $request->get('title'),
+      'description' => $request->get('description'),
+      'estimated_cost' => $request->get('estimated_cost'),
+    ];
+    $improvement->fill($fields);
+    $improvement->save();
+    return redirect()->action('ImprovementsController@index');
   }
 
 }
