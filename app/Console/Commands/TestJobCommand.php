@@ -39,6 +39,7 @@ class TestJobCommand extends Command
   public function handle() {
     $test = ['foo' => 'bar', 'fii' => 42];
     $this->comment("Testing Job..");
-    CreatePdfDocument::withChain([new SendEmail])->dispatch($test);
+    $email_job = [new SendEmail($test)];
+    CreatePdfDocument::withChain($email_job)->dispatch($test);
   }
 }
