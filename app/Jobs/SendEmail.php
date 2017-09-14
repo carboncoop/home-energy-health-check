@@ -8,19 +8,16 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class CreatePdfDocument implements ShouldQueue {
+class SendEmail implements ShouldQueue {
 
   use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-  protected $data;
 
   /**
    * Create a new job instance.
    *
    * @return void
    */
-  public function __construct(Array $data) {
-    $this->data = $data;
+  public function __construct() {
   }
 
   /**
@@ -29,13 +26,8 @@ class CreatePdfDocument implements ShouldQueue {
    * @return void
    */
   public function handle() {
-    var_dump($this->data);
-    print("Generating PDF...\n");
-    $pdf = \PDF::loadView('welcome', $this->data)
-      ->setPaper('a4', 'portrait');
-    $pdf->save(storage_path('pdf/my-file.pdf'));
-    print("PDF generation complete!\n");
-    return;
+    print("Sending email..\n");
+    print("Email sending complete!\n");
   }
 
 }

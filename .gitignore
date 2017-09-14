@@ -13,3 +13,5 @@ yarn-error.log
 .~lock.*
 
 bower_components/
+
+storage/pdf/*

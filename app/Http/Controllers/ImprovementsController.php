@@ -59,8 +59,4 @@ class ImprovementsController extends Controller {
     return $pdf->stream('this_should_just_say_hello_world.pdf');
   }
 
-  public function try_queue() {
-    CreatePdfDocument::dispatch(['data' => 'foo']);
-  }
-
 }

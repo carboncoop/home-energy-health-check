@@ -12,12 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ['foo' => 'routing', 'fii' => 43]);
 });
 
 Route::get('/pdf', 'ImprovementsController@try_pdf');
-
-Route::get('/queue', 'ImprovementsController@try_queue');
 
 
 Route::resource('improvements', 'ImprovementsController', ['only' => [
