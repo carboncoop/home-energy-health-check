@@ -30,7 +30,7 @@ class CreatePdfDocument implements ShouldQueue {
    */
   public function handle() {
     print("Generating PDF...\n");
-    var_dump($this->data);
+    //var_dump($this->data);
     $pdf = \PDF::loadView('welcome', $this->data)
       ->setPaper('a4', 'portrait');
     $pdf->save(storage_path('pdf/my-file.pdf'));

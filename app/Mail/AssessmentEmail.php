@@ -10,6 +10,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class AssessmentEmail extends Mailable {
   use Queueable, SerializesModels;
 
+  public
+    $subject = "Your Energy Assessment",
+    $from = "example@example.com";
+
   /**
    * Create a new message instance.
    *
@@ -26,7 +30,13 @@ class AssessmentEmail extends Mailable {
    */
   public function build()
   {
-    return $this->markdown('emails.assessment');
+    return $this
+      ->from($this->from)
+      ->subject($this->subject)
+      ->markdown('emails.assessment')
+      ->attach(storage_path('pdf/my-file.pdf'), array(
+        'mime' => 'application/pdf'
+      ));
   }
 
 }
