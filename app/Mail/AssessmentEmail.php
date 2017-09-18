@@ -7,39 +7,38 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AssessmentEmail extends Mailable {
-  use Queueable, SerializesModels;
+class AssessmentEmail extends Mailable
+{
+    use Queueable, SerializesModels;
 
-  public
-    $subject = "Your Energy Assessment",
-    $from = [
+    public $subject = "Your Energy Assessment";
+    public $from = [
       "address" => "example@example.com",
       "name" => "My Name",
     ];
 
-  /**
-   * Create a new message instance.
-   *
-   * @return void
-   */
-  public function __construct()
-  {
-  }
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+    }
 
-  /**
-   * Build the message.
-   *
-   * @return $this
-   */
-  public function build()
-  {
-    return $this
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this
       ->from($this->from)
       ->subject($this->subject)
       ->markdown('emails.assessment')
       ->attach(storage_path('pdf/my-file.pdf'), array(
         'mime' => 'application/pdf'
       ));
-  }
-
+    }
 }
