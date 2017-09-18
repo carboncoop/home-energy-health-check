@@ -42,8 +42,9 @@ class ImprovementsController extends Controller
     public function update(Request $request, $id)
     {
         $improvement = Improvement::findOrFail($id);
-        $fields = [
+        $fields = [ // TODO : validate
             'title' => $request->get('title'),
+            'section_id' => $request->get('section_id'),
             'description' => $request->get('description'),
             'estimated_cost' => $request->get('estimated_cost'),
         ];

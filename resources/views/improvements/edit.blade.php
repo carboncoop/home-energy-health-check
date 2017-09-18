@@ -14,6 +14,11 @@
       </div>
 
       <div class="form-group">
+        {{ Form::label('section_id', 'Section') }}
+        {{ Form::number('section_id', null, ['class' => 'form-control']) }}
+      </div>
+
+      <div class="form-group">
         {{ Form::label('description', 'Description') }}
         {{ Form::textarea('description', null, ['class' => 'form-control']) }}
       </div>

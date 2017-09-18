@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImprovementsTable extends Migration
+class CreateSectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class AddImprovementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('improvements', function (Blueprint $table) {
+        Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->longText('description')->nullable();
-            $table->string('estimated_cost')->nullable();
-            $table->string('benefits')->nullable();
-            $table->string('who_can_do')->nullable();
-            $table->longText('assessor_guidance')->nullable();
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class AddImprovementsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('improvements');
+        Schema::dropIfExists('sections');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Improvement;
+use App\Models\Section;
 use App\Models\Report;
 
 class SubmissionController extends Controller
@@ -16,10 +17,10 @@ class SubmissionController extends Controller
      */
     public function edit($id)
     {
-        $improvements = Improvement::all();
+        $sections = Section::all();
         $report = Report::findOrFail($id);
-        return view('submission.show', [
-            'improvements' => $improvements,
+        return view('submission.edit', [
+            'sections' => $sections,
             'report' => $report,
         ]);
     }
