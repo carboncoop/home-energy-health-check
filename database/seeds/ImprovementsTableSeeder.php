@@ -27,7 +27,7 @@ class ImprovementsTableSeeder extends Seeder
         foreach ($stmt->process($csv) as $row) {
             \DB::table('improvements')->insert([
                 'title' => $row[0],
-                'section_id' => $row[1],
+                'section_id' => 1 + (int)$row[1],
                 'description' => $row[2],
                 'estimated_cost' => $row[3],
                 'benefits' => $row[4],

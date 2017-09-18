@@ -34,6 +34,7 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->request);
         return redirect()->route('submit.edit', $id);
     }
 }
