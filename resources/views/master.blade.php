@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="page">
-          @yield('content')
+            @yield('content')
         </div>
     </body>
 </html>

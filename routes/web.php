@@ -15,9 +15,10 @@ Route::get('/', function () {
     return view('welcome', ['foo' => 'routing', 'fii' => 43]);
 });
 
-Route::get('/pdf', 'ImprovementsController@try_pdf');
+Route::resource('improvements', 'ImprovementsController', [
+    'only' => ['index', 'edit', 'update']
+]);
 
-
-Route::resource('improvements', 'ImprovementsController', ['only' => [
-    'index', 'edit', 'update'
-]]);
+Route::resource('reports', 'ReportsController', [
+    'only' => ['index', 'edit', 'update']
+]);

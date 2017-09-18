@@ -3,25 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Improvement;
+use App\Models\Improvement;
 use App\Jobs\CreatePdfDocument;
 
 class ImprovementsController extends Controller
 {
 
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+    /**
+     * List improvements.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $improvements = Improvement::all();
-        return view('index', compact('improvements'));
+        return view('improvements.index', compact('improvements'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing an improvement.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -29,11 +29,11 @@ class ImprovementsController extends Controller
     public function edit($id)
     {
         $improvement = Improvement::findOrFail($id);
-        return view('edit', compact('improvement'));
+        return view('improvements.edit', compact('improvement'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update an improvement in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -49,17 +49,7 @@ class ImprovementsController extends Controller
         ];
         $improvement->fill($fields);
         $improvement->save();
-        return redirect()->action('ImprovementsController@index');
+        return redirect()->route('improvements.index');
     }
 
-    /**
-     * TODO: this is just a quick test
-     */
-    public function try_pdf()
-    {
-        $improvements = Improvement::all()->toArray();
-        $pdf = PDF::loadView('index', ['improvements' => $improvements])
-            ->setPaper('a4', 'portrait');
-        return $pdf->stream('this_should_just_say_hello_world.pdf');
-    }
 }
