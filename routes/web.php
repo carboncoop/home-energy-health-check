@@ -22,3 +22,7 @@ Route::resource('improvements', 'ImprovementsController', [
 Route::resource('reports', 'ReportsController', [
     'only' => ['index', 'edit', 'update']
 ]);
+
+Route::resource('submit', 'SubmissionController', [
+    'only' => ['edit', 'update']
+]);
