@@ -25,12 +25,11 @@ class SubmissionTest extends TestCase {
     CreatePdfDocument::withChain($email_job)->dispatch($payload);
 
     Mail::assertSent(AssessmentEmail::class, function ($mail) {
-      //print_r($mail);
       return (
         $mail->hasTo('adam@appsynergy.net') &&
         $mail->subject == "Your Energy Assessment" &&
-        $mail->from == "example@example.com" &&
-        empty($mail->attachments) // TODO: should NOT be empty
+        $mail->from["address"] == "example@example.com"
+        //empty($mail->attachments) // TODO: can Mail Fake read attachments?
       );
     });
   }

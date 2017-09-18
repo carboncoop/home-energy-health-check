@@ -12,7 +12,10 @@ class AssessmentEmail extends Mailable {
 
   public
     $subject = "Your Energy Assessment",
-    $from = "example@example.com";
+    $from = [
+      "address" => "example@example.com",
+      "name" => "My Name",
+    ];
 
   /**
    * Create a new message instance.
