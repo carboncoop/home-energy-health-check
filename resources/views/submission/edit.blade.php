@@ -1,7 +1,17 @@
 @extends('master')
 
 @section('content')
-  <div class="container">
+
+<div class="container">
+    <div id="app">
+        <submission :sections='{{ $json_sections }}'
+            :improvements='{{ $json_improvements }}'>
+        </submission>
+    </div>
+</div>
+
+@if (2==3)
+<div class="container">
 
     {!! Form::model($report, [
       'method' => 'PUT',
@@ -30,5 +40,6 @@
 
     {!! Form::close() !!}
 
-  </div>
+</div>
+@endif
 @endsection
