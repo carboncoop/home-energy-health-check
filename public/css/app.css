@@ -8564,5 +8564,11 @@ a.text-dark:focus, a.text-dark:hover {
 
 .invisible {
   visibility: hidden !important;
+}body {
+  position: relative;
+}
+
+div.submission-vue {
+  padding-top: 80px;
 }
 

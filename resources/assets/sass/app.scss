@@ -7,3 +7,11 @@
 
 // Core
 @import '~bootstrap/dist/css/bootstrap.css';
+
+body {
+    position: relative;
+}
+
+div.submission-vue {
+    padding-top: 80px;
+}

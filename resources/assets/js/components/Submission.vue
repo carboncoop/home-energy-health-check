@@ -1,25 +1,28 @@
 <template>
-    <div class="my-4 container">
-        <h2 class="my-2">{{ current_section.title }}</h2>
-        <p class="lead">{{ current_section.description }}</p>
-        <div v-for="improvement in current_improvements" class="card mb-3">
-            <div class="card-header">
-                <h3 class="card-title">{{ improvement.title }}</h3>
-            </div>
-            <div class="card-body">
-                <p>{{ improvement.description }}</p>
-            </div>
-            <div class="card-footer">
-                <div v-for="option in choice_options"
-                    class="form-check form-check-inline">
-                    <label :for="get_name(improvement)" class="form-check-label">
-                        <input type="radio" :name="get_name(improvement)"
-                            class="form-check-input"
-                            value="have">
-                        <button class="btn btn-primary">
-                            Something you {{ option }}
-                        </button>
-                    </label>
+    <div class="submission-vue">
+        <div class="my-4 container">
+            <submission-navigation :sections="sections"></submission-navigation>
+            <h2 class="my-2">{{ current_section.title }}</h2>
+            <p class="lead">{{ current_section.description }}</p>
+            <div v-for="improvement in current_improvements" class="card mb-3">
+                <div class="card-header">
+                    <h3 class="card-title">{{ improvement.title }}</h3>
+                </div>
+                <div class="card-body">
+                    <p>{{ improvement.description }}</p>
+                </div>
+                <div class="card-footer">
+                    <div v-for="option in choice_options"
+                        class="form-check form-check-inline">
+                        <label :for="get_name(improvement)" class="form-check-label">
+                            <input type="radio" :name="get_name(improvement)"
+                                class="form-check-input"
+                                value="have">
+                            <button class="btn btn-primary">
+                                Something you {{ option }}
+                            </button>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -27,9 +30,11 @@
 </template>
 
 <script>
+    import SubmissionNavigation from './SubmissionNavigation.vue'
+
     export default {
-        mounted() {
-            console.log('Component mounted. '+this.sections)
+        components: {
+            'submission-navigation': SubmissionNavigation
         },
         props: ['sections', 'improvements'],
         data() {
