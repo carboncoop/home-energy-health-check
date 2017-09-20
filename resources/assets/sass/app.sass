@@ -41,16 +41,20 @@ div.submission-vue
     padding-bottom: 160px
 
 =activeButton($color-bg, $color-active, $color-active-border)
+    color: $color-active
     border: none !important
     outline-color: $color-active-border
+    border-color: $color-active
     &, &:hover, &:focus
         background-color: $color-bg
     &.active, &:focus
+        color: white
+        border-color: transparent
         background-color: $color-active
         -webkit-box-shadow: 0 0 0 3px $color-active-border
         box-shadow: 0 0 0 3px $color-active-border
 .btn-primary
     &.btn-have
-        +activeButton($blue-1, $blue-3, $blue-2)
+        +activeButton(white, $blue-2, $blue-3)
     &.btn-need
-        +activeButton($pink-1, $pink-3, $pink-2)
+        +activeButton(white, $pink-2, $pink-3)

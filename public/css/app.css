@@ -8574,38 +8574,46 @@ div.submission-vue {
 }
 
 .btn-primary.btn-have {
+  color: #15BFFF;
   border: none !important;
-  outline-color: #15BFFF;
+  outline-color: #00658B;
+  border-color: #15BFFF;
 }
 
 .btn-primary.btn-have,
 .btn-primary.btn-have:hover,
 .btn-primary.btn-have:focus {
-  background-color: #72D7FD;
+  background-color: white;
 }
 
 .btn-primary.btn-have.active,
 .btn-primary.btn-have:focus {
-  background-color: #00658B;
-  -webkit-box-shadow: 0 0 0 3px #15BFFF;
-  box-shadow: 0 0 0 3px #15BFFF;
+  color: white;
+  border-color: transparent;
+  background-color: #15BFFF;
+  -webkit-box-shadow: 0 0 0 3px #00658B;
+  box-shadow: 0 0 0 3px #00658B;
 }
 
 .btn-primary.btn-need {
+  color: #FF0B90;
   border: none !important;
-  outline-color: #FF0B90;
+  outline-color: #B40062;
+  border-color: #FF0B90;
 }
 
 .btn-primary.btn-need,
 .btn-primary.btn-need:hover,
 .btn-primary.btn-need:focus {
-  background-color: #FE6CBC;
+  background-color: white;
 }
 
 .btn-primary.btn-need.active,
 .btn-primary.btn-need:focus {
-  background-color: #B40062;
-  -webkit-box-shadow: 0 0 0 3px #FF0B90;
-  box-shadow: 0 0 0 3px #FF0B90;
+  color: white;
+  border-color: transparent;
+  background-color: #FF0B90;
+  -webkit-box-shadow: 0 0 0 3px #B40062;
+  box-shadow: 0 0 0 3px #B40062;
 }
 

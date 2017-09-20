@@ -6,14 +6,13 @@
                 :improvements="currentImprovements"
                 v-on:changeSection="changeSection">
             </submission-navigation>
+            {{ completedSections }}
             <h2 class="my-2">{{ currentSection.title }}</h2>
             <p class="lead">{{ currentSection.description }}</p>
-            <div class="card mb-3" :id="'improvement-'+improvement.id"
+            <div class="card mb-5" :id="'improvement-'+improvement.id"
                 v-for="improvement in currentImprovements">
-                <div class="card-header">
-                    <h3 class="card-title">{{ improvement.title }}</h3>
-                </div>
                 <div class="card-body">
+                    <h3 class="card-title">{{ improvement.title }}</h3>
                     <p>{{ improvement.description }}</p>
                 </div>
                 <div class="card-footer">
@@ -48,18 +47,32 @@
                 return this.sections[this.currentSectionId]
             },
             currentImprovements() {
-                return _.filter(this.improvements, (x) => {
-                    return x.section_id == this.currentSectionId
+                return this.improvementsInSection(thus.currentSectionId)
+            },
+            completedSections() {
+                let f = _.map(this.sections, (section) => {
+                    let imps = this.improvementsInSection(section.id)
+                    return _.every(imps, (imp) => {
+                        console.warn(imp)
+                        return imp.value != null
+                    })
                 })
+                console.warn(f)
+                return f
             }
         },
         methods: {
-            changeSection(id) {
-                this.currentSectionId = id
+            changeSection(section_id) {
+                this.currentSectionId = section_id
             },
             selectChoice(data) {
                 let str = 'improvement.' + data.improvement + '.status';
                 this.formFields[str] = data.value
+            },
+            improvementsInSection(section_id) {
+                return _.filter(this.improvements, (x) => {
+                    return x.section_id == section_id
+                })
             }
         }
     }

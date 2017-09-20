@@ -42062,7 +42062,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -42085,20 +42084,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.sections[this.currentSectionId];
         },
         currentImprovements: function currentImprovements() {
+            return this.improvementsInSection(thus.currentSectionId);
+        },
+        completedSections: function completedSections() {
             var _this = this;
 
-            return _.filter(this.improvements, function (x) {
-                return x.section_id == _this.currentSectionId;
+            var f = _.map(this.sections, function (section) {
+                var imps = _this.improvementsInSection(section.id);
+                return _.every(imps, function (imp) {
+                    console.warn(imp);
+                    return imp.value != null;
+                });
             });
+            console.warn(f);
+            return f;
         }
     },
     methods: {
-        changeSection: function changeSection(id) {
-            this.currentSectionId = id;
+        changeSection: function changeSection(section_id) {
+            this.currentSectionId = section_id;
         },
         selectChoice: function selectChoice(data) {
             var str = 'improvement.' + data.improvement + '.status';
             this.formFields[str] = data.value;
+        },
+        improvementsInSection: function improvementsInSection(section_id) {
+            return _.filter(this.improvements, function (x) {
+                return x.section_id == section_id;
+            });
         }
     }
 });
@@ -42391,23 +42404,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "changeSection": _vm.changeSection
     }
-  }), _vm._v(" "), _c('h2', {
+  }), _vm._v("\n        " + _vm._s(_vm.completedSections) + "\n        "), _c('h2', {
     staticClass: "my-2"
   }, [_vm._v(_vm._s(_vm.currentSection.title))]), _vm._v(" "), _c('p', {
     staticClass: "lead"
   }, [_vm._v(_vm._s(_vm.currentSection.description))]), _vm._v(" "), _vm._l((_vm.currentImprovements), function(improvement) {
     return _c('div', {
-      staticClass: "card mb-3",
+      staticClass: "card mb-5",
       attrs: {
         "id": 'improvement-' + improvement.id
       }
     }, [_c('div', {
-      staticClass: "card-header"
+      staticClass: "card-body"
     }, [_c('h3', {
       staticClass: "card-title"
-    }, [_vm._v(_vm._s(improvement.title))])]), _vm._v(" "), _c('div', {
-      staticClass: "card-body"
-    }, [_c('p', [_vm._v(_vm._s(improvement.description))])]), _vm._v(" "), _c('div', {
+    }, [_vm._v(_vm._s(improvement.title))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(improvement.description))])]), _vm._v(" "), _c('div', {
       staticClass: "card-footer"
     }, [_c('submission-buttons', {
       attrs: {
