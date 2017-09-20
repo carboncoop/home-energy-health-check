@@ -67,7 +67,9 @@
                 return this.improvementsInSection(this.currentSectionId)
             },
             completedSections() {
-                return this.$store.getters.completedSections
+                return _.map(this.sections, (section) => {
+                    return this.$store.getters.isSectionComplete(section.id)
+                })
             }
         },
         methods: {

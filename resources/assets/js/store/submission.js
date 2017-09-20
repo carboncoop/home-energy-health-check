@@ -16,8 +16,14 @@ const store = new Vuex.Store({
         }
     },
     getters: {
-        completedSections(state) {
-            true
+        isSectionComplete(state) {
+            return (section_id) => {
+                if (section_id in state.sections) {
+                    return _.every(state.sections[section_id], (x) => {
+                        return (x.value != null)
+                    })
+                }
+            }
         },
         getValue(state) {
             return (payload) => {
