@@ -43013,6 +43013,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -43026,7 +43036,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return imp.section_id;
         }).mapValues(function (section) {
             return _.mapKeys(section, function (imp, key) {
-
                 return imp.id;
             });
         }).value();
@@ -43050,16 +43059,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         currentImprovements: function currentImprovements() {
             return this.improvementsInSection(this.currentSectionId);
-        },
-        completedSections: function completedSections() {
-            var _this = this;
-
-            return _.map(this.sections, function (section) {
-                return _this.$store.getters.isSectionComplete(section.id);
-            });
         }
     },
     methods: {
+        nextSection: function nextSection(increment) {
+            this.currentSectionId += 1;
+        },
         changeSection: function changeSection(section_id) {
             this.currentSectionId = section_id;
         },
@@ -43275,6 +43280,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['sections', 'improvements', 'currentSectionId'],
+    computed: {
+        completedSections: function completedSections() {
+            var _this = this;
+
+            return _.transform(this.sections, function (xs, s, k) {
+                xs[s.id] = _this.$store.getters.isSectionComplete(s.id);
+            });
+        }
+    },
     methods: {
         clickSection: function clickSection(id) {
             this.$emit('changeSection', id);
@@ -43319,7 +43333,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.clickSection(section.id)
         }
       }
-    }, [_vm._v("\n                        " + _vm._s(section.id) + "\n                    ")])])
+    }, [_vm._v("\n                        " + _vm._s(section.id) + " " + _vm._s(_vm.completedSections[section.id]) + "\n                    ")])])
   }))]), _vm._v(" "), _c('div', {}, [_c('span', {
     staticClass: "navbar-text"
   }, [_vm._v("Improvements:")]), _vm._v(" "), _c('ul', {
@@ -43366,10 +43380,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "changeSection": _vm.changeSection
     }
-  }), _vm._v("\n        " + _vm._s(_vm.completedSections) + "\n        "), _c('h2', {
+  }), _vm._v(" "), _c('h2', {
     staticClass: "my-2"
   }, [_vm._v(_vm._s(_vm.currentSection.title))]), _vm._v(" "), _c('p', {
-    staticClass: "lead"
+    staticClass: "lead mb-5"
   }, [_vm._v(_vm._s(_vm.currentSection.description))]), _vm._v(" "), _vm._l((_vm.currentImprovements), function(improvement) {
     return _c('div', {
       staticClass: "card mb-5",
@@ -43388,7 +43402,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "improvementId": improvement.id
       }
     })], 1)])
-  })], 2)])
+  }), _vm._v(" "), _c('div', {
+    staticClass: "text-center"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    on: {
+      "click": function($event) {
+        _vm.nextSection(-1)
+      }
+    }
+  }, [_vm._v("Previous Section")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    on: {
+      "click": function($event) {
+        _vm.nextSection(1)
+      }
+    }
+  }, [_vm._v("Next Section")])])], 2)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

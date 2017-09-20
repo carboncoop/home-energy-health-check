@@ -1,14 +1,16 @@
 <template>
     <div class="submission-vue">
         <div class="my-4 container">
+
             <submission-navigation :sections="sections"
                 :currentSectionId="currentSectionId"
                 :improvements="currentImprovements"
                 v-on:changeSection="changeSection">
             </submission-navigation>
-            {{ completedSections }}
+
             <h2 class="my-2">{{ currentSection.title }}</h2>
-            <p class="lead">{{ currentSection.description }}</p>
+            <p class="lead mb-5">{{ currentSection.description }}</p>
+
             <div class="card mb-5" :id="'improvement-'+improvement.id"
                 v-for="improvement in currentImprovements">
                 <div class="card-body">
@@ -22,6 +24,14 @@
                     </submission-buttons>
                 </div>
             </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary"
+                    v-on:click="nextSection(-1)">Previous Section</button>
+                <button class="btn btn-primary"
+                    v-on:click="nextSection(1)">Next Section</button>
+            </div>
+
         </div>
     </div>
 </template>
@@ -42,7 +52,6 @@
                 })
                 .mapValues(function (section) {
                     return _.mapKeys(section, function (imp, key) {
-
                         return imp.id
                     })
                 })
@@ -65,14 +74,12 @@
             },
             currentImprovements() {
                 return this.improvementsInSection(this.currentSectionId)
-            },
-            completedSections() {
-                return _.map(this.sections, (section) => {
-                    return this.$store.getters.isSectionComplete(section.id)
-                })
             }
         },
         methods: {
+            nextSection(increment) {
+                this.currentSectionId += 1
+            },
             changeSection(section_id) {
                 this.currentSectionId = section_id
             },

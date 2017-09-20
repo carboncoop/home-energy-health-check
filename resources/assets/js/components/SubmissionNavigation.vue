@@ -9,7 +9,7 @@
                         <a :class="linkClass(section.id)"
                             :href="'#section-'+section.id"
                             v-on:click="clickSection(section.id)">
-                            {{ section.id }}
+                            {{ section.id }} {{ completedSections[section.id] }}
                         </a>
                     </li>
                 </ul>
@@ -35,6 +35,13 @@
 <script>
     export default {
         props: ['sections', 'improvements', 'currentSectionId'],
+        computed: {
+            completedSections() {
+                return _.transform(this.sections, (xs, s, k) => {
+                    xs[s.id] = this.$store.getters.isSectionComplete(s.id)
+                })
+            }
+        },
         methods: {
             clickSection(id) {
                 this.$emit('changeSection', id)
