@@ -42062,6 +42062,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -42197,7 +42198,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, _vm._l((_vm.possibleValues), function(value) {
     return _c('div', {
-      staticClass: "col col-6"
+      staticClass: "col col-6 text-center"
     }, [_c('button', {
       class: _vm.buttonClass(value),
       on: {
@@ -42303,8 +42304,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         clickSection: function clickSection(id) {
             this.$emit('changeSection', id);
         },
-        clickImprovement: function clickImprovement(id) {
-            // scroll to?
+        clickImprovement: function clickImprovement(improvementId, sectionId) {
+            //this.$emit('changeSection', sectionId)
+            //$('body').scrollspy({ target: '#improvement-' + improvementId })
         },
         linkClass: function linkClass(id) {
             if (this.currentSectionId == id) {
@@ -42357,7 +42359,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       },
       on: {
         "click": function($event) {
-          _vm.clickImprovement(improvement.id)
+          _vm.clickImprovement(improvement.id, improvement.section_id)
         }
       }
     }, [_vm._v("\n                        " + _vm._s(improvement.id) + "\n                    ")])])
@@ -42395,7 +42397,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "lead"
   }, [_vm._v(_vm._s(_vm.currentSection.description))]), _vm._v(" "), _vm._l((_vm.currentImprovements), function(improvement) {
     return _c('div', {
-      staticClass: "card mb-3"
+      staticClass: "card mb-3",
+      attrs: {
+        "id": 'improvement-' + improvement.id
+      }
     }, [_c('div', {
       staticClass: "card-header"
     }, [_c('h3', {

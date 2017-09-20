@@ -8,7 +8,8 @@
             </submission-navigation>
             <h2 class="my-2">{{ currentSection.title }}</h2>
             <p class="lead">{{ currentSection.description }}</p>
-            <div v-for="improvement in currentImprovements" class="card mb-3">
+            <div class="card mb-3" :id="'improvement-'+improvement.id"
+                v-for="improvement in currentImprovements">
                 <div class="card-header">
                     <h3 class="card-title">{{ improvement.title }}</h3>
                 </div>

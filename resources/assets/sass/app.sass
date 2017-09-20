@@ -11,21 +11,46 @@
 body
     position: relative
 
+
+// Submission Vues
+
+// Colors
+$blue: #00adef
+$pink: #ec008c
+
+$blue-0: #00ADEF
+$blue-1: #72D7FD
+$blue-2: #15BFFF
+$blue-3: #00658B
+$blue-4: #012837
+
+$yellow-0: #FFE800
+$yellow-1: #FFF26C
+$yellow-2: #FFE90B
+$yellow-3: #DECA00
+$yellow-4: #574F00
+
+$pink-0: #F70087
+$pink-1: #FE6CBC
+$pink-2: #FF0B90
+$pink-3: #B40062
+$pink-4: #470027
+
 div.submission-vue
     padding-top: 120px
     padding-bottom: 160px
 
-
-=activeButton($color)
+=activeButton($color-bg, $color-active, $color-active-border)
     border: none !important
-    &, &:hover
-        background-color: $color
-    &.active
-        background-color: darken($color, 15)
-        outline-color: darken($color, 30)
-
-.btn-have
-    +activeButton(skyblue)
-
-.btn-need
-    +activeButton(magenta)
+    outline-color: $color-active-border
+    &, &:hover, &:focus
+        background-color: $color-bg
+    &.active, &:focus
+        background-color: $color-active
+        -webkit-box-shadow: 0 0 0 3px $color-active-border
+        box-shadow: 0 0 0 3px $color-active-border
+.btn-primary
+    &.btn-have
+        +activeButton($blue-1, $blue-3, $blue-2)
+    &.btn-need
+        +activeButton($pink-1, $pink-3, $pink-2)

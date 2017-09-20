@@ -8573,31 +8573,39 @@ div.submission-vue {
   padding-bottom: 160px;
 }
 
-.btn-have {
+.btn-primary.btn-have {
   border: none !important;
+  outline-color: #15BFFF;
 }
 
-.btn-have,
-.btn-have:hover {
-  background-color: skyblue;
+.btn-primary.btn-have,
+.btn-primary.btn-have:hover,
+.btn-primary.btn-have:focus {
+  background-color: #72D7FD;
 }
 
-.btn-have.active {
-  background-color: #45b3e0;
-  outline-color: #1f8dba;
+.btn-primary.btn-have.active,
+.btn-primary.btn-have:focus {
+  background-color: #00658B;
+  -webkit-box-shadow: 0 0 0 3px #15BFFF;
+  box-shadow: 0 0 0 3px #15BFFF;
 }
 
-.btn-need {
+.btn-primary.btn-need {
   border: none !important;
+  outline-color: #FF0B90;
 }
 
-.btn-need,
-.btn-need:hover {
-  background-color: magenta;
+.btn-primary.btn-need,
+.btn-primary.btn-need:hover,
+.btn-primary.btn-need:focus {
+  background-color: #FE6CBC;
 }
 
-.btn-need.active {
-  background-color: #b300b3;
-  outline-color: #660066;
+.btn-primary.btn-need.active,
+.btn-primary.btn-need:focus {
+  background-color: #B40062;
+  -webkit-box-shadow: 0 0 0 3px #FF0B90;
+  box-shadow: 0 0 0 3px #FF0B90;
 }
 

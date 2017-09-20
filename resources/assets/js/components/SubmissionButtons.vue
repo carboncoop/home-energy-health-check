@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div v-for="value in possibleValues" class="col col-6">
+        <div v-for="value in possibleValues" class="col col-6 text-center">
             <button :class="buttonClass(value)"
                 v-on:click="clickButton(value)">
                 Something you {{ value }}

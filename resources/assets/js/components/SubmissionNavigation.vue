@@ -21,7 +21,7 @@
                     <li v-for="improvement in improvements" class="nav-item">
                         <a class="nav-link"
                             :href="'#section-'+improvement.section_id"
-                            v-on:click="clickImprovement(improvement.id)">
+                            v-on:click="clickImprovement(improvement.id, improvement.section_id)">
                             {{ improvement.id }}
                         </a>
                     </li>
@@ -39,8 +39,9 @@
             clickSection(id) {
                 this.$emit('changeSection', id)
             },
-            clickImprovement(id) {
-                // scroll to?
+            clickImprovement(improvementId, sectionId) {
+                //this.$emit('changeSection', sectionId)
+                //$('body').scrollspy({ target: '#improvement-' + improvementId })
             },
             linkClass(id) {
                 if (this.currentSectionId == id) {
