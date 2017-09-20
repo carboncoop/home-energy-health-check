@@ -14,8 +14,15 @@
         props: ['sectionId', 'improvementId'],
         data() {
             return {
-                possibleValues: ['have', 'need'],
-                value: null
+                possibleValues: ['have', 'need']
+            }
+        },
+        computed: {
+            value() {
+                return this.$store.getters.getValue({
+                    section_id: this.sectionId,
+                    improvement_id: this.improvementId
+                })
             }
         },
         methods: {
@@ -28,7 +35,6 @@
                 return str
             },
             clickButton(value) {
-                this.value = value
                 this.$store.commit('selectChoice', {
                     'section_id': this.sectionId,
                     'improvement_id': this.improvementId,

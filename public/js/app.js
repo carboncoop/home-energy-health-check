@@ -42078,21 +42078,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['sections', 'improvements'],
     mounted: function mounted() {
-        var _this = this;
+        var initSections = _.chain(this.improvements).map(function (imp) {
+            return _.extend(imp, { value: null });
+        }).groupBy(function (imp) {
+            return imp.section_id;
+        }).mapValues(function (section) {
+            return _.mapKeys(section, function (imp, key) {
 
-        var initSections = _.map(this.sections, function (section) {
-            var imps = _.map(_this.improvementsInSection(section.id), function (imp) {
-                return {
-                    id: imp.id,
-                    title: imp.title
-                };
+                return imp.id;
             });
-            return {
-                id: section.id,
-                title: section.title,
-                improvements: imps
-            };
-        });
+        }).value();
         this.$store.commit('init', initSections);
     },
 
@@ -42192,11 +42187,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['sectionId', 'improvementId'],
     data: function data() {
         return {
-            possibleValues: ['have', 'need'],
-            value: null
+            possibleValues: ['have', 'need']
         };
     },
 
+    computed: {
+        value: function value() {
+            return this.$store.getters.getValue({
+                section_id: this.sectionId,
+                improvement_id: this.improvementId
+            });
+        }
+    },
     methods: {
         buttonClass: function buttonClass(value) {
             var str = "btn btn-primary";
@@ -42207,7 +42209,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return str;
         },
         clickButton: function clickButton(value) {
-            this.value = value;
             this.$store.commit('selectChoice', {
                 'section_id': this.sectionId,
                 'improvement_id': this.improvementId,
@@ -43377,9 +43378,21 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         init: function init(state, payload) {
             state.sections = payload;
         },
-        selectChoice: function selectChoice(state, x) {
-            console.warn(x);
-            state.count++;
+        selectChoice: function selectChoice(state, payload) {
+            state.sections[payload.section_id][payload.improvement_id].value = payload.value;
+        }
+    },
+    getters: {
+        completedSections: function completedSections(state) {
+            true;
+        },
+        getValue: function getValue(state) {
+            return function (payload) {
+                if (payload.section_id in state.sections) {
+                    var section = state.sections[payload.section_id];
+                    return section[payload.improvement_id].value;
+                }
+            };
         }
     }
 });

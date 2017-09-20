@@ -11,9 +11,21 @@ const store = new Vuex.Store({
         init(state, payload) {
             state.sections = payload
         },
-        selectChoice (state, x) {
-            console.warn(x)
-            state.count++
+        selectChoice (state, payload) {
+            state.sections[payload.section_id][payload.improvement_id].value = payload.value
+        }
+    },
+    getters: {
+        completedSections(state) {
+            true
+        },
+        getValue(state) {
+            return (payload) => {
+                if (payload.section_id in state.sections) {
+                    let section = state.sections[payload.section_id]
+                    return section[payload.improvement_id].value
+                }
+            }
         }
     }
 })

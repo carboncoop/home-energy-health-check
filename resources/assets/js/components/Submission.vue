@@ -33,19 +33,20 @@
     export default {
         props: ['sections', 'improvements'],
         mounted() {
-            let initSections = _.map(this.sections, (section) => {
-                let imps = _.map(this.improvementsInSection(section.id), function(imp) {
-                    return {
-                        id: imp.id,
-                        title: imp.title
-                    }
+            let initSections = _.chain(this.improvements)
+                .map(function (imp) {
+                    return _.extend(imp, {value: null})
                 })
-                return {
-                    id: section.id,
-                    title: section.title,
-                    improvements: imps
-                }
-            })
+                .groupBy(function (imp) {
+                    return imp.section_id
+                })
+                .mapValues(function (section) {
+                    return _.mapKeys(section, function (imp, key) {
+
+                        return imp.id
+                    })
+                })
+                .value()
             this.$store.commit('init', initSections)
         },
         components: {
