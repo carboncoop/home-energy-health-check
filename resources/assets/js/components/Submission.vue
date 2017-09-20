@@ -17,8 +17,8 @@
                 </div>
                 <div class="card-footer">
                     <submission-buttons
-                        :improvementId="improvement.id"
-                        v-on:selectChoice="selectChoice">
+                        :sectionId="currentSection.id"
+                        :improvementId="improvement.id">
                     </submission-buttons>
                 </div>
             </div>
@@ -31,11 +31,27 @@
     import SubmissionNavigation from './SubmissionNavigation.vue'
 
     export default {
+        props: ['sections', 'improvements'],
+        mounted() {
+            let initSections = _.map(this.sections, (section) => {
+                let imps = _.map(this.improvementsInSection(section.id), function(imp) {
+                    return {
+                        id: imp.id,
+                        title: imp.title
+                    }
+                })
+                return {
+                    id: section.id,
+                    title: section.title,
+                    improvements: imps
+                }
+            })
+            this.$store.commit('init', initSections)
+        },
         components: {
             'submission-navigation': SubmissionNavigation,
             'submission-buttons': SubmissionButtons
         },
-        props: ['sections', 'improvements'],
         data() {
             return {
                 formFields: {},
@@ -47,27 +63,15 @@
                 return this.sections[this.currentSectionId]
             },
             currentImprovements() {
-                return this.improvementsInSection(thus.currentSectionId)
+                return this.improvementsInSection(this.currentSectionId)
             },
             completedSections() {
-                let f = _.map(this.sections, (section) => {
-                    let imps = this.improvementsInSection(section.id)
-                    return _.every(imps, (imp) => {
-                        console.warn(imp)
-                        return imp.value != null
-                    })
-                })
-                console.warn(f)
-                return f
+                return this.$store.getters.completedSections
             }
         },
         methods: {
             changeSection(section_id) {
                 this.currentSectionId = section_id
-            },
-            selectChoice(data) {
-                let str = 'improvement.' + data.improvement + '.status';
-                this.formFields[str] = data.value
             },
             improvementsInSection(section_id) {
                 return _.filter(this.improvements, (x) => {

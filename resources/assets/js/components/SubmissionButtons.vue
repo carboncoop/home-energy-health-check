@@ -11,7 +11,7 @@
 
 <script>
     export default {
-        props: ['improvementId'],
+        props: ['sectionId', 'improvementId'],
         data() {
             return {
                 possibleValues: ['have', 'need'],
@@ -29,8 +29,9 @@
             },
             clickButton(value) {
                 this.value = value
-                this.$emit('selectChoice', {
-                    'improvement': this.improvementId,
+                this.$store.commit('selectChoice', {
+                    'section_id': this.sectionId,
+                    'improvement_id': this.improvementId,
                     'value': value
                 })
             }
