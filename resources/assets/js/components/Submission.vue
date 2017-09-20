@@ -1,10 +1,14 @@
 <template>
     <div class="submission-vue">
         <div class="my-4 container">
-            <submission-navigation :sections="sections"></submission-navigation>
-            <h2 class="my-2">{{ current_section.title }}</h2>
-            <p class="lead">{{ current_section.description }}</p>
-            <div v-for="improvement in current_improvements" class="card mb-3">
+            <submission-navigation :sections="sections"
+                :currentSectionId="currentSectionId"
+                :improvements="currentImprovements"
+                v-on:changeSection="changeSection">
+            </submission-navigation>
+            <h2 class="my-2">{{ currentSection.title }}</h2>
+            <p class="lead">{{ currentSection.description }}</p>
+            <div v-for="improvement in currentImprovements" class="card mb-3">
                 <div class="card-header">
                     <h3 class="card-title">{{ improvement.title }}</h3>
                 </div>
@@ -12,17 +16,10 @@
                     <p>{{ improvement.description }}</p>
                 </div>
                 <div class="card-footer">
-                    <div v-for="option in choice_options"
-                        class="form-check form-check-inline">
-                        <label :for="get_name(improvement)" class="form-check-label">
-                            <input type="radio" :name="get_name(improvement)"
-                                class="form-check-input"
-                                value="have">
-                            <button class="btn btn-primary">
-                                Something you {{ option }}
-                            </button>
-                        </label>
-                    </div>
+                    <submission-buttons
+                        :improvementId="improvement.id"
+                        v-on:selectChoice="selectChoice">
+                    </submission-buttons>
                 </div>
             </div>
         </div>
@@ -30,32 +27,38 @@
 </template>
 
 <script>
+    import SubmissionButtons from './SubmissionButtons.vue'
     import SubmissionNavigation from './SubmissionNavigation.vue'
 
     export default {
         components: {
-            'submission-navigation': SubmissionNavigation
+            'submission-navigation': SubmissionNavigation,
+            'submission-buttons': SubmissionButtons
         },
         props: ['sections', 'improvements'],
         data() {
             return {
-                current_section_id: 1,
-                choice_options: ['have', 'need']
+                formFields: {},
+                currentSectionId: 1
             }
         },
         computed: {
-            current_section() {
-                return this.sections[this.current_section_id]
+            currentSection() {
+                return this.sections[this.currentSectionId]
             },
-            current_improvements() {
+            currentImprovements() {
                 return _.filter(this.improvements, (x) => {
-                    return x.section_id == this.current_section_id
+                    return x.section_id == this.currentSectionId
                 })
             }
         },
         methods: {
-            get_name(improvement) {
-                return "improvement." + improvement.id+ ".status"
+            changeSection(id) {
+                this.currentSectionId = id
+            },
+            selectChoice(data) {
+                let str = 'improvement.' + data.improvement + '.status';
+                this.formFields[str] = data.value
             }
         }
     }

@@ -8569,6 +8569,35 @@ a.text-dark:focus, a.text-dark:hover {
 }
 
 div.submission-vue {
-  padding-top: 80px;
+  padding-top: 120px;
+  padding-bottom: 160px;
+}
+
+.btn-have {
+  border: none !important;
+}
+
+.btn-have,
+.btn-have:hover {
+  background-color: skyblue;
+}
+
+.btn-have.active {
+  background-color: #45b3e0;
+  outline-color: #1f8dba;
+}
+
+.btn-need {
+  border: none !important;
+}
+
+.btn-need,
+.btn-need:hover {
+  background-color: magenta;
+}
+
+.btn-need.active {
+  background-color: #b300b3;
+  outline-color: #660066;
 }
 
