@@ -9,7 +9,13 @@
                         <a :class="linkClass(section.id)"
                             :href="'#section-'+section.id"
                             v-on:click="clickSection(index)">
-                            {{ section.id }} {{ completedSections[index] }}
+                            {{ section.id }}
+                            <span v-if="completedSections[index]">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                            </span>
+                            <span v-else>
+                                <i class="fa fa-square-o" aria-hidden="true"></i>
+                            </span>
                         </a>
                     </li>
                 </ul>

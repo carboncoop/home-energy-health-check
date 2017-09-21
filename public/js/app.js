@@ -43277,6 +43277,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['sections', 'improvements'],
@@ -43325,7 +43331,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.clickSection(index)
         }
       }
-    }, [_vm._v("\n                        " + _vm._s(section.id) + " " + _vm._s(_vm.completedSections[index]) + "\n                    ")])])
+    }, [_vm._v("\n                        " + _vm._s(section.id) + "\n                        "), (_vm.completedSections[index]) ? _c('span', [_c('i', {
+      staticClass: "fa fa-check-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })]) : _c('span', [_c('i', {
+      staticClass: "fa fa-square-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])])])
   }))]), _vm._v(" "), _c('div', {}, [_c('span', {
     staticClass: "navbar-text"
   }, [_vm._v("Improvements:")]), _vm._v(" "), _c('ul', {
