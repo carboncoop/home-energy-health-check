@@ -42940,6 +42940,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
                     return imp.value != null;
                 });
             });
+        },
+        formData: function formData(state) {
+            return _.transform(state.sections, function (ys, y) {
+                var y1 = _.transform(y.improvements, function (xs, x) {
+                    xs['improvement.' + x.id] = x.value;
+                }, {});
+                _.extend(ys, y1);
+            }, {});
         }
     }
 });
@@ -42992,10 +43000,11 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SubmissionButtons_vue__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SubmissionButtons_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__SubmissionButtons_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionNavigation_vue__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionNavigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SubmissionNavigation_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_js__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue__);
 //
 //
 //
@@ -43032,12 +43041,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['sections', 'improvements'],
+    props: ['baseUrl', 'reportId', 'sections', 'improvements'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_js__["a" /* default */]],
+    components: {
+        'submission-navigation': __WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue___default.a,
+        'submission-buttons': __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue___default.a
+    },
     mounted: function mounted() {
         var initImprovements = _.chain(this.improvements).map(function (imp) {
             return _.extend(imp, { value: null });
@@ -43050,10 +43067,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$store.commit('init', initSections);
     },
 
-    components: {
-        'submission-navigation': __WEBPACK_IMPORTED_MODULE_1__SubmissionNavigation_vue___default.a,
-        'submission-buttons': __WEBPACK_IMPORTED_MODULE_0__SubmissionButtons_vue___default.a
-    },
     computed: {
         currentSection: function currentSection() {
             return this.$store.getters.currentSection;
@@ -43464,7 +43477,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.nextSection(1)
       }
     }
-  }, [_vm._v("Next Section")])])], 2) : _vm._e()])
+  }, [_vm._v("Next Section")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-warning",
+    on: {
+      "click": _vm.submitForm
+    }
+  }, [_vm._v("Submit")])])], 2) : _vm._e()])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -43479,6 +43497,51 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    computed: {
+        formData: function formData() {
+            return this.$store.getters.formData;
+        }
+    },
+    methods: {
+        submitForm: function submitForm() {
+            var url = this.baseUrl + '/submit/' + this.reportId;
+            this.submitHttp('put', url, this.formData);
+        },
+        submitHttp: function submitHttp(requestType, url) {
+            var _this = this;
+
+            var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+            return new Promise(function (resolve, reject) {
+                axios[requestType](url, data).then(function (response) {
+                    _this.onSuccess(response.data);
+                    resolve(response.data);
+                }).catch(function (error) {
+                    _this.onFail(error.response.data);
+                    reject(error.response.data);
+                });
+            });
+        },
+        onSuccess: function onSuccess(data) {
+            console.warn("success", data);
+        },
+        onFail: function onFail(errors) {
+            console.warn("errors", errors);
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

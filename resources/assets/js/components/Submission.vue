@@ -28,6 +28,8 @@
                     v-on:click="nextSection(-1)">Previous Section</button>
                 <button class="btn btn-primary"
                     v-on:click="nextSection(1)">Next Section</button>
+                <button class="btn btn-warning"
+                    v-on:click="submitForm">Submit</button>
             </div>
 
         </div>
@@ -35,11 +37,17 @@
 </template>
 
 <script>
+    import FormMixin from '../mixins/form.js'
     import SubmissionButtons from './SubmissionButtons.vue'
     import SubmissionNavigation from './SubmissionNavigation.vue'
 
     export default {
-        props: ['sections', 'improvements'],
+        props: ['baseUrl', 'reportId', 'sections', 'improvements'],
+        mixins: [FormMixin],
+        components: {
+            'submission-navigation': SubmissionNavigation,
+            'submission-buttons': SubmissionButtons
+        },
         mounted() {
             let initImprovements = _.chain(this.improvements)
                 .map(function (imp) {
@@ -53,10 +61,6 @@
                 return _.extend(x, {improvements: initImprovements[x.id]})
             })
             this.$store.commit('init', initSections)
-        },
-        components: {
-            'submission-navigation': SubmissionNavigation,
-            'submission-buttons': SubmissionButtons
         },
         computed: {
             currentSection() {

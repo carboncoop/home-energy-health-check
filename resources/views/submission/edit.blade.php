@@ -4,7 +4,10 @@
 
 <div class="container">
     <div id="app">
-        <submission :sections='{{ $json_sections }}'
+        <submission
+            base-url='{{ URL::to('/') }}'
+            report-id='{{ $report->id }}'
+            :sections='{{ $json_sections }}'
             :improvements='{{ $json_improvements }}'>
         </submission>
     </div>

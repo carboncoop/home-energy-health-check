@@ -43,6 +43,14 @@ const store = new Vuex.Store({
                     return (imp.value != null)
                 })
             })
+        },
+        formData(state) {
+            return _.transform(state.sections, (ys, y) => {
+                let y1 = _.transform(y.improvements, (xs, x) => {
+                    xs['improvement.'+x.id] = x.value
+                }, {})
+                _.extend(ys, y1)
+            }, {})
         }
     }
 })
