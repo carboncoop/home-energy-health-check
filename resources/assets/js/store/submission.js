@@ -5,33 +5,44 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        currentSectionIndex: 0,
         sections: []
     },
     mutations: {
         init(state, payload) {
             state.sections = payload
         },
-        selectChoice (state, payload) {
-            state.sections[payload.section_id][payload.improvement_id].value = payload.value
+        setValue (state, obj) {
+            if (obj.section_index in state.sections) {
+                let section = state.sections[obj.section_index]
+                section.improvements[obj.improvement_index].value = obj.value
+            }
+        },
+        setCurrentSection(state, index) {
+            state.currentSectionIndex = index
         }
     },
     getters: {
-        isSectionComplete(state) {
-            return (section_id) => {
-                if (section_id in state.sections) {
-                    return _.every(state.sections[section_id], (x) => {
-                        return (x.value != null)
-                    })
+        currentSection(state) {
+            return state.sections[state.currentSectionIndex]
+        },
+        currentSectionIndex(state) {
+            return  state.currentSectionIndex
+        },
+        valueAtIndices(state) {
+            return (obj) => {
+                if (obj.section_index in state.sections) {
+                    let section = state.sections[obj.section_index]
+                    return section.improvements[obj.improvement_index].value
                 }
             }
         },
-        getValue(state) {
-            return (payload) => {
-                if (payload.section_id in state.sections) {
-                    let section = state.sections[payload.section_id]
-                    return section[payload.improvement_id].value
-                }
-            }
+        completedSections(state) {
+            return _.map(state.sections, (sec) => {
+                return _.every(sec.improvements, (imp) => {
+                    return (imp.value != null)
+                })
+            })
         }
     }
 })

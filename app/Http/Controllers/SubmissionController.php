@@ -18,8 +18,8 @@ class SubmissionController extends Controller
     public function edit($id)
     {
         $report = Report::findOrFail($id);
-        $sections = Section::get(['id', 'title', 'description'])->keyBy('id');
-        $improvements = Improvement::get(['title', 'id', 'section_id', 'description'])->keyBy('id');
+        $sections = Section::get(['id', 'title', 'description']);
+        $improvements = Improvement::get(['id', 'title', 'section_id', 'description']);
         return view('submission.edit', [
             'sections' => $sections,
             'json_sections' => $sections->toJson(),

@@ -1,26 +1,24 @@
 <template>
     <div class="submission-vue">
-        <div class="my-4 container">
+        <div class="my-4 container" v-if="currentSection">
 
             <submission-navigation :sections="sections"
-                :currentSectionId="currentSectionId"
-                :improvements="currentImprovements"
-                v-on:changeSection="changeSection">
+                :improvements="currentImprovements">
             </submission-navigation>
 
             <h2 class="my-2">{{ currentSection.title }}</h2>
             <p class="lead mb-5">{{ currentSection.description }}</p>
 
             <div class="card mb-5" :id="'improvement-'+improvement.id"
-                v-for="improvement in currentImprovements">
+                v-for="(improvement, index) in currentImprovements">
                 <div class="card-body">
                     <h3 class="card-title">{{ improvement.title }}</h3>
                     <p>{{ improvement.description }}</p>
                 </div>
                 <div class="card-footer">
                     <submission-buttons
-                        :sectionId="currentSection.id"
-                        :improvementId="improvement.id">
+                        :sectionIndex="currentSectionIndex"
+                        :improvementIndex="index">
                     </submission-buttons>
                 </div>
             </div>
@@ -43,45 +41,37 @@
     export default {
         props: ['sections', 'improvements'],
         mounted() {
-            let initSections = _.chain(this.improvements)
+            let initImprovements = _.chain(this.improvements)
                 .map(function (imp) {
                     return _.extend(imp, {value: null})
                 })
                 .groupBy(function (imp) {
                     return imp.section_id
                 })
-                .mapValues(function (section) {
-                    return _.mapKeys(section, function (imp, key) {
-                        return imp.id
-                    })
-                })
                 .value()
+            let initSections = _.map(this.sections, (x) => {
+                return _.extend(x, {improvements: initImprovements[x.id]})
+            })
             this.$store.commit('init', initSections)
         },
         components: {
             'submission-navigation': SubmissionNavigation,
             'submission-buttons': SubmissionButtons
         },
-        data() {
-            return {
-                formFields: {},
-                currentSectionId: 1
-            }
-        },
         computed: {
             currentSection() {
-                return this.sections[this.currentSectionId]
+                return this.$store.getters.currentSection
+            },
+            currentSectionIndex() {
+                return this.$store.getters.currentSectionIndex
             },
             currentImprovements() {
-                return this.improvementsInSection(this.currentSectionId)
+                return this.currentSection.improvements
             }
         },
         methods: {
             nextSection(increment) {
-                this.currentSectionId += 1
-            },
-            changeSection(section_id) {
-                this.currentSectionId = section_id
+                //this.currentSectionId += 1
             },
             improvementsInSection(section_id) {
                 return _.filter(this.improvements, (x) => {

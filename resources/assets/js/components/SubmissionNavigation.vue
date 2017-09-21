@@ -5,11 +5,11 @@
             <div class="">
                 <span class="navbar-text">Section:</span>
                 <ul class="nav nav-pills">
-                    <li v-for="section in sections" class="nav-item">
+                    <li v-for="(section, index) in sections" class="nav-item">
                         <a :class="linkClass(section.id)"
                             :href="'#section-'+section.id"
-                            v-on:click="clickSection(section.id)">
-                            {{ section.id }} {{ completedSections[section.id] }}
+                            v-on:click="clickSection(index)">
+                            {{ section.id }} {{ completedSections[index] }}
                         </a>
                     </li>
                 </ul>
@@ -20,8 +20,7 @@
                 <ul class="nav nav-pills">
                     <li v-for="improvement in improvements" class="nav-item">
                         <a class="nav-link"
-                            :href="'#section-'+improvement.section_id"
-                            v-on:click="clickImprovement(improvement.id, improvement.section_id)">
+                            :href="'#section-'+improvement.section_id">
                             {{ improvement.id }}
                         </a>
                     </li>
@@ -34,21 +33,15 @@
 
 <script>
     export default {
-        props: ['sections', 'improvements', 'currentSectionId'],
+        props: ['sections', 'improvements'],
         computed: {
             completedSections() {
-                return _.transform(this.sections, (xs, s, k) => {
-                    xs[s.id] = this.$store.getters.isSectionComplete(s.id)
-                })
+                return this.$store.getters.completedSections
             }
         },
         methods: {
-            clickSection(id) {
-                this.$emit('changeSection', id)
-            },
-            clickImprovement(improvementId, sectionId) {
-                //this.$emit('changeSection', sectionId)
-                //$('body').scrollspy({ target: '#improvement-' + improvementId })
+            clickSection(index) {
+                this.$store.commit('setCurrentSection', index)
             },
             linkClass(id) {
                 if (this.currentSectionId == id) {

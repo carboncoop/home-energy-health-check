@@ -11,7 +11,7 @@
 
 <script>
     export default {
-        props: ['sectionId', 'improvementId'],
+        props: ['sectionIndex', 'improvementIndex'],
         data() {
             return {
                 possibleValues: ['have', 'need']
@@ -19,9 +19,9 @@
         },
         computed: {
             value() {
-                return this.$store.getters.getValue({
-                    section_id: this.sectionId,
-                    improvement_id: this.improvementId
+                return this.$store.getters.valueAtIndices({
+                    section_index: this.sectionIndex,
+                    improvement_index: this.improvementIndex
                 })
             }
         },
@@ -35,9 +35,9 @@
                 return str
             },
             clickButton(value) {
-                this.$store.commit('selectChoice', {
-                    'section_id': this.sectionId,
-                    'improvement_id': this.improvementId,
+                this.$store.commit('setValue', {
+                    'section_index': this.sectionIndex,
+                    'improvement_index': this.improvementIndex,
                     'value': value
                 })
             }
