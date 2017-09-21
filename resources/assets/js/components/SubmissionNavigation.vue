@@ -1,15 +1,14 @@
 <template>
-    <nav class="navbar fixed-top navbar-light bg-light">
-        <div class="container">
+    <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+        <div class="container d-flex flex-column">
 
-            <div class="">
-                <span class="navbar-text">Section:</span>
-                <ul class="nav nav-pills">
+            <div class="navbar-collapse mb-2">
+                <ul class="nav nav-tabs">
                     <li v-for="(section, index) in sections" class="nav-item">
-                        <a :class="linkClass(section.id)"
+                        <a :class="linkClass(index)"
                             :href="'#section-'+section.id"
                             v-on:click="clickSection(index)">
-                            {{ section.id }}
+                            Part {{ index + 1 }}
                             <i v-if="completedSections[index]"
                                 class="fa fa-check-square-o"
                                 aria-hidden="true"></i>
@@ -21,8 +20,8 @@
                 </ul>
             </div>
 
-            <div class="">
-                <span class="navbar-text">Improvements:</span>
+            <div class="collapse navbar-collapse">
+
                 <ul class="nav nav-pills">
                     <li v-for="improvement in improvements" class="nav-item">
                         <a class="nav-link"
@@ -52,14 +51,17 @@
         computed: {
             completedSections() {
                 return this.$store.getters.completedSections
+            },
+            currentSectionIndex() {
+                return this.$store.getters.currentSectionIndex
             }
         },
         methods: {
             clickSection(index) {
                 this.$store.commit('setCurrentSection', index)
             },
-            linkClass(id) {
-                if (this.currentSectionId == id) {
+            linkClass(index) {
+                if (this.currentSectionIndex == index) {
                     return 'nav-link active'
                 } else {
                     return 'nav-link'

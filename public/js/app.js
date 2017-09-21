@@ -43312,21 +43312,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['sections', 'improvements'],
     computed: {
         completedSections: function completedSections() {
             return this.$store.getters.completedSections;
+        },
+        currentSectionIndex: function currentSectionIndex() {
+            return this.$store.getters.currentSectionIndex;
         }
     },
     methods: {
         clickSection: function clickSection(index) {
             this.$store.commit('setCurrentSection', index);
         },
-        linkClass: function linkClass(id) {
-            if (this.currentSectionId == id) {
+        linkClass: function linkClass(index) {
+            if (this.currentSectionIndex == index) {
                 return 'nav-link active';
             } else {
                 return 'nav-link';
@@ -43341,18 +43343,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('nav', {
-    staticClass: "navbar fixed-top navbar-light bg-light"
+    staticClass: "navbar navbar-expand-md fixed-top navbar-light bg-light"
   }, [_c('div', {
-    staticClass: "container"
-  }, [_c('div', {}, [_c('span', {
-    staticClass: "navbar-text"
-  }, [_vm._v("Section:")]), _vm._v(" "), _c('ul', {
-    staticClass: "nav nav-pills"
+    staticClass: "container d-flex flex-column"
+  }, [_c('div', {
+    staticClass: "navbar-collapse mb-2"
+  }, [_c('ul', {
+    staticClass: "nav nav-tabs"
   }, _vm._l((_vm.sections), function(section, index) {
     return _c('li', {
       staticClass: "nav-item"
     }, [_c('a', {
-      class: _vm.linkClass(section.id),
+      class: _vm.linkClass(index),
       attrs: {
         "href": '#section-' + section.id
       },
@@ -43361,7 +43363,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.clickSection(index)
         }
       }
-    }, [_vm._v("\n                        " + _vm._s(section.id) + "\n                        "), (_vm.completedSections[index]) ? _c('i', {
+    }, [_vm._v("\n                        Part " + _vm._s(index + 1) + "\n                        "), (_vm.completedSections[index]) ? _c('i', {
       staticClass: "fa fa-check-square-o",
       attrs: {
         "aria-hidden": "true"
@@ -43372,9 +43374,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "aria-hidden": "true"
       }
     })])])
-  }))]), _vm._v(" "), _c('div', {}, [_c('span', {
-    staticClass: "navbar-text"
-  }, [_vm._v("Improvements:")]), _vm._v(" "), _c('ul', {
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "collapse navbar-collapse"
+  }, [_c('ul', {
     staticClass: "nav nav-pills"
   }, _vm._l((_vm.improvements), function(improvement) {
     return _c('li', {
