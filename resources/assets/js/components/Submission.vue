@@ -6,13 +6,14 @@
                 :improvements="currentImprovements">
             </submission-navigation>
 
-            <h2 class="my-2">{{ currentSection.title }}</h2>
+            <h1 class="my-3">{{ currentSection.title }}</h1>
             <p class="lead mb-5">{{ currentSection.description }}</p>
 
-            <div class="card mb-5" :id="'improvement-'+improvement.id"
+            <div class="improvement-card card mb-5"
+                :id="'improvement-'+improvement.id"
                 v-for="(improvement, index) in currentImprovements">
                 <div class="card-body">
-                    <h3 class="card-title">{{ improvement.title }}</h3>
+                    <h2 class="card-title">{{ improvement.title }}</h2>
                     <p>{{ improvement.description }}</p>
                 </div>
                 <div class="card-footer">

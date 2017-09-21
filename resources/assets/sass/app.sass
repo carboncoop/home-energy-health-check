@@ -1,19 +1,19 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600")
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway")
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css")
+
 
 // Variables
-//@import "variables"
+@import "variables"
 
 // Core
-@fa-font-path: '~public/fonts/vendor'
-@import '~bootstrap/dist/css/bootstrap.css'
+
+@import '~bootstrap/scss/bootstrap.scss'
 //@import '~font-awesome/scss/font-awesome.scss'
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css")
 
 body
     position: relative
-
 
 // Submission Vues
 
@@ -40,24 +40,36 @@ $pink-3: #B40062
 $pink-4: #470027
 
 div.submission-vue
-    padding-top: 120px
-    padding-bottom: 160px
-
-=activeButton($color-bg, $color-active, $color-active-border)
-    color: $color-active
-    border: none !important
-    outline-color: $color-active-border
-    border-color: $color-active
-    &, &:hover, &:focus
-        background-color: $color-bg
-    &.active, &:focus
-        color: white
-        border-color: transparent
-        background-color: $color-active
-        -webkit-box-shadow: 0 0 0 3px $color-active-border
-        box-shadow: 0 0 0 3px $color-active-border
-.btn-primary
-    &.btn-have
-        +activeButton(white, $blue-2, $blue-3)
-    &.btn-need
-        +activeButton(white, $pink-2, $pink-3)
+    padding-top: 140px
+    padding-bottom: 140px
+    .navbar, .lead
+        font-family: 'Open Sans', sans-serif
+    .navbar
+        background-color: #222
+        a
+            color: $yellow-3
+        .nav-tabs
+            border-color: $yellow-3
+            .nav-link.active, .nav-item.show .nav-link
+                background-color: $yellow-2
+                border-color: $yellow-2
+            .nav-link:hover
+                background-color: $yellow-4
+                border-color: transparent
+        .nav-pills
+            .nav-need
+                color: $pink-2
+            .nav-have
+                color: $blue-2
+    .improvement-card
+        .card-footer
+            background-color: white
+        =btn-grey
+            &.inactive
+                +button-variant(#555, white, #333)
+        .btn-primary
+            +button-variant($blue-2, white, $blue-3)
+            +btn-grey
+        .btn-warning
+            +button-variant($pink-2, white, $pink-3)
+            +btn-grey

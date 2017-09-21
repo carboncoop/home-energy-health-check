@@ -11964,7 +11964,7 @@ var index_esm = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(48);
+module.exports = __webpack_require__(49);
 
 
 /***/ }),
@@ -42963,7 +42963,7 @@ var Component = __webpack_require__(2)(
   /* script */
   __webpack_require__(40),
   /* template */
-  __webpack_require__(47),
+  __webpack_require__(48),
   /* styles */
   null,
   /* scopeId */
@@ -43000,11 +43000,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_js__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_js__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue__);
+//
 //
 //
 //
@@ -43092,14 +43093,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    computed: {
+        formData: function formData() {
+            return this.$store.getters.formData;
+        }
+    },
+    methods: {
+        submitForm: function submitForm() {
+            var url = this.baseUrl + '/submit/' + this.reportId;
+            this.submitHttp('put', url, this.formData);
+        },
+        submitHttp: function submitHttp(requestType, url) {
+            var _this = this;
+
+            var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+            return new Promise(function (resolve, reject) {
+                axios[requestType](url, data).then(function (response) {
+                    _this.onSuccess(response.data);
+                    resolve(response.data);
+                }).catch(function (error) {
+                    _this.onFail(error.response.data);
+                    reject(error.response.data);
+                });
+            });
+        },
+        onSuccess: function onSuccess(data) {
+            console.warn("success", data);
+        },
+        onFail: function onFail(errors) {
+            console.warn("errors", errors);
+        }
+    }
+});
+
+/***/ }),
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(42),
-  /* template */
   __webpack_require__(43),
+  /* template */
+  __webpack_require__(44),
   /* styles */
   null,
   /* scopeId */
@@ -43131,7 +43172,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43172,10 +43213,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         buttonClass: function buttonClass(value) {
-            var str = "btn btn-primary";
+            var str = "btn py-2 px-4";
             str += " btn-" + value;
+            if (value == 'have') {
+                str += " btn-primary";
+            }
+            if (value == 'need') {
+                str += " btn-warning";
+            }
             if (value == this.value) {
                 str += " active";
+            } else {
+                str += " inactive";
             }
             return str;
         },
@@ -43190,12 +43239,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "row"
+    staticClass: "row my-3"
   }, _vm._l((_vm.possibleValues), function(choice, index) {
     return _c('div', {
       staticClass: "col col-6 text-center"
@@ -43207,17 +43256,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v("\n            Something you " + _vm._s(choice) + "\n            "), (_vm.value == choice && _vm.value == 'have') ? _c('i', {
-      staticClass: "fa fa-3 fa-check-circle",
+      staticClass: "pl-2 fa fa-lg fa-check-circle",
       attrs: {
         "aria-hidden": "true"
       }
     }) : (_vm.value == choice && _vm.value == 'need') ? _c('i', {
-      staticClass: "fa fa-3 fa-exclamation-circle",
+      staticClass: "pl-2 fa fa-lg fa-exclamation-circle",
       attrs: {
         "aria-hidden": "true"
       }
     }) : _c('i', {
-      staticClass: "fa fa-3 fa-circle-o",
+      staticClass: "pl-2 fa fa-lg fa-circle-o",
       attrs: {
         "aria-hidden": "true"
       }
@@ -43233,15 +43282,15 @@ if (false) {
 }
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(2)(
   /* script */
-  __webpack_require__(45),
-  /* template */
   __webpack_require__(46),
+  /* template */
+  __webpack_require__(47),
   /* styles */
   null,
   /* scopeId */
@@ -43273,12 +43322,11 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -43351,12 +43399,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('nav', {
-    staticClass: "navbar navbar-expand-md fixed-top navbar-light bg-light"
+    staticClass: "navbar navbar-expand-md fixed-top"
   }, [_c('div', {
     staticClass: "container d-flex flex-column"
   }, [_c('div', {
@@ -43376,7 +43424,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.clickSection(index)
         }
       }
-    }, [_vm._v("\n                        Part " + _vm._s(index + 1) + "\n                        "), (_vm.completedSections[index]) ? _c('i', {
+    }, [(_vm.completedSections[index]) ? _c('i', {
       staticClass: "fa fa-check-square-o",
       attrs: {
         "aria-hidden": "true"
@@ -43386,7 +43434,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "aria-hidden": "true"
       }
-    })])])
+    }), _vm._v(" "), _c('span', {
+      staticClass: "pl-1"
+    }, [_vm._v("Part " + _vm._s(index + 1))])])])
   }))]), _vm._v(" "), _c('div', {
     staticClass: "collapse navbar-collapse"
   }, [_c('ul', {
@@ -43395,7 +43445,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       staticClass: "nav-item"
     }, [_c('a', {
-      staticClass: "nav-link",
+      class: 'nav-link nav-' + improvement.value,
       attrs: {
         "href": '#section-' + improvement.section_id
       }
@@ -43426,7 +43476,7 @@ if (false) {
 }
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43439,19 +43489,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "sections": _vm.sections,
       "improvements": _vm.currentImprovements
     }
-  }), _vm._v(" "), _c('h2', {
-    staticClass: "my-2"
+  }), _vm._v(" "), _c('h1', {
+    staticClass: "my-3"
   }, [_vm._v(_vm._s(_vm.currentSection.title))]), _vm._v(" "), _c('p', {
     staticClass: "lead mb-5"
   }, [_vm._v(_vm._s(_vm.currentSection.description))]), _vm._v(" "), _vm._l((_vm.currentImprovements), function(improvement, index) {
     return _c('div', {
-      staticClass: "card mb-5",
+      staticClass: "improvement-card card mb-5",
       attrs: {
         "id": 'improvement-' + improvement.id
       }
     }, [_c('div', {
       staticClass: "card-body"
-    }, [_c('h3', {
+    }, [_c('h2', {
       staticClass: "card-title"
     }, [_vm._v(_vm._s(improvement.title))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(improvement.description))])]), _vm._v(" "), _c('div', {
       staticClass: "card-footer"
@@ -43493,55 +43543,10 @@ if (false) {
 }
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    computed: {
-        formData: function formData() {
-            return this.$store.getters.formData;
-        }
-    },
-    methods: {
-        submitForm: function submitForm() {
-            var url = this.baseUrl + '/submit/' + this.reportId;
-            this.submitHttp('put', url, this.formData);
-        },
-        submitHttp: function submitHttp(requestType, url) {
-            var _this = this;
-
-            var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
-            return new Promise(function (resolve, reject) {
-                axios[requestType](url, data).then(function (response) {
-                    _this.onSuccess(response.data);
-                    resolve(response.data);
-                }).catch(function (error) {
-                    _this.onFail(error.response.data);
-                    reject(error.response.data);
-                });
-            });
-        },
-        onSuccess: function onSuccess(data) {
-            console.warn("success", data);
-        },
-        onFail: function onFail(errors) {
-            console.warn("errors", errors);
-        }
-    }
-});
 
 /***/ })
 /******/ ]);

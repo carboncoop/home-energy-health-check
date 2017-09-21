@@ -1,15 +1,15 @@
 <template>
-    <div class="row">
+    <div class="row my-3">
         <div v-for="(choice, index) in possibleValues" class="col col-6 text-center">
             <button :class="buttonClass(choice)"
                 v-on:click="clickButton(choice)">
                 Something you {{ choice }}
                 <i v-if="value == choice && value == 'have'"
-                    class="fa fa-3 fa-check-circle" aria-hidden="true"></i>
+                    class="pl-2 fa fa-lg fa-check-circle" aria-hidden="true"></i>
                 <i v-else-if="value == choice && value == 'need' "
-                    class="fa fa-3 fa-exclamation-circle" aria-hidden="true"></i>
+                    class="pl-2 fa fa-lg fa-exclamation-circle" aria-hidden="true"></i>
                 <i v-else
-                    class="fa fa-3 fa-circle-o" aria-hidden="true"></i>
+                    class="pl-2 fa fa-lg fa-circle-o" aria-hidden="true"></i>
             </button>
         </div>
     </div>
@@ -33,10 +33,18 @@
         },
         methods: {
             buttonClass(value) {
-                let str = "btn btn-primary"
+                let str = "btn py-2 px-4"
                 str += " btn-" + value
+                if (value == 'have') {
+                    str += " btn-primary"
+                }
+                if (value == 'need') {
+                    str += " btn-warning"
+                }
                 if (value == this.value) {
                     str += " active"
+                } else {
+                    str += " inactive"
                 }
                 return str
             },
