@@ -1,9 +1,15 @@
 <template>
     <div class="row">
-        <div v-for="value in possibleValues" class="col col-6 text-center">
-            <button :class="buttonClass(value)"
-                v-on:click="clickButton(value)">
-                Something you {{ value }}
+        <div v-for="(choice, index) in possibleValues" class="col col-6 text-center">
+            <button :class="buttonClass(choice)"
+                v-on:click="clickButton(choice)">
+                Something you {{ choice }}
+                <i v-if="value == choice && value == 'have'"
+                    class="fa fa-3 fa-check-circle" aria-hidden="true"></i>
+                <i v-else-if="value == choice && value == 'need' "
+                    class="fa fa-3 fa-exclamation-circle" aria-hidden="true"></i>
+                <i v-else
+                    class="fa fa-3 fa-circle-o" aria-hidden="true"></i>
             </button>
         </div>
     </div>

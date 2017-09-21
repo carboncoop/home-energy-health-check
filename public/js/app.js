@@ -43134,6 +43134,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['sectionIndex', 'improvementIndex'],
@@ -43177,17 +43183,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "row"
-  }, _vm._l((_vm.possibleValues), function(value) {
+  }, _vm._l((_vm.possibleValues), function(choice, index) {
     return _c('div', {
       staticClass: "col col-6 text-center"
     }, [_c('button', {
-      class: _vm.buttonClass(value),
+      class: _vm.buttonClass(choice),
       on: {
         "click": function($event) {
-          _vm.clickButton(value)
+          _vm.clickButton(choice)
         }
       }
-    }, [_vm._v("\n            Something you " + _vm._s(value) + "\n        ")])])
+    }, [_vm._v("\n            Something you " + _vm._s(choice) + "\n            "), (_vm.value == choice && _vm.value == 'have') ? _c('i', {
+      staticClass: "fa fa-3 fa-check-circle",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }) : (_vm.value == choice && _vm.value == 'need') ? _c('i', {
+      staticClass: "fa fa-3 fa-exclamation-circle",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }) : _c('i', {
+      staticClass: "fa fa-3 fa-circle-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])])
   }))
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -43283,6 +43304,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['sections', 'improvements'],
@@ -43331,17 +43361,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.clickSection(index)
         }
       }
-    }, [_vm._v("\n                        " + _vm._s(section.id) + "\n                        "), (_vm.completedSections[index]) ? _c('span', [_c('i', {
+    }, [_vm._v("\n                        " + _vm._s(section.id) + "\n                        "), (_vm.completedSections[index]) ? _c('i', {
       staticClass: "fa fa-check-square-o",
       attrs: {
         "aria-hidden": "true"
       }
-    })]) : _c('span', [_c('i', {
+    }) : _c('i', {
       staticClass: "fa fa-square-o",
       attrs: {
         "aria-hidden": "true"
       }
-    })])])])
+    })])])
   }))]), _vm._v(" "), _c('div', {}, [_c('span', {
     staticClass: "navbar-text"
   }, [_vm._v("Improvements:")]), _vm._v(" "), _c('ul', {
@@ -43354,7 +43384,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "href": '#section-' + improvement.section_id
       }
-    }, [_vm._v("\n                        " + _vm._s(improvement.id) + "\n                    ")])])
+    }, [_vm._v("\n                        " + _vm._s(improvement.id) + "\n                        "), (improvement.value == 'have') ? _c('i', {
+      staticClass: "fa fa-check-circle",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }) : (improvement.value == 'need') ? _c('i', {
+      staticClass: "fa fa-exclamation-circle",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    }) : _c('i', {
+      staticClass: "fa fa-circle-o",
+      attrs: {
+        "aria-hidden": "true"
+      }
+    })])])
   }))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true

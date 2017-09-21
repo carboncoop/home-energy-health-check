@@ -10,12 +10,12 @@
                             :href="'#section-'+section.id"
                             v-on:click="clickSection(index)">
                             {{ section.id }}
-                            <span v-if="completedSections[index]">
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                            </span>
-                            <span v-else>
-                                <i class="fa fa-square-o" aria-hidden="true"></i>
-                            </span>
+                            <i v-if="completedSections[index]"
+                                class="fa fa-check-square-o"
+                                aria-hidden="true"></i>
+                            <i v-else
+                                class="fa fa-square-o"
+                                aria-hidden="true"></i>
                         </a>
                     </li>
                 </ul>
@@ -28,6 +28,15 @@
                         <a class="nav-link"
                             :href="'#section-'+improvement.section_id">
                             {{ improvement.id }}
+                            <i v-if="improvement.value == 'have'"
+                                class="fa fa-check-circle"
+                                aria-hidden="true"></i>
+                            <i v-else-if="improvement.value == 'need'"
+                                class="fa fa-exclamation-circle"
+                                aria-hidden="true"></i>
+                            <i v-else
+                                class="fa fa-circle-o"
+                                aria-hidden="true"></i>
                         </a>
                     </li>
                 </ul>
