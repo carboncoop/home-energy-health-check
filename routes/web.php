@@ -12,29 +12,24 @@
 */
 
 Route::get('/', function () {
-    return view('welcome', ['foo' => 'routing', 'fii' => 43]);
+    return view('welcome', []);
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
-    \CRUD::resource('improvement', 'ImprovementCrudController');
+$crudControllers = [
+    'improvement' => 'ImprovementCrudController',
+    'section' => 'SectionCrudController',
+    'report' => 'ReportCrudController',
+];
+
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['admin'],
+    'namespace' => 'Admin'
+], function() use ($crudControllers) {
+    foreach ($crudControllers as $slug => $controller) {
+        \CRUD::resource($slug, $controller);
+    }
 });
-
-Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
-    \CRUD::resource('section', 'SectionCrudController');
-});
-
-Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
-    \CRUD::resource('report', 'ReportCrudController');
-});
-
-
-Route::resource('improvements', 'ImprovementsController', [
-    'only' => ['index', 'edit', 'update']
-]);
-
-Route::resource('reports', 'ReportsController', [
-    'only' => ['index', 'edit', 'update']
-]);
 
 Route::resource('submit', 'SubmissionController', [
     'only' => ['edit', 'update']
