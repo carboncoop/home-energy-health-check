@@ -20,7 +20,7 @@ Route::resource('improvements', 'ImprovementsController', [
 ]);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
-    \CRUD::resource('improvement', 'ImprovementsController');
+    \CRUD::resource('improvement', 'ImprovementCrudController');
 });
 
 

@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Section;
+use Backpack\CRUD\CrudTrait;
 
 class Improvement extends Model
 {
+    use CrudTrait;
 
     protected $fillable = [
         'title', 'section_id',
