@@ -13,7 +13,12 @@
                 :id="'improvement-'+improvement.id"
                 v-for="(improvement, index) in currentImprovements">
                 <div class="card-body">
-                    <h2 class="card-title">{{ improvement.title }}</h2>
+                    <h2 class="card-title">
+                        <span class="badge badge-secondary improvement-no mr-3">
+                            {{ index + 1 }}
+                        </span>
+                        {{ improvement.title }}
+                    </h2>
                     <p>{{ improvement.description }}</p>
                 </div>
                 <div class="card-footer">

@@ -22,14 +22,14 @@
 
             <div class="collapse navbar-collapse">
                 <ul class="nav nav-pills">
-                    <li v-for="improvement in improvements" class="nav-item">
-                        <a :class="'nav-link nav-'+improvement.value"
-                            :href="'#section-'+improvement.section_id">
-                            {{ improvement.id }}
-                            <i v-if="improvement.value == 'have'"
+                    <li v-for="(imp, index) in improvements" class="nav-item">
+                        <a :class="'nav-link nav-'+imp.value"
+                            :href="'#section-'+imp.section_id">
+                            {{ index + 1 }}
+                            <i v-if="imp.value == 'have'"
                                 class="fa fa-check-circle"
                                 aria-hidden="true"></i>
-                            <i v-else-if="improvement.value == 'need'"
+                            <i v-else-if="imp.value == 'need'"
                                 class="fa fa-exclamation-circle"
                                 aria-hidden="true"></i>
                             <i v-else

@@ -8336,8 +8336,13 @@ div.submission-vue {
   padding-bottom: 140px;
 }
 
-div.submission-vue .navbar, div.submission-vue .lead {
+div.submission-vue .navbar, div.submission-vue .lead, div.submission-vue .improvement-no {
   font-family: 'Open Sans', sans-serif;
+}
+
+div.submission-vue .improvement-no {
+  position: relative;
+  top: -3px;
 }
 
 div.submission-vue .navbar {

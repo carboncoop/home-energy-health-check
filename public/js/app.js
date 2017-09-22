@@ -43046,6 +43046,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -43443,20 +43448,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "collapse navbar-collapse"
   }, [_c('ul', {
     staticClass: "nav nav-pills"
-  }, _vm._l((_vm.improvements), function(improvement) {
+  }, _vm._l((_vm.improvements), function(imp, index) {
     return _c('li', {
       staticClass: "nav-item"
     }, [_c('a', {
-      class: 'nav-link nav-' + improvement.value,
+      class: 'nav-link nav-' + imp.value,
       attrs: {
-        "href": '#section-' + improvement.section_id
+        "href": '#section-' + imp.section_id
       }
-    }, [_vm._v("\n                        " + _vm._s(improvement.id) + "\n                        "), (improvement.value == 'have') ? _c('i', {
+    }, [_vm._v("\n                        " + _vm._s(index + 1) + "\n                        "), (imp.value == 'have') ? _c('i', {
       staticClass: "fa fa-check-circle",
       attrs: {
         "aria-hidden": "true"
       }
-    }) : (improvement.value == 'need') ? _c('i', {
+    }) : (imp.value == 'need') ? _c('i', {
       staticClass: "fa fa-exclamation-circle",
       attrs: {
         "aria-hidden": "true"
@@ -43505,7 +43510,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "card-body"
     }, [_c('h2', {
       staticClass: "card-title"
-    }, [_vm._v(_vm._s(improvement.title))]), _vm._v(" "), _c('p', [_vm._v(_vm._s(improvement.description))])]), _vm._v(" "), _c('div', {
+    }, [_c('span', {
+      staticClass: "badge badge-secondary improvement-no mr-3"
+    }, [_vm._v("\n                        " + _vm._s(index + 1) + "\n                    ")]), _vm._v("\n                    " + _vm._s(improvement.title) + "\n                ")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(improvement.description))])]), _vm._v(" "), _c('div', {
       staticClass: "card-footer"
     }, [_c('submission-buttons', {
       attrs: {
