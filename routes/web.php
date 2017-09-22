@@ -19,6 +19,12 @@ Route::resource('improvements', 'ImprovementsController', [
     'only' => ['index', 'edit', 'update']
 ]);
 
+Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
+    \CRUD::resource('improvement', 'ImprovementsController');
+});
+
+
+
 Route::resource('reports', 'ReportsController', [
     'only' => ['index', 'edit', 'update']
 ]);

@@ -14,6 +14,9 @@
                         'class' => 'nav-link'
                     ]) }}
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a>
+                </li>
             </ul>
         </div>
     </nav>
