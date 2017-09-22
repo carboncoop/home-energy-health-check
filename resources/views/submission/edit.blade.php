@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <div id="app">
+    <div id="submission-app">
         <submission
             base-url='{{ URL::to('/') }}'
             report-id='{{ $report->id }}'

@@ -11995,13 +11995,15 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */]);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+if (document.getElementById('submission-app') != null) {
 
-Vue.component('submission', __webpack_require__(39));
+  Vue.component('submission', __webpack_require__(39));
 
-var app = new Vue({
-  el: '#app',
-  store: __WEBPACK_IMPORTED_MODULE_1__store_submission_js__["a" /* default */]
-});
+  var app = new Vue({
+    el: '#submission-app',
+    store: __WEBPACK_IMPORTED_MODULE_1__store_submission_js__["a" /* default */]
+  });
+}
 
 /***/ }),
 /* 13 */
