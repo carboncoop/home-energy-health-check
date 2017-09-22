@@ -1,7 +1,8 @@
-@extends('master')
+@extends('admin.master')
 
 @section('content')
-  <div class="container hii">
+    @parent
+    <div class="container admin-container">
     @foreach($reports as $report)
       <div class="card my-3">
         <div class="card-header">

@@ -17,7 +17,7 @@ class ImprovementsController extends Controller
     public function index()
     {
         $improvements = Improvement::all();
-        return view('improvements.index', compact('improvements'));
+        return view('admin.improvements.index', compact('improvements'));
     }
 
     /**
@@ -29,7 +29,7 @@ class ImprovementsController extends Controller
     public function edit($id)
     {
         $improvement = Improvement::findOrFail($id);
-        return view('improvements.edit', compact('improvement'));
+        return view('admin.improvements.edit', compact('improvement'));
     }
 
     /**

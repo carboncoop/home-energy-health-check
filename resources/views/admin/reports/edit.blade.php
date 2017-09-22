@@ -1,7 +1,8 @@
-@extends('master')
+@extends('admin.master')
 
 @section('content')
-  <div class="container">
+    @parent
+    <div class="container admin-container">
 
     {!! Form::model($report, [
       'method' => 'PUT',

@@ -16,7 +16,7 @@ class ReportsController extends Controller
     public function index()
     {
         $reports = Report::all();
-        return view('reports.index', compact('reports'));
+        return view('admin.reports.index', compact('reports'));
     }
 
     /**
@@ -28,7 +28,7 @@ class ReportsController extends Controller
     public function edit($id)
     {
         $report = Report::findOrFail($id);
-        return view('reports.edit', compact('report'));
+        return view('admin.reports.edit', compact('report'));
     }
 
     /**

@@ -8323,6 +8323,14 @@ body {
   position: relative;
 }
 
+.admin-navbar {
+  background-color: #222;
+}
+
+.admin-container {
+  padding-top: 100px;
+}
+
 div.submission-vue {
   padding-top: 140px;
   padding-bottom: 140px;
