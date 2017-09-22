@@ -6,7 +6,7 @@
     <div id="submission-app">
         <submission
             base-url='{{ URL::to('/') }}'
-            report-id='{{ $report->id }}'
+            report-id='{{ $assessment->id }}'
             :sections='{{ $json_sections }}'
             :improvements='{{ $json_improvements }}'>
         </submission>

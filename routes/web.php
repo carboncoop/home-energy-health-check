@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 $crudControllers = [
-    'improvement' => 'ImprovementCrudController',
-    'section' => 'SectionCrudController',
-    'report' => 'ReportCrudController',
+    'improvements' => 'ImprovementCrudController',
+    'sections' => 'SectionCrudController',
+    'assessments' => 'AssessmentCrudController',
 ];
 
 Route::group([

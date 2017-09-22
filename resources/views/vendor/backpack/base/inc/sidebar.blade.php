@@ -19,14 +19,14 @@
 
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/dashboard') }}"><i class="fa fa-dashboard"></i> <span>{{ trans('backpack::base.dashboard') }}</span></a></li>
 
-          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/improvement') }}"><i class="fa fa-dashboard"></i>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/improvements') }}"><i class="fa fa-dashboard"></i>
               <span>Improvements</span></a>
           </li>
-          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/section') }}"><i class="fa fa-dashboard"></i>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/sections') }}"><i class="fa fa-dashboard"></i>
               <span>Sections</span></a>
           </li>
-          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/report') }}"><i class="fa fa-dashboard"></i>
-              <span>Reports</span></a>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/assessments') }}"><i class="fa fa-dashboard"></i>
+              <span>Assessments</span></a>
           </li>
 
           <!-- ======================================= -->

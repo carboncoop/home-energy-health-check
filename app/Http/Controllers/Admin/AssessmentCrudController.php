@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\ReportRequest as StoreRequest;
-use App\Http\Requests\ReportRequest as UpdateRequest;
+use App\Http\Requests\AssessmentRequest as StoreRequest;
+use App\Http\Requests\AssessmentRequest as UpdateRequest;
 
-class ReportCrudController extends CrudController
+class AssessmentCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class ReportCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Report');
+        $this->crud->setModel('App\Models\Assessment');
         $this->crud->setRoute(config('backpack.base.route_prefix') . '/report');
-        $this->crud->setEntityNameStrings('report', 'reports');
+        $this->crud->setEntityNameStrings('assessment', 'assessments');
 
         /*
         |--------------------------------------------------------------------------

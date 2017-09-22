@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Assessment;
 use App\Models\Improvement;
 use App\Models\Section;
-use App\Models\Report;
 
 class SubmissionController extends Controller
 {
@@ -17,14 +17,14 @@ class SubmissionController extends Controller
      */
     public function edit($id)
     {
-        $report = Report::findOrFail($id);
+        $assessment = Assessment::findOrFail($id);
         $sections = Section::get(['id', 'title', 'description']);
         $improvements = Improvement::get(['id', 'title', 'section_id', 'description']);
         return view('submission.edit', [
             'sections' => $sections,
             'json_sections' => $sections->toJson(),
             'json_improvements' => $improvements->toJson(),
-            'report' => $report,
+            'assessment' => $assessment,
         ]);
     }
 
