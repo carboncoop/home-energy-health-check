@@ -15,15 +15,22 @@ Route::get('/', function () {
     return view('welcome', ['foo' => 'routing', 'fii' => 43]);
 });
 
-Route::resource('improvements', 'ImprovementsController', [
-    'only' => ['index', 'edit', 'update']
-]);
-
 Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
     \CRUD::resource('improvement', 'ImprovementCrudController');
 });
 
+Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
+    \CRUD::resource('section', 'SectionCrudController');
+});
 
+Route::group(['prefix' => 'admin', 'middleware' => ['admin'], 'namespace' => 'Admin'], function() {
+    \CRUD::resource('report', 'ReportCrudController');
+});
+
+
+Route::resource('improvements', 'ImprovementsController', [
+    'only' => ['index', 'edit', 'update']
+]);
 
 Route::resource('reports', 'ReportsController', [
     'only' => ['index', 'edit', 'update']
