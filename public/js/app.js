@@ -43051,6 +43051,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -43079,8 +43087,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         currentSection: function currentSection() {
             return this.$store.getters.currentSection;
         },
-        currentSectionIndex: function currentSectionIndex() {
-            return this.$store.getters.currentSectionIndex;
+
+        currentSectionIndex: {
+            get: function get() {
+                return this.$store.getters.currentSectionIndex;
+            },
+            set: function set(value) {
+                return this.$store.commit('setCurrentSection', value);
+            }
         },
         currentImprovements: function currentImprovements() {
             return this.currentSection.improvements;
@@ -43088,7 +43102,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         nextSection: function nextSection(increment) {
-            //this.currentSectionId += 1
+            this.currentSectionIndex += increment;
         },
         improvementsInSection: function improvementsInSection(section_id) {
             return _.filter(this.improvements, function (x) {
@@ -43522,21 +43536,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     })], 1)])
   }), _vm._v(" "), _c('div', {
     staticClass: "text-center"
-  }, [_c('button', {
+  }, [(_vm.currentSectionIndex != 0) ? _c('button', {
     staticClass: "btn btn-primary",
     on: {
       "click": function($event) {
-        _vm.nextSection(-1)
+        _vm.currentSectionIndex -= 1
       }
     }
-  }, [_vm._v("Previous Section")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("Previous Section")]) : _vm._e(), _vm._v(" "), (_vm.currentSectionIndex < _vm.sections.length - 1) ? _c('button', {
     staticClass: "btn btn-primary",
     on: {
       "click": function($event) {
-        _vm.nextSection(1)
+        _vm.currentSectionIndex += 1
       }
     }
-  }, [_vm._v("Next Section")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("Next Section")]) : _vm._e(), _vm._v(" "), _c('button', {
     staticClass: "btn btn-warning",
     on: {
       "click": _vm.submitForm

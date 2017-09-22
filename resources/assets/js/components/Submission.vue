@@ -30,12 +30,20 @@
             </div>
 
             <div class="text-center">
+
                 <button class="btn btn-primary"
-                    v-on:click="nextSection(-1)">Previous Section</button>
+                    v-if="currentSectionIndex != 0"
+                    v-on:click="currentSectionIndex -= 1"
+                    >Previous Section</button>
+
                 <button class="btn btn-primary"
-                    v-on:click="nextSection(1)">Next Section</button>
+                    v-if="currentSectionIndex < sections.length - 1"
+                    v-on:click="currentSectionIndex += 1"
+                    >Next Section</button>
+
                 <button class="btn btn-warning"
                     v-on:click="submitForm">Submit</button>
+
             </div>
 
         </div>
@@ -72,8 +80,13 @@
             currentSection() {
                 return this.$store.getters.currentSection
             },
-            currentSectionIndex() {
-                return this.$store.getters.currentSectionIndex
+            currentSectionIndex: {
+                get() {
+                    return this.$store.getters.currentSectionIndex
+                },
+                set(value) {
+                    return this.$store.commit('setCurrentSection', value)
+                }
             },
             currentImprovements() {
                 return this.currentSection.improvements
@@ -81,7 +94,7 @@
         },
         methods: {
             nextSection(increment) {
-                //this.currentSectionId += 1
+                this.currentSectionIndex += increment
             },
             improvementsInSection(section_id) {
                 return _.filter(this.improvements, (x) => {
