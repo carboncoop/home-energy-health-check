@@ -15,7 +15,13 @@ class CreateAssessmentsTable extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email_address');
+            $table->string('assessor_name')->nullable();
+            $table->string('assessment_date')->nullable();
+            $table->string('homeowner_name')->nullable();
+            $table->string('homeowner_email')->nullable();
+            $table->string('homeowner_phone')->nullable();
+            $table->longText('homeowner_address')->nullable();
+            $table->string('home_type')->nullable();
             $table->timestamps();
         });
     }

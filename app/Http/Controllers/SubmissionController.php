@@ -19,7 +19,7 @@ class SubmissionController extends Controller
     {
         $assessment = Assessment::findOrFail($id);
         $sections = Section::get(['id', 'title', 'description']);
-        $improvements = Improvement::get(['id', 'title', 'section_id', 'description']);
+        $improvements = Improvement::get(['id', 'title', 'section_id', 'description', 'assessor_comment']);
         return view('submission.edit', [
             'sections' => $sections,
             'json_sections' => $sections->toJson(),

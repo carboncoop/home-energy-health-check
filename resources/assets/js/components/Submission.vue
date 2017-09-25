@@ -20,6 +20,9 @@
                         {{ improvement.title }}
                     </h2>
                     <p>{{ improvement.description }}</p>
+                    <textarea :placeholder="improvement.assessor_comment"
+                        class="form-control">
+                    </textarea>
                 </div>
                 <div class="card-footer">
                     <submission-buttons

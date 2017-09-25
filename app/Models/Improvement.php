@@ -22,4 +22,11 @@ class Improvement extends Model
         return $this->belongsTo(Section::class);
     }
 
+    public function getAssessorCommentAttribute($value) {
+        if ($value != '') {
+            return $value;
+        }
+        return '- add any notes here.';
+    }
+
 }
