@@ -2,32 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Backpack\CRUD\app\Http\Controllers\CrudController;
-
-// VALIDATION: change the requests to match your own file names if you need form validation
+use App\Http\Controllers\DefaultCrudController;
 use App\Http\Requests\AssessmentRequest as StoreRequest;
 use App\Http\Requests\AssessmentRequest as UpdateRequest;
+use App\Models\Assessment;
 
-class AssessmentCrudController extends CrudController
+class AssessmentCrudController extends DefaultCrudController
 {
     public function setup()
     {
-
-        /*
-        |--------------------------------------------------------------------------
-        | BASIC CRUD INFORMATION
-        |--------------------------------------------------------------------------
-        */
-        $this->crud->setModel('App\Models\Assessment');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/report');
-        $this->crud->setEntityNameStrings('assessment', 'assessments');
-
-        /*
-        |--------------------------------------------------------------------------
-        | BASIC CRUD INFORMATION
-        |--------------------------------------------------------------------------
-        */
-
+        parent::setDefaults('assessment');
+        $this->crud->setModel(Assessment::class);
         $this->crud->setFromDb();
 
         // ------ CRUD FIELDS

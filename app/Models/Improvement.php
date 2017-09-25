@@ -14,7 +14,7 @@ class Improvement extends Model
         'title', 'section_id',
         'description', 'estimated_cost',
         'benefits', 'who_can_do',
-        'assessor_guidance', 'asessor_comment',
+        'assessor_guidance', 'assessor_comment',
     ];
 
     public function section()
