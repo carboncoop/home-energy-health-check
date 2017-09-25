@@ -17,6 +17,12 @@
                             <span class="pl-1">Part {{ index + 1 }}</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#details"
+                            v-on:click="showDetails()">
+                            Details
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -56,8 +62,12 @@
             }
         },
         methods: {
+            showDetails() {
+                this.$emit('showDetails')
+            },
             clickSection(index) {
                 this.$store.commit('setCurrentSection', index)
+                this.$emit('hideDetails')
             },
             linkClass(index) {
                 if (this.currentSectionIndex == index) {

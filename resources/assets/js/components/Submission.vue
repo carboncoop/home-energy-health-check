@@ -1,15 +1,21 @@
 <template>
     <div class="submission-vue">
 
+        <div v-if="currentSection">
+            <submission-navigation :sections="sections"
+                :improvements="currentImprovements"
+                v-on:showDetails="showDetails = true"
+                v-on:hideDetails="showDetails = false">
+            </submission-navigation>
+        </div>
+
         <div class="my-4 container" v-if="showDetails">
-            details
+            <submission-details
+                :assessment="assessment">
+            </submission-details>
         </div>
 
         <div class="my-4 container" v-else-if="currentSection">
-
-            <submission-navigation :sections="sections"
-                :improvements="currentImprovements">
-            </submission-navigation>
 
             <h1 class="my-3">{{ currentSection.title }}</h1>
             <p class="lead mb-5">{{ currentSection.description }}</p>
@@ -59,15 +65,17 @@
 <script>
     import FormMixin from '../mixins/form.js'
     import SubmissionButtons from './SubmissionButtons.vue'
+    import SubmissionDetails from './SubmissionDetails.vue'
     import SubmissionNavigation from './SubmissionNavigation.vue'
     import SubmissionPagination from './SubmissionPagination.vue'
 
     export default {
-        props: ['baseUrl', 'reportId', 'sections', 'improvements'],
+        props: ['baseUrl', 'assessment', 'sections', 'improvements'],
         mixins: [FormMixin],
         components: {
-            'submission-navigation': SubmissionNavigation,
             'submission-buttons': SubmissionButtons,
+            'submission-details': SubmissionDetails,
+            'submission-navigation': SubmissionNavigation,
             'submission-pagination': SubmissionPagination
         },
         data() {
