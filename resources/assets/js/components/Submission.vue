@@ -13,16 +13,24 @@
                 :id="'improvement-'+improvement.id"
                 v-for="(improvement, index) in currentImprovements">
                 <div class="card-body">
+
                     <h2 class="card-title">
                         <span class="badge badge-secondary improvement-no mr-3">
                             {{ index + 1 }}
                         </span>
                         {{ improvement.title }}
                     </h2>
+
                     <p>{{ improvement.description }}</p>
+
+                    <div v-if="improvement.assessor_guidance" class="alert alert-danger">
+                        <p>{{ improvement.assessor_guidance }}</p>
+                    </div>
+
                     <textarea :placeholder="improvement.assessor_comment"
                         class="form-control">
                     </textarea>
+
                 </div>
                 <div class="card-footer">
                     <submission-buttons

@@ -43026,7 +43026,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "card-title"
     }, [_c('span', {
       staticClass: "badge badge-secondary improvement-no mr-3"
-    }, [_vm._v("\n                        " + _vm._s(index + 1) + "\n                    ")]), _vm._v("\n                    " + _vm._s(improvement.title) + "\n                ")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(improvement.description))]), _vm._v(" "), _c('textarea', {
+    }, [_vm._v("\n                        " + _vm._s(index + 1) + "\n                    ")]), _vm._v("\n                    " + _vm._s(improvement.title) + "\n                ")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(improvement.description))]), _vm._v(" "), (improvement.assessor_guidance) ? _c('div', {
+      staticClass: "alert alert-danger"
+    }, [_c('p', [_vm._v(_vm._s(improvement.assessor_guidance))])]) : _vm._e(), _vm._v(" "), _c('textarea', {
       staticClass: "form-control",
       attrs: {
         "placeholder": improvement.assessor_comment
@@ -43091,6 +43093,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SubmissionNavigation_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
