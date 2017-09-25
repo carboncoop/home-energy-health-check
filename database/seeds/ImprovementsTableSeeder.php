@@ -28,12 +28,13 @@ class ImprovementsTableSeeder extends Seeder
         foreach ($stmt->process($csv) as $row) {
             \DB::table('improvements')->insert([
                 'title' => $row[0],
-                'section_id' => 1 + (int)$row[1],
-                'description' => $row[2],
-                'estimated_cost' => $row[3],
-                'benefits' => $row[4],
-                'who_can_do' => $row[5],
-                'assessor_guidance' => $row[7],
+                'assessor_comment' => $row[1],
+                'section_id' => (int)$row[2],
+                'description' => $row[3],
+                'estimated_cost' => $row[4],
+                'benefits' => $row[5],
+                'who_can_do' => $row[6],
+                'assessor_guidance' => $row[8],
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);

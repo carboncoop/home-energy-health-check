@@ -22,6 +22,7 @@ class CreateImprovementsTable extends Migration
             $table->string('benefits')->nullable();
             $table->string('who_can_do')->nullable();
             $table->longText('assessor_guidance')->nullable();
+            $table->longText('assessor_comment')->nullable();
             $table->timestamps();
         });
     }

@@ -13,7 +13,8 @@ class Improvement extends Model
     protected $fillable = [
         'title', 'section_id',
         'description', 'estimated_cost',
-        'benefits', 'who_can_do', 'assessor_guidance'
+        'benefits', 'who_can_do',
+        'assessor_guidance', 'asessor_comment',
     ];
 
     public function section()
