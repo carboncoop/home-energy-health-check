@@ -1,6 +1,11 @@
 <template>
     <div class="submission-vue">
-        <div class="my-4 container" v-if="currentSection">
+
+        <div class="my-4 container" v-if="showDetails">
+            details
+        </div>
+
+        <div class="my-4 container" v-else-if="currentSection">
 
             <submission-navigation :sections="sections"
                 :improvements="currentImprovements">
@@ -40,22 +45,12 @@
                 </div>
             </div>
 
-            <div class="text-center">
-
-                <button class="btn btn-primary"
-                    v-if="currentSectionIndex != 0"
-                    v-on:click="currentSectionIndex -= 1"
-                    >Previous Section</button>
-
-                <button class="btn btn-primary"
-                    v-if="currentSectionIndex < sections.length - 1"
-                    v-on:click="currentSectionIndex += 1"
-                    >Next Section</button>
-
+            <submission-pagination
+                :sectionIndex="currentSectionIndex"
+                :sectionsLength="sections.length">
                 <button class="btn btn-warning"
                     v-on:click="submitForm">Submit</button>
-
-            </div>
+            </submission-pagination>
 
         </div>
     </div>
@@ -65,13 +60,20 @@
     import FormMixin from '../mixins/form.js'
     import SubmissionButtons from './SubmissionButtons.vue'
     import SubmissionNavigation from './SubmissionNavigation.vue'
+    import SubmissionPagination from './SubmissionPagination.vue'
 
     export default {
         props: ['baseUrl', 'reportId', 'sections', 'improvements'],
         mixins: [FormMixin],
         components: {
             'submission-navigation': SubmissionNavigation,
-            'submission-buttons': SubmissionButtons
+            'submission-buttons': SubmissionButtons,
+            'submission-pagination': SubmissionPagination
+        },
+        data() {
+            return {
+                showDetails: false
+            }
         },
         mounted() {
             let initImprovements = _.chain(this.improvements)
