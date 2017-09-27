@@ -1,43 +1,18 @@
 
-// Fonts
+// Fonts & Icons
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Raleway")
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css")
-
-
-// Variables
-@import "variables"
-
-// Core
-
+// Bootstrap
 @import '~bootstrap/scss/bootstrap.scss'
-//@import '~font-awesome/scss/font-awesome.scss'
+// Colors, Bootstrap defaults etc.
+@import "variables"
+// Assessment submission form
+@import "submission"
+// PDF output
+@import "pdf"
 
 body
     position: relative
-
-// Submission Vues
-
-// Colors
-$blue: #00adef
-$pink: #ec008c
-
-$blue-0: #00ADEF
-$blue-1: #72D7FD
-$blue-2: #15BFFF
-$blue-3: #00658B
-$blue-4: #012837
-
-$yellow-0: #FFE800
-$yellow-1: #FFF26C
-$yellow-2: #FFE90B
-$yellow-3: #DECA00
-$yellow-4: #574F00
-
-$pink-0: #F70087
-$pink-1: #FE6CBC
-$pink-2: #FF0B90
-$pink-3: #B40062
-$pink-4: #470027
 
 // Admin
 
@@ -45,44 +20,3 @@ $pink-4: #470027
     background-color: #222
 .admin-container
     padding-top: 100px
-
-
-// Submission
-
-div.submission-vue
-    padding-top: 140px
-    padding-bottom: 140px
-    .navbar, .lead, .improvement-no
-        font-family: 'Open Sans', sans-serif
-    .improvement-no
-        position: relative
-        top: -3px
-    .navbar
-        background-color: #222
-        a
-            color: $yellow-3
-        .nav-tabs
-            border-color: $yellow-3
-            .nav-link.active, .nav-item.show .nav-link
-                background-color: $yellow-2
-                border-color: $yellow-2
-            .nav-link:hover
-                background-color: $yellow-4
-                border-color: transparent
-        .nav-pills
-            .nav-need
-                color: $pink-2
-            .nav-have
-                color: $blue-2
-    .improvement-card
-        .card-footer
-            background-color: white
-        =btn-grey
-            &.inactive
-                +button-variant(#555, white, #333)
-        .btn-primary
-            +button-variant($blue-2, white, $blue-3)
-            +btn-grey
-        .btn-warning
-            +button-variant($pink-2, white, $pink-3)
-            +btn-grey

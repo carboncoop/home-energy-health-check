@@ -1,0 +1,39 @@
+@import '~bootstrap/scss/bootstrap.scss'
+
+div.submission-vue
+    padding-top: 140px
+    padding-bottom: 140px
+    .navbar, .lead, .improvement-no
+        font-family: 'Open Sans', sans-serif
+    .improvement-no
+        position: relative
+        top: -3px
+    .navbar
+        background-color: #222
+        a
+            color: $yellow-3
+        .nav-tabs
+            border-color: $yellow-3
+            .nav-link.active, .nav-item.show .nav-link
+                background-color: $yellow-2
+                border-color: $yellow-2
+            .nav-link:hover
+                background-color: $yellow-4
+                border-color: transparent
+        .nav-pills
+            .nav-need
+                color: $pink-2
+            .nav-have
+                color: $blue-2
+    .improvement-card
+        .card-footer
+            background-color: white
+        =btn-grey
+            &.inactive
+                +button-variant(#555, white, #333)
+        .btn-primary
+            +button-variant($blue-2, white, $blue-3)
+            +btn-grey
+        .btn-warning
+            +button-variant($pink-2, white, $pink-3)
+            +btn-grey
