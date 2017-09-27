@@ -5,12 +5,14 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        ready: false,
         currentSectionIndex: 0,
         sections: []
     },
     mutations: {
         init(state, payload) {
             state.sections = payload
+            state.ready = true
         },
         setValue (state, obj) {
             if (obj.section_index in state.sections) {
@@ -23,7 +25,13 @@ const store = new Vuex.Store({
         }
     },
     getters: {
+        ready(state) {
+            return state.ready
+        },
         currentSection(state) {
+            if ('details' == state.currentSectionIndex) {
+                return false
+            }
             return state.sections[state.currentSectionIndex]
         },
         currentSectionIndex(state) {

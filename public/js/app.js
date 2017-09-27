@@ -42904,12 +42904,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     state: {
+        ready: false,
         currentSectionIndex: 0,
         sections: []
     },
     mutations: {
         init: function init(state, payload) {
             state.sections = payload;
+            state.ready = true;
         },
         setValue: function setValue(state, obj) {
             if (obj.section_index in state.sections) {
@@ -42922,7 +42924,13 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         }
     },
     getters: {
+        ready: function ready(state) {
+            return state.ready;
+        },
         currentSection: function currentSection(state) {
+            if ('details' == state.currentSectionIndex) {
+                return false;
+            }
             return state.sections[state.currentSectionIndex];
         },
         currentSectionIndex: function currentSectionIndex(state) {
@@ -43074,7 +43082,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -43091,11 +43098,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'submission-navigation': __WEBPACK_IMPORTED_MODULE_3__SubmissionNavigation_vue___default.a,
         'submission-pagination': __WEBPACK_IMPORTED_MODULE_4__SubmissionPagination_vue___default.a
     },
-    data: function data() {
-        return {
-            showDetails: false
-        };
-    },
     mounted: function mounted() {
         var initImprovements = _.chain(this.improvements).map(function (imp) {
             return _.extend(imp, { value: null });
@@ -43109,7 +43111,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
+        ready: function ready() {
+            return this.$store.getters.ready;
+        },
         currentSection: function currentSection() {
+            if ('details' == this.currentSectionIndex) {
+                return false;
+            }
             return this.$store.getters.currentSection;
         },
 
@@ -43122,6 +43130,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         currentImprovements: function currentImprovements() {
+            if (!this.currentSection) {
+                return false;
+            }
             return this.currentSection.improvements;
         }
     },
@@ -43519,6 +43530,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['sections', 'improvements'],
@@ -43531,12 +43547,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        showDetails: function showDetails() {
-            this.$emit('showDetails');
-        },
         clickSection: function clickSection(index) {
             this.$store.commit('setCurrentSection', index);
-            this.$emit('hideDetails');
         },
         linkClass: function linkClass(index) {
             if (this.currentSectionIndex == index) {
@@ -43559,7 +43571,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "container d-flex flex-column"
   }, [_c('div', {
     staticClass: "navbar-collapse mb-2"
-  }, [_c('ul', {
+  }, [(_vm.sections) ? _c('ul', {
     staticClass: "nav nav-tabs"
   }, [_vm._l((_vm.sections), function(section, index) {
     return _c('li', {
@@ -43590,18 +43602,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('li', {
     staticClass: "nav-item"
   }, [_c('a', {
-    staticClass: "nav-link",
+    class: _vm.linkClass('details'),
     attrs: {
       "href": "#details"
     },
     on: {
       "click": function($event) {
-        _vm.showDetails()
+        _vm.clickSection('details')
       }
     }
-  }, [_vm._v("\n                        Details\n                    ")])])], 2)]), _vm._v(" "), _c('div', {
+  }, [_c('span', {
+    staticClass: "pl-1"
+  }, [_vm._v("Details")])])])], 2) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "collapse navbar-collapse"
-  }, [_c('ul', {
+  }, [(_vm.improvements) ? _c('ul', {
     staticClass: "nav nav-pills"
   }, _vm._l((_vm.improvements), function(imp, index) {
     return _c('li', {
@@ -43627,8 +43641,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "aria-hidden": "true"
       }
     })])])
-  }))])])])
-},staticRenderFns: []}
+  })) : _vm._e(), _vm._v(" "), (!_vm.improvements) ? _c('ul', {
+    staticClass: "nav nav-pills"
+  }, [_vm._m(0)]) : _vm._e()])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', {
+    staticClass: "nav-link"
+  }, [_c('span', {
+    staticClass: "nav-text"
+  }, [_vm._v(" ")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -43742,28 +43764,22 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  return (_vm.ready) ? _c('div', {
     staticClass: "submission-vue"
-  }, [(_vm.currentSection) ? _c('div', [_c('submission-navigation', {
+  }, [_c('submission-navigation', {
     attrs: {
       "sections": _vm.sections,
       "improvements": _vm.currentImprovements
-    },
-    on: {
-      "showDetails": function($event) {
-        _vm.showDetails = true
-      },
-      "hideDetails": function($event) {
-        _vm.showDetails = false
-      }
     }
-  })], 1) : _vm._e(), _vm._v(" "), (_vm.showDetails) ? _c('div', {
+  }), _vm._v(" "), (_vm.currentSectionIndex == 'details') ? _c('div', {
     staticClass: "my-4 container"
-  }, [_c('submission-details', {
+  }, [_c('h1', {
+    staticClass: "my-3"
+  }, [_vm._v("Homeowner Details")]), _vm._v(" "), _c('submission-details', {
     attrs: {
       "assessment": _vm.assessment
     }
-  })], 1) : (_vm.currentSection) ? _c('div', {
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.currentSectionIndex != 'details') ? _c('div', {
     staticClass: "my-4 container"
   }, [_c('h1', {
     staticClass: "my-3"
@@ -43784,9 +43800,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v("\n                        " + _vm._s(index + 1) + "\n                    ")]), _vm._v("\n                    " + _vm._s(improvement.title) + "\n                ")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(improvement.description))]), _vm._v(" "), (improvement.assessor_guidance) ? _c('div', {
       staticClass: "alert alert-danger"
     }, [_c('p', [_vm._v(_vm._s(improvement.assessor_guidance))])]) : _vm._e(), _vm._v(" "), _c('textarea', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (improvement.assessor_comment_input),
+        expression: "improvement.assessor_comment_input"
+      }],
       staticClass: "form-control",
       attrs: {
         "placeholder": improvement.assessor_comment
+      },
+      domProps: {
+        "value": (improvement.assessor_comment_input)
+      },
+      on: {
+        "input": function($event) {
+          if ($event.target.composing) { return; }
+          improvement.assessor_comment_input = $event.target.value
+        }
       }
     })]), _vm._v(" "), _c('div', {
       staticClass: "card-footer"
@@ -43806,7 +43837,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.submitForm
     }
-  }, [_vm._v("Submit")])])], 2) : _vm._e()])
+  }, [_vm._v("Submit")])])], 2) : _vm._e()], 1) : _vm._e()
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

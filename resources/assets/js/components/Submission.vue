@@ -1,21 +1,19 @@
 <template>
-    <div class="submission-vue">
+    <div class="submission-vue" v-if="ready">
 
-        <div v-if="currentSection">
-            <submission-navigation :sections="sections"
-                :improvements="currentImprovements"
-                v-on:showDetails="showDetails = true"
-                v-on:hideDetails="showDetails = false">
-            </submission-navigation>
-        </div>
+        <submission-navigation
+            :sections="sections"
+            :improvements="currentImprovements">
+        </submission-navigation>
 
-        <div class="my-4 container" v-if="showDetails">
+        <div class="my-4 container" v-if="currentSectionIndex=='details'">
+            <h1 class="my-3">Homeowner Details</h1>
             <submission-details
                 :assessment="assessment">
             </submission-details>
         </div>
 
-        <div class="my-4 container" v-else-if="currentSection">
+        <div class="my-4 container" v-if="currentSectionIndex!='details'">
 
             <h1 class="my-3">{{ currentSection.title }}</h1>
             <p class="lead mb-5">{{ currentSection.description }}</p>
@@ -39,6 +37,7 @@
                     </div>
 
                     <textarea :placeholder="improvement.assessor_comment"
+                        v-model="improvement.assessor_comment_input"
                         class="form-control">
                     </textarea>
 
@@ -78,11 +77,6 @@
             'submission-navigation': SubmissionNavigation,
             'submission-pagination': SubmissionPagination
         },
-        data() {
-            return {
-                showDetails: false
-            }
-        },
         mounted() {
             let initImprovements = _.chain(this.improvements)
                 .map(function (imp) {
@@ -96,9 +90,16 @@
                 return _.extend(x, {improvements: initImprovements[x.id]})
             })
             this.$store.commit('init', initSections)
+
         },
         computed: {
+            ready() {
+                return this.$store.getters.ready
+            },
             currentSection() {
+                if ('details' == this.currentSectionIndex) {
+                    return false
+                }
                 return this.$store.getters.currentSection
             },
             currentSectionIndex: {
@@ -110,6 +111,9 @@
                 }
             },
             currentImprovements() {
+                if (!this.currentSection) {
+                    return false
+                }
                 return this.currentSection.improvements
             }
         },
