@@ -1,6 +1,14 @@
 @extends('master')
 
 @section('content')
+
+    <style type="text/css">
+    .break-after-me {
+        overflow: hidden;
+        page-break-after: always;
+    }
+    </style>
+
     <div class="container">
         <h2 class="my-4">Hello, PDF!</h2>
 
@@ -11,7 +19,7 @@
             This is a secondary alert—check it out!
         </div>
 
-        <div class="row">
+        <div class="row break-after-me">
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">Foo</div>
