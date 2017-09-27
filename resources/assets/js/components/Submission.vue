@@ -7,7 +7,6 @@
         </submission-navigation>
 
         <div class="my-4 container" v-if="currentSectionIndex=='details'">
-            <h1 class="my-3">Homeowner Details</h1>
             <submission-details
                 :assessment="assessment">
             </submission-details>

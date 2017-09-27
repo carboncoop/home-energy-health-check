@@ -43081,7 +43081,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -43393,6 +43392,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['assessment']
@@ -43403,9 +43452,69 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("Homeowner Email")]), _vm._v(" "), _c('input', {
+  return _c('div', {
+    staticClass: "submission-details-vue"
+  }, [_c('div', {
+    staticClass: "card my-4"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "card-body"
+  }, [_c('div', {
+    staticClass: "form-group row"
+  }, [_c('label', {
+    staticClass: "col-sm-3 col-form-label"
+  }, [_vm._v("Assessor Name")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-9"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.assessment.assessor_name),
+      expression: "assessment.assessor_name"
+    }],
+    staticClass: "form-control",
+    domProps: {
+      "value": (_vm.assessment.assessor_name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.assessment.assessor_name = $event.target.value
+      }
+    }
+  })])])])]), _vm._v(" "), _c('div', {
+    staticClass: "card my-4"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "card-body"
+  }, [_c('div', {
+    staticClass: "form-group row"
+  }, [_c('label', {
+    staticClass: "col-sm-3 col-form-label"
+  }, [_vm._v("Name")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-9"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.assessment.homeowner_name),
+      expression: "assessment.homeowner_name"
+    }],
+    staticClass: "form-control",
+    domProps: {
+      "value": (_vm.assessment.homeowner_name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.assessment.homeowner_name = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group row"
+  }, [_c('label', {
+    staticClass: "col-sm-3 col-form-label"
+  }, [_vm._v("Email")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-9"
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -43422,8 +43531,92 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.assessment.homeowner_email = $event.target.value
       }
     }
-  })])])
-},staticRenderFns: []}
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group row"
+  }, [_c('label', {
+    staticClass: "col-sm-3 col-form-label"
+  }, [_vm._v("Phone")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-9"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.assessment.homeowner_phone),
+      expression: "assessment.homeowner_phone"
+    }],
+    staticClass: "form-control",
+    domProps: {
+      "value": (_vm.assessment.homeowner_phone)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.assessment.homeowner_phone = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group row"
+  }, [_c('label', {
+    staticClass: "col-sm-3 col-form-label"
+  }, [_vm._v("Address")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-9"
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.assessment.homeowner_address),
+      expression: "assessment.homeowner_address"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "rows": "4"
+    },
+    domProps: {
+      "value": (_vm.assessment.homeowner_address)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.assessment.homeowner_address = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group row"
+  }, [_c('label', {
+    staticClass: "col-sm-3 col-form-label"
+  }, [_vm._v("Home Type")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-9"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.assessment.home_type),
+      expression: "assessment.home_type"
+    }],
+    staticClass: "form-control",
+    domProps: {
+      "value": (_vm.assessment.home_type)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.assessment.home_type = $event.target.value
+      }
+    }
+  })])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
+  }, [_c('h3', {
+    staticClass: "my-3"
+  }, [_vm._v("Assessment Details")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
+  }, [_c('h3', {
+    staticClass: "my-3"
+  }, [_vm._v("Homeowner Details")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -43773,9 +43966,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), (_vm.currentSectionIndex == 'details') ? _c('div', {
     staticClass: "my-4 container"
-  }, [_c('h1', {
-    staticClass: "my-3"
-  }, [_vm._v("Homeowner Details")]), _vm._v(" "), _c('submission-details', {
+  }, [_c('submission-details', {
     attrs: {
       "assessment": _vm.assessment
     }
