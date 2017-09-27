@@ -33,22 +33,13 @@ class CreatePdfDocument implements ShouldQueue
     public function handle()
     {
         print("Generating PDF...\n");
-        $this->snappy(); return;
         //var_dump($this->data);
-        \PDF::setOptions(['isHtml5ParserEnabled' => true]);
-        $pdf = \PDF::loadView('pdf.assessment', $this->data)
-            ->setPaper('a4', 'portrait');
-        $t = Carbon::now()->toDateTimeString();
-        $pdf->save(storage_path('pdf/t'.$t.'.pdf'));
-        print("PDF generation complete!\n");
-        return;
-    }
 
-    public function snappy()
-    {
         $snappy = \Snappy::loadView('pdf.assessment', $this->data);
         $t = Carbon::now()->toDateTimeString();
         $snappy->save(storage_path('pdf/t'.$t.'.pdf'));
+
+        print("PDF generation complete!\n");
         return;
     }
 

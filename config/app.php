@@ -168,7 +168,6 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
 
         /*
@@ -232,7 +231,6 @@ return [
         /* Package facade aliases */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Snappy' => Barryvdh\Snappy\Facades\SnappyPdf::class,
     ],
 
