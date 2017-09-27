@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome', []);
 });
 
+Route::get('pdf-test', function () {
+    return view('pdf.assessment', []);
+});
+
 $crudControllers = [
     'improvements' => 'ImprovementCrudController',
     'sections' => 'SectionCrudController',

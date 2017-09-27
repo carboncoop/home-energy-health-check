@@ -7,6 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Carbon\Carbon;
 
 class CreatePdfDocument implements ShouldQueue
 {
@@ -33,9 +34,11 @@ class CreatePdfDocument implements ShouldQueue
     {
         print("Generating PDF...\n");
         //var_dump($this->data);
-        $pdf = \PDF::loadView('welcome', $this->data)
+        \PDF::setOptions(['isHtml5ParserEnabled' => true]);
+        $pdf = \PDF::loadView('pdf.assessment', $this->data)
             ->setPaper('a4', 'portrait');
-        $pdf->save(storage_path('pdf/my-file.pdf'));
+        $t = Carbon::now()->toDateTimeString();
+        $pdf->save(storage_path('pdf/t'.$t.'.pdf'));
         print("PDF generation complete!\n");
         return;
     }
