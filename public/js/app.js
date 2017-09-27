@@ -42913,14 +42913,20 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
             state.sections = payload;
             state.ready = true;
         },
+        setCurrentSection: function setCurrentSection(state, index) {
+            state.currentSectionIndex = index;
+        },
         setValue: function setValue(state, obj) {
             if (obj.section_index in state.sections) {
                 var section = state.sections[obj.section_index];
                 section.improvements[obj.improvement_index].value = obj.value;
             }
         },
-        setCurrentSection: function setCurrentSection(state, index) {
-            state.currentSectionIndex = index;
+        setComment: function setComment(state, obj) {
+            if (obj.section_index in state.sections) {
+                var section = state.sections[obj.section_index];
+                section.improvements[obj.improvement_index].comment = obj.comment;
+            }
         }
     },
     getters: {
@@ -42954,7 +42960,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         formData: function formData(state) {
             return _.transform(state.sections, function (ys, y) {
                 var y1 = _.transform(y.improvements, function (xs, x) {
-                    xs['improvement.' + x.id] = x.value;
+                    xs['improvement.' + x.id] = {
+                        value: x.value,
+                        comment: x.comment
+                    };
                 }, {});
                 _.extend(ys, y1);
             }, {});
@@ -43013,12 +43022,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_js__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionDetails_vue__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionDetails_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SubmissionDetails_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SubmissionNavigation_vue__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SubmissionNavigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__SubmissionNavigation_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SubmissionPagination_vue__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SubmissionPagination_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__SubmissionPagination_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionComment_vue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SubmissionComment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SubmissionComment_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SubmissionDetails_vue__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SubmissionDetails_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__SubmissionDetails_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SubmissionNavigation_vue__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__SubmissionNavigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__SubmissionNavigation_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__SubmissionPagination_vue__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__SubmissionPagination_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__SubmissionPagination_vue__);
 //
 //
 //
@@ -43081,6 +43092,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
 
 
 
@@ -43093,13 +43106,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_js__["a" /* default */]],
     components: {
         'submission-buttons': __WEBPACK_IMPORTED_MODULE_1__SubmissionButtons_vue___default.a,
-        'submission-details': __WEBPACK_IMPORTED_MODULE_2__SubmissionDetails_vue___default.a,
-        'submission-navigation': __WEBPACK_IMPORTED_MODULE_3__SubmissionNavigation_vue___default.a,
-        'submission-pagination': __WEBPACK_IMPORTED_MODULE_4__SubmissionPagination_vue___default.a
+        'submission-comment': __WEBPACK_IMPORTED_MODULE_2__SubmissionComment_vue___default.a,
+        'submission-details': __WEBPACK_IMPORTED_MODULE_3__SubmissionDetails_vue___default.a,
+        'submission-navigation': __WEBPACK_IMPORTED_MODULE_4__SubmissionNavigation_vue___default.a,
+        'submission-pagination': __WEBPACK_IMPORTED_MODULE_5__SubmissionPagination_vue___default.a
     },
     mounted: function mounted() {
         var initImprovements = _.chain(this.improvements).map(function (imp) {
-            return _.extend(imp, { value: null });
+            return _.extend(imp, { value: null, comment: null });
         }).groupBy(function (imp) {
             return imp.section_id;
         }).value();
@@ -43125,7 +43139,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.$store.getters.currentSectionIndex;
             },
             set: function set(value) {
-                return this.$store.commit('setCurrentSection', value);
+                this.$store.commit('setCurrentSection', value);
             }
         },
         currentImprovements: function currentImprovements() {
@@ -43990,27 +44004,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "badge badge-secondary improvement-no mr-3"
     }, [_vm._v("\n                        " + _vm._s(index + 1) + "\n                    ")]), _vm._v("\n                    " + _vm._s(improvement.title) + "\n                ")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(improvement.description))]), _vm._v(" "), (improvement.assessor_guidance) ? _c('div', {
       staticClass: "alert alert-danger"
-    }, [_c('p', [_vm._v(_vm._s(improvement.assessor_guidance))])]) : _vm._e(), _vm._v(" "), _c('textarea', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (improvement.assessor_comment_input),
-        expression: "improvement.assessor_comment_input"
-      }],
-      staticClass: "form-control",
+    }, [_c('p', [_vm._v(_vm._s(improvement.assessor_guidance))])]) : _vm._e(), _vm._v(" "), _c('submission-comment', {
       attrs: {
-        "placeholder": improvement.assessor_comment
-      },
-      domProps: {
-        "value": (improvement.assessor_comment_input)
-      },
-      on: {
-        "input": function($event) {
-          if ($event.target.composing) { return; }
-          improvement.assessor_comment_input = $event.target.value
-        }
+        "improvement": improvement,
+        "sectionIndex": _vm.currentSectionIndex,
+        "improvementIndex": index
       }
-    })]), _vm._v(" "), _c('div', {
+    })], 1), _vm._v(" "), _c('div', {
       staticClass: "card-footer"
     }, [_c('submission-buttons', {
       attrs: {
@@ -44043,6 +44043,126 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(61),
+  /* template */
+  __webpack_require__(62),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/SubmissionComment.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] SubmissionComment.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1a97be22", Component.options)
+  } else {
+    hotAPI.reload("data-v-1a97be22", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['improvement', 'improvementIndex', 'sectionIndex'],
+    computed: {
+        comment: {
+            get: function get() {
+                return this.$store.getters.getComment;
+            },
+            set: function set(comment) {
+                this.storeComment(comment);
+            }
+        }
+    },
+    methods: {
+        storeComment: _.debounce(function (comment) {
+            this.$store.commit('setComment', {
+                'section_index': this.sectionIndex,
+                'improvement_index': this.improvementIndex,
+                'comment': comment
+            });
+        }, 500)
+    }
+});
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "submission-comment-vue"
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.comment),
+      expression: "comment"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "placeholder": _vm.improvement.assessor_comment
+    },
+    domProps: {
+      "value": (_vm.comment)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.comment = $event.target.value
+      }
+    }
+  })])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-1a97be22", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

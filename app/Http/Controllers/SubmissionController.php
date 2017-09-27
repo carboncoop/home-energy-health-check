@@ -40,8 +40,12 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        echo "\n";
         foreach ($request->all() as $key => $data) {
-            echo $key." - ".$data."\n";
+            foreach ($data as $k => $v) {
+                echo $key." - ".$k." : ".$v."\n";
+            }
+
         }
         //return redirect()->route('submit.edit', $id);
     }

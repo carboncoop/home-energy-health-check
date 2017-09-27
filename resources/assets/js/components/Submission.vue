@@ -35,10 +35,11 @@
                         <p>{{ improvement.assessor_guidance }}</p>
                     </div>
 
-                    <textarea :placeholder="improvement.assessor_comment"
-                        v-model="improvement.assessor_comment_input"
-                        class="form-control">
-                    </textarea>
+                    <submission-comment
+                        :improvement="improvement"
+                        :sectionIndex="currentSectionIndex"
+                        :improvementIndex="index"
+                    ></submission-comment>
 
                 </div>
                 <div class="card-footer">
@@ -63,6 +64,7 @@
 <script>
     import FormMixin from '../mixins/form.js'
     import SubmissionButtons from './SubmissionButtons.vue'
+    import SubmissionComment from './SubmissionComment.vue'
     import SubmissionDetails from './SubmissionDetails.vue'
     import SubmissionNavigation from './SubmissionNavigation.vue'
     import SubmissionPagination from './SubmissionPagination.vue'
@@ -72,6 +74,7 @@
         mixins: [FormMixin],
         components: {
             'submission-buttons': SubmissionButtons,
+            'submission-comment': SubmissionComment,
             'submission-details': SubmissionDetails,
             'submission-navigation': SubmissionNavigation,
             'submission-pagination': SubmissionPagination
@@ -79,7 +82,7 @@
         mounted() {
             let initImprovements = _.chain(this.improvements)
                 .map(function (imp) {
-                    return _.extend(imp, {value: null})
+                    return _.extend(imp, {value: null, comment: null})
                 })
                 .groupBy(function (imp) {
                     return imp.section_id
@@ -106,7 +109,7 @@
                     return this.$store.getters.currentSectionIndex
                 },
                 set(value) {
-                    return this.$store.commit('setCurrentSection', value)
+                    this.$store.commit('setCurrentSection', value)
                 }
             },
             currentImprovements() {

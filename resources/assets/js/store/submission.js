@@ -14,14 +14,20 @@ const store = new Vuex.Store({
             state.sections = payload
             state.ready = true
         },
-        setValue (state, obj) {
+        setCurrentSection(state, index) {
+            state.currentSectionIndex = index
+        },
+        setValue(state, obj) {
             if (obj.section_index in state.sections) {
                 let section = state.sections[obj.section_index]
                 section.improvements[obj.improvement_index].value = obj.value
             }
         },
-        setCurrentSection(state, index) {
-            state.currentSectionIndex = index
+        setComment(state, obj) {
+            if (obj.section_index in state.sections) {
+                let section = state.sections[obj.section_index]
+                section.improvements[obj.improvement_index].comment = obj.comment
+            }
         }
     },
     getters: {
@@ -55,7 +61,10 @@ const store = new Vuex.Store({
         formData(state) {
             return _.transform(state.sections, (ys, y) => {
                 let y1 = _.transform(y.improvements, (xs, x) => {
-                    xs['improvement.'+x.id] = x.value
+                    xs['improvement.'+x.id] = {
+                        value: x.value,
+                        comment: x.comment
+                    }
                 }, {})
                 _.extend(ys, y1)
             }, {})
