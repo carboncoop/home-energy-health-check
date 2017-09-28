@@ -6,7 +6,7 @@ export default {
     },
     methods: {
         submitForm() {
-            let url = this.baseUrl + '/submit/' + this.reportId
+            let url = this.baseUrl + '/submit/' + this.assessment.id
             this.submitHttp('put', url, this.formData)
         },
         submitHttp(requestType, url, data = {}) {

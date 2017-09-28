@@ -6,9 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Assessment;
 use App\Models\Improvement;
 use App\Models\Section;
+use App\Jobs\CreatePdfDocument;
+use App\Jobs\SendEmail;
+use App\Process\SubmissionProcessor;
 
 class SubmissionController extends Controller
 {
+    protected $processor;
+
+    public function __construct(SubmissionProcessor $processor)
+    {
+        $this->processor = $processor;
+    }
+
     /**
      * Show the Asessment form.
      *
@@ -18,7 +28,9 @@ class SubmissionController extends Controller
     public function edit($id)
     {
         $assessment = Assessment::findOrFail($id);
-        $sections = Section::get(['id', 'title', 'description']);
+        $sections = Section::get([
+            'id', 'title', 'description'
+        ]);
         $improvements = Improvement::get([
             'id', 'title', 'section_id', 'description',
             'assessor_comment', 'assessor_guidance',
@@ -40,13 +52,7 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo "\n";
-        foreach ($request->all() as $key => $data) {
-            foreach ($data as $k => $v) {
-                echo $key." - ".$k." : ".$v."\n";
-            }
-
-        }
-        //return redirect()->route('submit.edit', $id);
+        return $this->processor->process($id, $request->all());
     }
+
 }
