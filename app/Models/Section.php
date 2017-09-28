@@ -14,7 +14,7 @@ class Section extends Model
         'title', 'description'
     ];
 
-    protected function improvements()
+    public function improvements()
     {
         return $this->hasMany(Improvement::class);
     }

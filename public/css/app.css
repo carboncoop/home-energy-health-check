@@ -16797,6 +16797,7 @@ div.submission-vue .improvement-card .btn-warning.inactive:active, div.submissio
 
 .generated-pdf-wrapper {
   background-color: white;
+  font-size: 10px;
 }
 
 body {
