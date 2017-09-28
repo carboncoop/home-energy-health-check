@@ -7,7 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Carbon\Carbon;
+use App\Process\SubmissionProcessor;
 
 class CreatePdfDocument implements ShouldQueue
 {
@@ -30,15 +30,10 @@ class CreatePdfDocument implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(SubmissionProcessor $processor)
     {
         print("Generating PDF...\n");
-        //var_dump($this->data);
-
-        $snappy = \Snappy::loadView('pdf.assessment', $this->data);
-        $t = Carbon::now()->toDateTimeString();
-        $snappy->save(storage_path('pdf/t'.$t.'.pdf'));
-
+        $processor->process(null, $this->data);
         print("PDF generation complete!\n");
         return;
     }

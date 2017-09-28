@@ -61,7 +61,7 @@ const store = new Vuex.Store({
         formData(state) {
             return _.transform(state.sections, (ys, y) => {
                 let y1 = _.transform(y.improvements, (xs, x) => {
-                    xs['improvement.'+x.id] = {
+                    xs[x.id] = {
                         value: x.value,
                         comment: x.comment
                     }

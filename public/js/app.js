@@ -42960,7 +42960,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         formData: function formData(state) {
             return _.transform(state.sections, function (ys, y) {
                 var y1 = _.transform(y.improvements, function (xs, x) {
-                    xs['improvement.' + x.id] = {
+                    xs[x.id] = {
                         value: x.value,
                         comment: x.comment
                     };

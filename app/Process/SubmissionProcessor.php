@@ -3,21 +3,32 @@
 namespace App\Process;
 
 use Carbon\Carbon;
+use App\Models\Improvement;
+use App\Models\Section;
 
 class SubmissionProcessor
 {
-    protected $pdf;
+    protected $pdf, $input;
 
     public function __construct()
     {
-        //$this->pdf = \Snappy;
         $this->now = Carbon::now()->toDateTimeString();
     }
 
-    public function process($id, $data, $method = 'file')
+    public function process($id, $input, $method = 'file')
     {
-        $this->debug($id, $data);
-        $this->pdf = \Snappy::loadView('pdf.assessment', $data);
+        $this->input = $input;
+        $sections = Section::all();
+        $improvements = Improvement::all()->filter(function ($imp) use ($input) {
+            return array_key_exists($imp->id, $input) &&
+                $input[$imp->id]['value'] == 'need';
+        });
+        $this->pdf = \Snappy::loadView('pdf.assessment', [
+            'input' => $this->input,
+            'improvements' => $improvements,
+            'sections' => $sections,
+        ]);
+
         if ('file' == $method) {
             return $this->outputToFile();
         }
@@ -34,6 +45,7 @@ class SubmissionProcessor
         $this->pdf->save(storage_path('pdf/t'.$this->now.'.pdf'));
         return response()->json([
             'status' => 'OK',
+            'input' => $this->input,
         ]);
     }
 
@@ -45,15 +57,5 @@ class SubmissionProcessor
     protected function outputToDownload()
     {
         return $this->pdf->download('assessment.pdf');
-    }
-
-    protected function debug($id, $data)
-    {
-        echo "\n Id: ".$id."\n";
-        foreach ($data as $key => $vv) {
-            foreach ($vv as $k => $v) {
-                echo $key." - ".$k." : ".$v."\n";
-            }
-        }
     }
 }

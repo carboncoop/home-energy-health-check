@@ -12,6 +12,19 @@ use App\Mail\AssessmentEmail;
 class SubmissionTest extends TestCase
 {
 
+    public function setUp()
+    {
+        parent::setUp();
+        \Artisan::call('migrate');
+        \Artisan::call('db:seed', ['--class' => 'DatabaseSeeder', '--database' => 'mysql']);
+    }
+
+    public function tearDown()
+    {
+        \Artisan::call('migrate:reset');
+        parent::tearDown();
+    }
+
   /**
    * A basic test example.
    *
@@ -21,7 +34,7 @@ class SubmissionTest extends TestCase
     {
         Mail::fake();
 
-        $payload = array('foo' => 44, 'fii' => 'it works');
+        $payload = [22 => ['value' => 'need', 'comment' => '...']];
         $email_job = [new SendEmail($payload)];
         CreatePdfDocument::withChain($email_job)->dispatch($payload);
 
