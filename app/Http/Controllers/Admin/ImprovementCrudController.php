@@ -13,19 +13,16 @@ class ImprovementCrudController extends DefaultCrudController
     {
         parent::setDefaults('improvement');
         $this->crud->setModel(Improvement::class);
-        $this->crud->setFromDb();
-        $this->crud->removeColumns(['assessor_guidance', 'assessor_comment']);
+        parent::setupFields(Improvement::crudFields());
     }
 
     public function store(StoreRequest $request)
     {
-        $redirect_location = parent::storeCrud($request);
-        return $redirect_location;
+        return parent::storeCrud($request);
     }
 
     public function update(UpdateRequest $request)
     {
-        $redirect_location = parent::updateCrud($request);
-        return $redirect_location;
+        return parent::updateCrud($request);
     }
 }

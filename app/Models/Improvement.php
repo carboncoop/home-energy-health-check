@@ -17,6 +17,50 @@ class Improvement extends Model
         'assessor_guidance', 'assessor_comment',
     ];
 
+    public static function crudFields()
+    {
+        return [
+            'title' => [
+                'label' => 'Title',
+                'type' => 'text',
+                'index' => true,
+            ],
+            'section_id' => [
+                'label' => "Section",
+                'type' => 'select',
+                'entity' => 'section',
+                'attribute' => 'title',
+                'model' => "App\Models\Section",
+                'index' => true,
+            ],
+            'description' => [
+                'label' => 'Description',
+                'type' => 'textarea',
+            ],
+            'estimated_cost' => [
+                'label' => 'Estimated Cost',
+                'type' => 'text',
+                'index' => true,
+            ],
+            'benefits' => [
+                'label' => 'Benefits / Savings',
+                'type' => 'text',
+            ],
+            'who_can_do' => [
+                'label' => 'Who can do this work?',
+                'type' => 'text',
+            ],
+            'assessor_guidance' => [
+                'label' => 'Guidance to Assessor',
+                'type' => 'textarea',
+            ],
+            'assessor_comment' => [
+                'label' => 'Assessor Comment',
+                'type' => 'textarea',
+            ]
+        ];
+    }
+
     public function section()
     {
         return $this->belongsTo(Section::class);
