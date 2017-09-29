@@ -5,9 +5,8 @@
             <div class="navbar-collapse mb-2">
                 <ul class="nav nav-tabs" v-if="sections">
                     <li v-for="(section, index) in sections" class="nav-item">
-                        <a :class="linkClass(index)"
-                            :href="'#section-'+section.id"
-                            v-on:click="clickSection(index)">
+                        <router-link :to="'/section/'+(index + 1)"
+                            :class="linkClass(index)">
                             <i v-if="completedSections[index]"
                                 class="fa fa-check-square-o"
                                 aria-hidden="true"></i>
@@ -15,26 +14,24 @@
                                 class="fa fa-square-o"
                                 aria-hidden="true"></i>
                             <span class="pl-1">Part {{ index + 1 }}</span>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
-                        <a :class="linkClass('details')" href="#details"
-                            v-on:click="clickSection('details')">
+                        <router-link to="/details" :class="linkClass('details')">
                             <span class="pl-1">Details</span>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-item">
-                        <a :class="linkClass('homeComfort')" href="#homeComfort"
-                            v-on:click="clickSection('homeComfort')">
-                            <span class="pl-1">Home Comfort</span>
-                        </a>
+                        <router-link to="/comfort" :class="linkClass('comfort')">
+                            <span class="pl-1">Comfort</span>
+                        </router-link>
                     </li>
                 </ul>
             </div>
 
             <div class="collapse navbar-collapse">
-                <ul class="nav nav-pills" v-if="improvements">
-                    <li v-for="(imp, index) in improvements" class="nav-item">
+                <ul class="nav nav-pills" v-if="currentSection">
+                    <li v-for="(imp, index) in currentSection.improvements" class="nav-item">
                         <a :class="'nav-link nav-'+imp.value"
                             :href="'#section-'+imp.section_id">
                             {{ index + 1 }}
@@ -50,7 +47,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="nav nav-pills" v-if="!improvements">
+                <ul class="nav nav-pills" v-if="!currentSection">
                     <li class="nav-link">
                         <span class="nav-text">&nbsp;</span>
                     </li>
@@ -63,25 +60,25 @@
 
 <script>
     export default {
-        props: ['sections', 'improvements'],
+        props: ['sections'],
         computed: {
             completedSections() {
                 return this.$store.getters.completedSections
             },
-            currentSectionIndex() {
-                return this.$store.getters.currentSectionIndex
+            currentSection() {
+                return _.find(this.sections, this.matchesSectionId)
             }
         },
         methods: {
-            clickSection(index) {
-                this.$store.commit('setCurrentSection', index)
-            },
             linkClass(index) {
                 if (this.currentSectionIndex == index) {
                     return 'nav-link active'
                 } else {
                     return 'nav-link'
                 }
+            },
+            matchesSectionId(section) {
+                return section.id == this.$route.params.sectionId
             }
         }
     }

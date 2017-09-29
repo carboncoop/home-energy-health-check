@@ -8,12 +8,17 @@
 </template>
 
 <script>
+    import _ from 'lodash'
+
     export default {
         props: ['improvement', 'improvementIndex', 'sectionIndex'],
         computed: {
             comment: {
                 get() {
-                    return this.$store.getters.getComment
+                    return this.$store.getters.getComment({
+                        section_index: this.sectionIndex,
+                        improvement_index: this.improvementIndex
+                    })
                 },
                 set(comment) {
                     this.storeComment(comment)

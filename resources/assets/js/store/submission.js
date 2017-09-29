@@ -6,16 +6,12 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         ready: false,
-        currentSectionIndex: 0,
         sections: []
     },
     mutations: {
         init(state, payload) {
             state.sections = payload
             state.ready = true
-        },
-        setCurrentSection(state, index) {
-            state.currentSectionIndex = index
         },
         setValue(state, obj) {
             if (obj.section_index in state.sections) {
@@ -34,20 +30,19 @@ const store = new Vuex.Store({
         ready(state) {
             return state.ready
         },
-        currentSection(state) {
-            if ('details' == state.currentSectionIndex) {
-                return false
-            }
-            return state.sections[state.currentSectionIndex]
-        },
-        currentSectionIndex(state) {
-            return  state.currentSectionIndex
-        },
-        valueAtIndices(state) {
+        getValue(state) {
             return (obj) => {
                 if (obj.section_index in state.sections) {
                     let section = state.sections[obj.section_index]
                     return section.improvements[obj.improvement_index].value
+                }
+            }
+        },
+        getComment(state) {
+            return (obj) => {
+                if (obj.section_index in state.sections) {
+                    let section = state.sections[obj.section_index]
+                    return section.improvements[obj.improvement_index].comment
                 }
             }
         },

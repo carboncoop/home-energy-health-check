@@ -25,13 +25,20 @@
         },
         computed: {
             value() {
-                return this.$store.getters.valueAtIndices({
+                return this.$store.getters.getValue({
                     section_index: this.sectionIndex,
                     improvement_index: this.improvementIndex
                 })
             }
         },
         methods: {
+            clickButton(value) {
+                this.$store.commit('setValue', {
+                    'section_index': this.sectionIndex,
+                    'improvement_index': this.improvementIndex,
+                    'value': value
+                })
+            },
             buttonClass(value) {
                 let str = "btn py-2 px-4"
                 str += " btn-" + value
@@ -47,13 +54,6 @@
                     str += " inactive"
                 }
                 return str
-            },
-            clickButton(value) {
-                this.$store.commit('setValue', {
-                    'section_index': this.sectionIndex,
-                    'improvement_index': this.improvementIndex,
-                    'value': value
-                })
             }
         }
     }
