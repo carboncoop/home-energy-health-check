@@ -44120,7 +44120,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "badge badge-secondary improvement-no mr-3"
     }, [_vm._v("\n                        " + _vm._s(index + 1) + "\n                    ")]), _vm._v("\n                    " + _vm._s(improvement.title) + "\n                ")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(improvement.description))]), _vm._v(" "), (improvement.assessor_guidance) ? _c('div', {
       staticClass: "alert alert-danger"
-    }, [_c('p', [_vm._v(_vm._s(improvement.assessor_guidance))])]) : _vm._e(), _vm._v(" "), _c('submission-comment', {
+    }, [_c('span', [_vm._v(_vm._s(improvement.assessor_guidance))])]) : _vm._e(), _vm._v(" "), _c('submission-comment', {
       attrs: {
         "improvement": improvement,
         "sectionIndex": _vm.currentSectionIndex,

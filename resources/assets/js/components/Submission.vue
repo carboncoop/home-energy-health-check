@@ -32,7 +32,7 @@
                     <p>{{ improvement.description }}</p>
 
                     <div v-if="improvement.assessor_guidance" class="alert alert-danger">
-                        <p>{{ improvement.assessor_guidance }}</p>
+                        <span>{{ improvement.assessor_guidance }}</span>
                     </div>
 
                     <submission-comment
