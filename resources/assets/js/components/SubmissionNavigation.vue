@@ -23,6 +23,12 @@
                             <span class="pl-1">Details</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a :class="linkClass('homeComfort')" href="#homeComfort"
+                            v-on:click="clickSection('homeComfort')">
+                            <span class="pl-1">Home Comfort</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 

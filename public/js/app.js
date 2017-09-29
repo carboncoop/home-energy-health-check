@@ -43858,6 +43858,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['sections', 'improvements'],
@@ -43936,7 +43942,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('span', {
     staticClass: "pl-1"
-  }, [_vm._v("Details")])])])], 2) : _vm._e()]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Details")])])]), _vm._v(" "), _c('li', {
+    staticClass: "nav-item"
+  }, [_c('a', {
+    class: _vm.linkClass('homeComfort'),
+    attrs: {
+      "href": "#homeComfort"
+    },
+    on: {
+      "click": function($event) {
+        _vm.clickSection('homeComfort')
+      }
+    }
+  }, [_c('span', {
+    staticClass: "pl-1"
+  }, [_vm._v("Home Comfort")])])])], 2) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "collapse navbar-collapse"
   }, [(_vm.improvements) ? _c('ul', {
     staticClass: "nav nav-pills"
