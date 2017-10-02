@@ -59,6 +59,6 @@
 
 <script>
     export default {
-        props: ['assessment']
+
     }
 </script>

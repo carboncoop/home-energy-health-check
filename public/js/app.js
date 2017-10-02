@@ -45435,12 +45435,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     state: {
         ready: false,
+        assessment: {},
         sections: []
     },
     mutations: {
-        init: function init(state, payload) {
-            state.sections = payload;
+        init: function init(state, obj) {
+            state.assessment = obj.assessment;
+            state.sections = obj.sections;
             state.ready = true;
+        },
+        setAssessmentAttribute: function setAssessmentAttribute(state, obj) {
+            state.assessment[obj.key] = obj.value;
         },
         setValue: function setValue(state, obj) {
             if (obj.section_index in state.sections) {
@@ -45458,6 +45463,11 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     getters: {
         ready: function ready(state) {
             return state.ready;
+        },
+        getAssessmentAttribute: function getAssessmentAttribute(state) {
+            return function (attributeName) {
+                return state.assessment[attributeName];
+            };
         },
         getValue: function getValue(state) {
             return function (obj) {
@@ -46046,9 +46056,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['assessment']
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 /* 51 */
@@ -46274,6 +46282,14 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_ThreeWayToggle__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_ThreeWayToggle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partial_ThreeWayToggle__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -46281,8 +46297,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: []
+    components: { 'three-way-toggle': __WEBPACK_IMPORTED_MODULE_0__partial_ThreeWayToggle___default.a },
+    computed: {
+        threeWayToggles: function threeWayToggles() {
+            return ['comfort_rate_temperature_summer', 'comfort_rate_temperature_winter', 'comfort_rate_humidity_summer', 'comfort_rate_humidity_winter', 'comfort_rate_airflow_summer', 'comfort_rate_airflow_winter', 'comfort_rate_natural_light', 'comfort_rate_artificial_light', 'comfort_rate_noise_levels'];
+        }
+    }
 });
 
 /***/ }),
@@ -46290,12 +46313,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "comfort-section-vue"
-  }, [_c('h1', [_vm._v("Confort section here")])])
-}]}
+  }, _vm._l((_vm.threeWayToggles), function(field) {
+    return _c('div', [_c('three-way-toggle', {
+      attrs: {
+        "attributeName": field
+      }
+    })], 1)
+  }))
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -46372,7 +46399,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -46392,36 +46418,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var initSections = _.map(this.sections, function (x) {
             return _.extend(x, { improvements: initImprovements[x.id] });
         });
-        this.$store.commit('init', initSections);
+        this.$store.commit('init', {
+            sections: initSections,
+            assessment: this.assessment
+        });
         this.$router.replace({ path: '/section/1' });
     },
 
     computed: {
         ready: function ready() {
             return this.$store.getters.ready;
-        },
-        currentImprovements: function currentImprovements() {
-            if (!this.currentSection) {
-                return false;
-            }
-            return this.currentSection.improvements;
-        }
-    },
-    methods: {
-        currentSectionIndex: function currentSectionIndex() {
-            var _this = this;
-
-            return _.findIndex(this.sections, function (section) {
-                return section.id == _this.sectionId;
-            });
-        },
-        nextSection: function nextSection(increment) {
-            this.currentSectionIndex += increment;
-        },
-        improvementsInSection: function improvementsInSection(section_id) {
-            return _.filter(this.improvements, function (x) {
-                return x.section_id == section_id;
-            });
         }
     }
 });
@@ -46704,8 +46710,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "submission-vue"
   }, [_c('navigation', {
     attrs: {
-      "sections": _vm.sections,
-      "improvements": _vm.currentImprovements
+      "sections": _vm.sections
     }
   }), _vm._v(" "), _c('div', {
     staticClass: "my-4 container"
@@ -46734,6 +46739,117 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(68),
+  /* template */
+  __webpack_require__(69),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/partial/ThreeWayToggle.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ThreeWayToggle.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6accdd54", Component.options)
+  } else {
+    hotAPI.reload("data-v-6accdd54", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['attributeName'],
+    computed: {
+        attribute: {
+            get: function get() {
+                return this.$store.getters.getAssessmentAttribute(this.attributeName);
+            },
+            set: function set(value) {
+                this.$store.commit('setAssessmentAttribute', {
+                    key: this.attributeName,
+                    value: value
+                });
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "three-way-toggle-vue"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.attribute),
+      expression: "attribute"
+    }],
+    staticClass: "form-control my-2",
+    attrs: {
+      "type": "number"
+    },
+    domProps: {
+      "value": (_vm.attribute)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.attribute = $event.target.value
+      }
+    }
+  })])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6accdd54", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

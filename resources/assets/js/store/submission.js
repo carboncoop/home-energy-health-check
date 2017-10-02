@@ -6,12 +6,17 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         ready: false,
+        assessment: {},
         sections: []
     },
     mutations: {
-        init(state, payload) {
-            state.sections = payload
+        init(state, obj) {
+            state.assessment = obj.assessment
+            state.sections = obj.sections
             state.ready = true
+        },
+        setAssessmentAttribute(state, obj) {
+            state.assessment[obj.key] = obj.value
         },
         setValue(state, obj) {
             if (obj.section_index in state.sections) {
@@ -29,6 +34,11 @@ const store = new Vuex.Store({
     getters: {
         ready(state) {
             return state.ready
+        },
+        getAssessmentAttribute(state) {
+            return (attributeName) => {
+                return state.assessment[attributeName]
+            }
         },
         getValue(state) {
             return (obj) => {

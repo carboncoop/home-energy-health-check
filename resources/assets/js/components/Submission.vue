@@ -2,8 +2,7 @@
     <div class="submission-vue" v-if="ready">
 
         <navigation
-            :sections="sections"
-            :improvements="currentImprovements">
+            :sections="sections">
         </navigation>
 
         <div class="my-4 container">
@@ -29,7 +28,7 @@
             'navigation': Navigation
         },
         mounted() {
-            let initImprovements = _.chain(this.improvements)
+            const initImprovements = _.chain(this.improvements)
                 .map(function (imp) {
                     return _.extend(imp, {value: null, comment: null})
                 })
@@ -37,37 +36,19 @@
                     return imp.section_id
                 })
                 .value()
-            let initSections = _.map(this.sections, (x) => {
+            const initSections = _.map(this.sections, (x) => {
                 return _.extend(x, {improvements: initImprovements[x.id]})
             })
-            this.$store.commit('init', initSections)
+            this.$store.commit('init', {
+                sections: initSections,
+                assessment: this.assessment
+            })
             this.$router.replace({ path: '/section/1' })
 
         },
         computed: {
             ready() {
                 return this.$store.getters.ready
-            },
-            currentImprovements() {
-                if (!this.currentSection) {
-                    return false
-                }
-                return this.currentSection.improvements
-            }
-        },
-        methods: {
-            currentSectionIndex() {
-                return _.findIndex(this.sections, (section) => {
-                    return section.id == this.sectionId
-                })
-            },
-            nextSection(increment) {
-                this.currentSectionIndex += increment
-            },
-            improvementsInSection(section_id) {
-                return _.filter(this.improvements, (x) => {
-                    return x.section_id == section_id
-                })
             }
         }
     }
