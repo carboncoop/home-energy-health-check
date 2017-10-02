@@ -12,20 +12,24 @@
     <div class="generated-pdf-wrapper">
         <div class="container py-5">
 
-            <h1 class="my-5">SECTION 1: Your Home</h1>
-            <h1 class="my-5">SECTION 2: Your Health</h1>
-            <h1 class="my-5">SECTION 3: Your Action Plan</h1>
-            @foreach ($parts as $part)
-                @unless ($part->improvements->isEmpty())
-                    <h3 class="my-2">{{ $part->title }}</h3>
-                    @include('pdf.partial.table', [
-                        'improvements' => $part->improvements
-                    ])
-                @endunless
+            @foreach ($sections as $index => $section)
+                <div class="section break-after-me">
+                    <h1 class="my-5">{{ $section->title }}</h1>
+                    <div class="lead">
+                        @parsedown($section->body)
+                    </div>
+                    @if (3 == $index)
+                        @foreach ($parts as $part)
+                            @unless ($part->improvements->isEmpty())
+                                <h3 class="my-2">{{ $part->title }}</h3>
+                                @include('pdf.partial.table', [
+                                    'improvements' => $part->improvements
+                                ])
+                            @endunless
+                        @endforeach
+                    @endif
+                </div>
             @endforeach
-
-            <h1 class="my-5">SECTION 4: Your Support</h1>
-
 
         </div>
     </div>

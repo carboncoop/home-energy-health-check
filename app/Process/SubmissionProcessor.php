@@ -5,6 +5,7 @@ namespace App\Process;
 use Carbon\Carbon;
 use App\Models\Improvement;
 use App\Models\Part;
+use App\Models\Section;
 
 class SubmissionProcessor
 {
@@ -27,9 +28,12 @@ class SubmissionProcessor
             return $part;
         });
 
+        $sections = Section::all();
+
         $this->pdf = \Snappy::loadView('pdf.assessment', [
             'input' => $this->input,
             'parts' => $parts,
+            'sections' => $sections,
         ]);
 
         if ('file' == $method) {

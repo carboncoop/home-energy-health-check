@@ -66,17 +66,7 @@ class SubmissionController extends Controller
             9 => [ 'value' => "need", 'comment' => "test comment" ],
             10 => [ 'value' => "need", 'comment' => "test comment" ],
         ];
-        $parts = Part::with('improvements')->get()->map(function ($sec) use ($input) {
-            $sec->improvements = $sec->improvements->filter(function ($imp) use ($input) {
-                return array_key_exists($imp->id, $input) &&
-                    $input[$imp->id]['value'] == 'need';
-            });
-            return $sec;
-        });
-        return view('pdf.assessment', [
-            'parts' => $parts,
-            'input' => $input,
-        ]);
+        return $this->processor->process(1, $input, 'screen');
     }
 
 }

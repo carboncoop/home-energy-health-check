@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c09d71018f337216bbd1be2bc1a3b20c",
-    "content-hash": "35b266d25de8b3af8d73de8ee21627df",
+    "hash": "cdaa0e8159de8b9991c3ef8b2577a9e7",
+    "content-hash": "aa3d53eb3bff022f24dbb6fdb2c75b30",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -2182,6 +2182,63 @@
                 "random"
             ],
             "time": "2017-09-27 21:40:39"
+        },
+        {
+            "name": "parsedown/laravel",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parsedown/laravel.git",
+                "reference": "d97b0b4ae21340ecbaa04f4f0a8fde9f33df0117"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parsedown/laravel/zipball/d97b0b4ae21340ecbaa04f4f0a8fde9f33df0117",
+                "reference": "d97b0b4ae21340ecbaa04f4f0a8fde9f33df0117",
+                "shasum": ""
+            },
+            "require": {
+                "erusev/parsedown": "~1.6",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.4",
+                "php": ">=7.1",
+                "phpunit/phpunit": "^6.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Parsedown\\Providers\\ParsedownServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "Parsedown\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eduardo Agostini",
+                    "email": "edu.agostini@gmail.com"
+                }
+            ],
+            "description": "Official Laravel Wrapper of Parsedown.",
+            "homepage": "http://parsedown.org",
+            "keywords": [
+                "laravel",
+                "parsedown"
+            ],
+            "time": "2017-08-23 02:26:10"
         },
         {
             "name": "prologue/alerts",

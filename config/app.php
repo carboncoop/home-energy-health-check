@@ -169,6 +169,7 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
+        Parsedown\Providers\ParsedownServiceProvider::class,
 
         /*
          * Application Service Providers...
