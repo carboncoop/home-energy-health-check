@@ -7,11 +7,16 @@ export default {
                 )
             },
             set(value) {
-                this.$store.commit('setAssessmentAttribute', {
-                    key: this.attributeName,
-                    value: value
-                })
+                this.debouncedSet(value)
             }
         }
+    },
+    methods: {
+        debouncedSet: _.debounce(function (value) {
+            this.$store.commit('setAssessmentAttribute', {
+                key: this.attributeName,
+                value: value
+            })
+        }, 330)
     }
 }

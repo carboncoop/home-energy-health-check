@@ -19,6 +19,5 @@
     export default {
         props: ['attributeName', 'label'],
         mixins: [ AttributeMixin ]
-
     }
 </script>

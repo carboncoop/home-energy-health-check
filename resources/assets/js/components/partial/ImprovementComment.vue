@@ -32,7 +32,7 @@
                     'improvement_index': this.improvementIndex,
                     'comment': comment,
                 })
-            }, 500)
+            }, 330)
         }
     }
 </script>

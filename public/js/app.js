@@ -45860,7 +45860,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'improvement_index': this.improvementIndex,
                 'comment': comment
             });
-        }, 500)
+        }, 330)
     }
 });
 
@@ -46644,12 +46644,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return this.$store.getters.getAssessmentAttribute(this.attributeName);
             },
             set: function set(value) {
-                this.$store.commit('setAssessmentAttribute', {
-                    key: this.attributeName,
-                    value: value
-                });
+                this.debouncedSet(value);
             }
         }
+    },
+    methods: {
+        debouncedSet: _.debounce(function (value) {
+            this.$store.commit('setAssessmentAttribute', {
+                key: this.attributeName,
+                value: value
+            });
+        }, 330)
     }
 });
 
@@ -47263,7 +47268,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['attributeName', 'label'],
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__["a" /* default */]]
-
 });
 
 /***/ }),
