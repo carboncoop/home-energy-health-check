@@ -16,28 +16,8 @@ Route::get('/', function () {
     return view('welcome', []);
 });
 
-// TODO: remove when done
-$input = [
-    1 => [ 'value' => "need", 'comment' => "test comment" ],
-    2 => [ 'value' => "need", 'comment' => "test comment" ],
-    3 => [ 'value' => "need", 'comment' => "test comment" ],
-    8 => [ 'value' => "need", 'comment' => "test comment" ],
-    9 => [ 'value' => "need", 'comment' => "test comment" ],
-    10 => [ 'value' => "need", 'comment' => "test comment" ],
-];
-$parts = Part::with('improvements')->get()->map(function ($sec) use ($input) {
-    $sec->improvements = $sec->improvements->filter(function ($imp) use ($input) {
-        return array_key_exists($imp->id, $input) &&
-            $input[$imp->id]['value'] == 'need';
-    });
-    return $sec;
-});
-Route::get('pdf-test', function () use ($input, $parts) {
-    return view('pdf.assessment', [
-        'parts' => $parts,
-        'input' => $input,
-    ]);
-});
+
+Route::get('pdf-test', 'SubmissionController@pdfTest');
 
 $crudControllers = [
     'improvements' => 'ImprovementCrudController',

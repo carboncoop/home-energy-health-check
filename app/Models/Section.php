@@ -9,7 +9,9 @@ class Section extends Model
 {
     use CrudTrait;
 
-    public $fillable = ['title'];
+    public $fillable = [
+        'title', 'body'
+    ];
 
     public static function crudFields()
     {
@@ -18,6 +20,10 @@ class Section extends Model
                 'label' => 'Title',
                 'type' => 'text',
                 'index' => true,
+            ],
+            'body' => [
+                'label' => 'Body Text',
+                'type' => 'simplemde'
             ],
         ];
     }

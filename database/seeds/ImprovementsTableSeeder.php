@@ -12,6 +12,7 @@ class ImprovementsTableSeeder extends Seeder
     {
         $this->seed_improvements();
         $this->seed_parts();
+        $this->seed_sections();
 
         \DB::table('assessments')->insert([
             'homeowner_email' => 'test-user@example.com',
@@ -20,13 +21,21 @@ class ImprovementsTableSeeder extends Seeder
         ]);
     }
 
-    protected function seed_improvements()
+    protected function seed_from_csv($path, $table, $data)
     {
-        $file = base_path() . '/database/seeds/improvements.csv';
+        $file = base_path() . $path;
         $csv = Reader::createFromPath($file);
         $stmt = (new Statement())->limit(100);
         foreach ($stmt->process($csv) as $row) {
-            \DB::table('improvements')->insert([
+            \DB::table($table)->insert($data($row));
+        }
+    }
+
+    protected function seed_improvements()
+    {
+        $this->seed_from_csv('/database/seeds/improvements.csv',
+            'improvements', function($row) {
+            return [
                 'title' => $row[0],
                 'assessor_comment' => $row[1],
                 'part_id' => (int)$row[2],
@@ -37,23 +46,34 @@ class ImprovementsTableSeeder extends Seeder
                 'assessor_guidance' => $row[8],
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            ]);
-        }
+            ];
+        });
     }
 
     protected function seed_parts()
     {
-        $file = base_path() . '/database/seeds/sections.csv';
-        $csv = Reader::createFromPath($file);
-        $stmt = (new Statement())->limit(100);
-        foreach ($stmt->process($csv) as $row) {
-            \DB::table('parts')->insert([
+        $this->seed_from_csv('/database/seeds/parts.csv',
+            'parts', function($row) {
+            return [
                 'title' => $row[0],
                 'description' => $row[1],
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            ]);
-        }
+            ];
+        });
+    }
+
+    protected function seed_sections()
+    {
+        $this->seed_from_csv('/database/seeds/sections.csv',
+            'sections', function($row) {
+            return [
+                'title' => $row[0],
+                'body' => $row[1],
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ];
+        });
     }
 
 }
