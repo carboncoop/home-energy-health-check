@@ -45741,7 +45741,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "row my-3"
+    staticClass: "row my-3 improvement-buttons-vue"
   }, _vm._l((_vm.possibleValues), function(choice, index) {
     return _c('div', {
       staticClass: "col col-6 text-center"
@@ -46056,7 +46056,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['assessment'] // TODO: replace with attribute.js
+});
 
 /***/ }),
 /* 51 */
@@ -46296,6 +46298,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -46303,7 +46314,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: { 'three-way-toggle': __WEBPACK_IMPORTED_MODULE_0__partial_ThreeWayToggle___default.a },
     computed: {
         threeWayToggles: function threeWayToggles() {
-            return ['comfort_rate_temperature_summer', 'comfort_rate_temperature_winter', 'comfort_rate_humidity_summer', 'comfort_rate_humidity_winter', 'comfort_rate_airflow_summer', 'comfort_rate_airflow_winter', 'comfort_rate_natural_light', 'comfort_rate_artificial_light', 'comfort_rate_noise_levels'];
+            return {
+                comfort_rate_temperature_summer: {
+                    label: 'Temperature in the Summer',
+                    helpText: ['Too hot', 'Too cold']
+                },
+                comfort_rate_temperature_winter: {
+                    label: 'Temperature in the Winter',
+                    helpText: ['Too hot', 'Too cold']
+                },
+                comfort_rate_humidity_summer: {
+                    label: 'Air in the Summer',
+                    helpText: ['Too dry', 'Too stuffy']
+                },
+                comfort_rate_humidity_winter: {
+                    label: 'Air in the Winter',
+                    helpText: ['Too dry', 'Too stuffy']
+                },
+                comfort_rate_airflow_summer: {
+                    label: 'Air in the Summer',
+                    helpText: ['Too draughty', 'Just right']
+                },
+                comfort_rate_airflow_winter: {
+                    label: 'Air in the Winter',
+                    helpText: ['Too draughty', 'Just right']
+                },
+                comfort_rate_natural_light: {
+                    label: 'Natural light',
+                    helpText: ['Too little', 'Too much']
+                },
+                comfort_rate_artificial_light: {
+                    label: 'Artificial light',
+                    helpText: ['Too little', 'Too much']
+                },
+                comfort_rate_noise_levels: {
+                    label: 'Noise levels',
+                    helpText: ['Too noisy', 'Too quiet']
+                }
+            };
         }
     }
 });
@@ -46315,14 +46363,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "comfort-section-vue"
-  }, _vm._l((_vm.threeWayToggles), function(field) {
-    return _c('div', [_c('three-way-toggle', {
+  }, [_c('div', {
+    staticClass: "card my-4"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "card-body"
+  }, [_vm._l((_vm.threeWayToggles), function(obj, attrName) {
+    return [_c('three-way-toggle', {
       attrs: {
-        "attributeName": field
+        "attributeName": attrName,
+        "label": obj.label,
+        "helpText": obj.helpText
       }
-    })], 1)
-  }))
-},staticRenderFns: []}
+    })]
+  })], 2)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
+  }, [_c('h3', {
+    staticClass: "my-3"
+  }, [_vm._v("Home comfort check")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -46422,7 +46482,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             sections: initSections,
             assessment: this.assessment
         });
-        this.$router.replace({ path: '/section/1' });
+        this.$router.replace({ path: '/comfort' });
     },
 
     computed: {
@@ -46790,6 +46850,26 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__ = __webpack_require__(70);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -46797,8 +46877,84 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['attributeName'],
+    props: ['attributeName', 'helpText', 'label'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__["a" /* default */]],
+    methods: {
+        buttonClass: function buttonClass(value) {
+            var str = 'btn';
+            if (this.attribute == value) {
+                str += ' btn-primary active';
+            } else {
+                str += ' btn-secondary';
+            }
+            return str;
+        }
+    }
+});
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row my-3 three-way-toggle-vue"
+  }, [_c('div', {
+    staticClass: "col col-4 text-right"
+  }, [_c('label', [_vm._v(_vm._s(_vm.label))])]), _vm._v(" "), _c('div', {
+    staticClass: "col col-8 btn-group",
+    attrs: {
+      "role": "group"
+    }
+  }, [_c('button', {
+    class: _vm.buttonClass(1),
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.attribute = 1
+      }
+    }
+  }, [_vm._v("\n            " + _vm._s(_vm.helpText[0]) + "\n        ")]), _vm._v(" "), _c('button', {
+    class: _vm.buttonClass(2),
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.attribute = 2
+      }
+    }
+  }, [_vm._v("\n             . . .\n        ")]), _vm._v(" "), _c('button', {
+    class: _vm.buttonClass(3),
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.attribute = 3
+      }
+    }
+  }, [_vm._v("\n            " + _vm._s(_vm.helpText[1]) + "\n        ")])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6accdd54", module.exports)
+  }
+}
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
     computed: {
         attribute: {
             get: function get() {
@@ -46813,43 +46969,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     }
 });
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "three-way-toggle-vue"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.attribute),
-      expression: "attribute"
-    }],
-    staticClass: "form-control my-2",
-    attrs: {
-      "type": "number"
-    },
-    domProps: {
-      "value": (_vm.attribute)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.attribute = $event.target.value
-      }
-    }
-  })])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6accdd54", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

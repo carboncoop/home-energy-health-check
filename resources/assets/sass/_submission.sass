@@ -3,11 +3,14 @@
 div.submission-vue
     padding-top: 140px
     padding-bottom: 140px
+    .btn
+        cursor: pointer
     .navbar, .lead, .improvement-no
         font-family: 'Open Sans', sans-serif
     .improvement-no
         position: relative
         top: -3px
+
     .navbar
         background-color: #222
         a
@@ -25,6 +28,7 @@ div.submission-vue
                 color: $pink-2
             .nav-have
                 color: $blue-2
+
     .improvement-card
         .card-footer
             background-color: white
@@ -37,3 +41,8 @@ div.submission-vue
         .btn-warning
             +button-variant($pink-2, white, $pink-3)
             +btn-grey
+
+    .three-way-toggle-vue
+        .btn
+            width: 30%
+            border-color: white

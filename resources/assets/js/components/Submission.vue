@@ -43,7 +43,7 @@
                 sections: initSections,
                 assessment: this.assessment
             })
-            this.$router.replace({ path: '/section/1' })
+            this.$router.replace({ path: '/comfort' })
 
         },
         computed: {

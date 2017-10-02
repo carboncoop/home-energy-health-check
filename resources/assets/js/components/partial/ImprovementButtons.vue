@@ -1,5 +1,5 @@
 <template>
-    <div class="row my-3">
+    <div class="row my-3 improvement-buttons-vue">
         <div v-for="(choice, index) in possibleValues" class="col col-6 text-center">
             <button :class="buttonClass(choice)"
                 v-on:click="clickButton(choice)">
