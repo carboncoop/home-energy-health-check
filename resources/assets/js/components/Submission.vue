@@ -41,6 +41,7 @@
                 return _.extend(x, {improvements: initImprovements[x.id]})
             })
             this.$store.commit('init', initSections)
+            this.$router.replace({ path: '/section/1' })
 
         },
         computed: {

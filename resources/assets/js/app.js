@@ -30,9 +30,9 @@ if (document.getElementById('submission-app') != null) {
     Vue.component('submission', require('./components/Submission.vue'));
 
     const routes = [
-      { path: '/section/:sectionId', component: ActionPlanSection, props: true },
-      { path: '/details', component: DetailsSection, props: true },
-      { path: '/comfort', component: ComfortSection, props: true }
+      { name: 'section', path: '/section/:sectionId', component: ActionPlanSection, props: true },
+      { name: 'details', path: '/details', component: DetailsSection, props: true },
+      { name: 'comfort', path: '/comfort', component: ComfortSection, props: true }
     ]
     const router = new VueRouter({ routes })
 
