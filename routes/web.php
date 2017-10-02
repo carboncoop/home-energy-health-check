@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Section;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +16,27 @@ Route::get('/', function () {
     return view('welcome', []);
 });
 
-Route::get('pdf-test', function () {
-    return view('pdf.assessment', []);
+// TODO: remove when done
+$input = [
+    1 => [ 'value' => "need", 'comment' => "test comment" ],
+    2 => [ 'value' => "need", 'comment' => "test comment" ],
+    3 => [ 'value' => "need", 'comment' => "test comment" ],
+    8 => [ 'value' => "need", 'comment' => "test comment" ],
+    9 => [ 'value' => "need", 'comment' => "test comment" ],
+    10 => [ 'value' => "need", 'comment' => "test comment" ],
+];
+$sections = Section::with('improvements')->get()->map(function ($sec) use ($input) {
+    $sec->improvements = $sec->improvements->filter(function ($imp) use ($input) {
+        return array_key_exists($imp->id, $input) &&
+            $input[$imp->id]['value'] == 'need';
+    });
+    return $sec;
+});
+Route::get('pdf-test', function () use ($input, $sections) {
+    return view('pdf.assessment', [
+        'sections' => $sections,
+        'input' => $input,
+    ]);
 });
 
 $crudControllers = [
