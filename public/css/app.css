@@ -16679,10 +16679,6 @@ div.submission-vue .navbar .nav-pills .nav-have {
   color: #15BFFF;
 }
 
-div.submission-vue .improvement-card .card-footer {
-  background-color: white;
-}
-
 div.submission-vue .improvement-card .btn-primary {
   color: #fff;
   background-color: #15BFFF;
@@ -16799,8 +16795,249 @@ div.submission-vue .improvement-card .btn-warning.inactive:active, div.submissio
   border-color: #e6e5e5;
 }
 
+div.submission-vue .improvement-card .card-footer {
+  background-color: white;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary {
+  color: #fff;
+  background-color: #15BFFF;
+  border-color: white;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary:hover {
+  color: #fff;
+  background-color: #00658B;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary:focus, div.submission-vue .three-way-toggle-vue .btn-primary.focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary.disabled, div.submission-vue .three-way-toggle-vue .btn-primary:disabled {
+  background-color: #15BFFF;
+  border-color: white;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary:active, div.submission-vue .three-way-toggle-vue .btn-primary.active,
+.show > div.submission-vue .three-way-toggle-vue .btn-primary.dropdown-toggle {
+  background-color: #00658B;
+  background-image: none;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary.inactive {
+  color: #fff;
+  background-color: #555;
+  border-color: white;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary.inactive:hover {
+  color: #fff;
+  background-color: #333;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary.inactive:focus, div.submission-vue .three-way-toggle-vue .btn-primary.inactive.focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary.inactive.disabled, div.submission-vue .three-way-toggle-vue .btn-primary.inactive:disabled {
+  background-color: #555;
+  border-color: white;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-primary.inactive:active, div.submission-vue .three-way-toggle-vue .btn-primary.inactive.active,
+.show > div.submission-vue .three-way-toggle-vue .btn-primary.inactive.dropdown-toggle {
+  background-color: #333;
+  background-image: none;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning {
+  color: #fff;
+  background-color: #FF0B90;
+  border-color: white;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning:hover {
+  color: #fff;
+  background-color: #B40062;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning:focus, div.submission-vue .three-way-toggle-vue .btn-warning.focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning.disabled, div.submission-vue .three-way-toggle-vue .btn-warning:disabled {
+  background-color: #FF0B90;
+  border-color: white;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning:active, div.submission-vue .three-way-toggle-vue .btn-warning.active,
+.show > div.submission-vue .three-way-toggle-vue .btn-warning.dropdown-toggle {
+  background-color: #B40062;
+  background-image: none;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning.inactive {
+  color: #fff;
+  background-color: #555;
+  border-color: white;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning.inactive:hover {
+  color: #fff;
+  background-color: #333;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning.inactive:focus, div.submission-vue .three-way-toggle-vue .btn-warning.inactive.focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning.inactive.disabled, div.submission-vue .three-way-toggle-vue .btn-warning.inactive:disabled {
+  background-color: #555;
+  border-color: white;
+}
+
+div.submission-vue .three-way-toggle-vue .btn-warning.inactive:active, div.submission-vue .three-way-toggle-vue .btn-warning.inactive.active,
+.show > div.submission-vue .three-way-toggle-vue .btn-warning.inactive.dropdown-toggle {
+  background-color: #333;
+  background-image: none;
+  border-color: #e6e5e5;
+}
+
 div.submission-vue .three-way-toggle-vue .btn {
   width: 30%;
+  border-color: white;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary {
+  color: #fff;
+  background-color: #15BFFF;
+  border-color: white;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary:hover {
+  color: #fff;
+  background-color: #00658B;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary:focus, div.submission-vue .rate-one-to-four-vue .btn-primary.focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary.disabled, div.submission-vue .rate-one-to-four-vue .btn-primary:disabled {
+  background-color: #15BFFF;
+  border-color: white;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary:active, div.submission-vue .rate-one-to-four-vue .btn-primary.active,
+.show > div.submission-vue .rate-one-to-four-vue .btn-primary.dropdown-toggle {
+  background-color: #00658B;
+  background-image: none;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary.inactive {
+  color: #fff;
+  background-color: #555;
+  border-color: white;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary.inactive:hover {
+  color: #fff;
+  background-color: #333;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary.inactive:focus, div.submission-vue .rate-one-to-four-vue .btn-primary.inactive.focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary.inactive.disabled, div.submission-vue .rate-one-to-four-vue .btn-primary.inactive:disabled {
+  background-color: #555;
+  border-color: white;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-primary.inactive:active, div.submission-vue .rate-one-to-four-vue .btn-primary.inactive.active,
+.show > div.submission-vue .rate-one-to-four-vue .btn-primary.inactive.dropdown-toggle {
+  background-color: #333;
+  background-image: none;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning {
+  color: #fff;
+  background-color: #FF0B90;
+  border-color: white;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning:hover {
+  color: #fff;
+  background-color: #B40062;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning:focus, div.submission-vue .rate-one-to-four-vue .btn-warning.focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning.disabled, div.submission-vue .rate-one-to-four-vue .btn-warning:disabled {
+  background-color: #FF0B90;
+  border-color: white;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning:active, div.submission-vue .rate-one-to-four-vue .btn-warning.active,
+.show > div.submission-vue .rate-one-to-four-vue .btn-warning.dropdown-toggle {
+  background-color: #B40062;
+  background-image: none;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning.inactive {
+  color: #fff;
+  background-color: #555;
+  border-color: white;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning.inactive:hover {
+  color: #fff;
+  background-color: #333;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning.inactive:focus, div.submission-vue .rate-one-to-four-vue .btn-warning.inactive.focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning.inactive.disabled, div.submission-vue .rate-one-to-four-vue .btn-warning.inactive:disabled {
+  background-color: #555;
+  border-color: white;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn-warning.inactive:active, div.submission-vue .rate-one-to-four-vue .btn-warning.inactive.active,
+.show > div.submission-vue .rate-one-to-four-vue .btn-warning.inactive.dropdown-toggle {
+  background-color: #333;
+  background-image: none;
+  border-color: #e6e5e5;
+}
+
+div.submission-vue .rate-one-to-four-vue .btn {
+  width: 20%;
   border-color: white;
 }
 

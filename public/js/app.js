@@ -29056,7 +29056,7 @@ var index_esm = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(62);
+module.exports = __webpack_require__(69);
 
 
 /***/ }),
@@ -29103,7 +29103,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 if (document.getElementById('submission-app') != null) {
 
-  Vue.component('submission', __webpack_require__(55));
+  Vue.component('submission', __webpack_require__(62));
 
   var routes = [{ name: 'section', path: '/section/:sectionId', component: __WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue___default.a, props: true }, { name: 'details', path: '/details', component: __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue___default.a, props: true }, { name: 'comfort', path: '/comfort', component: __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue___default.a, props: true }];
   var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({ routes: routes });
@@ -46247,7 +46247,7 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(53),
   /* template */
-  __webpack_require__(54),
+  __webpack_require__(61),
   /* styles */
   null,
   /* scopeId */
@@ -46284,8 +46284,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_ThreeWayToggle__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_ThreeWayToggle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partial_ThreeWayToggle__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_RateOneToFour__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_RateOneToFour___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partial_RateOneToFour__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partial_SimpleTextArea__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partial_SimpleTextArea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partial_SimpleTextArea__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partial_ThreeWayToggle__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partial_ThreeWayToggle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partial_ThreeWayToggle__);
 //
 //
 //
@@ -46307,12 +46311,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { 'three-way-toggle': __WEBPACK_IMPORTED_MODULE_0__partial_ThreeWayToggle___default.a },
+    components: { RateOneToFour: __WEBPACK_IMPORTED_MODULE_0__partial_RateOneToFour___default.a, SimpleTextArea: __WEBPACK_IMPORTED_MODULE_1__partial_SimpleTextArea___default.a, ThreeWayToggle: __WEBPACK_IMPORTED_MODULE_2__partial_ThreeWayToggle___default.a },
     computed: {
+        rateOneToFours: function rateOneToFours() {
+            return {
+                comfort_rate_comfort: 'Comfort',
+                comfort_rate_health: 'Health',
+                comfort_rate_environment: 'Environment',
+                comfort_rate_saving_money: 'Saving Money'
+            };
+        },
         threeWayToggles: function threeWayToggles() {
             return {
                 comfort_rate_temperature_summer: {
@@ -46352,6 +46400,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     helpText: ['Too noisy', 'Too quiet']
                 }
             };
+        },
+        otherInfo: function otherInfo() {
+            return {
+                comfort_general: 'General comfort',
+                comfort_favourite_room: 'What is your favourite room?',
+                comfort_least_loved_room: 'What is your least loved room?',
+                comfort_other_comments: 'Any other comments'
+            };
         }
     }
 });
@@ -46360,12 +46416,324 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(55),
+  /* template */
+  __webpack_require__(56),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/partial/RateOneToFour.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RateOneToFour.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0a44e168", Component.options)
+  } else {
+    hotAPI.reload("data-v-0a44e168", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__ = __webpack_require__(59);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['attributeName', 'label'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__["a" /* default */]],
+    computed: {
+        ratings: function ratings() {
+            return [1, 2, 3, 4];
+        }
+    },
+    data: function data() {
+        return { foo: 'bar' };
+    },
+
+    methods: {
+        buttonClass: function buttonClass(value) {
+            var str = 'btn';
+            if (this.attribute == value) {
+                str += ' btn-primary active';
+            } else {
+                str += ' btn-secondary';
+            }
+            return str;
+        }
+    }
+});
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row my-3 rate-one-to-four-vue"
+  }, [_c('div', {
+    staticClass: "col col-4 text-right"
+  }, [_c('label', [_vm._v(_vm._s(_vm.label))])]), _vm._v(" "), _c('div', {
+    staticClass: "col col-8 btn-group",
+    attrs: {
+      "role": "group"
+    }
+  }, _vm._l((_vm.ratings), function(rating) {
+    return _c('button', {
+      class: _vm.buttonClass(rating),
+      attrs: {
+        "type": "button"
+      },
+      on: {
+        "click": function($event) {
+          _vm.attribute = rating
+        }
+      }
+    }, [_c('span', {
+      staticClass: "lead"
+    }, [_vm._v(_vm._s(rating))])])
+  }))])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-0a44e168", module.exports)
+  }
+}
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(58),
+  /* template */
+  __webpack_require__(60),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/partial/ThreeWayToggle.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ThreeWayToggle.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6accdd54", Component.options)
+  } else {
+    hotAPI.reload("data-v-6accdd54", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__ = __webpack_require__(59);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['attributeName', 'helpText', 'label'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__["a" /* default */]],
+    methods: {
+        buttonClass: function buttonClass(value) {
+            var str = 'btn';
+            if (this.attribute == value) {
+                str += ' btn-primary active';
+            } else {
+                str += ' btn-secondary';
+            }
+            return str;
+        }
+    }
+});
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    computed: {
+        attribute: {
+            get: function get() {
+                return this.$store.getters.getAssessmentAttribute(this.attributeName);
+            },
+            set: function set(value) {
+                this.$store.commit('setAssessmentAttribute', {
+                    key: this.attributeName,
+                    value: value
+                });
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "row my-3 three-way-toggle-vue"
+  }, [_c('div', {
+    staticClass: "col col-4 text-right"
+  }, [_c('label', [_vm._v(_vm._s(_vm.label))])]), _vm._v(" "), _c('div', {
+    staticClass: "col col-8 btn-group",
+    attrs: {
+      "role": "group"
+    }
+  }, [_c('button', {
+    class: _vm.buttonClass(1),
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.attribute = 1
+      }
+    }
+  }, [_vm._v("\n            " + _vm._s(_vm.helpText[0]) + "\n        ")]), _vm._v(" "), _c('button', {
+    class: _vm.buttonClass(2),
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.attribute = 2
+      }
+    }
+  }, [_vm._v("\n             . . .\n        ")]), _vm._v(" "), _c('button', {
+    class: _vm.buttonClass(3),
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.attribute = 3
+      }
+    }
+  }, [_vm._v("\n            " + _vm._s(_vm.helpText[1]) + "\n        ")])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-6accdd54", module.exports)
+  }
+}
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "comfort-section-vue"
-  }, [_c('div', {
+  }, [_c('h1', {
+    staticClass: "my-3"
+  }, [_vm._v("Home comfort check")]), _vm._v(" "), _c('p', {
+    staticClass: "lead mb-5"
+  }, [_vm._v("To find out more about your experience of your home, because we all have different ideas around what is and isn’t\ncomfortable, we have a few questions for you. These questions will help the surveyor tailor any recommendations to\nyour needs.")]), _vm._v(" "), _c('div', {
     staticClass: "card my-4"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "card-body"
+  }, [_c('p', {
+    staticClass: "mb-5 font-italic"
+  }, [_vm._v("(rate 1-4, 1 being most important, 4 least important)")]), _vm._v(" "), _vm._l((_vm.rateOneToFours), function(label, attrName) {
+    return [_c('rate-one-to-four', {
+      attrs: {
+        "attributeName": attrName,
+        "label": label
+      }
+    })]
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "card my-4"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "card-body"
   }, [_vm._l((_vm.threeWayToggles), function(obj, attrName) {
     return [_c('three-way-toggle', {
@@ -46375,13 +46743,36 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "helpText": obj.helpText
       }
     })]
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "card my-4"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "card-body"
+  }, [_vm._l((_vm.otherInfo), function(label, attrName) {
+    return [_c('simple-text-area', {
+      attrs: {
+        "attributeName": attrName,
+        "label": label
+      }
+    })]
   })], 2)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "card-header"
   }, [_c('h3', {
     staticClass: "my-3"
-  }, [_vm._v("Home comfort check")])])
+  }, [_vm._v("What of the following is most important to you:")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
+  }, [_c('h3', {
+    staticClass: "my-3"
+  }, [_vm._v("How do you find your home?")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
+  }, [_c('h3', {
+    staticClass: "my-3"
+  }, [_vm._v("Other Information")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -46392,15 +46783,15 @@ if (false) {
 }
 
 /***/ }),
-/* 55 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(56),
+  __webpack_require__(63),
   /* template */
-  __webpack_require__(61),
+  __webpack_require__(68),
   /* styles */
   null,
   /* scopeId */
@@ -46432,13 +46823,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 56 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_js__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partial_Navigation_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_js__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partial_Navigation_vue__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partial_Navigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partial_Navigation_vue__);
 //
 //
@@ -46493,7 +46884,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 57 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46533,15 +46924,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 58 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(59),
+  __webpack_require__(66),
   /* template */
-  __webpack_require__(60),
+  __webpack_require__(67),
   /* styles */
   null,
   /* scopeId */
@@ -46573,7 +46964,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46664,7 +47055,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 60 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -46762,7 +47153,7 @@ if (false) {
 }
 
 /***/ }),
-/* 61 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -46795,25 +47186,25 @@ if (false) {
 }
 
 /***/ }),
-/* 62 */
+/* 69 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(68),
+  __webpack_require__(75),
   /* template */
-  __webpack_require__(69),
+  __webpack_require__(76),
   /* styles */
   null,
   /* scopeId */
@@ -46821,9 +47212,9 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/partial/ThreeWayToggle.vue"
+Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/partial/SimpleTextArea.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] ThreeWayToggle.vue: functional components are not supported with templates, they should use render functions.")}
+if (Component.options.functional) {console.error("[vue-loader] SimpleTextArea.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -46832,9 +47223,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6accdd54", Component.options)
+    hotAPI.createRecord("data-v-a86f7c4a", Component.options)
   } else {
-    hotAPI.reload("data-v-6accdd54", Component.options)
+    hotAPI.reload("data-v-a86f7c4a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -46845,22 +47236,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 68 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__ = __webpack_require__(70);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__ = __webpack_require__(59);
 //
 //
 //
@@ -46880,95 +47261,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['attributeName', 'helpText', 'label'],
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__["a" /* default */]],
-    methods: {
-        buttonClass: function buttonClass(value) {
-            var str = 'btn';
-            if (this.attribute == value) {
-                str += ' btn-primary active';
-            } else {
-                str += ' btn-secondary';
-            }
-            return str;
-        }
-    }
+    props: ['attributeName', 'label'],
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__["a" /* default */]]
+
 });
 
 /***/ }),
-/* 69 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "row my-3 three-way-toggle-vue"
-  }, [_c('div', {
+    staticClass: "row my-3 simple-text-area-vue"
+  }, [_c('label', {
     staticClass: "col col-4 text-right"
-  }, [_c('label', [_vm._v(_vm._s(_vm.label))])]), _vm._v(" "), _c('div', {
-    staticClass: "col col-8 btn-group",
-    attrs: {
-      "role": "group"
-    }
-  }, [_c('button', {
-    class: _vm.buttonClass(1),
-    attrs: {
-      "type": "button"
+  }, [_vm._v("\n        " + _vm._s(_vm.label) + "\n    ")]), _vm._v(" "), _c('div', {
+    staticClass: "col col-8"
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.attribute),
+      expression: "attribute"
+    }],
+    staticClass: "form-control",
+    domProps: {
+      "value": (_vm.attribute)
     },
     on: {
-      "click": function($event) {
-        _vm.attribute = 1
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.attribute = $event.target.value
       }
     }
-  }, [_vm._v("\n            " + _vm._s(_vm.helpText[0]) + "\n        ")]), _vm._v(" "), _c('button', {
-    class: _vm.buttonClass(2),
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": function($event) {
-        _vm.attribute = 2
-      }
-    }
-  }, [_vm._v("\n             . . .\n        ")]), _vm._v(" "), _c('button', {
-    class: _vm.buttonClass(3),
-    attrs: {
-      "type": "button"
-    },
-    on: {
-      "click": function($event) {
-        _vm.attribute = 3
-      }
-    }
-  }, [_vm._v("\n            " + _vm._s(_vm.helpText[1]) + "\n        ")])])])
+  })])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-6accdd54", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-a86f7c4a", module.exports)
   }
 }
-
-/***/ }),
-/* 70 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    computed: {
-        attribute: {
-            get: function get() {
-                return this.$store.getters.getAssessmentAttribute(this.attributeName);
-            },
-            set: function set(value) {
-                this.$store.commit('setAssessmentAttribute', {
-                    key: this.attributeName,
-                    value: value
-                });
-            }
-        }
-    }
-});
 
 /***/ })
 /******/ ]);
