@@ -1,6 +1,6 @@
 <?php
 
-//use App\Models\Part;
+use App\Models\Part;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +25,7 @@ $input = [
     9 => [ 'value' => "need", 'comment' => "test comment" ],
     10 => [ 'value' => "need", 'comment' => "test comment" ],
 ];
-/*$parts = Part::with('improvements')->get()->map(function ($sec) use ($input) {
+$parts = Part::with('improvements')->get()->map(function ($sec) use ($input) {
     $sec->improvements = $sec->improvements->filter(function ($imp) use ($input) {
         return array_key_exists($imp->id, $input) &&
             $input[$imp->id]['value'] == 'need';
@@ -37,12 +37,13 @@ Route::get('pdf-test', function () use ($input, $parts) {
         'parts' => $parts,
         'input' => $input,
     ]);
-});*/
+});
 
 $crudControllers = [
     'improvements' => 'ImprovementCrudController',
     'parts' => 'PartCrudController',
     'assessments' => 'AssessmentCrudController',
+    'sections' => 'SectionCrudController',
 ];
 
 Route::group([

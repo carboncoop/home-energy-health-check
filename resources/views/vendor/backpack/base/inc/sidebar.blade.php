@@ -28,6 +28,9 @@
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/assessments') }}"><i class="fa fa-edit"></i>
               <span>Assessments</span></a>
           </li>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/sections') }}"><i class="fa fa-align-left"></i>
+              <span>Sections</span></a>
+          </li>
 
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>
