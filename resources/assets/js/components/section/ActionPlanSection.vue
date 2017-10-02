@@ -1,12 +1,12 @@
 <template>
     <div class="action-plan-section-vue">
 
-        <h1 class="my-3">{{ currentSection.title }}</h1>
-        <p class="lead mb-5">{{ currentSection.description }}</p>
+        <h1 class="my-3">{{ currentPart.title }}</h1>
+        <p class="lead mb-5">{{ currentPart.description }}</p>
 
         <div class="improvement-card card mb-5"
             :id="'improvement-'+imp.id"
-            v-for="(imp, index) in currentSection.improvements">
+            v-for="(imp, index) in currentPart.improvements">
 
             <div class="card-body">
 
@@ -25,7 +25,7 @@
 
                 <improvement-comment
                     :improvement="imp"
-                    :sectionIndex="currentSectionIndex"
+                    :partIndex="currentPartIndex"
                     :improvementIndex="index"
                 ></improvement-comment>
 
@@ -33,7 +33,7 @@
 
             <div class="card-footer">
                 <improvement-buttons
-                    :sectionIndex="currentSectionIndex"
+                    :partIndex="currentPartIndex"
                     :improvementIndex="index">
                 </improvement-buttons>
             </div>
@@ -48,22 +48,22 @@
     import ImprovementComment from '../partial/ImprovementComment.vue'
 
     export default {
-        props: ['sectionId', 'sections'],
+        props: ['partId', 'parts'],
         components: {
             'improvement-buttons': ImprovementButtons,
             'improvement-comment': ImprovementComment,
         },
         computed: {
-            currentSection() {
-                return _.find(this.sections, this.matchesSectionId)
+            currentPart() {
+                return _.find(this.parts, this.matchesPartId)
             },
-            currentSectionIndex() {
-                return _.findIndex(this.sections, this.matchesSectionId)
+            currentPartIndex() {
+                return _.findIndex(this.parts, this.matchesPartId)
             }
         },
         methods: {
-            matchesSectionId(section) {
-                return section.id == this.sectionId
+            matchesPartId(part) {
+                return part.id == this.partId
             }
         }
     }

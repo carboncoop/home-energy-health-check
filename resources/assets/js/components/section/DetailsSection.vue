@@ -1,5 +1,5 @@
 <template>
-    <div class="submission-details-vue">
+    <div class="details-section-vue">
 
         <div class="card my-4">
             <div class="card-header">

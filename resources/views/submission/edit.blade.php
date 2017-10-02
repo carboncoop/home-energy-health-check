@@ -6,7 +6,7 @@
     <submission
         base-url='{{ URL::to('/') }}'
         :assessment='{{ $assessment }}'
-        :sections='{{ $json_sections }}'
+        :parts='{{ $json_parts }}'
         :improvements='{{ $json_improvements }}'>
     </submission>
 </div>

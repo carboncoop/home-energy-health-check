@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Section;
+use App\Models\Part;
 use Backpack\CRUD\CrudTrait;
 
 class Improvement extends Model
@@ -11,7 +11,7 @@ class Improvement extends Model
     use CrudTrait;
 
     protected $fillable = [
-        'title', 'section_id',
+        'title', 'part_id',
         'description', 'estimated_cost',
         'benefits', 'who_can_do',
         'assessor_guidance', 'assessor_comment',
@@ -25,12 +25,12 @@ class Improvement extends Model
                 'type' => 'text',
                 'index' => true,
             ],
-            'section_id' => [
-                'label' => "Section",
+            'part_id' => [
+                'label' => "Part",
                 'type' => 'select',
-                'entity' => 'section',
+                'entity' => 'part',
                 'attribute' => 'title',
-                'model' => "App\Models\Section",
+                'model' => "App\Models\Part",
                 'index' => true,
             ],
             'description' => [
@@ -61,9 +61,9 @@ class Improvement extends Model
         ];
     }
 
-    public function section()
+    public function part()
     {
-        return $this->belongsTo(Section::class);
+        return $this->belongsTo(Part::class);
     }
 
     public function getAssessorCommentAttribute($value) {

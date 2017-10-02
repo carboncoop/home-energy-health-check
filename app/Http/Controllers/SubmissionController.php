@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Assessment;
 use App\Models\Improvement;
-use App\Models\Section;
+use App\Models\Part;
 use App\Jobs\CreatePdfDocument;
 use App\Jobs\SendEmail;
 use App\Process\SubmissionProcessor;
@@ -28,16 +28,16 @@ class SubmissionController extends Controller
     public function edit($id)
     {
         $assessment = Assessment::findOrFail($id);
-        $sections = Section::get([
+        $parts = Part::get([
             'id', 'title', 'description'
         ]);
         $improvements = Improvement::get([
-            'id', 'title', 'section_id', 'description',
+            'id', 'title', 'part_id', 'description',
             'assessor_comment', 'assessor_guidance',
         ]);
         return view('submission.edit', [
-            'sections' => $sections,
-            'json_sections' => $sections->toJson(),
+            'parts' => $parts,
+            'json_parts' => $parts->toJson(),
             'json_improvements' => $improvements->toJson(),
             'assessment' => $assessment,
         ]);

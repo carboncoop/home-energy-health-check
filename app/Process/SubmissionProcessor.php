@@ -4,7 +4,7 @@ namespace App\Process;
 
 use Carbon\Carbon;
 use App\Models\Improvement;
-use App\Models\Section;
+use App\Models\Part;
 
 class SubmissionProcessor
 {
@@ -19,17 +19,17 @@ class SubmissionProcessor
     {
         $this->input = $input;
 
-        $sections = Section::with('improvements')->get()->map(function ($sec) {
-            $sec->improvements = $sec->improvements->filter(function ($imp) {
+        $parts = Part::with('improvements')->get()->map(function ($part) {
+            $part->improvements = $part->improvements->filter(function ($imp) {
                 return array_key_exists($imp->id, $this->input) &&
                     $this->input[$imp->id]['value'] == 'need';
             });
-            return $sec;
+            return $part;
         });
 
         $this->pdf = \Snappy::loadView('pdf.assessment', [
             'input' => $this->input,
-            'sections' => $sections,
+            'parts' => $parts,
         ]);
 
         if ('file' == $method) {

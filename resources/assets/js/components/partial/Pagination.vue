@@ -2,14 +2,14 @@
     <div class="text-center">
 
         <button class="btn btn-primary"
-            v-if="sectionIndex != 0"
-            v-on:click="sectionIndex -= 1"
-            >Previous Section</button>
+            v-if="partIndex != 0"
+            v-on:click="partIndex -= 1"
+            >Previous Part</button>
 
         <button class="btn btn-primary"
-            v-if="sectionIndex < sectionsLength - 1"
-            v-on:click="sectionIndex += 1"
-            >Next Section</button>
+            v-if="partIndex < partsLength - 1"
+            v-on:click="partIndex += 1"
+            >Next Part</button>
 
         <slot></slot>
 
@@ -18,6 +18,6 @@
 
 <script>
     export default {
-        props: ['sectionIndex', 'sectionsLength']
+        props: ['partIndex', 'partsLength']
     }
 </script>

@@ -2,13 +2,13 @@
     <div class="submission-vue" v-if="ready">
 
         <navigation
-            :sections="sections">
+            :parts="parts">
         </navigation>
 
         <div class="my-4 container">
             <router-view
                 :assessment="assessment"
-                :sections="sections"
+                :parts="parts"
             ></router-view>
 
             <button class="btn btn-warning"
@@ -22,7 +22,7 @@
     import Navigation from './partial/Navigation.vue'
 
     export default {
-        props: ['baseUrl', 'assessment', 'sections', 'improvements'],
+        props: ['baseUrl', 'assessment', 'parts', 'improvements'],
         mixins: [FormMixin],
         components: {
             'navigation': Navigation
@@ -33,14 +33,14 @@
                     return _.extend(imp, {value: null, comment: null})
                 })
                 .groupBy(function (imp) {
-                    return imp.section_id
+                    return imp.part_id
                 })
                 .value()
-            const initSections = _.map(this.sections, (x) => {
+            const initParts = _.map(this.parts, (x) => {
                 return _.extend(x, {improvements: initImprovements[x.id]})
             })
             this.$store.commit('init', {
-                sections: initSections,
+                parts: initParts,
                 assessment: this.assessment
             })
             this.$router.replace({ path: '/comfort' })

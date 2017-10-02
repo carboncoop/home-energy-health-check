@@ -17,7 +17,7 @@
 
 <script>
     export default {
-        props: ['sectionIndex', 'improvementIndex'],
+        props: ['partIndex', 'improvementIndex'],
         data() {
             return {
                 possibleValues: ['have', 'need']
@@ -26,7 +26,7 @@
         computed: {
             value() {
                 return this.$store.getters.getValue({
-                    section_index: this.sectionIndex,
+                    part_index: this.partIndex,
                     improvement_index: this.improvementIndex
                 })
             }
@@ -34,7 +34,7 @@
         methods: {
             clickButton(value) {
                 this.$store.commit('setValue', {
-                    'section_index': this.sectionIndex,
+                    'part_index': this.partIndex,
                     'improvement_index': this.improvementIndex,
                     'value': value
                 })

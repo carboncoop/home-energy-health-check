@@ -11,12 +11,12 @@
     import _ from 'lodash'
 
     export default {
-        props: ['improvement', 'improvementIndex', 'sectionIndex'],
+        props: ['improvement', 'improvementIndex', 'partIndex'],
         computed: {
             comment: {
                 get() {
                     return this.$store.getters.getComment({
-                        section_index: this.sectionIndex,
+                        part_index: this.partIndex,
                         improvement_index: this.improvementIndex
                     })
                 },
@@ -28,7 +28,7 @@
         methods: {
             storeComment: _.debounce(function (comment) {
                 this.$store.commit('setComment', {
-                    'section_index': this.sectionIndex,
+                    'part_index': this.partIndex,
                     'improvement_index': this.improvementIndex,
                     'comment': comment,
                 })

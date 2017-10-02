@@ -39,7 +39,7 @@
 @endsection
 
 @section('header')
-    <section class="content-header">
+    <part class="content-header">
       <h1>
         {{ trans('backpack::crud.file_manager') }}
       </h1>
@@ -47,7 +47,7 @@
         <li><a href="{{ url(config('backpack.base.route_prefix')) }}">Admin</a></li>
         <li class="active">{{ trans('backpack::crud.file_manager') }}</li>
       </ol>
-    </section>
+    </part>
 @endsection
 
 @section('content')

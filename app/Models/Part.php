@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Improvement;
 use Backpack\CRUD\CrudTrait;
 
-class Section extends Model
+class Part extends Model
 {
     use CrudTrait;
 

@@ -7,27 +7,27 @@ const store = new Vuex.Store({
     state: {
         ready: false,
         assessment: {},
-        sections: []
+        parts: []
     },
     mutations: {
         init(state, obj) {
             state.assessment = obj.assessment
-            state.sections = obj.sections
+            state.parts = obj.parts
             state.ready = true
         },
         setAssessmentAttribute(state, obj) {
             state.assessment[obj.key] = obj.value
         },
         setValue(state, obj) {
-            if (obj.section_index in state.sections) {
-                let section = state.sections[obj.section_index]
-                section.improvements[obj.improvement_index].value = obj.value
+            if (obj.part_index in state.parts) {
+                let part = state.parts[obj.part_index]
+                part.improvements[obj.improvement_index].value = obj.value
             }
         },
         setComment(state, obj) {
-            if (obj.section_index in state.sections) {
-                let section = state.sections[obj.section_index]
-                section.improvements[obj.improvement_index].comment = obj.comment
+            if (obj.part_index in state.parts) {
+                let part = state.parts[obj.part_index]
+                part.improvements[obj.improvement_index].comment = obj.comment
             }
         }
     },
@@ -42,29 +42,29 @@ const store = new Vuex.Store({
         },
         getValue(state) {
             return (obj) => {
-                if (obj.section_index in state.sections) {
-                    let section = state.sections[obj.section_index]
-                    return section.improvements[obj.improvement_index].value
+                if (obj.part_index in state.parts) {
+                    let part = state.parts[obj.part_index]
+                    return part.improvements[obj.improvement_index].value
                 }
             }
         },
         getComment(state) {
             return (obj) => {
-                if (obj.section_index in state.sections) {
-                    let section = state.sections[obj.section_index]
-                    return section.improvements[obj.improvement_index].comment
+                if (obj.part_index in state.parts) {
+                    let part = state.parts[obj.part_index]
+                    return part.improvements[obj.improvement_index].comment
                 }
             }
         },
-        completedSections(state) {
-            return _.map(state.sections, (sec) => {
+        completedParts(state) {
+            return _.map(state.parts, (sec) => {
                 return _.every(sec.improvements, (imp) => {
                     return (imp.value != null)
                 })
             })
         },
         formData(state) {
-            return _.transform(state.sections, (ys, y) => {
+            return _.transform(state.parts, (ys, y) => {
                 let y1 = _.transform(y.improvements, (xs, x) => {
                     xs[x.id] = {
                         value: x.value,

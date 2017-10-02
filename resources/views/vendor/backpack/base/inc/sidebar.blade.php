@@ -2,7 +2,7 @@
     <!-- Left side column. contains the sidebar -->
     <aside class="main-sidebar">
       <!-- sidebar: style can be found in sidebar.less -->
-      <section class="sidebar">
+      <part class="sidebar">
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
@@ -22,8 +22,8 @@
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/improvements') }}"><i class="fa fa-list-ol"></i>
               <span>Improvements</span></a>
           </li>
-          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/sections') }}"><i class="fa fa-folder-o"></i>
-              <span>Sections</span></a>
+          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/parts') }}"><i class="fa fa-folder-o"></i>
+              <span>Parts</span></a>
           </li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/assessments') }}"><i class="fa fa-edit"></i>
               <span>Assessments</span></a>
@@ -33,7 +33,7 @@
           <li class="header">{{ trans('backpack::base.user') }}</li>
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><i class="fa fa-sign-out"></i> <span>{{ trans('backpack::base.logout') }}</span></a></li>
         </ul>
-      </section>
+      </part>
       <!-- /.sidebar -->
     </aside>
 @endif

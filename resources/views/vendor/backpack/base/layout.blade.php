@@ -86,11 +86,11 @@
          @yield('header')
 
         <!-- Main content -->
-        <section class="content">
+        <part class="content">
 
           @yield('content')
 
-        </section>
+        </part>
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->

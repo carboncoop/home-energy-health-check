@@ -11,7 +11,7 @@ class ImprovementsTableSeeder extends Seeder
     public function run()
     {
         $this->seed_improvements();
-        $this->seed_sections();
+        $this->seed_parts();
 
         \DB::table('assessments')->insert([
             'homeowner_email' => 'test-user@example.com',
@@ -29,7 +29,7 @@ class ImprovementsTableSeeder extends Seeder
             \DB::table('improvements')->insert([
                 'title' => $row[0],
                 'assessor_comment' => $row[1],
-                'section_id' => (int)$row[2],
+                'part_id' => (int)$row[2],
                 'description' => $row[3],
                 'estimated_cost' => $row[4],
                 'benefits' => $row[5],
@@ -41,13 +41,13 @@ class ImprovementsTableSeeder extends Seeder
         }
     }
 
-    protected function seed_sections()
+    protected function seed_parts()
     {
         $file = base_path() . '/database/seeds/sections.csv';
         $csv = Reader::createFromPath($file);
         $stmt = (new Statement())->limit(100);
         foreach ($stmt->process($csv) as $row) {
-            \DB::table('sections')->insert([
+            \DB::table('parts')->insert([
                 'title' => $row[0],
                 'description' => $row[1],
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

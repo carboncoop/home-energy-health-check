@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\DefaultCrudController;
-use App\Http\Requests\SectionRequest as StoreRequest;
-use App\Http\Requests\SectionRequest as UpdateRequest;
-use App\Models\Section;
+use App\Http\Requests\PartRequest as StoreRequest;
+use App\Http\Requests\PartRequest as UpdateRequest;
+use App\Models\Part;
 
-class SectionCrudController extends DefaultCrudController
+class PartCrudController extends DefaultCrudController
 {
     public function setup()
     {
-        parent::setDefaults('section');
-        $this->crud->setModel(Section::class);
+        parent::setDefaults('part');
+        $this->crud->setModel(Part::class);
         $this->crud->setFromDb();
     }
 

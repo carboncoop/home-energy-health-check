@@ -16,7 +16,7 @@ class CreateImprovementsTable extends Migration
         Schema::create('improvements', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->integer('section_id');
+            $table->integer('part_id');
             $table->longText('description')->nullable();
             $table->string('estimated_cost')->nullable();
             $table->string('benefits')->nullable();

@@ -15,11 +15,11 @@
             <h1 class="my-5">SECTION 1: Your Home</h1>
             <h1 class="my-5">SECTION 2: Your Health</h1>
             <h1 class="my-5">SECTION 3: Your Action Plan</h1>
-            @foreach ($sections as $section)
-                @unless ($section->improvements->isEmpty())
-                    <h3 class="my-2">{{ $section->title }}</h3>
-                    @include('pdf.part.table', [
-                        'improvements' => $section->improvements
+            @foreach ($parts as $part)
+                @unless ($part->improvements->isEmpty())
+                    <h3 class="my-2">{{ $part->title }}</h3>
+                    @include('pdf.partial.table', [
+                        'improvements' => $part->improvements
                     ])
                 @endunless
             @endforeach

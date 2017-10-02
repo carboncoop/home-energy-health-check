@@ -3,11 +3,11 @@
         <div class="container d-flex flex-column">
 
             <div class="navbar-collapse mb-2">
-                <ul class="nav nav-tabs" v-if="sections">
-                    <li v-for="(section, index) in sections" class="nav-item">
-                        <router-link :to="'/section/'+(index + 1)"
+                <ul class="nav nav-tabs" v-if="parts">
+                    <li v-for="(part, index) in parts" class="nav-item">
+                        <router-link :to="'/part/'+(index + 1)"
                             :class="linkClass(index)">
-                            <i v-if="completedSections[index]"
+                            <i v-if="completedParts[index]"
                                 class="fa fa-check-square-o"
                                 aria-hidden="true"></i>
                             <i v-else
@@ -30,10 +30,10 @@
             </div>
 
             <div class="collapse navbar-collapse">
-                <ul class="nav nav-pills" v-if="currentSection">
-                    <li v-for="(imp, index) in currentSection.improvements" class="nav-item">
+                <ul class="nav nav-pills" v-if="currentPart">
+                    <li v-for="(imp, index) in currentPart.improvements" class="nav-item">
                         <a :class="'nav-link nav-'+imp.value"
-                            :href="'#section-'+imp.section_id">
+                            :href="'#part-'+imp.part_id">
                             {{ index + 1 }}
                             <i v-if="imp.value == 'have'"
                                 class="fa fa-check-circle"
@@ -47,7 +47,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="nav nav-pills" v-if="!currentSection">
+                <ul class="nav nav-pills" v-if="!currentPart">
                     <li class="nav-link">
                         <span class="nav-text">&nbsp;</span>
                     </li>
@@ -60,25 +60,25 @@
 
 <script>
     export default {
-        props: ['sections'],
+        props: ['parts'],
         computed: {
-            completedSections() {
-                return this.$store.getters.completedSections
+            completedParts() {
+                return this.$store.getters.completedParts
             },
-            currentSection() {
-                return _.find(this.sections, this.matchesSectionId)
+            currentPart() {
+                return _.find(this.parts, this.matchesPartId)
             }
         },
         methods: {
             linkClass(index) {
-                if (this.currentSectionIndex == index) {
+                if (this.currentPartIndex == index) {
                     return 'nav-link active'
                 } else {
                     return 'nav-link'
                 }
             },
-            matchesSectionId(section) {
-                return section.id == this.$route.params.sectionId
+            matchesPartId(part) {
+                return part.id == this.$route.params.partId
             }
         }
     }
