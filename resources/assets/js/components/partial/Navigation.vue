@@ -6,7 +6,7 @@
                 <ul class="nav nav-tabs" v-if="parts">
                     <li v-for="(part, index) in parts" class="nav-item">
                         <router-link :to="'/part/'+(index + 1)"
-                            :class="linkClass(index)">
+                            class="nav-link">
                             <i v-if="completedParts[index]"
                                 class="fa fa-check-square-o"
                                 aria-hidden="true"></i>
@@ -17,12 +17,12 @@
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/details" :class="linkClass('details')">
+                        <router-link to="/details" class="nav-link">
                             <span class="pl-1">Details</span>
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link to="/comfort" :class="linkClass('comfort')">
+                        <router-link to="/comfort" class="nav-link">
                             <span class="pl-1">Comfort</span>
                         </router-link>
                     </li>
@@ -70,13 +70,6 @@
             }
         },
         methods: {
-            linkClass(index) {
-                if (this.currentPartIndex == index) {
-                    return 'nav-link active'
-                } else {
-                    return 'nav-link'
-                }
-            },
             matchesPartId(part) {
                 return part.id == this.$route.params.partId
             }

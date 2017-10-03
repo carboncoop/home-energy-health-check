@@ -10,6 +10,13 @@ div.submission-vue
     .improvement-no
         position: relative
         top: -3px
+        width: 48px
+        height: 48px
+        line-height: 35px
+        border-radius: 24px
+        background-color: #222
+        color: $yellow-2
+        border: 2px solid $yellow-3
     .col-form-label
         @media (max-width: 575px)
             text-align: left !important
@@ -20,9 +27,10 @@ div.submission-vue
             color: $yellow-3
         .nav-tabs
             border-color: $yellow-3
-            .nav-link.active, .nav-item.show .nav-link
+            .router-link-active, .nav-link.router-link-active:hover
                 background-color: $yellow-2
                 border-color: $yellow-2
+                color: #222
             .nav-link:hover
                 background-color: $yellow-4
                 border-color: transparent

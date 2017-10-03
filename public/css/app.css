@@ -16647,6 +16647,13 @@ div.submission-vue .navbar, div.submission-vue .lead, div.submission-vue .improv
 div.submission-vue .improvement-no {
   position: relative;
   top: -3px;
+  width: 48px;
+  height: 48px;
+  line-height: 35px;
+  border-radius: 24px;
+  background-color: #222;
+  color: #FFE90B;
+  border: 2px solid #DECA00;
 }
 
 @media (max-width: 575px) {
@@ -16667,9 +16674,10 @@ div.submission-vue .navbar .nav-tabs {
   border-color: #DECA00;
 }
 
-div.submission-vue .navbar .nav-tabs .nav-link.active, div.submission-vue .navbar .nav-tabs .nav-item.show .nav-link {
+div.submission-vue .navbar .nav-tabs .router-link-active, div.submission-vue .navbar .nav-tabs .nav-link.router-link-active:hover {
   background-color: #FFE90B;
   border-color: #FFE90B;
+  color: #222;
 }
 
 div.submission-vue .navbar .nav-tabs .nav-link:hover {

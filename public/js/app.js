@@ -45629,6 +45629,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -45945,12 +45947,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "id": 'improvement-' + imp.id
       }
     }, [_c('div', {
-      staticClass: "card-body"
-    }, [_c('h2', {
-      staticClass: "card-title"
+      staticClass: "card-header"
+    }, [_c('h3', {
+      staticClass: "my-3"
     }, [_c('span', {
-      staticClass: "badge badge-secondary improvement-no mr-3"
-    }, [_vm._v("\n                    " + _vm._s(index + 1) + "\n                ")]), _vm._v("\n                " + _vm._s(imp.title) + "\n            ")]), _vm._v(" "), _c('p', [_vm._v(_vm._s(imp.description))]), _vm._v(" "), (imp.assessor_guidance) ? _c('div', {
+      staticClass: "badge improvement-no mr-3"
+    }, [_vm._v("\n                    " + _vm._s(index + 1) + "\n                ")]), _vm._v("\n                " + _vm._s(imp.title) + "\n            ")])]), _vm._v(" "), _c('div', {
+      staticClass: "card-body"
+    }, [_c('p', [_vm._v(_vm._s(imp.description))]), _vm._v(" "), (imp.assessor_guidance) ? _c('div', {
       staticClass: "alert alert-danger"
     }, [_c('span', [_vm._v(_vm._s(imp.assessor_guidance))])]) : _vm._e(), _vm._v(" "), _c('improvement-comment', {
       attrs: {
@@ -47017,13 +47021,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        linkClass: function linkClass(index) {
-            if (this.currentPartIndex == index) {
-                return 'nav-link active';
-            } else {
-                return 'nav-link';
-            }
-        },
         matchesPartId: function matchesPartId(part) {
             return part.id == this.$route.params.partId;
         }
@@ -47047,7 +47044,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     return _c('li', {
       staticClass: "nav-item"
     }, [_c('router-link', {
-      class: _vm.linkClass(index),
+      staticClass: "nav-link",
       attrs: {
         "to": '/part/' + (index + 1)
       }
@@ -47067,7 +47064,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('li', {
     staticClass: "nav-item"
   }, [_c('router-link', {
-    class: _vm.linkClass('details'),
+    staticClass: "nav-link",
     attrs: {
       "to": "/details"
     }
@@ -47076,7 +47073,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Details")])])], 1), _vm._v(" "), _c('li', {
     staticClass: "nav-item"
   }, [_c('router-link', {
-    class: _vm.linkClass('comfort'),
+    staticClass: "nav-link",
     attrs: {
       "to": "/comfort"
     }

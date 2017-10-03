@@ -8,14 +8,16 @@
             :id="'improvement-'+imp.id"
             v-for="(imp, index) in currentPart.improvements">
 
-            <div class="card-body">
-
-                <h2 class="card-title">
-                    <span class="badge badge-secondary improvement-no mr-3">
+            <div class="card-header">
+                <h3 class="my-3">
+                    <span class="badge improvement-no mr-3">
                         {{ index + 1 }}
                     </span>
                     {{ imp.title }}
-                </h2>
+                </h3>
+            </div>
+
+            <div class="card-body">
 
                 <p>{{ imp.description }}</p>
 
