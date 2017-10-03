@@ -46063,13 +46063,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         formElements: function formElements() {
             return {
                 'Assessment Details': {
-                    assessor_name: 'Assessor Name'
+                    assessment_date: {
+                        label: 'Assessment Date',
+                        type: 'text'
+                    },
+                    assessor_name: {
+                        label: 'Assessor Name',
+                        type: 'text'
+                    }
                 },
                 'Homeowner Details': {
-                    homeowner_name: 'Homeowner Name',
-                    homeowner_address: 'Homeowner Address',
-                    homeowner_phone: 'Homeowner Phone',
-                    homeowner_email: 'Homeowner Email'
+                    homeowner_name: {
+                        label: 'Homeowner Name',
+                        type: 'text'
+                    },
+                    homeowner_address: {
+                        label: 'Homeowner Address',
+                        type: 'textarea'
+                    },
+                    homeowner_phone: {
+                        label: 'Homeowner Phone',
+                        type: 'text'
+                    },
+                    homeowner_email: {
+                        label: 'Homeowner Email',
+                        type: 'text'
+                    }
                 }
             };
         }
@@ -46094,12 +46113,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "my-3"
     }, [_vm._v(_vm._s(legend))])]), _vm._v(" "), _c('div', {
       staticClass: "card-body"
-    }, [_vm._l((fields), function(label, attrName) {
+    }, [_vm._l((fields), function(field, attrName) {
       return [_c('simple-text-area', {
         attrs: {
           "attributeName": attrName,
-          "label": label,
-          "inputType": "text"
+          "label": field.label,
+          "inputType": field.type
         }
       })]
     })], 2)])
@@ -47243,6 +47262,16 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_SimpleTextArea_vue__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_SimpleTextArea_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partial_SimpleTextArea_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -47267,10 +47296,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: { SimpleTextArea: __WEBPACK_IMPORTED_MODULE_0__partial_SimpleTextArea_vue___default.a },
     computed: {
-        formElements: function formElements() {
-            return {};
+        readingElements: function readingElements() {
+            return {
+                reading_temperature_living_room: 'Temperature spot check (living room)',
+                reading_humidity_living_room: 'Relative humidity spot check (living room)',
+                reading_surface_temperature_living_room: 'Average surface temperature (living room)',
+                reading_temperature_bedroom: 'Temperature spot check (bedroom)',
+                reading_humidity_bedroom: 'Relative humidity spot check (bedroom)',
+                reading_surface_temperature_bedroom: 'Average surface temperature (bedroom)',
+                reading_air_quality: 'Air Quality Reading'
+            };
+        },
+        textareaElements: function textareaElements() {
+            return {
+                'Temperature Readings': {
+                    health_surface_temperature_notes: 'Assessor note on surface temperature. Any cold spots?'
+                },
+                'Home Health Comment': {
+                    health_condensation: 'Condensation',
+                    health_damp: 'Damp',
+                    health_mold: 'Mold',
+                    health_ventilation: 'Ventilation',
+                    health_laundry: 'Laundry',
+                    health_air_quality: 'Air Quality'
+                }
+            };
         }
     }
 });
@@ -47284,7 +47339,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "health-section-vue"
   }, [_c('h1', {
     staticClass: "my-3"
-  }, [_vm._v("Home Health Check")]), _vm._v(" "), _vm._l((_vm.formElements), function(fields, legend) {
+  }, [_vm._v("Home Health Check")]), _vm._v(" "), _vm._l((_vm.textareaElements), function(fields, legend) {
     return _c('div', {
       staticClass: "card my-4"
     }, [_c('div', {
@@ -47293,12 +47348,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "my-3"
     }, [_vm._v(_vm._s(legend))])]), _vm._v(" "), _c('div', {
       staticClass: "card-body"
-    }, [_vm._l((fields), function(label, attrName) {
-      return [_c('simple-text-area', {
+    }, [_vm._l((_vm.readingElements), function(label, attrName) {
+      return ('Temperature Readings' == legend) ? [_c('simple-text-area', {
         attrs: {
           "attributeName": attrName,
           "label": label,
           "inputType": "text"
+        }
+      })] : _vm._e()
+    }), _vm._v(" "), _vm._l((fields), function(label, attrName) {
+      return [_c('simple-text-area', {
+        attrs: {
+          "attributeName": attrName,
+          "label": label,
+          "inputType": "textarea"
         }
       })]
     })], 2)])

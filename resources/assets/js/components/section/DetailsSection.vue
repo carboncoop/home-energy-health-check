@@ -8,11 +8,11 @@
                 <h3 class="my-3">{{ legend }}</h3>
             </div>
             <div class="card-body">
-                <template v-for="(label, attrName) in fields">
+                <template v-for="(field, attrName) in fields">
                     <simple-text-area
                         :attributeName="attrName"
-                        :label="label"
-                        inputType="text">
+                        :label="field.label"
+                        :inputType="field.type">
                     </simple-text-area>
                 </template>
             </div>
@@ -30,13 +30,32 @@
             formElements() {
                 return {
                     'Assessment Details': {
-                        assessor_name: 'Assessor Name'
+                        assessment_date: {
+                            label: 'Assessment Date',
+                            type: 'text'
+                        },
+                        assessor_name: {
+                            label: 'Assessor Name',
+                            type: 'text'
+                        }
                     },
                     'Homeowner Details': {
-                        homeowner_name: 'Homeowner Name',
-                        homeowner_address: 'Homeowner Address',
-                        homeowner_phone: 'Homeowner Phone',
-                        homeowner_email: 'Homeowner Email'
+                        homeowner_name: {
+                            label: 'Homeowner Name',
+                            type: 'text'
+                        },
+                        homeowner_address: {
+                            label: 'Homeowner Address',
+                            type: 'textarea'
+                        },
+                        homeowner_phone: {
+                            label: 'Homeowner Phone',
+                            type: 'text'
+                        },
+                        homeowner_email: {
+                            label: 'Homeowner Email',
+                            type: 'text'
+                        }
                     }
                 }
             }

@@ -15,7 +15,14 @@ class ImprovementsTableSeeder extends Seeder
         $this->seed_sections();
 
         \DB::table('assessments')->insert([
+            'assessment_date' => Carbon::now()->format('Y-m-d'),
+            'assessor_name' => 'Tony T. Assessor',
+            'homeowner_name' => 'Dr. Testy McTestington',
             'homeowner_email' => 'test-user@example.com',
+            'homeowner_address' => '123 Testing Way
+Made-up-town
+ABC 123',
+            'homeowner_phone' => '(+0)555 12345',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

@@ -33,6 +33,26 @@ class AssessmentHomeAndHealth extends Migration
             'comfort_favourite_room' => 'text',
             'comfort_least_loved_room' => 'text',
             'comfort_other_comments' => 'longText',
+
+            // Home health check
+
+            // temperature readings etc
+            'reading_temperature_living_room' => 'float',
+            'reading_humidity_living_room' => 'float',
+            'reading_surface_temperature_living_room' => 'float',
+            'reading_temperature_bedroom' => 'float',
+            'reading_humidity_bedroom' => 'float',
+            'reading_surface_temperature_bedroom' => 'float',
+            'reading_air_quality' => 'float',
+
+            // other health check fields
+            'health_surface_temperature_notes' => 'longText',
+            'health_condensation' => 'longText',
+            'health_damp' => 'longText',
+            'health_mold' => 'longText',
+            'health_ventilation' => 'longText',
+            'health_laundry' => 'longText',
+            'health_air_quality' => 'longText',
         ];
     }
     /**
@@ -48,6 +68,8 @@ class AssessmentHomeAndHealth extends Migration
                     $table->tinyInteger($name)->nullable();
                 } else if ('longText' == $type) {
                     $table->longText($name)->nullable();
+                } else if ('float' == $type) {
+                    $table->float($name)->nullable();
                 } else {
                     $table->string($name)->nullable();
                 }
@@ -64,7 +86,9 @@ class AssessmentHomeAndHealth extends Migration
     {
         Schema::table('assessments', function (Blueprint $table) {
             foreach ($this->fields() as $name => $type) {
-                $table->dropColumn([$name]);
+                if (Schema::hasColumn('assessments', $name)) {
+                    $table->dropColumn([$name]);
+                }
             }
         });
     }
