@@ -1,10 +1,7 @@
 <template>
     <div class="comfort-section-vue">
 
-        <h1 class="my-3">Home comfort check</h1>
-        <p class="lead mb-5">To find out more about your experience of your home, because we all have different ideas around what is and isn’t
-comfortable, we have a few questions for you. These questions will help the surveyor tailor any recommendations to
-your needs.</p>
+        <h1 class="my-3">Home Comfort Check</h1>
 
         <div class="card my-4">
             <div class="card-header">

@@ -16670,6 +16670,10 @@ div.submission-vue .navbar a {
   color: #DECA00;
 }
 
+div.submission-vue .navbar .navbar-text {
+  color: #999;
+}
+
 div.submission-vue .navbar .nav-tabs {
   border-color: #DECA00;
 }
@@ -16691,6 +16695,10 @@ div.submission-vue .navbar .nav-pills .nav-need {
 
 div.submission-vue .navbar .nav-pills .nav-have {
   color: #15BFFF;
+}
+
+div.submission-vue .navbar .navbar-top-row, div.submission-vue .navbar .navbar-bottom-row {
+  width: 100%;
 }
 
 div.submission-vue .improvement-card .btn-primary {

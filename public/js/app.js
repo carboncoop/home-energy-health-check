@@ -29100,6 +29100,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -29127,11 +29129,12 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 
 
+
 if (document.getElementById('submission-app') != null) {
 
   Vue.component('submission', __webpack_require__(65));
 
-  var routes = [{ name: 'part', path: '/part/:partId', component: __WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue___default.a, props: true }, { name: 'details', path: '/details', component: __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue___default.a, props: true }, { name: 'comfort', path: '/comfort', component: __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue___default.a, props: true }];
+  var routes = [{ name: 'part', path: '/part/:partId', component: __WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue___default.a, props: true }, { name: 'details', path: '/details', component: __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue___default.a, props: true }, { name: 'comfort', path: '/comfort', component: __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue___default.a, props: true }, { name: 'health', path: '/health', component: __WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue___default.a, props: true }];
   var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({ routes: routes });
 
   var app = new Vue({
@@ -46049,6 +46052,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -46078,7 +46083,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "details-section-vue"
-  }, _vm._l((_vm.formElements), function(fields, legend) {
+  }, [_c('h1', {
+    staticClass: "my-3"
+  }, [_vm._v("Assessment Details")]), _vm._v(" "), _vm._l((_vm.formElements), function(fields, legend) {
     return _c('div', {
       staticClass: "card my-4"
     }, [_c('div', {
@@ -46096,7 +46103,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       })]
     })], 2)])
-  }))
+  })], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -46158,9 +46165,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partial_SimpleTextArea___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partial_SimpleTextArea__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partial_ThreeWayToggle__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partial_ThreeWayToggle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partial_ThreeWayToggle__);
-//
-//
-//
 //
 //
 //
@@ -46695,9 +46699,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "comfort-section-vue"
   }, [_c('h1', {
     staticClass: "my-3"
-  }, [_vm._v("Home comfort check")]), _vm._v(" "), _c('p', {
-    staticClass: "lead mb-5"
-  }, [_vm._v("To find out more about your experience of your home, because we all have different ideas around what is and isn’t\ncomfortable, we have a few questions for you. These questions will help the surveyor tailor any recommendations to\nyour needs.")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Home Comfort Check")]), _vm._v(" "), _c('div', {
     staticClass: "card my-4"
   }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "card-body"
@@ -46840,6 +46842,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     components: {
         'navigation': __WEBPACK_IMPORTED_MODULE_1__partial_Navigation_vue___default.a
     },
+    data: function data() {
+        return { initPath: '/health' };
+    },
     mounted: function mounted() {
         var initImprovements = _.chain(this.improvements).map(function (imp) {
             return _.extend(imp, { value: null, comment: null });
@@ -46853,7 +46858,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             parts: initParts,
             assessment: this.assessment
         });
-        this.$router.replace({ path: '/comfort' });
+        this.$router.replace({ path: this.initPath });
     },
 
     computed: {
@@ -47009,6 +47014,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['parts'],
@@ -47033,14 +47049,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('nav', {
-    staticClass: "navbar navbar-expand-md fixed-top"
+    staticClass: "navbar fixed-top"
   }, [_c('div', {
     staticClass: "container d-flex flex-column"
   }, [_c('div', {
-    staticClass: "navbar-collapse mb-2"
-  }, [(_vm.parts) ? _c('ul', {
+    staticClass: "navbar-top-row d-flex justify-content-between"
+  }, [_c('ul', {
+    staticClass: "nav nav-tabs mr-auto"
+  }, [_c('li', {
+    staticClass: "nav-item"
+  }, [_c('router-link', {
+    staticClass: "nav-link",
+    attrs: {
+      "to": "/details"
+    }
+  }, [_c('span', {
+    staticClass: "pl-1"
+  }, [_vm._v("Details")])])], 1), _vm._v(" "), _c('li', {
+    staticClass: "nav-item"
+  }, [_c('router-link', {
+    staticClass: "nav-link",
+    attrs: {
+      "to": "/comfort"
+    }
+  }, [_c('span', {
+    staticClass: "pl-1"
+  }, [_vm._v("Comfort")])])], 1), _vm._v(" "), _c('li', {
+    staticClass: "nav-item"
+  }, [_c('router-link', {
+    staticClass: "nav-link",
+    attrs: {
+      "to": "/health"
+    }
+  }, [_c('span', {
+    staticClass: "pl-1"
+  }, [_vm._v("Health")])])], 1)]), _vm._v(" "), _c('span', {
+    staticClass: "navbar-text pr-3"
+  }, [_vm._v("Action Plan:")]), _vm._v(" "), (_vm.parts) ? _c('ul', {
     staticClass: "nav nav-tabs"
-  }, [_vm._l((_vm.parts), function(part, index) {
+  }, _vm._l((_vm.parts), function(part, index) {
     return _c('li', {
       staticClass: "nav-item"
     }, [_c('router-link', {
@@ -47060,27 +47107,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }), _vm._v(" "), _c('span', {
       staticClass: "pl-1"
-    }, [_vm._v("Part " + _vm._s(index + 1))])])], 1)
-  }), _vm._v(" "), _c('li', {
-    staticClass: "nav-item"
-  }, [_c('router-link', {
-    staticClass: "nav-link",
-    attrs: {
-      "to": "/details"
-    }
-  }, [_c('span', {
-    staticClass: "pl-1"
-  }, [_vm._v("Details")])])], 1), _vm._v(" "), _c('li', {
-    staticClass: "nav-item"
-  }, [_c('router-link', {
-    staticClass: "nav-link",
-    attrs: {
-      "to": "/comfort"
-    }
-  }, [_c('span', {
-    staticClass: "pl-1"
-  }, [_vm._v("Comfort")])])], 1)], 2) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "collapse navbar-collapse"
+    }, [_vm._v(_vm._s(index + 1))])])], 1)
+  })) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "navbar-bottom-row d-flex justify-content-end"
   }, [(_vm.currentPart) ? _c('ul', {
     staticClass: "nav nav-pills"
   }, _vm._l((_vm.currentPart.improvements), function(imp, index) {
@@ -47163,6 +47192,125 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(78),
+  /* template */
+  __webpack_require__(79),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/section/HealthSection.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] HealthSection.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5ef20b24", Component.options)
+  } else {
+    hotAPI.reload("data-v-5ef20b24", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    computed: {
+        formElements: function formElements() {
+            return {};
+        }
+    }
+});
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "health-section-vue"
+  }, [_c('h1', {
+    staticClass: "my-3"
+  }, [_vm._v("Home Health Check")]), _vm._v(" "), _vm._l((_vm.formElements), function(fields, legend) {
+    return _c('div', {
+      staticClass: "card my-4"
+    }, [_c('div', {
+      staticClass: "card-header"
+    }, [_c('h3', {
+      staticClass: "my-3"
+    }, [_vm._v(_vm._s(legend))])]), _vm._v(" "), _c('div', {
+      staticClass: "card-body"
+    }, [_vm._l((fields), function(label, attrName) {
+      return [_c('simple-text-area', {
+        attrs: {
+          "attributeName": attrName,
+          "label": label,
+          "inputType": "text"
+        }
+      })]
+    })], 2)])
+  })], 2)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-5ef20b24", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

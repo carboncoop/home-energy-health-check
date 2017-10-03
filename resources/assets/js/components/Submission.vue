@@ -27,6 +27,9 @@
         components: {
             'navigation': Navigation
         },
+        data() {
+            return { initPath: '/health' }
+        },
         mounted() {
             const initImprovements = _.chain(this.improvements)
                 .map(function (imp) {
@@ -43,7 +46,7 @@
                 parts: initParts,
                 assessment: this.assessment
             })
-            this.$router.replace({ path: '/comfort' })
+            this.$router.replace({ path: this.initPath })
 
         },
         computed: {

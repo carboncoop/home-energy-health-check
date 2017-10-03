@@ -1,7 +1,7 @@
 <template>
-    <div class="details-section-vue">
+    <div class="health-section-vue">
 
-        <h1 class="my-3">Assessment Details</h1>
+        <h1 class="my-3">Home Health Check</h1>
 
         <div class="card my-4" v-for="(fields, legend) in formElements">
             <div class="card-header">
@@ -22,22 +22,11 @@
 </template>
 
 <script>
-    import SimpleTextArea from '../partial/SimpleTextArea'
-
     export default {
-        components: { SimpleTextArea },
         computed: {
             formElements() {
                 return {
-                    'Assessment Details': {
-                        assessor_name: 'Assessor Name'
-                    },
-                    'Homeowner Details': {
-                        homeowner_name: 'Homeowner Name',
-                        homeowner_address: 'Homeowner Address',
-                        homeowner_phone: 'Homeowner Phone',
-                        homeowner_email: 'Homeowner Email'
-                    }
+
                 }
             }
         }

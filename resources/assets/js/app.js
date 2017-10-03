@@ -24,6 +24,7 @@ Vue.use(VueRouter)
 import ActionPlanSection from './components/section/ActionPlanSection.vue'
 import DetailsSection from './components/section/DetailsSection.vue'
 import ComfortSection from './components/section/ComfortSection.vue'
+import HealthSection from './components/section/HealthSection.vue'
 
 if (document.getElementById('submission-app') != null) {
 
@@ -32,7 +33,9 @@ if (document.getElementById('submission-app') != null) {
     const routes = [
       { name: 'part', path: '/part/:partId', component: ActionPlanSection, props: true },
       { name: 'details', path: '/details', component: DetailsSection, props: true },
-      { name: 'comfort', path: '/comfort', component: ComfortSection, props: true }
+      { name: 'comfort', path: '/comfort', component: ComfortSection, props: true },
+      { name: 'health', path: '/health', component: HealthSection, props: true }
+
     ]
     const router = new VueRouter({ routes })
 

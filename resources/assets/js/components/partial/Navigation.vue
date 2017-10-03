@@ -1,21 +1,9 @@
 <template>
-    <nav class="navbar navbar-expand-md fixed-top">
+    <nav class="navbar fixed-top">
         <div class="container d-flex flex-column">
 
-            <div class="navbar-collapse mb-2">
-                <ul class="nav nav-tabs" v-if="parts">
-                    <li v-for="(part, index) in parts" class="nav-item">
-                        <router-link :to="'/part/'+(index + 1)"
-                            class="nav-link">
-                            <i v-if="completedParts[index]"
-                                class="fa fa-check-square-o"
-                                aria-hidden="true"></i>
-                            <i v-else
-                                class="fa fa-square-o"
-                                aria-hidden="true"></i>
-                            <span class="pl-1">Part {{ index + 1 }}</span>
-                        </router-link>
-                    </li>
+            <div class="navbar-top-row d-flex justify-content-between">
+                <ul class="nav nav-tabs mr-auto">
                     <li class="nav-item">
                         <router-link to="/details" class="nav-link">
                             <span class="pl-1">Details</span>
@@ -26,10 +14,33 @@
                             <span class="pl-1">Comfort</span>
                         </router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link to="/health" class="nav-link">
+                            <span class="pl-1">Health</span>
+                        </router-link>
+                    </li>
                 </ul>
+
+                <span class="navbar-text pr-3">Action Plan:</span>
+
+                <ul class="nav nav-tabs" v-if="parts">
+                    <li v-for="(part, index) in parts" class="nav-item">
+                        <router-link :to="'/part/'+(index + 1)"
+                            class="nav-link">
+                            <i v-if="completedParts[index]"
+                                class="fa fa-check-square-o"
+                                aria-hidden="true"></i>
+                            <i v-else
+                                class="fa fa-square-o"
+                                aria-hidden="true"></i>
+                            <span class="pl-1">{{ index + 1 }}</span>
+                        </router-link>
+                    </li>
+                </ul>
+
             </div>
 
-            <div class="collapse navbar-collapse">
+            <div class="navbar-bottom-row d-flex justify-content-end">
                 <ul class="nav nav-pills" v-if="currentPart">
                     <li v-for="(imp, index) in currentPart.improvements" class="nav-item">
                         <a :class="'nav-link nav-'+imp.value"
