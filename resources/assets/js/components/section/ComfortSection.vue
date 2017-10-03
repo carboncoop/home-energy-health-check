@@ -44,7 +44,8 @@ your needs.</p>
                 <template v-for="(label, attrName) in otherInfo">
                     <simple-text-area
                         :attributeName="attrName"
-                        :label="label">
+                        :label="label"
+                        inputType="textarea">
                     </simple-text-area>
                 </template>
             </div>

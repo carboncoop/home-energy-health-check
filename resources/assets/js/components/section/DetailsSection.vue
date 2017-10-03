@@ -1,56 +1,18 @@
 <template>
     <div class="details-section-vue">
 
-        <div class="card my-4">
+        <div class="card my-4" v-for="(fields, legend) in formElements">
             <div class="card-header">
-                <h3 class="my-3">Assessment Details</h3>
+                <h3 class="my-3">{{ legend }}</h3>
             </div>
             <div class="card-body">
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Assessor Name</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" v-model="assessment.assessor_name">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card my-4">
-            <div class="card-header">
-                <h3 class="my-3">Homeowner Details</h3>
-            </div>
-            <div class="card-body">
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Name</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" v-model="assessment.homeowner_name">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Email</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" v-model="assessment.homeowner_email">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Phone</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" v-model="assessment.homeowner_phone">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Address</label>
-                    <div class="col-sm-9">
-                        <textarea class="form-control" rows="4"
-                        v-model="assessment.homeowner_address"></textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Home Type</label>
-                    <div class="col-sm-9">
-                        <input class="form-control" v-model="assessment.home_type">
-                    </div>
-                </div>
+                <template v-for="(label, attrName) in fields">
+                    <simple-text-area
+                        :attributeName="attrName"
+                        :label="label"
+                        inputType="text">
+                    </simple-text-area>
+                </template>
             </div>
         </div>
 
@@ -58,7 +20,24 @@
 </template>
 
 <script>
+    import SimpleTextArea from '../partial/SimpleTextArea'
+
     export default {
-        props: ['assessment'] // TODO: replace with attribute.js
+        components: { SimpleTextArea },
+        computed: {
+            formElements() {
+                return {
+                    'Assessment Details': {
+                        assessor_name: 'Assessor Name'
+                    },
+                    'Homeowner Details': {
+                        homeowner_name: 'Homeowner Name',
+                        homeowner_address: 'Homeowner Address',
+                        homeowner_phone: 'Homeowner Phone',
+                        homeowner_email: 'Homeowner Email'
+                    }
+                }
+            }
+        }
     }
 </script>

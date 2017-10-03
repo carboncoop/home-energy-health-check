@@ -16649,6 +16649,12 @@ div.submission-vue .improvement-no {
   top: -3px;
 }
 
+@media (max-width: 575px) {
+  div.submission-vue .col-form-label {
+    text-align: left !important;
+  }
+}
+
 div.submission-vue .navbar {
   background-color: #222;
 }

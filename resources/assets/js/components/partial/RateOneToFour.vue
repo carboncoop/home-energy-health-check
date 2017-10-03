@@ -1,10 +1,10 @@
 <template>
-    <div class="row my-3 rate-one-to-four-vue">
-        <div class="col col-4 text-right">
+    <div class="row form-group my-3 rate-one-to-four-vue">
+        <div class="col-sm-4 col-form-label text-right">
             <label>{{ label }}</label>
         </div>
 
-        <div class="col col-8 btn-group" role="group">
+        <div class="col-sm-8 btn-group" role="group">
             <button type="button" :class="buttonClass(rating)"
                 v-for="rating in ratings"
                 v-on:click="attribute = rating">
