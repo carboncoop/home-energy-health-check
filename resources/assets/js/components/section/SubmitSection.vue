@@ -4,7 +4,10 @@
         <p class="lead">{{ blurb }}</p>
 
         <button class="btn btn-danger"
-            v-on:click="submitForm">Submit</button>
+            v-on:click="submitForm(true)">Submit</button>
+
+        <button class="btn btn-primary"
+            v-on:click="submitForm(false)">Save</button>
 
     </div>
 </template>
@@ -13,7 +16,7 @@
     import FormMixin from '../../mixins/form.js'
 
     export default {
-        props: ['assessment'],
+        props: ['assessment', 'baseUrl'],
         mixins: [FormMixin],
         data() {
             return {

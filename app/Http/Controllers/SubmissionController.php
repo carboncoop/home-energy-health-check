@@ -52,10 +52,34 @@ class SubmissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->processor->process($id, $request->all());
+        $assessment = Assessment::findOrFail($id);
+
+
+        // save assessment data on the main table
+        $assessment_data = $request->input('assessment');
+        $assessment->fill($assessment_data);
+        $assessment->save();
+
+        // TODO: save improvement data
+        $improvements_data = $request->input('improvements');
+
+        // prepare pdf and send email
+        if ($request->andProcess) {
+            return $this->processor->process($id, $request->all());
+        }
+
+        return response()->json([
+            'status' => 'OK',
+            'where' => 'just saved',
+            'input' => $request->all(),
+        ]);
     }
 
-
+    /**
+     * Test the pdf output.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function pdfTest(Request $request)
     {
         $input = [

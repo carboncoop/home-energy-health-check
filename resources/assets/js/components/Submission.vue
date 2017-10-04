@@ -7,6 +7,7 @@
 
         <div class="my-4 container">
             <router-view
+                :baseUrl="baseUrl"
                 :assessment="assessment"
                 :parts="parts"
             ></router-view>

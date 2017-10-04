@@ -71,7 +71,7 @@ const store = new Vuex.Store({
             })
         },
         getFormData(state) {
-            return _.transform(state.parts, (ys, y) => {
+            let improvements = _.transform(state.parts, (ys, y) => {
                 let y1 = _.transform(y.improvements, (xs, x) => {
                     xs[x.id] = {
                         value: x.value,
@@ -80,6 +80,10 @@ const store = new Vuex.Store({
                 }, {})
                 _.extend(ys, y1)
             }, {})
+            return {
+                improvements: improvements,
+                assessment: state.assessment
+            }
         }
     }
 })

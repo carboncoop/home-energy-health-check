@@ -5,9 +5,11 @@ export default {
         }
     },
     methods: {
-        submitForm() {
+        submitForm(andProcess = false) {
+            let data = this.formData
             let url = this.baseUrl + '/submit/' + this.assessment.id
-            this.submitHttp('put', url, this.formData)
+            data.andProcess = andProcess
+            this.submitHttp('put', url, data)
         },
         submitHttp(requestType, url, data = {}) {
             return new Promise((resolve, reject) => {

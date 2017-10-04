@@ -9,12 +9,7 @@ class Assessment extends Model
 {
     use CrudTrait;
 
-    protected $fillable = [
-        'assessor_name', 'assessment_date',
-        'homeowner_name', 'homeowner_email',
-        'homeowner_phone', 'homeowner_address',
-        'home_type',
-    ];
+    protected $guarded = [];
 
     public static function crudFields()
     {

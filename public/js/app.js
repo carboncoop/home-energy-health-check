@@ -45573,7 +45573,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
             });
         },
         getFormData: function getFormData(state) {
-            return _.transform(state.parts, function (ys, y) {
+            var improvements = _.transform(state.parts, function (ys, y) {
                 var y1 = _.transform(y.improvements, function (xs, x) {
                     xs[x.id] = {
                         value: x.value,
@@ -45582,6 +45582,10 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
                 }, {});
                 _.extend(ys, y1);
             }, {});
+            return {
+                improvements: improvements,
+                assessment: state.assessment
+            };
         }
     }
 });
@@ -47011,11 +47015,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['assessment'],
+    props: ['assessment', 'baseUrl'],
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_js__["a" /* default */]],
     data: function data() {
         return {
@@ -47045,9 +47052,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.blurb))]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-danger",
     on: {
-      "click": _vm.submitForm
+      "click": function($event) {
+        _vm.submitForm(true)
+      }
     }
-  }, [_vm._v("Submit")])])
+  }, [_vm._v("Submit")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary",
+    on: {
+      "click": function($event) {
+        _vm.submitForm(false)
+      }
+    }
+  }, [_vm._v("Save")])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -47105,6 +47121,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue__);
+//
 //
 //
 //
@@ -47429,6 +47446,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "my-4 container"
   }, [_c('router-view', {
     attrs: {
+      "baseUrl": _vm.baseUrl,
       "assessment": _vm.assessment,
       "parts": _vm.parts
     }
@@ -47465,8 +47483,12 @@ if (false) {
     },
     methods: {
         submitForm: function submitForm() {
+            var andProcess = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            var data = this.formData;
             var url = this.baseUrl + '/submit/' + this.assessment.id;
-            this.submitHttp('put', url, this.formData);
+            data.andProcess = andProcess;
+            this.submitHttp('put', url, data);
         },
         submitHttp: function submitHttp(requestType, url) {
             var _this = this;
