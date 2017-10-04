@@ -15,13 +15,13 @@ class SubmissionTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        \Artisan::call('migrate');
-        \Artisan::call('db:seed', ['--class' => 'DatabaseSeeder', '--database' => 'mysql']);
+        //\Artisan::call('migrate');
+        //\Artisan::call('db:seed', ['--class' => 'DatabaseSeeder', '--database' => 'mysql']);
     }
 
     public function tearDown()
     {
-        \Artisan::call('migrate:reset');
+        //\Artisan::call('migrate:reset');
         parent::tearDown();
     }
 

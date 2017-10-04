@@ -36,7 +36,6 @@ class SubmissionController extends Controller
             'assessor_comment', 'assessor_guidance',
         ]);
         return view('submission.edit', [
-            'parts' => $parts,
             'json_parts' => $parts->toJson(),
             'json_improvements' => $improvements->toJson(),
             'assessment' => $assessment,
