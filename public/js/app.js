@@ -47018,6 +47018,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -47026,7 +47040,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_js__["a" /* default */]],
     data: function data() {
         return {
-            blurb: 'Are you sure you want to submit this form now? etc..'
+            blurb: 'Are you sure you want to submit this form now? etc..',
+            success: null,
+            errors: null
         };
     },
 
@@ -47036,6 +47052,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         completedImprovements: function completedImprovements() {
             return this.$store.getters.getCompletedImprovements;
+        }
+    },
+    methods: {
+        respondToSuccess: function respondToSuccess(data) {
+            this.success = data;
+            this.errors = null;
+        },
+        respondToFailure: function respondToFailure(errors) {
+            this.success = null;
+            this.errors = errors;
         }
     }
 });
@@ -47050,20 +47076,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('p', {
     staticClass: "lead"
   }, [_vm._v(_vm._s(_vm.blurb))]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-danger",
+    staticClass: "btn btn-danger mb-3",
     on: {
       "click": function($event) {
         _vm.submitForm(true)
       }
     }
   }, [_vm._v("Submit")]), _vm._v(" "), _c('button', {
-    staticClass: "btn btn-primary",
+    staticClass: "btn btn-primary mb-3",
     on: {
       "click": function($event) {
         _vm.submitForm(false)
       }
     }
-  }, [_vm._v("Save")])])
+  }, [_vm._v("Save")]), _vm._v(" "), (_vm.success) ? [_c('h1', [_vm._v("Yey, that worked.")]), _vm._v(" "), _c('small', [_c('pre', {
+    staticClass: "pre-scrollable"
+  }, [_vm._v(_vm._s(_vm.success))])])] : _vm._e(), _vm._v(" "), (_vm.errors) ? [_c('div', {
+    staticClass: "alert alert-danger"
+  }, [_vm._v("\n            " + _vm._s(_vm.errors.message) + "\n        ")]), _vm._v(" "), _vm._l((_vm.errors.errors), function(error) {
+    return _c('div', {
+      staticClass: "alert alert-warning"
+    }, [_vm._v("\n            " + _vm._s(error) + "\n        ")])
+  })] : _vm._e()], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -47475,6 +47509,13 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/**
+ * == implements:
+ * formData
+ * respondToSuccess
+ * respondToFailure
+ */
+
 /* harmony default export */ __webpack_exports__["a"] = ({
     computed: {
         formData: function formData() {
@@ -47497,19 +47538,13 @@ if (false) {
 
             return new Promise(function (resolve, reject) {
                 axios[requestType](url, data).then(function (response) {
-                    _this.onSuccess(response.data);
+                    _this.respondToSuccess(response.data);
                     resolve(response.data);
                 }).catch(function (error) {
-                    _this.onFail(error.response.data);
+                    _this.respondToFailure(error.response.data);
                     reject(error.response.data);
                 });
             });
-        },
-        onSuccess: function onSuccess(data) {
-            console.warn("success", data);
-        },
-        onFail: function onFail(errors) {
-            console.warn("errors", errors);
         }
     }
 });

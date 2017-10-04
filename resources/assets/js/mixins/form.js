@@ -1,3 +1,10 @@
+/**
+ * == implements:
+ * formData
+ * respondToSuccess
+ * respondToFailure
+ */
+
 export default {
     computed: {
         formData() {
@@ -14,19 +21,13 @@ export default {
         submitHttp(requestType, url, data = {}) {
             return new Promise((resolve, reject) => {
                 axios[requestType](url, data).then(response => {
-                    this.onSuccess(response.data);
+                    this.respondToSuccess(response.data);
                     resolve(response.data);
                 }).catch(error => {
-                    this.onFail(error.response.data);
+                    this.respondToFailure(error.response.data);
                     reject(error.response.data);
                 });
             });
-        },
-        onSuccess(data) {
-            console.warn("success", data)
-        },
-        onFail(errors) {
-            console.warn("errors", errors)
         }
     }
 }

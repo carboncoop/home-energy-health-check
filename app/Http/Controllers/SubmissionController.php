@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SubmissionRequest;
 use App\Models\Assessment;
 use App\Models\Improvement;
 use App\Models\Part;
 use App\Models\AssessmentImprovement;
-use App\Jobs\CreatePdfDocument;
-use App\Jobs\SendEmail;
 use App\Process\SubmissionProcessor;
 
 class SubmissionController extends Controller
@@ -51,7 +50,7 @@ class SubmissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SubmissionRequest $request, $id)
     {
         $assessment = Assessment::findOrFail($id);
 
@@ -64,8 +63,17 @@ class SubmissionController extends Controller
         $improvements_data = $request->input('improvements');
         $improvements_to_save = collect($improvements_data)->filter(function ($imp) {
             return isset($imp['value']) || isset($imp['comment']);
-        })->map(function ($imp) {
-            return new AssessmentImprovement($imp);
+        })->map(function ($imp) use ($id) {
+            if ($ass_imp = AssessmentImprovement::where([
+                ['assessment_id', '=', $id],
+                ['improvement_id', '=', $imp['improvement_id']],
+            ])->first()) {
+                $ass_imp->fill($imp);
+                return $ass_imp;
+            } else {
+                return new AssessmentImprovement($imp);
+            }
+
         });
         $assessment->assessment_improvements()->saveMany($improvements_to_save);
 
@@ -76,7 +84,6 @@ class SubmissionController extends Controller
 
         return response()->json([
             'status' => 'OK',
-            'where' => 'just saved',
             'input' => $request->all(),
         ]);
     }
