@@ -1,7 +1,7 @@
 export default {
     computed: {
         formData() {
-            return this.$store.getters.formData
+            return this.$store.getters.getFormData
         }
     },
     methods: {

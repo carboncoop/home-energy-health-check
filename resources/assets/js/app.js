@@ -25,6 +25,7 @@ import ActionPlanSection from './components/section/ActionPlanSection.vue'
 import DetailsSection from './components/section/DetailsSection.vue'
 import ComfortSection from './components/section/ComfortSection.vue'
 import HealthSection from './components/section/HealthSection.vue'
+import SubmitSection from './components/section/SubmitSection.vue'
 
 if (document.getElementById('submission-app') != null) {
 
@@ -34,9 +35,10 @@ if (document.getElementById('submission-app') != null) {
       { name: 'part', path: '/part/:partId', component: ActionPlanSection, props: true },
       { name: 'details', path: '/details', component: DetailsSection, props: true },
       { name: 'comfort', path: '/comfort', component: ComfortSection, props: true },
-      { name: 'health', path: '/health', component: HealthSection, props: true }
-
+      { name: 'health', path: '/health', component: HealthSection, props: true },
+      { name: 'submit', path: '/submit', component: SubmitSection, props: true }
     ]
+
     const router = new VueRouter({ routes })
 
     const app = new Vue({

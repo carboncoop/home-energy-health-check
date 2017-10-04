@@ -23,7 +23,7 @@ div.submission-vue
 
     .navbar
         background-color: #222
-        a
+        a, a.nav-null
             color: $yellow-3
         .navbar-text
             color: #999
@@ -44,30 +44,19 @@ div.submission-vue
         .navbar-top-row, .navbar-bottom-row
             width: 100%
 
-    =btn-grey
-        &.inactive
-            +button-variant(#555, white, #333)
-    =buttons
-        .btn-primary
-            +button-variant($blue-2, white, $blue-3)
-            +btn-grey
-        .btn-warning
-            +button-variant($pink-2, white, $pink-3)
-            +btn-grey
-
     .improvement-card
-        +buttons
+        .btn-primary, .btn-danger
+            &.inactive
+                +button-variant(#555, #555, #333, #333)
         .card-footer
             background-color: white
 
     .three-way-toggle-vue
-        +buttons
         .btn
             width: 30%
             border-color: white
 
     .rate-one-to-four-vue
-        +buttons
         .btn
             width: 20%
             border-color: white

@@ -38,13 +38,16 @@
                     </li>
                 </ul>
 
+                <router-link to="/submit" tag="button" class="btn btn-warning ml-3">
+                    <span>Submit</span>
+                </router-link>
+
             </div>
 
-            <div class="navbar-bottom-row d-flex justify-content-end">
+            <div class="navbar-bottom-row d-flex justify-content-around">
                 <ul class="nav nav-pills" v-if="currentPart">
                     <li v-for="(imp, index) in currentPart.improvements" class="nav-item">
-                        <a :class="'nav-link nav-'+imp.value"
-                            :href="'#part-'+imp.part_id">
+                        <a :class="'nav-link nav-'+imp.value">
                             {{ index + 1 }}
                             <i v-if="imp.value == 'have'"
                                 class="fa fa-check-circle"
@@ -74,7 +77,7 @@
         props: ['parts'],
         computed: {
             completedParts() {
-                return this.$store.getters.completedParts
+                return this.$store.getters.getCompletedParts
             },
             currentPart() {
                 return _.find(this.parts, this.matchesPartId)

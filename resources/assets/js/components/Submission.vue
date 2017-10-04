@@ -10,27 +10,28 @@
                 :assessment="assessment"
                 :parts="parts"
             ></router-view>
-
-            <button class="btn btn-warning"
-                v-on:click="submitForm">Submit</button>
         </div>
     </div>
 </template>
 
 <script>
-    import FormMixin from '../mixins/form.js'
     import Navigation from './partial/Navigation.vue'
 
     export default {
         props: ['baseUrl', 'assessment', 'parts', 'improvements'],
-        mixins: [FormMixin],
         components: {
             'navigation': Navigation
         },
         data() {
-            return { initPath: '/health' }
+            return { initPath: '/submit' }
+        },
+        computed: {
+            ready() {
+                return this.$store.getters.ready
+            }
         },
         mounted() {
+            // prepare initial improvements
             const initImprovements = _.chain(this.improvements)
                 .map(function (imp) {
                     return _.extend(imp, {value: null, comment: null})
@@ -39,20 +40,21 @@
                     return imp.part_id
                 })
                 .value()
+
+            // nest the improvements inside their parts
             const initParts = _.map(this.parts, (x) => {
                 return _.extend(x, {improvements: initImprovements[x.id]})
             })
+
+            // seed the store with this data
             this.$store.commit('init', {
                 parts: initParts,
                 assessment: this.assessment
             })
-            this.$router.replace({ path: this.initPath })
 
-        },
-        computed: {
-            ready() {
-                return this.$store.getters.ready
-            }
+            // and load the initial view
+            this.$router.replace({ path: this.initPath })
         }
+
     }
 </script>

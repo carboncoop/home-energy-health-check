@@ -46,7 +46,7 @@
                     str += " btn-primary"
                 }
                 if (value == 'need') {
-                    str += " btn-warning"
+                    str += " btn-danger"
                 }
                 if (value == this.value) {
                     str += " active"

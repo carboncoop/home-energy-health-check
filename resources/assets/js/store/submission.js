@@ -56,14 +56,21 @@ const store = new Vuex.Store({
                 }
             }
         },
-        completedParts(state) {
+        getCompletedParts(state) {
             return _.map(state.parts, (sec) => {
                 return _.every(sec.improvements, (imp) => {
                     return (imp.value != null)
                 })
             })
         },
-        formData(state) {
+        getCompletedImprovements(state) {
+            return _.map(state.parts, (sec) => {
+                return _.map(sec.improvements, (imp) => {
+                    return (imp.value != null)
+                })
+            })
+        },
+        getFormData(state) {
             return _.transform(state.parts, (ys, y) => {
                 let y1 = _.transform(y.improvements, (xs, x) => {
                     xs[x.id] = {
