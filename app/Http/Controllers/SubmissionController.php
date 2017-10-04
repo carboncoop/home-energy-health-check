@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Assessment;
 use App\Models\Improvement;
 use App\Models\Part;
+use App\Models\AssessmentImprovement;
 use App\Jobs\CreatePdfDocument;
 use App\Jobs\SendEmail;
 use App\Process\SubmissionProcessor;
@@ -54,14 +55,19 @@ class SubmissionController extends Controller
     {
         $assessment = Assessment::findOrFail($id);
 
-
         // save assessment data on the main table
         $assessment_data = $request->input('assessment');
         $assessment->fill($assessment_data);
         $assessment->save();
 
-        // TODO: save improvement data
+        // save improvement data on the related table
         $improvements_data = $request->input('improvements');
+        $improvements_to_save = collect($improvements_data)->filter(function ($imp) {
+            return isset($imp['value']) || isset($imp['comment']);
+        })->map(function ($imp) {
+            return new AssessmentImprovement($imp);
+        });
+        $assessment->assessment_improvements()->saveMany($improvements_to_save);
 
         // prepare pdf and send email
         if ($request->andProcess) {

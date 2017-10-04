@@ -10,12 +10,19 @@ class Improvement extends Model
 {
     use CrudTrait;
 
-    protected $fillable = [
-        'title', 'part_id',
-        'description', 'estimated_cost',
-        'benefits', 'who_can_do',
-        'assessor_guidance', 'assessor_comment',
-    ];
+    protected $guarded = [];
+
+    public function part()
+    {
+        return $this->belongsTo(Part::class);
+    }
+
+    public function getAssessorCommentAttribute($value) {
+        if ($value != '') {
+            return $value;
+        }
+        return '- add any notes here.';
+    }
 
     public static function crudFields()
     {
@@ -59,18 +66,6 @@ class Improvement extends Model
                 'type' => 'textarea',
             ]
         ];
-    }
-
-    public function part()
-    {
-        return $this->belongsTo(Part::class);
-    }
-
-    public function getAssessorCommentAttribute($value) {
-        if ($value != '') {
-            return $value;
-        }
-        return '- add any notes here.';
     }
 
 }

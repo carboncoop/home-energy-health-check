@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\AssessmentImprovement;
 use Backpack\CRUD\CrudTrait;
 
 class Assessment extends Model
@@ -10,6 +11,11 @@ class Assessment extends Model
     use CrudTrait;
 
     protected $guarded = [];
+
+    public function assessment_improvements()
+    {
+        return $this->hasMany(AssessmentImprovement::class);
+    }
 
     public static function crudFields()
     {

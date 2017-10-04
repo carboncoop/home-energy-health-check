@@ -45573,15 +45573,15 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
             });
         },
         getFormData: function getFormData(state) {
-            var improvements = _.transform(state.parts, function (ys, y) {
-                var y1 = _.transform(y.improvements, function (xs, x) {
-                    xs[x.id] = {
+            var improvements = _.flatMap(state.parts, function (part) {
+                return _.transform(part.improvements, function (xs, x) {
+                    xs.push({
+                        improvement_id: x.id,
                         value: x.value,
                         comment: x.comment
-                    };
-                }, {});
-                _.extend(ys, y1);
-            }, {});
+                    });
+                }, []);
+            });
             return {
                 improvements: improvements,
                 assessment: state.assessment
