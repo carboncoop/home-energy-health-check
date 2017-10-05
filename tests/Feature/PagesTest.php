@@ -4,8 +4,9 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class PagesTest extends TestCase
 {
+
     public function testWeCanSeeHomepage()
     {
         $response = $this->get('/');

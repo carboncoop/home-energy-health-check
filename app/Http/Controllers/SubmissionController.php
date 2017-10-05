@@ -54,9 +54,11 @@ class SubmissionController extends Controller
         $assessment = Assessment::findOrFail($id);
 
         // save assessment data on the main table
-        $assessment_data = $request->input('assessment');
-        $assessment->fill($assessment_data);
-        $assessment->save();
+        if ($request->has('assessment')) {
+            $assessment_data = $request->input('assessment');
+            $assessment->fill($assessment_data);
+            $assessment->save();
+        }
 
         // save improvement data on the related table
         $improvements_data = $request->input('improvements');

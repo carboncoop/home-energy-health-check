@@ -25,21 +25,40 @@ class SubmissionRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'andProcess' => 'boolean',
-            'assessment.assessment_date' => 'required|date',
+            'andProcess' => 'required|boolean',
         ];
-        foreach($this->request->get('improvements') as $key => $imp) {
-            if (isset($imp['value'])) {
-                $rules['improvements.'.$key.'.value'] = Rule::in(['have', 'need']);
+
+        if ($this->request->has('assessment')) {
+            $rules['assessment.assessment_date'] = 'required|date';
+        }
+
+        if ($this->request->has('improvements')) {
+            foreach($this->request->get('improvements') as $key => $imp) {
+                if (isset($imp['value'])) {
+                    $rules['improvements.'.$key.'.value'] = Rule::in(['have', 'need']);
+                }
             }
         }
+
         return $rules;
     }
 
+    /**
+     * Custom messages
+     */
     public function messages()
     {
          return [
-            'required' => 'The :attribute field is required, I\'m afraid.',
+            'required' => 'This field is required.',
+            'date' => 'This is not a valid date.'
          ];
+    }
+
+    /**
+     * Return JSON object error messages
+     */
+    public function response(array $errors)
+    {
+        return new JsonResponse($errors, 422);
     }
 }

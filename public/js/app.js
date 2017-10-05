@@ -29122,7 +29122,7 @@ var index_esm = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(77);
+module.exports = __webpack_require__(78);
 
 
 /***/ }),
@@ -29175,7 +29175,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 if (document.getElementById('submission-app') != null) {
 
-  Vue.component('submission', __webpack_require__(71));
+  Vue.component('submission', __webpack_require__(72));
 
   var routes = [{ name: 'part', path: '/part/:partId', component: __WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue___default.a, props: true }, { name: 'details', path: '/details', component: __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue___default.a, props: true }, { name: 'comfort', path: '/comfort', component: __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue___default.a, props: true }, { name: 'health', path: '/health', component: __WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue___default.a, props: true }, { name: 'submit', path: '/submit', component: __WEBPACK_IMPORTED_MODULE_7__components_section_SubmitSection_vue___default.a, props: true }];
 
@@ -46966,7 +46966,7 @@ var Component = __webpack_require__(1)(
   /* script */
   __webpack_require__(69),
   /* template */
-  __webpack_require__(70),
+  __webpack_require__(71),
   /* styles */
   null,
   /* scopeId */
@@ -47003,7 +47003,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_js__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_js__ = __webpack_require__(70);
 //
 //
 //
@@ -47068,6 +47068,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * == implements:
+ * formData
+ * respondToSuccess
+ * respondToFailure
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    computed: {
+        formData: function formData() {
+            return this.$store.getters.getFormData;
+        }
+    },
+    methods: {
+        submitForm: function submitForm() {
+            var andProcess = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+            var data = this.formData;
+            var url = this.baseUrl + '/submit/' + this.assessment.id;
+            data.andProcess = andProcess;
+            this.submitHttp('put', url, data);
+        },
+        submitHttp: function submitHttp(requestType, url) {
+            var _this = this;
+
+            var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+            return new Promise(function (resolve, reject) {
+                axios[requestType](url, data).then(function (response) {
+                    _this.respondToSuccess(response.data);
+                    resolve(response.data);
+                }).catch(function (error) {
+                    _this.respondToFailure(error.response.data);
+                    reject(error.response.data);
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -47108,15 +47153,15 @@ if (false) {
 }
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(72),
+  __webpack_require__(73),
   /* template */
-  __webpack_require__(76),
+  __webpack_require__(77),
   /* styles */
   null,
   /* scopeId */
@@ -47148,12 +47193,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue__);
 //
 //
@@ -47214,15 +47259,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(74),
-  /* template */
   __webpack_require__(75),
+  /* template */
+  __webpack_require__(76),
   /* styles */
   null,
   /* scopeId */
@@ -47254,7 +47299,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47352,7 +47397,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -47466,7 +47511,7 @@ if (false) {
 }
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -47495,59 +47540,10 @@ if (false) {
 }
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * == implements:
- * formData
- * respondToSuccess
- * respondToFailure
- */
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    computed: {
-        formData: function formData() {
-            return this.$store.getters.getFormData;
-        }
-    },
-    methods: {
-        submitForm: function submitForm() {
-            var andProcess = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-            var data = this.formData;
-            var url = this.baseUrl + '/submit/' + this.assessment.id;
-            data.andProcess = andProcess;
-            this.submitHttp('put', url, data);
-        },
-        submitHttp: function submitHttp(requestType, url) {
-            var _this = this;
-
-            var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
-            return new Promise(function (resolve, reject) {
-                axios[requestType](url, data).then(function (response) {
-                    _this.respondToSuccess(response.data);
-                    resolve(response.data);
-                }).catch(function (error) {
-                    _this.respondToFailure(error.response.data);
-                    reject(error.response.data);
-                });
-            });
-        }
-    }
-});
 
 /***/ })
 /******/ ]);
