@@ -3,9 +3,11 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SubmitTest extends TestCase
 {
+    use RefreshDatabase;
 
     protected $minimalData = [
         'andProcess' => false,
@@ -22,8 +24,10 @@ class SubmitTest extends TestCase
 
     public function testSubmitSomeAssessmentData()
     {
+        $this->seedData();
         $this->assertDatabaseHas('assessments', [
             'id' => 1,
+            'assessor_name' => 'Tony T. Assessor',
             'assessment_date' => '2012-09-09'
         ]);
         $response = $this->put('/submit/1', $this->minimalData);
@@ -31,6 +35,7 @@ class SubmitTest extends TestCase
         $response->assertJsonFragment(['status' => 'OK']);
         $this->assertDatabaseHas('assessments', [
             'id' => 1,
+            'assessor_name' => 'Tony T. Assessor',
             'assessment_date' => '2018-01-01'
         ]);
     }

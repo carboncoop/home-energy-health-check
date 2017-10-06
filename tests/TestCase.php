@@ -9,18 +9,12 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function setUp()
+    public function seedData()
     {
-        parent::setUp();
-        //\Artisan::call('migrate');
-        //\Artisan::call('db:seed', ['--class' => 'DatabaseSeeder', '--database' => 'mysql']);
+        \Artisan::call('db:seed', [
+            '--env' => 'testing',
+            '--database' => 'sqlite_testing',
+        ]);
     }
-
-    public function tearDown()
-    {
-        parent::tearDown();
-        //\Artisan::call('migrate:reset');
-    }
-
 
 }
