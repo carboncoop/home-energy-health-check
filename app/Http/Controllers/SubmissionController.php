@@ -69,13 +69,21 @@ class SubmissionController extends Controller
                 ['assessment_id', '=', $id],
                 ['improvement_id', '=', $imp['improvement_id']],
             ])->first()) {
-                $ass_imp->fill($imp);
+                $ass_imp->fill([
+                    'value' => $imp['value'],
+                    'comment' => $imp['comment'],
+                ]);
                 return $ass_imp;
             } else {
-                return new AssessmentImprovement($imp);
+                return new AssessmentImprovement([
+                    'value' => $imp['value'],
+                    'comment' => $imp['comment'],
+                    'improvement_id' => $imp['improvement_id'],
+                ]);
             }
 
         });
+
         $assessment->assessment_improvements()->saveMany($improvements_to_save);
 
         // prepare pdf and send email

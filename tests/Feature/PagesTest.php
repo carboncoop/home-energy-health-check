@@ -30,6 +30,11 @@ class PagesTest extends TestCase
 
     public function testWeCanSeeSubmissionForm()
     {
+        $this->assertDatabaseMissing('assessments', [
+            'id' => 1,
+            'assessor_name' => 'Tony T. Assessor',
+            'assessment_date' => '2012-09-09'
+        ]);
         $this->seedData();
         $this->assertDatabaseHas('assessments', [
             'id' => 1,

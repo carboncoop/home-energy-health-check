@@ -34,8 +34,12 @@ class SubmissionRequest extends FormRequest
 
         if ($this->request->has('improvements')) {
             foreach($this->request->get('improvements') as $key => $imp) {
+                $rules['improvements.'.$key.'.improvement_id'] = 'required|integer';
                 if (isset($imp['value'])) {
                     $rules['improvements.'.$key.'.value'] = Rule::in(['have', 'need']);
+                }
+                if (isset($imp['comment'])) {
+                    $rules['improvements.'.$key.'.comment'] = 'string|nullable';
                 }
             }
         }
