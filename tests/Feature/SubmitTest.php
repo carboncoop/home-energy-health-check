@@ -6,6 +6,7 @@ use Tests\TestCase;
 
 class SubmitTest extends TestCase
 {
+
     protected $minimalData = [
         'andProcess' => false,
         'assessment' => [
@@ -13,17 +14,25 @@ class SubmitTest extends TestCase
         ],
     ];
 
-    public function testSubmitSomeAssessmentData()
-    {
-        $response = $this->put('/submit/1', $this->minimalData);
-        $response->assertStatus(200);
-        $response->assertJsonFragment(['status' => 'OK']);
-    }
-
     public function testSubmitTheWrongId()
     {
         $response = $this->put('/submit/9001', $this->minimalData);
         $response->assertStatus(404);
+    }
+
+    public function testSubmitSomeAssessmentData()
+    {
+        $this->assertDatabaseHas('assessments', [
+            'id' => 1,
+            'assessment_date' => '2012-09-09'
+        ]);
+        $response = $this->put('/submit/1', $this->minimalData);
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['status' => 'OK']);
+        $this->assertDatabaseHas('assessments', [
+            'id' => 1,
+            'assessment_date' => '2018-01-01'
+        ]);
     }
 
     public function testSubmitBogusData()

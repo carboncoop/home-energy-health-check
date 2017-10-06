@@ -15,7 +15,7 @@ class ImprovementsTableSeeder extends Seeder
         $this->seed_sections();
 
         \DB::table('assessments')->insert([
-            'assessment_date' => Carbon::now()->format('Y-m-d'),
+            'assessment_date' => '2012-09-09',
             'assessor_name' => 'Tony T. Assessor',
             'homeowner_name' => 'Dr. Testy McTestington',
             'homeowner_email' => 'test-user@example.com',

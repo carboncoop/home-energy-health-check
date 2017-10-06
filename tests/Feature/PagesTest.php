@@ -28,6 +28,9 @@ class PagesTest extends TestCase
 
     public function testWeCanSeeSubmissionForm()
     {
+        $this->assertDatabaseHas('assessments', [
+            'id' => 1,
+        ]);
         $response = $this->get('/submit/1/edit');
         $response->assertStatus(200);
         $response->assertViewIs('submission.edit');
