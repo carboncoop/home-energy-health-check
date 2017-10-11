@@ -12,7 +12,8 @@
                     <simple-text-area
                         :attributeName="attrName"
                         :label="field.label"
-                        :inputType="field.type">
+                        :inputType="field.type"
+                        :errors="findError(attrName)">
                     </simple-text-area>
                 </template>
             </div>
@@ -25,7 +26,17 @@
     import SimpleTextArea from '../partial/SimpleTextArea'
 
     export default {
+        props: ['errors'],
         components: { SimpleTextArea },
+        methods: {
+            findError(key) {
+                let slug = 'assessment.'+key
+                if (_.has(this.errors.errors, slug)) {
+                    return this.errors.errors[slug]
+                }
+                return false;
+            }
+        },
         computed: {
             formElements() {
                 return {

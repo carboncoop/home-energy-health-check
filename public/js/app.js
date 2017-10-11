@@ -46124,11 +46124,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['errors'],
     components: { SimpleTextArea: __WEBPACK_IMPORTED_MODULE_0__partial_SimpleTextArea___default.a },
+    methods: {
+        findError: function findError(key) {
+            var slug = 'assessment.' + key;
+            if (_.has(this.errors.errors, slug)) {
+                return this.errors.errors[slug];
+            }
+            return false;
+        }
+    },
     computed: {
         formElements: function formElements() {
             return {
@@ -46191,11 +46202,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['attributeName', 'label', 'inputType'],
+    props: ['attributeName', 'label', 'inputType', 'errors'],
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_attribute_js__["a" /* default */]]
 });
 
@@ -46205,10 +46220,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "row form-group my-3 simple-text-area-vue"
+    staticClass: "simple-text-area-vue"
+  }, [_c('div', {
+    staticClass: "row form-group my-3"
   }, [_c('label', {
     staticClass: "col-sm-4 col-form-label text-right"
-  }, [_vm._v("\n        " + _vm._s(_vm.label) + "\n    ")]), _vm._v(" "), ('textarea' == _vm.inputType) ? _c('div', {
+  }, [_vm._v("\n            " + _vm._s(_vm.label) + "\n        ")]), _vm._v(" "), ('textarea' == _vm.inputType) ? _c('div', {
     staticClass: "col-sm-8"
   }, [_c('textarea', {
     directives: [{
@@ -46249,7 +46266,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.attribute = $event.target.value
       }
     }
-  })]) : _vm._e()])
+  })]) : _vm._e()]), _vm._v(" "), _vm._l((_vm.errors), function(message) {
+    return _c('div', {
+      staticClass: "alert alert-danger"
+    }, [_vm._v("\n        " + _vm._s(message) + "\n    ")])
+  })], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -46282,7 +46303,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         attrs: {
           "attributeName": attrName,
           "label": field.label,
-          "inputType": field.type
+          "inputType": field.type,
+          "errors": _vm.findError(attrName)
         }
       })]
     })], 2)])
@@ -47640,6 +47662,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -47648,14 +47680,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['baseUrl'],
     components: { DetailsSection: __WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue___default.a },
     mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_form_js__["a" /* default */]],
+    data: function data() {
+        return {
+            successful: false,
+            unsuccessful: false,
+            errors: []
+        };
+    },
+
     methods: {
         respondToSuccess: function respondToSuccess(data) {
-            this.success = data;
-            this.errors = null;
+            var _this = this;
+
+            this.unsuccessful = false;
+            this.successful = true;
+            setTimeout(function () {
+                window.location.replace(_this.baseUrl);
+            }, 2000);
         },
         respondToFailure: function respondToFailure(errors) {
-            this.success = null;
+            this.unsuccessful = true;
+            this.successful = false;
             this.errors = errors;
+            console.warn(errors);
         }
     }
 });
@@ -47673,14 +47720,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "display-4"
   }, [_vm._v("Create a new assessment")]), _vm._v(" "), _c('p', {
     staticClass: "lead"
-  }, [_vm._v("This will be stored for later use by an assessor.")]), _vm._v(" "), _c('details-section'), _vm._v(" "), _c('button', {
+  }, [_vm._v("This will be stored for later use by an assessor.")]), _vm._v(" "), _c('details-section', {
+    attrs: {
+      "errors": _vm.errors
+    }
+  }), _vm._v(" "), _c('button', {
     staticClass: "btn btn-danger mb-3",
     on: {
       "click": function($event) {
         _vm.submitCreateForm()
       }
     }
-  }, [_vm._v("Save and Finish")])], 1)])
+  }, [_vm._v("Save and Finish")]), _vm._v(" "), (_vm.successful) ? _c('div', {
+    staticClass: "alert alert-success"
+  }, [_vm._v("\n            Assessment saved successfully. Returning home...\n        ")]) : _vm._e(), _vm._v(" "), (_vm.unsuccessful) ? _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_vm._v("\n            Oops, something went wrong. Please correct the errors above.\n        ")]) : _vm._e()], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
