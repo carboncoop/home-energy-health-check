@@ -4,10 +4,10 @@
         <p class="lead">{{ blurb }}</p>
 
         <button class="btn btn-danger mb-3"
-            v-on:click="submitForm(true)">Submit</button>
+            v-on:click="submitEditForm(true)">Submit</button>
 
         <button class="btn btn-primary mb-3"
-            v-on:click="submitForm(false)">Save</button>
+            v-on:click="submitEditForm(false)">Save</button>
 
         <template v-if="success">
             <h1>Yey, that worked.</h1>

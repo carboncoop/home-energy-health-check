@@ -59,7 +59,29 @@ class SubmissionController extends Controller
     }
 
     /**
-     * Process a submitted Assessment form.
+     * Process a Create Assessment form.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(SubmissionRequest $request)
+    {
+        // create assessment data on the main table
+        if ($request->has('assessment')) {
+            $assessment = new Assessment();
+            $assessment_data = $request->input('assessment');
+            $assessment->fill($assessment_data);
+            $assessment->save();
+        }
+
+        return response()->json([
+            'status' => 'OK',
+            'input' => $request->all(),
+        ]);
+    }
+
+    /**
+     * Process an Edit Assessment form.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id

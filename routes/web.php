@@ -16,8 +16,12 @@ Route::get('/', function () {
     return view('welcome', []);
 });
 
-
+Route::resource('submit', 'SubmissionController', [
+    'only' => ['create', 'edit', 'update']
+]);
+Route::put('submit', 'SubmissionController@store');
 Route::get('pdf-test', 'SubmissionController@pdfTest');
+
 
 $crudControllers = [
     'improvements' => 'ImprovementCrudController',
@@ -35,7 +39,3 @@ Route::group([
         \CRUD::resource($slug, $controller);
     }
 });
-
-Route::resource('submit', 'SubmissionController', [
-    'only' => ['create', 'store', 'edit', 'update']
-]);

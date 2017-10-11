@@ -70,7 +70,7 @@ const store = new Vuex.Store({
                 })
             })
         },
-        getFormData(state) {
+        getEditFormData(state) {
             let improvements = _.flatMap(state.parts, (part) => {
                 return _.transform(part.improvements, (xs, x) => {
                     xs.push({
@@ -82,6 +82,11 @@ const store = new Vuex.Store({
             })
             return {
                 improvements: improvements,
+                assessment: state.assessment
+            }
+        },
+        getCreateFormData(state) {
+            return {
                 assessment: state.assessment
             }
         }

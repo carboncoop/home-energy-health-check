@@ -27,12 +27,6 @@ import ComfortSection from './components/section/ComfortSection.vue'
 import HealthSection from './components/section/HealthSection.vue'
 import SubmitSection from './components/section/SubmitSection.vue'
 
-const rootComponents = {
-    'submission-edit-app': './components/Submission.vue',
-    'submission-create-app': './components/Submission.vue'
-}
-
-//for (let [key, value] of entries(rootComponents)) {
 
 if (document.getElementById('submission-edit') != null) {
 

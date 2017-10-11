@@ -1,21 +1,29 @@
 /**
  * == implements:
- * formData
  * respondToSuccess
  * respondToFailure
  */
 
 export default {
     computed: {
-        formData() {
-            return this.$store.getters.getFormData
+        editFormData() {
+            return this.$store.getters.getEditFormData
+        },
+        createFormData() {
+            return this.$store.getters.getCreateFormData
         }
     },
     methods: {
-        submitForm(andProcess = false) {
-            let data = this.formData
+        submitEditForm(andProcess = false) {
+            let data = this.editFormData
             let url = this.baseUrl + '/submit/' + this.assessment.id
             data.andProcess = andProcess
+            this.submitHttp('put', url, data)
+        },
+        submitCreateForm() {
+            let data = this.createFormData
+            let url = this.baseUrl + '/submit/'
+            data.andProcess = false
             this.submitHttp('put', url, data)
         },
         submitHttp(requestType, url, data = {}) {

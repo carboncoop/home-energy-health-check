@@ -7,6 +7,9 @@
 
             <details-section
             ></details-section>
+
+            <button class="btn btn-danger mb-3"
+                v-on:click="submitCreateForm()">Save and Finish</button>
         </div>
 
     </div>
@@ -14,9 +17,21 @@
 
 <script>
     import DetailsSection from './section/DetailsSection.vue'
+    import FormMixin from '../mixins/form.js'
 
     export default {
         props: ['baseUrl'],
-        components: { DetailsSection }
+        components: { DetailsSection },
+        mixins: [FormMixin],
+        methods: {
+            respondToSuccess(data) {
+                this.success = data
+                this.errors = null
+            },
+            respondToFailure(errors) {
+                this.success = null
+                this.errors = errors
+            }
+        }
     }
 </script>

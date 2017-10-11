@@ -29173,13 +29173,7 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 
 
-var rootComponents = {
-    'submission-edit-app': './components/Submission.vue',
-    'submission-create-app': './components/Submission.vue'
-
-    //for (let [key, value] of entries(rootComponents)) {
-
-};if (document.getElementById('submission-edit') != null) {
+if (document.getElementById('submission-edit') != null) {
 
     Vue.component('submission-edit', __webpack_require__(72));
 
@@ -45588,7 +45582,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
                 });
             });
         },
-        getFormData: function getFormData(state) {
+        getEditFormData: function getEditFormData(state) {
             var improvements = _.flatMap(state.parts, function (part) {
                 return _.transform(part.improvements, function (xs, x) {
                     xs.push({
@@ -45600,6 +45594,11 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
             });
             return {
                 improvements: improvements,
+                assessment: state.assessment
+            };
+        },
+        getCreateFormData: function getCreateFormData(state) {
+            return {
                 assessment: state.assessment
             };
         }
@@ -47092,24 +47091,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 /**
  * == implements:
- * formData
  * respondToSuccess
  * respondToFailure
  */
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     computed: {
-        formData: function formData() {
-            return this.$store.getters.getFormData;
+        editFormData: function editFormData() {
+            return this.$store.getters.getEditFormData;
+        },
+        createFormData: function createFormData() {
+            return this.$store.getters.getCreateFormData;
         }
     },
     methods: {
-        submitForm: function submitForm() {
+        submitEditForm: function submitEditForm() {
             var andProcess = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-            var data = this.formData;
+            var data = this.editFormData;
             var url = this.baseUrl + '/submit/' + this.assessment.id;
             data.andProcess = andProcess;
+            this.submitHttp('put', url, data);
+        },
+        submitCreateForm: function submitCreateForm() {
+            var data = this.createFormData;
+            var url = this.baseUrl + '/submit/';
+            data.andProcess = false;
             this.submitHttp('put', url, data);
         },
         submitHttp: function submitHttp(requestType, url) {
@@ -47143,14 +47150,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "btn btn-danger mb-3",
     on: {
       "click": function($event) {
-        _vm.submitForm(true)
+        _vm.submitEditForm(true)
       }
     }
   }, [_vm._v("Submit")]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-primary mb-3",
     on: {
       "click": function($event) {
-        _vm.submitForm(false)
+        _vm.submitEditForm(false)
       }
     }
   }, [_vm._v("Save")]), _vm._v(" "), (_vm.success) ? [_c('h1', [_vm._v("Yey, that worked.")]), _vm._v(" "), _c('small', [_c('pre', {
@@ -47615,6 +47622,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_form_js__ = __webpack_require__(70);
 //
 //
 //
@@ -47629,12 +47637,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['baseUrl'],
-    components: { DetailsSection: __WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue___default.a }
+    components: { DetailsSection: __WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue___default.a },
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_form_js__["a" /* default */]],
+    methods: {
+        respondToSuccess: function respondToSuccess(data) {
+            this.success = data;
+            this.errors = null;
+        },
+        respondToFailure: function respondToFailure(errors) {
+            this.success = null;
+            this.errors = errors;
+        }
+    }
 });
 
 /***/ }),
@@ -47650,7 +47673,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "display-4"
   }, [_vm._v("Create a new assessment")]), _vm._v(" "), _c('p', {
     staticClass: "lead"
-  }, [_vm._v("This will be stored for later use by an assessor.")]), _vm._v(" "), _c('details-section')], 1)])
+  }, [_vm._v("This will be stored for later use by an assessor.")]), _vm._v(" "), _c('details-section'), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-danger mb-3",
+    on: {
+      "click": function($event) {
+        _vm.submitCreateForm()
+      }
+    }
+  }, [_vm._v("Save and Finish")])], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
