@@ -1,5 +1,5 @@
 <template>
-    <div class="submission-vue" v-if="ready">
+    <div class="submission-vue submission-edit-vue" v-if="ready">
 
         <navigation
             :parts="parts">
@@ -20,9 +20,7 @@
 
     export default {
         props: ['baseUrl', 'assessment', 'parts', 'improvements'],
-        components: {
-            'navigation': Navigation
-        },
+        components: { Navigation },
         data() {
             return { initPath: '/submit' }
         },

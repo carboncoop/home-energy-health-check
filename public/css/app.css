@@ -16636,6 +16636,14 @@ div.submission-vue {
   padding-bottom: 140px;
 }
 
+div.submission-vue.submission-create-vue {
+  padding-top: 40px;
+}
+
+div.submission-vue.submission-create-vue .details-section-vue {
+  padding-top: 40px;
+}
+
 div.submission-vue .btn {
   cursor: pointer;
 }

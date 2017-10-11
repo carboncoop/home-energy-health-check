@@ -37,5 +37,5 @@ Route::group([
 });
 
 Route::resource('submit', 'SubmissionController', [
-    'only' => ['edit', 'update']
+    'only' => ['create', 'store', 'edit', 'update']
 ]);

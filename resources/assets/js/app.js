@@ -27,9 +27,16 @@ import ComfortSection from './components/section/ComfortSection.vue'
 import HealthSection from './components/section/HealthSection.vue'
 import SubmitSection from './components/section/SubmitSection.vue'
 
-if (document.getElementById('submission-app') != null) {
+const rootComponents = {
+    'submission-edit-app': './components/Submission.vue',
+    'submission-create-app': './components/Submission.vue'
+}
 
-    Vue.component('submission', require('./components/Submission.vue'));
+//for (let [key, value] of entries(rootComponents)) {
+
+if (document.getElementById('submission-edit') != null) {
+
+    Vue.component('submission-edit', require('./components/Submission.vue'));
 
     const routes = [
       { name: 'part', path: '/part/:partId', component: ActionPlanSection, props: true },
@@ -42,9 +49,19 @@ if (document.getElementById('submission-app') != null) {
     const router = new VueRouter({ routes })
 
     const app = new Vue({
-        el: '#submission-app',
+        el: '#submission-edit',
         store,
         router
     });
 
+}
+
+if (document.getElementById('submission-create') != null) {
+
+    Vue.component('submission-create', require('./components/SubmissionCreate.vue'));
+
+    const app = new Vue({
+        el: '#submission-create',
+        store
+    });
 }

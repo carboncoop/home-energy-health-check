@@ -2,13 +2,13 @@
 
 @section('content')
 
-<div id="submission-app">
-    <submission
+<div id="submission-edit">
+    <submission-edit
         base-url='{{ URL::to('/') }}'
         :assessment='{{ $assessment }}'
         :parts='{{ $json_parts }}'
         :improvements='{{ $json_improvements }}'>
-    </submission>
+    </submission-edit>
 </div>
 
 @endsection

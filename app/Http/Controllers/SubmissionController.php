@@ -20,7 +20,23 @@ class SubmissionController extends Controller
     }
 
     /**
-     * Show the Asessment form.
+     * Show the Create Asessment form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $improvements = Improvement::get([
+            'id', 'title', 'part_id', 'description',
+            'assessor_comment', 'assessor_guidance',
+        ]);
+        return view('submission.create', [
+            'json_improvements' => $improvements->toJson(),
+        ]);
+    }
+
+    /**
+     * Show the Edit Asessment form.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -81,7 +97,6 @@ class SubmissionController extends Controller
                     'improvement_id' => $imp['improvement_id'],
                 ]);
             }
-
         });
 
         $assessment->assessment_improvements()->saveMany($improvements_to_save);

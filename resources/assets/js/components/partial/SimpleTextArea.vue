@@ -6,7 +6,7 @@
         </label>
 
         <div class="col-sm-8" v-if="'textarea' == inputType">
-            <textarea class="form-control" v-model="attribute">
+            <textarea class="form-control" v-model="attribute" rows="4">
             </textarea>
         </div>
 

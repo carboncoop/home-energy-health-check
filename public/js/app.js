@@ -29173,19 +29173,35 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 
 
-if (document.getElementById('submission-app') != null) {
+var rootComponents = {
+    'submission-edit-app': './components/Submission.vue',
+    'submission-create-app': './components/Submission.vue'
 
-  Vue.component('submission', __webpack_require__(72));
+    //for (let [key, value] of entries(rootComponents)) {
 
-  var routes = [{ name: 'part', path: '/part/:partId', component: __WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue___default.a, props: true }, { name: 'details', path: '/details', component: __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue___default.a, props: true }, { name: 'comfort', path: '/comfort', component: __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue___default.a, props: true }, { name: 'health', path: '/health', component: __WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue___default.a, props: true }, { name: 'submit', path: '/submit', component: __WEBPACK_IMPORTED_MODULE_7__components_section_SubmitSection_vue___default.a, props: true }];
+};if (document.getElementById('submission-edit') != null) {
 
-  var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({ routes: routes });
+    Vue.component('submission-edit', __webpack_require__(72));
 
-  var app = new Vue({
-    el: '#submission-app',
-    store: __WEBPACK_IMPORTED_MODULE_2__store_submission_js__["a" /* default */],
-    router: router
-  });
+    var routes = [{ name: 'part', path: '/part/:partId', component: __WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue___default.a, props: true }, { name: 'details', path: '/details', component: __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue___default.a, props: true }, { name: 'comfort', path: '/comfort', component: __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue___default.a, props: true }, { name: 'health', path: '/health', component: __WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue___default.a, props: true }, { name: 'submit', path: '/submit', component: __WEBPACK_IMPORTED_MODULE_7__components_section_SubmitSection_vue___default.a, props: true }];
+
+    var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({ routes: routes });
+
+    var app = new Vue({
+        el: '#submission-edit',
+        store: __WEBPACK_IMPORTED_MODULE_2__store_submission_js__["a" /* default */],
+        router: router
+    });
+}
+
+if (document.getElementById('submission-create') != null) {
+
+    Vue.component('submission-create', __webpack_require__(84));
+
+    var _app = new Vue({
+        el: '#submission-create',
+        store: __WEBPACK_IMPORTED_MODULE_2__store_submission_js__["a" /* default */]
+    });
 }
 
 /***/ }),
@@ -46203,6 +46219,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "attribute"
     }],
     staticClass: "form-control",
+    attrs: {
+      "rows": "4"
+    },
     domProps: {
       "value": (_vm.attribute)
     },
@@ -47222,9 +47241,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['baseUrl', 'assessment', 'parts', 'improvements'],
-    components: {
-        'navigation': __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default.a
-    },
+    components: { Navigation: __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default.a },
     data: function data() {
         return { initPath: '/submit' };
     },
@@ -47516,7 +47533,7 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return (_vm.ready) ? _c('div', {
-    staticClass: "submission-vue"
+    staticClass: "submission-vue submission-edit-vue"
   }, [_c('navigation', {
     attrs: {
       "parts": _vm.parts
@@ -47544,6 +47561,104 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(85),
+  /* template */
+  __webpack_require__(86),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/SubmissionCreate.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] SubmissionCreate.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4a8160ee", Component.options)
+  } else {
+    hotAPI.reload("data-v-4a8160ee", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['baseUrl'],
+    components: { DetailsSection: __WEBPACK_IMPORTED_MODULE_0__section_DetailsSection_vue___default.a }
+});
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "submission-vue submission-create-vue"
+  }, [_c('div', {
+    staticClass: "container mb-4"
+  }, [_c('h1', {
+    staticClass: "display-4"
+  }, [_vm._v("Create a new assessment")]), _vm._v(" "), _c('p', {
+    staticClass: "lead"
+  }, [_vm._v("This will be stored for later use by an assessor.")]), _vm._v(" "), _c('details-section')], 1)])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-4a8160ee", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
