@@ -5,9 +5,10 @@
 <div id="submission-edit">
     <submission-edit
         base-url='{{ URL::to('/') }}'
-        :assessment='{{ $assessment }}'
+        :assessment='{{ $json_assessment }}'
         :parts='{{ $json_parts }}'
-        :improvements='{{ $json_improvements }}'>
+        :improvements='{{ $json_improvements }}'
+        :assessment-improvements='{{ $json_assessment_improvements }}'>
     </submission-edit>
 </div>
 

@@ -47332,7 +47332,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['baseUrl', 'assessment', 'parts', 'improvements'],
+    props: ['baseUrl', 'assessment', 'parts', 'improvements', 'assessmentImprovements'],
     components: { Navigation: __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default.a },
     data: function data() {
         return {
@@ -47347,9 +47347,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
+        var _this = this;
+
         // prepare initial improvements
         var initImprovements = _.chain(this.improvements).map(function (imp) {
-            return _.extend(imp, { value: null, comment: null });
+            var assImp = _.find(_this.assessmentImprovements, function (x) {
+                return x.improvement_id == imp.id;
+            });
+            var data = { value: null, comment: null };
+            if (assImp && _.has(assImp, 'value')) {
+                data.value = assImp.value;
+            }
+            if (assImp && _.has(assImp, 'comment')) {
+                data.comment = assImp.comment;
+            }
+            return _.extend(imp, data);
         }).groupBy(function (imp) {
             return imp.part_id;
         }).value();

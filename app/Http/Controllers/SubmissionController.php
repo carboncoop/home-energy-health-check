@@ -51,10 +51,13 @@ class SubmissionController extends Controller
             'id', 'title', 'part_id', 'description',
             'assessor_comment', 'assessor_guidance',
         ]);
+        $assImps = AssessmentImprovement::where('assessment_id', '=', $id)->get();
+
         return view('submission.edit', [
             'json_parts' => $parts->toJson(),
             'json_improvements' => $improvements->toJson(),
-            'assessment' => $assessment,
+            'json_assessment' => $assessment->toJson(),
+            'json_assessment_improvements' => $assImps->toJson(),
         ]);
     }
 

@@ -20,7 +20,10 @@
     import Navigation from './partial/Navigation.vue'
 
     export default {
-        props: ['baseUrl', 'assessment', 'parts', 'improvements'],
+        props: [
+            'baseUrl', 'assessment', 'parts',
+            'improvements', 'assessmentImprovements'
+        ],
         components: { Navigation },
         data() {
             return {
@@ -36,8 +39,18 @@
         mounted() {
             // prepare initial improvements
             const initImprovements = _.chain(this.improvements)
-                .map(function (imp) {
-                    return _.extend(imp, {value: null, comment: null})
+                .map((imp) => {
+                    let assImp = _.find(this.assessmentImprovements, function(x) {
+                        return x.improvement_id == imp.id
+                    })
+                    let data = { value: null, comment: null }
+                    if (assImp && _.has(assImp, 'value')) {
+                        data.value = assImp.value
+                    }
+                    if (assImp && _.has(assImp, 'comment')) {
+                        data.comment = assImp.comment
+                    }
+                    return _.extend(imp, data)
                 })
                 .groupBy(function (imp) {
                     return imp.part_id
