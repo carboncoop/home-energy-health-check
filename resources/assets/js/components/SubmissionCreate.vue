@@ -10,7 +10,11 @@
             ></details-section>
 
             <button class="btn btn-danger mb-3"
-                v-on:click="submitCreateForm()">Save and Finish</button>
+                v-on:click="saveAndFinish()">Save and Finish</button>
+
+            <div v-if="waiting" class="alert alert-info">
+                I am processing your request, please wait...
+            </div>
 
             <div class="alert alert-success" v-if="successful">
                 Assessment saved successfully. Returning home...
@@ -38,22 +42,28 @@
                 submitAvailable: true,
                 successful: false,
                 unsuccessful: false,
+                waiting: false,
                 errors: []
             }
         },
         methods: {
+            saveAndFinish() {
+                this.waiting = true
+                this.submitCreateForm(false)
+            },
             respondToSuccess(data) {
+                this.waiting = false
                 this.unsuccessful = false
                 this.successful = true
                 setTimeout(() => {
                   window.location.replace(this.baseUrl)
-                }, 2000)
+              }, 1200)
             },
             respondToFailure(errors) {
+                this.waiting = false
                 this.unsuccessful = true
                 this.successful = false
                 this.errors = errors
-                console.warn(errors)
             }
         }
     }

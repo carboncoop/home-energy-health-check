@@ -6,7 +6,7 @@
         </p>
 
         <button class="btn btn-warning mb-3"
-            v-on:click="submitEditForm(false)">Save and Quit</button>
+            v-on:click="saveAndQuit()">Save and Quit</button>
 
         <p class="lead">
             If this assessment is complete and you wish to start the submission process, use the following link.
@@ -17,13 +17,15 @@
         </div>
 
         <button class="btn btn-danger mb-3"
-            v-on:click="submitEditForm(true)">Submit</button>
+            v-on:click="submit()">Submit</button>
 
-        <template v-if="successful">
-            <div class="alert alert-success">
-                Assessment saved successfully. Returning home...
-            </div>
-        </template>
+        <div v-if="waiting" class="alert alert-info">
+            I am processing your request, please wait...
+        </div>
+
+        <div v-if="successful" class="alert alert-success">
+            Assessment saved successfully. Returning home...
+        </div>
 
         <template v-if="unsuccessful">
             <div class="alert alert-danger">
@@ -51,6 +53,7 @@
                 submitAvailable: true,
                 successful: false,
                 unsuccessful: false,
+                waiting: false,
                 errors: []
             }
         },
@@ -63,14 +66,24 @@
             }
         },
         methods: {
+            saveAndQuit() {
+                this.waiting = true
+                this.submitEditForm(false)
+            },
+            submit() {
+                this.waiting = true
+                this.submitEditForm(true)
+            },
             respondToSuccess(data) {
+                this.waiting = false
                 this.successful = true
                 this.unsuccessful = false
                 setTimeout(() => {
                   window.location.replace(this.baseUrl)
-                }, 2000)
+                }, 1200)
             },
             respondToFailure(errors) {
+                this.waiting = false
                 this.successful = false
                 this.unsuccessful = true
                 this.errors = errors

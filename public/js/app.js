@@ -47191,6 +47191,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -47202,6 +47204,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             submitAvailable: true,
             successful: false,
             unsuccessful: false,
+            waiting: false,
             errors: []
         };
     },
@@ -47215,16 +47218,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
+        saveAndQuit: function saveAndQuit() {
+            this.waiting = true;
+            this.submitEditForm(false);
+        },
+        submit: function submit() {
+            this.waiting = true;
+            this.submitEditForm(true);
+        },
         respondToSuccess: function respondToSuccess(data) {
             var _this = this;
 
+            this.waiting = false;
             this.successful = true;
             this.unsuccessful = false;
             setTimeout(function () {
                 window.location.replace(_this.baseUrl);
-            }, 2000);
+            }, 1200);
         },
         respondToFailure: function respondToFailure(errors) {
+            this.waiting = false;
             this.successful = false;
             this.unsuccessful = true;
             this.errors = errors;
@@ -47246,7 +47259,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "btn btn-warning mb-3",
     on: {
       "click": function($event) {
-        _vm.submitEditForm(false)
+        _vm.saveAndQuit()
       }
     }
   }, [_vm._v("Save and Quit")]), _vm._v(" "), _c('p', {
@@ -47257,12 +47270,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "btn btn-danger mb-3",
     on: {
       "click": function($event) {
-        _vm.submitEditForm(true)
+        _vm.submit()
       }
     }
-  }, [_vm._v("Submit")]), _vm._v(" "), (_vm.successful) ? [_c('div', {
+  }, [_vm._v("Submit")]), _vm._v(" "), (_vm.waiting) ? _c('div', {
+    staticClass: "alert alert-info"
+  }, [_vm._v("\n        I am processing your request, please wait...\n    ")]) : _vm._e(), _vm._v(" "), (_vm.successful) ? _c('div', {
     staticClass: "alert alert-success"
-  }, [_vm._v("\n            Assessment saved successfully. Returning home...\n        ")])] : _vm._e(), _vm._v(" "), (_vm.unsuccessful) ? [_c('div', {
+  }, [_vm._v("\n        Assessment saved successfully. Returning home...\n    ")]) : _vm._e(), _vm._v(" "), (_vm.unsuccessful) ? [_c('div', {
     staticClass: "alert alert-danger"
   }, [_vm._v("\n            " + _vm._s(_vm.errors.message) + "\n        ")]), _vm._v(" "), _vm._l((_vm.errors.errors), function(msgs, key) {
     return _c('div', {
@@ -47758,6 +47773,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -47771,25 +47790,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             submitAvailable: true,
             successful: false,
             unsuccessful: false,
+            waiting: false,
             errors: []
         };
     },
 
     methods: {
+        saveAndFinish: function saveAndFinish() {
+            this.waiting = true;
+            this.submitCreateForm(false);
+        },
         respondToSuccess: function respondToSuccess(data) {
             var _this = this;
 
+            this.waiting = false;
             this.unsuccessful = false;
             this.successful = true;
             setTimeout(function () {
                 window.location.replace(_this.baseUrl);
-            }, 2000);
+            }, 1200);
         },
         respondToFailure: function respondToFailure(errors) {
+            this.waiting = false;
             this.unsuccessful = true;
             this.successful = false;
             this.errors = errors;
-            console.warn(errors);
         }
     }
 });
@@ -47815,10 +47840,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "btn btn-danger mb-3",
     on: {
       "click": function($event) {
-        _vm.submitCreateForm()
+        _vm.saveAndFinish()
       }
     }
-  }, [_vm._v("Save and Finish")]), _vm._v(" "), (_vm.successful) ? _c('div', {
+  }, [_vm._v("Save and Finish")]), _vm._v(" "), (_vm.waiting) ? _c('div', {
+    staticClass: "alert alert-info"
+  }, [_vm._v("\n            I am processing your request, please wait...\n        ")]) : _vm._e(), _vm._v(" "), (_vm.successful) ? _c('div', {
     staticClass: "alert alert-success"
   }, [_vm._v("\n            Assessment saved successfully. Returning home...\n        ")]) : _vm._e(), _vm._v(" "), (_vm.unsuccessful) ? _c('div', {
     staticClass: "alert alert-danger"
