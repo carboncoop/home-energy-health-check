@@ -63,6 +63,21 @@ class SubmitTest extends TestCase
         ]);
     }
 
+    protected $someGoodAssessmentData = [
+        'assessment_date' => '2018-01-01',
+        'assessor_name' => 'A New Name Added',
+        'homeowner_name' => 'Tony B. Bssessor',
+        'homeowner_email' => 'someone@example.com',
+        'homeowner_phone' => '0998 555 555',
+        'homeowner_address' => 'some text',
+    ];
+
+    protected $someGoodImprovementData = [
+        'improvement_id' => 22,
+        'value' => 'need',
+        'comment' => 'This is a comment here.',
+    ];
+
     public function testSubmitSomeAssessmentData()
     {
         $this->seedData();
@@ -74,60 +89,36 @@ class SubmitTest extends TestCase
 
         $response = $this->put('/submit/1', [
             'andProcess' => false,
-            'assessment' => [
-                'assessment_date' => '2018-01-01',
-                'assessor_name' => 'A New Name Added',
-                'homeowner_name' => 'Tony B. Bssessor',
-                'homeowner_email' => 'someone@example.com',
-                'homeowner_phone' => '0998 555 555',
-                'homeowner_address' => 'some text',
-            ],
-            'improvements' => [
-                [
-                    'improvement_id' => 22,
-                    'value' => 'need',
-                    'comment' => 'Ba la fa',
-                ]
-            ],
+            'assessment' => $this->someGoodAssessmentData,
+            'improvements' => [$this->someGoodImprovementData],
         ]);
         $response->assertStatus(200);
         $response->assertJsonFragment(['status' => 'OK']);
-        $this->assertDatabaseHas('assessments', [
-            'id' => 1,
-            'assessor_name' => 'A New Name Added',
-            'homeowner_name' => 'Tony B. Bssessor',
-            'assessment_date' => '2018-01-01',
-        ]);
-        $this->assertDatabaseHas('assessment_improvements', [
-            'assessment_id' => 1,
-            'improvement_id' => 22,
-            'value' => 'need',
-            'comment' => 'Ba la fa',
-        ]);
+        $this->assertDatabaseHas('assessments',
+            array_merge(['id' => 1], $this->someGoodAssessmentData)
+        );
+        $this->assertDatabaseHas('assessment_improvements',
+            array_merge(['assessment_id' => 1], $this->someGoodImprovementData)
+        );
     }
 
     public function testBadImprovementSubmission()
     {
         $this->seedData();
+        $badData = [
+            'improvement_id' => 'hello',
+            'value' => 'need',
+        ];
         $response = $this->json('PUT', '/submit/1', [
             'andProcess' => false,
-            'assessment' => [
-                'assessment_date' => '2018-01-01',
-            ],
-            'improvements' => [
-                [
-                    'improvement_id' => 'hello',
-                    'value' => 'need',
-                ]
-            ],
+            'assessment' => $this->someGoodAssessmentData,
+            'improvements' => [$badData],
         ]);
         $response->assertStatus(422);
         $this->assertDatabaseMissing('assessment_improvements', [
             'assessment_id' => 1,
-            'improvement_id' => 'hello',
-            'value' => 'need',
-            'comment' => null,
         ]);
+        $this->assertDatabaseMissing('assessment_improvements', $badData);
     }
 
 }
