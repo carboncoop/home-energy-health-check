@@ -43,7 +43,7 @@
                     'Assessment Details': {
                         assessment_date: {
                             label: 'Assessment Date',
-                            type: 'text'
+                            type: 'date'
                         },
                         assessor_name: {
                             label: 'Assessor Name',

@@ -10,6 +10,7 @@
                 :baseUrl="baseUrl"
                 :assessment="assessment"
                 :parts="parts"
+                :errors="errors"
             ></router-view>
         </div>
     </div>
@@ -22,7 +23,10 @@
         props: ['baseUrl', 'assessment', 'parts', 'improvements'],
         components: { Navigation },
         data() {
-            return { initPath: '/submit' }
+            return {
+                initPath: '/details',
+                errors: []
+            }
         },
         computed: {
             ready() {

@@ -12,9 +12,7 @@ use App\Models\Part;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome', []);
-});
+Route::get('/', 'WelcomeController@welcome');
 
 Route::resource('submit', 'SubmissionController', [
     'only' => ['create', 'edit', 'update']

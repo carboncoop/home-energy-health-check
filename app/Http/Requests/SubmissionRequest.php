@@ -30,6 +30,11 @@ class SubmissionRequest extends FormRequest
 
         if ($this->request->has('assessment')) {
             $rules['assessment.assessment_date'] = 'required|date';
+            $rules['assessment.assessor_name'] = 'required';
+            $rules['assessment.homeowner_name'] = 'required';
+            $rules['assessment.homeowner_email'] = 'required|email';
+            $rules['assessment.homeowner_phone'] = 'required';
+            $rules['assessment.homeowner_address'] = 'required';
         }
 
         if ($this->request->has('improvements')) {

@@ -13,9 +13,6 @@ class SubmitTest extends TestCase
     {
         $response = $this->put('/submit/9001', [
             'andProcess' => false,
-            'assessment' => [
-                'assessment_date' => '2018-01-01',
-            ],
         ]);
         $response->assertStatus(404);
     }
@@ -61,9 +58,9 @@ class SubmitTest extends TestCase
         ]);
         $response->assertStatus(422);
         $response->assertJsonFragment(['message' => 'The given data was invalid.']);
-        $response->assertJsonFragment(['errors' => [
+        $response->assertJsonFragment([
             'assessment.assessment_date' => ['This is not a valid date.']
-        ]]);
+        ]);
     }
 
     public function testSubmitSomeAssessmentData()
@@ -79,6 +76,11 @@ class SubmitTest extends TestCase
             'andProcess' => false,
             'assessment' => [
                 'assessment_date' => '2018-01-01',
+                'assessor_name' => 'A New Name Added',
+                'homeowner_name' => 'Tony B. Bssessor',
+                'homeowner_email' => 'someone@example.com',
+                'homeowner_phone' => '0998 555 555',
+                'homeowner_address' => 'some text',
             ],
             'improvements' => [
                 [
@@ -92,7 +94,8 @@ class SubmitTest extends TestCase
         $response->assertJsonFragment(['status' => 'OK']);
         $this->assertDatabaseHas('assessments', [
             'id' => 1,
-            'assessor_name' => 'Tony T. Assessor',
+            'assessor_name' => 'A New Name Added',
+            'homeowner_name' => 'Tony B. Bssessor',
             'assessment_date' => '2018-01-01',
         ]);
         $this->assertDatabaseHas('assessment_improvements', [

@@ -12,11 +12,32 @@
                     <a href="{{ url('admin') }}">Log in to the administration area.</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ url('submit/1/edit') }}">See an example of the assessment form.</a>
-                </li>
-                <li class="list-group-item">
                     <a href="{{ url('submit/create') }}">Create a new assessment.</a>
                 </li>
+                <li class="list-group-item">
+                    <p>Edit and submit existing assessments:</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Assessment Date</th>
+                                <th>Homeowner</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($assessments as $assessment)
+                            <tr>
+                                <td>{{ $assessment->assessment_date }}</td>
+                                <td>{{ $assessment->homeowner_name }}</td>
+                                <td><a href="{{ action('SubmissionController@edit', [
+                                    'id' => $assessment->id
+                                ]) }}">Edit</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </li>
+
             </ol>
 
         </div>
