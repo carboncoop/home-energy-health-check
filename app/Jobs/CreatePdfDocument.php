@@ -7,7 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Process\SubmissionProcessor;
+use App\Process\PdfGenerator;
 
 class CreatePdfDocument implements ShouldQueue
 {
@@ -30,10 +30,10 @@ class CreatePdfDocument implements ShouldQueue
      *
      * @return void
      */
-    public function handle(SubmissionProcessor $processor)
+    public function handle(PdfGenerator $pdf)
     {
         print("Generating PDF...\n");
-        $processor->process(null, $this->data);
+        $pdf->process(null);
         print("PDF generation complete!\n");
         return;
     }

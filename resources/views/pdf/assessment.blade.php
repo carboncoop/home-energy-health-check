@@ -14,20 +14,24 @@
 
             @foreach ($sections as $index => $section)
                 <div class="section break-after-me">
-                    <h1 class="my-5">{{ $section->title }}</h1>
-                    <div class="lead">
-                        @parsedown($section->body)
-                    </div>
+
+                    <h1 class="my-5">{{ $section['title'] }}</h1>
+
                     @if (3 == $index)
                         @foreach ($parts as $part)
-                            @unless ($part->improvements->isEmpty())
-                                <h3 class="my-2">{{ $part->title }}</h3>
+                            @unless (empty($part['improvements']))
+                                <h3 class="my-2">{{ $part['title'] }}</h3>
                                 @include('pdf.partial.table', [
-                                    'improvements' => $part->improvements
+                                    'improvements' => $part['improvements']
                                 ])
                             @endunless
                         @endforeach
+                    @else
+                        <div class="my-3">
+                            @parsedown($section['body'])
+                        </div>
                     @endif
+
                 </div>
             @endforeach
 

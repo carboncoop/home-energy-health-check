@@ -8,15 +8,15 @@ use App\Models\Assessment;
 use App\Models\Improvement;
 use App\Models\Part;
 use App\Models\AssessmentImprovement;
-use App\Process\SubmissionProcessor;
+use App\Process\PdfGenerator;
 
 class SubmissionController extends Controller
 {
-    protected $processor;
+    protected $pdf;
 
-    public function __construct(SubmissionProcessor $processor)
+    public function __construct(PdfGenerator $pdf)
     {
-        $this->processor = $processor;
+        $this->pdf = $pdf;
     }
 
     /**
@@ -128,7 +128,7 @@ class SubmissionController extends Controller
 
         // prepare pdf and send email
         if ($request->andProcess) {
-            return $this->processor->process($id, $request->all());
+            return $this->pdf->process($id);
         }
 
         return response()->json([
@@ -150,7 +150,7 @@ class SubmissionController extends Controller
             'assessment' => $assessment->toArray(),
             'improvements' => $assImps->toArray(),
         ];
-        return $this->processor->process($id, $input, 'screen');
+        return $this->pdf->process($id, 'screen');
     }
 
 }

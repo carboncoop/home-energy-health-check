@@ -6,32 +6,38 @@ use Carbon\Carbon;
 use App\Models\Improvement;
 use App\Models\Part;
 use App\Models\Section;
+use App\Models\Assessment;
+use App\Models\AssessmentImprovement;
 
-class SubmissionProcessor
+class PdfGenerator
 {
-    protected $pdf, $input;
+    protected $pdf;
 
     public function __construct()
     {
         $this->now = Carbon::now()->toDateTimeString();
     }
 
-    public function process($id, $input, $method = 'file')
+    public function process($id, $method = 'file')
     {
-        $this->input = $input;
-        $this->improvements = $input['improvements'];
+        $assessment = Assessment::findOrFail($id)->toArray();
+        $parts = Part::with('improvements')->get()->toArray();
+        $sections = Section::all()->toArray();
 
-        $parts = Part::with('improvements')->get()->map(function ($part) {
-            $part->improvements = $part->improvements->filter(function ($imp) {
-                return array_key_exists($imp->id, $this->improvements) &&
-                    $this->improvements[$imp->id]['value'] == 'need';
-            });
-            return $part;
-        });
+        $ai = AssessmentImprovement::where('assessment_id', '=', $id)
+            ->get()->keyBy('improvement_id')->toArray();
 
-        $sections = Section::all();
+        foreach ($parts as $pkey => $p) {
+            foreach ($p['improvements'] as $ikey => $imp) {
+                if (array_key_exists($imp['id'], $ai)) {
+                    $parts[$pkey]['improvements'][$ikey]['value'] = $ai[$imp['id']]['value'];
+                    $parts[$pkey]['improvements'][$ikey]['comment'] = $ai[$imp['id']]['comment'];
+                }
+            }
+        }
 
         $this->pdf = \Snappy::loadView('pdf.assessment', [
+            'assessment' => $assessment,
             'parts' => $parts,
             'sections' => $sections,
         ]);
