@@ -97,6 +97,9 @@ class SubmissionController extends Controller
         // save assessment data on the main table
         if ($request->has('assessment')) {
             $assessment_data = $request->input('assessment');
+            if ($request->andProcess) {
+                $assessment_data['submitted'] = true;
+            }
             $assessment->fill($assessment_data);
             $assessment->save();
         }
@@ -128,7 +131,7 @@ class SubmissionController extends Controller
 
         // prepare pdf and send email
         if ($request->andProcess) {
-            return $this->pdf->process($id);
+            return $this->pdf->process($id, 'file');
         }
 
         return response()->json([

@@ -47187,6 +47187,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -47247,7 +47251,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Save and Quit")]), _vm._v(" "), _c('p', {
     staticClass: "lead"
-  }, [_vm._v("\n        If this assessment is complete and you wish to start the submission process, use the following link.\n    ")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("\n        If this assessment is complete and you wish to start the submission process, use the following link.\n    ")]), _vm._v(" "), (_vm.assessment.submitted) ? _c('div', {
+    staticClass: "alert alert-warning"
+  }, [_vm._v("\n        This assessment has already been submitted. Are you sure you want to do it again?\n    ")]) : _vm._e(), _vm._v(" "), _c('button', {
     staticClass: "btn btn-danger mb-3",
     on: {
       "click": function($event) {

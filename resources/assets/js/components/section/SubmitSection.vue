@@ -12,6 +12,10 @@
             If this assessment is complete and you wish to start the submission process, use the following link.
         </p>
 
+        <div class="alert alert-warning" v-if="assessment.submitted">
+            This assessment has already been submitted. Are you sure you want to do it again?
+        </div>
+
         <button class="btn btn-danger mb-3"
             v-on:click="submitEditForm(true)">Submit</button>
 

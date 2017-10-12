@@ -58,7 +58,6 @@ class PdfGenerator
         $this->pdf->save(storage_path('pdf/t'.$this->now.'.pdf'));
         return response()->json([
             'status' => 'OK',
-            'input' => $this->input,
         ]);
     }
 

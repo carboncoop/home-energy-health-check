@@ -9,7 +9,9 @@
 
             <ol class="list-group">
                 <li class="list-group-item">
-                    <a href="{{ url('admin') }}">Log in to the administration area.</a>
+                    <a class="btn btn-primary" href="{{ url('admin') }}">
+                        Log in to the administration area.
+                    </a>
                 </li>
                 <li class="list-group-item">
                     <a class="btn btn-warning" href="{{ url('submit/create') }}">
@@ -24,6 +26,7 @@
                             <tr>
                                 <th>Assessment Date</th>
                                 <th>Homeowner</th>
+                                <th>Status</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -32,6 +35,7 @@
                             <tr>
                                 <td>{{ $assessment->assessment_date }}</td>
                                 <td>{{ $assessment->homeowner_name }}</td>
+                                <td>{{ $assessment->status }}</td>
                                 <td>
                                     <div class="btn-group">
                                         <a class="btn btn-warning" href="{{ action('SubmissionController@edit', [
