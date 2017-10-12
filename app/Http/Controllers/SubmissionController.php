@@ -139,20 +139,18 @@ class SubmissionController extends Controller
 
     /**
      * Test the pdf output.
-     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function pdfTest(Request $request)
+    public function pdfTest($id)
     {
+        $assessment = Assessment::with('assessment_improvements')->findOrFail($id);
+        $assImps = $assessment->assessment_improvements->keyBy('id');
         $input = [
-            1 => [ 'value' => "need", 'comment' => "test comment" ],
-            2 => [ 'value' => "need", 'comment' => "test comment" ],
-            3 => [ 'value' => "need", 'comment' => "test comment" ],
-            8 => [ 'value' => "need", 'comment' => "test comment" ],
-            9 => [ 'value' => "need", 'comment' => "test comment" ],
-            10 => [ 'value' => "need", 'comment' => "test comment" ],
+            'assessment' => $assessment->toArray(),
+            'improvements' => $assImps->toArray(),
         ];
-        return $this->processor->process(1, $input, 'screen');
+        return $this->processor->process($id, $input, 'screen');
     }
 
 }

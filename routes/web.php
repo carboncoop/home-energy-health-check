@@ -18,7 +18,7 @@ Route::resource('submit', 'SubmissionController', [
     'only' => ['create', 'edit', 'update']
 ]);
 Route::put('submit', 'SubmissionController@store');
-Route::get('pdf-test', 'SubmissionController@pdfTest');
+Route::get('pdf-test/{id}', 'SubmissionController@pdfTest');
 
 
 $crudControllers = [

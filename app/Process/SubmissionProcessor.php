@@ -19,11 +19,12 @@ class SubmissionProcessor
     public function process($id, $input, $method = 'file')
     {
         $this->input = $input;
+        $this->improvements = $input['improvements'];
 
         $parts = Part::with('improvements')->get()->map(function ($part) {
             $part->improvements = $part->improvements->filter(function ($imp) {
-                return array_key_exists($imp->id, $this->input) &&
-                    $this->input[$imp->id]['value'] == 'need';
+                return array_key_exists($imp->id, $this->improvements) &&
+                    $this->improvements[$imp->id]['value'] == 'need';
             });
             return $part;
         });
@@ -31,7 +32,6 @@ class SubmissionProcessor
         $sections = Section::all();
 
         $this->pdf = \Snappy::loadView('pdf.assessment', [
-            'input' => $this->input,
             'parts' => $parts,
             'sections' => $sections,
         ]);

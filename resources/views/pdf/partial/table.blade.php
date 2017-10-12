@@ -12,7 +12,7 @@
         @foreach ($improvements as $imp)
             <tr>
                 <td>{{ $imp->title }}</td>
-                <td>{{ $imp->assessor_comment }}</td>
+                <td>{{ $imp->comment }}</td>
                 <td>{{ $imp->estimated_cost }}</td>
                 <td>{{ $imp->benefits }}</td>
                 <td>{{ $imp->who_can_do }}</td>

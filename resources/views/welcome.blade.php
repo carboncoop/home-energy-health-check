@@ -5,7 +5,7 @@
         <div class="my-4 p-4 card">
             <h1>PECHAT - Alpha Test Version</h1>
 
-            <p>Right now, there's two things you can do here:</p>
+            <p>Here's what you can do so far:</p>
 
             <ol class="list-group">
                 <li class="list-group-item">
@@ -29,9 +29,16 @@
                             <tr>
                                 <td>{{ $assessment->assessment_date }}</td>
                                 <td>{{ $assessment->homeowner_name }}</td>
-                                <td><a href="{{ action('SubmissionController@edit', [
-                                    'id' => $assessment->id
-                                ]) }}">Edit</a></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-warning" href="{{ action('SubmissionController@edit', [
+                                            'id' => $assessment->id
+                                        ]) }}">Go to form</a>
+                                        <a class="btn btn-danger" href="{{ action('SubmissionController@pdfTest', [
+                                            'id' => $assessment->id
+                                        ]) }}">Pdf preview</a>
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
