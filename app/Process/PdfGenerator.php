@@ -35,11 +35,11 @@ class PdfGenerator
                 }
             }
         }
-
         $this->pdf = \Snappy::loadView('pdf.assessment', [
             'assessment' => $assessment,
             'parts' => $parts,
             'sections' => $sections,
+            'healthFields' => Assessment::healthFields(),
         ]);
 
         if ('file' == $method) {

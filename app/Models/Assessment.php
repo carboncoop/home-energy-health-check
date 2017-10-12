@@ -34,6 +34,17 @@ class Assessment extends Model
         return "Overdue!";
     }
 
+    public static function healthFields()
+    {
+        return [
+            'reading_temperature_living_room', 'reading_humidity_living_room',
+            'reading_surface_temperature_living_room', 'reading_temperature_bedroom',
+            'reading_humidity_bedroom', 'reading_surface_temperature_bedroom', 'reading_air_quality',
+            'health_condensation', 'health_damp', 'health_mold', 'health_ventilation', 'health_laundry',
+            'health_air_quality', 'health_surface_temperature_notes'
+        ];
+    }
+
     public static function crudFields()
     {
         return [

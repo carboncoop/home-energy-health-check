@@ -45,7 +45,10 @@
                     @endif
 
                     @if (2 == $index)
-                        <h1 class="display-1">TODO: Your Health data</h1>
+                        @include('pdf.partial.health', [
+                            'assessment' => $assessment,
+                            'fields' => $healthFields
+                        ])
                     @endif
 
                     @if (4 == $index)
