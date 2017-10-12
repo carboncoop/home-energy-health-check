@@ -35,6 +35,7 @@
         mixins: [FormMixin],
         data() {
             return {
+                submitAvailable: true,
                 successful: false,
                 unsuccessful: false,
                 errors: []

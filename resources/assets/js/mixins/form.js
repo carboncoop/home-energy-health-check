@@ -15,16 +15,27 @@ export default {
     },
     methods: {
         submitEditForm(andProcess = false) {
-            let data = this.editFormData
-            let url = this.baseUrl + '/submit/' + this.assessment.id
-            data.andProcess = andProcess
-            this.submitHttp('put', url, data)
+            if (this.submitAvailable) {
+                this.submitAvailable = false
+                let data = this.editFormData
+                let url = this.baseUrl + '/submit/' + this.assessment.id
+                data.andProcess = andProcess
+                this.submitHttp('put', url, data)
+            } else {
+                console.log("Already editing, please wait.")
+            }
         },
         submitCreateForm() {
-            let data = this.createFormData
-            let url = this.baseUrl + '/submit/'
-            data.andProcess = false
-            this.submitHttp('put', url, data)
+            if (this.submitAvailable) {
+                this.submitAvailable = false
+                let data = this.createFormData
+                let url = this.baseUrl + '/submit/'
+                data.andProcess = false
+                this.submitHttp('put', url, data)
+            } else {
+                console.log("Already creating, please wait.")
+            }
+
         },
         submitHttp(requestType, url, data = {}) {
             return new Promise((resolve, reject) => {
@@ -32,6 +43,7 @@ export default {
                     this.respondToSuccess(response.data);
                     resolve(response.data);
                 }).catch(error => {
+                    this.submitAvailable = true
                     this.respondToFailure(error.response.data);
                     reject(error.response.data);
                 });

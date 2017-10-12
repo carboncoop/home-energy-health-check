@@ -29181,16 +29181,26 @@ module.exports = Component.exports
         submitEditForm: function submitEditForm() {
             var andProcess = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
-            var data = this.editFormData;
-            var url = this.baseUrl + '/submit/' + this.assessment.id;
-            data.andProcess = andProcess;
-            this.submitHttp('put', url, data);
+            if (this.submitAvailable) {
+                this.submitAvailable = false;
+                var data = this.editFormData;
+                var url = this.baseUrl + '/submit/' + this.assessment.id;
+                data.andProcess = andProcess;
+                this.submitHttp('put', url, data);
+            } else {
+                console.log("Already editing, please wait.");
+            }
         },
         submitCreateForm: function submitCreateForm() {
-            var data = this.createFormData;
-            var url = this.baseUrl + '/submit/';
-            data.andProcess = false;
-            this.submitHttp('put', url, data);
+            if (this.submitAvailable) {
+                this.submitAvailable = false;
+                var data = this.createFormData;
+                var url = this.baseUrl + '/submit/';
+                data.andProcess = false;
+                this.submitHttp('put', url, data);
+            } else {
+                console.log("Already creating, please wait.");
+            }
         },
         submitHttp: function submitHttp(requestType, url) {
             var _this = this;
@@ -29202,6 +29212,7 @@ module.exports = Component.exports
                     _this.respondToSuccess(response.data);
                     resolve(response.data);
                 }).catch(function (error) {
+                    _this.submitAvailable = true;
                     _this.respondToFailure(error.response.data);
                     reject(error.response.data);
                 });
@@ -47184,6 +47195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_js__["a" /* default */]],
     data: function data() {
         return {
+            submitAvailable: true,
             successful: false,
             unsuccessful: false,
             errors: []
@@ -47750,6 +47762,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_form_js__["a" /* default */]],
     data: function data() {
         return {
+            submitAvailable: true,
             successful: false,
             unsuccessful: false,
             errors: []
