@@ -13,7 +13,7 @@
                     <simple-text-area
                         :attributeName="attrName"
                         :label="label"
-                        inputType="text">
+                        inputType="numeric">
                     </simple-text-area>
                 </template>
                 <template v-for="(label, attrName) in fields">

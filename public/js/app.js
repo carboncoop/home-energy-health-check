@@ -46281,6 +46281,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -46362,6 +46369,32 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "attribute"
     }],
     staticClass: "form-control",
+    domProps: {
+      "value": (_vm.attribute)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.attribute = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _vm._l((_vm.errors), function(message) {
+    return _c('div', {
+      staticClass: "mt-3 alert alert-danger"
+    }, [_vm._v("\n                " + _vm._s(message) + "\n            ")])
+  })], 2) : _vm._e(), _vm._v(" "), ('numeric' == _vm.inputType) ? _c('div', {
+    staticClass: "col-sm-8"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.attribute),
+      expression: "attribute"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "number"
+    },
     domProps: {
       "value": (_vm.attribute)
     },
@@ -47080,7 +47113,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         attrs: {
           "attributeName": attrName,
           "label": label,
-          "inputType": "text"
+          "inputType": "numeric"
         }
       })] : _vm._e()
     }), _vm._v(" "), _vm._l((fields), function(label, attrName) {
@@ -47624,7 +47657,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "to": "/submit",
       "tag": "button"
     }
-  }, [_c('span', [_vm._v("Submit")])])], 1), _vm._v(" "), _c('div', {
+  }, [_c('span', [_vm._v("Done")])])], 1), _vm._v(" "), _c('div', {
     staticClass: "navbar-bottom-row d-flex justify-content-around"
   }, [(_vm.currentPart) ? _c('ul', {
     staticClass: "nav nav-pills"

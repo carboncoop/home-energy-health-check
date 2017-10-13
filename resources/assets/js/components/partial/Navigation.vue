@@ -39,7 +39,7 @@
                 </ul>
 
                 <router-link to="/submit" tag="button" class="btn btn-warning ml-3">
-                    <span>Submit</span>
+                    <span>Done</span>
                 </router-link>
 
             </div>
