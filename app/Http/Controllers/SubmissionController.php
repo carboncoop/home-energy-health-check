@@ -147,12 +147,6 @@ class SubmissionController extends Controller
      */
     public function pdfTest($id)
     {
-        $assessment = Assessment::with('assessment_improvements')->findOrFail($id);
-        $assImps = $assessment->assessment_improvements->keyBy('id');
-        $input = [
-            'assessment' => $assessment->toArray(),
-            'improvements' => $assImps->toArray(),
-        ];
         return $this->pdf->process($id, 'screen');
     }
 
