@@ -42,7 +42,7 @@ class Improvement extends Model
             ],
             'description' => [
                 'label' => 'Description',
-                'type' => 'textarea',
+                'type' => 'simplemde',
             ],
             'estimated_cost' => [
                 'label' => 'Estimated Cost',

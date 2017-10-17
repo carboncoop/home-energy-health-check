@@ -24,6 +24,11 @@
                                 @else
                                     <h2 class="part-header my-3">{{ $part['title'] }}</h2>
                                 @endif
+
+                                <div class="lead">
+                                    @parsedown($part['description'])
+                                </div>
+
                                 <div class="part break-after-me">
                                     @include('pdf.partial.improvements', [
                                         'improvements' => $part['improvements']

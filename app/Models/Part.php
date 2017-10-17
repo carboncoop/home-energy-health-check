@@ -18,4 +18,19 @@ class Part extends Model
     {
         return $this->hasMany(Improvement::class);
     }
+
+    public static function crudFields()
+    {
+        return [
+            'title' => [
+                'label' => 'Title',
+                'type' => 'text',
+                'index' => true,
+            ],
+            'description' => [
+                'label' => 'Description',
+                'type' => 'simplemde',
+            ],
+        ];
+    }
 }

@@ -30,6 +30,10 @@
             border-width: 1px
             border-color: #aaa
 
+    .lead
+        font-size: 12px
+        line-height: 14px
+
     .card
         border-color: $blue-0
 
@@ -45,10 +49,13 @@
         &.no-top
             border-top: none
 
-    .improvement-value
-        min-width: 160px
-        font-size: 12px
-        &.improvement-have
-            color: $blue-3
-        &.improvement-need
-            color: $pink-2
+    .improvement
+        p
+            margin-bottom: 0.25em
+        .improvement-value
+            min-width: 160px
+            font-size: 12px
+            &.improvement-have
+                color: $blue-3
+            &.improvement-need
+                color: $pink-2

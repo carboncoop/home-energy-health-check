@@ -1,5 +1,5 @@
 @foreach ($improvements as $index => $imp)
-    <div class="card card-responses my-2 avoid-breaking-me">
+    <div class="card card-responses improvement my-2 avoid-breaking-me">
 
         <div class="card-body p-2">
 
@@ -23,7 +23,7 @@
                 @endif
             </div>
 
-            {{ $imp['description'] }}
+            @parsedown($imp['description'])
         </div>
 
     </div>

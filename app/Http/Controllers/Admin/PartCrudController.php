@@ -13,7 +13,7 @@ class PartCrudController extends DefaultCrudController
     {
         parent::setDefaults('part');
         $this->crud->setModel(Part::class);
-        $this->crud->setFromDb();
+        parent::setupFields(Part::crudFields());
     }
 
     public function store(StoreRequest $request)

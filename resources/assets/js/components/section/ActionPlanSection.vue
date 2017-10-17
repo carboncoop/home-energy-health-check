@@ -2,7 +2,9 @@
     <div class="action-plan-section-vue">
 
         <h1 class="my-3">{{ currentPart.title }}</h1>
-        <p class="lead mb-5">{{ currentPart.description }}</p>
+        <div class="lead">
+            <vue-markdown>{{ currentPart.description }}</vue-markdown>
+        </div>
 
         <div class="improvement-card card mb-5"
             :id="'improvement-'+imp.id"
@@ -19,9 +21,9 @@
 
             <div class="card-body">
 
-                <p>{{ imp.description }}</p>
+                <vue-markdown>{{ imp.description }}</vue-markdown>
 
-                <div v-if="imp.assessor_guidance" class="alert alert-danger">
+                <div v-if="imp.assessor_guidance" class="alert alert-warning">
                     <span>{{ imp.assessor_guidance }}</span>
                 </div>
 
@@ -48,13 +50,11 @@
 <script>
     import ImprovementButtons from '../partial/ImprovementButtons.vue'
     import ImprovementComment from '../partial/ImprovementComment.vue'
+    import VueMarkdown from 'vue-markdown'
 
     export default {
         props: ['partId', 'parts'],
-        components: {
-            'improvement-buttons': ImprovementButtons,
-            'improvement-comment': ImprovementComment,
-        },
+        components: { ImprovementButtons, ImprovementComment, VueMarkdown },
         computed: {
             currentPart() {
                 return _.find(this.parts, this.matchesPartId)
