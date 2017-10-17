@@ -11,6 +11,7 @@
                 :assessment="assessment"
                 :parts="parts"
                 :errors="errors"
+                :formSchema="formSchema"
             ></router-view>
         </div>
     </div>
@@ -21,7 +22,7 @@
 
     export default {
         props: [
-            'baseUrl', 'assessment', 'parts',
+            'baseUrl', 'formSchema', 'assessment', 'parts',
             'improvements', 'assessmentImprovements'
         ],
         components: { Navigation },

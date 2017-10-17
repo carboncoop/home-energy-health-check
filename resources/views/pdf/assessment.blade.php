@@ -41,13 +41,16 @@
                     @endif
 
                     @if (1 == $index)
-                        <h1 class="display-1">TODO: Your Home data</h1>
+                        @include('pdf.partial.comfort', [
+                            'assessment' => $assessment,
+                            'comfortSchema' => $formSchema['comfort'],
+                        ])
                     @endif
 
                     @if (2 == $index)
                         @include('pdf.partial.health', [
                             'assessment' => $assessment,
-                            'fields' => $healthFields
+                            'healthSchema' => $formSchema['health'],
                         ])
                     @endif
 

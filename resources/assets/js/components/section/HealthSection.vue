@@ -33,33 +33,14 @@
     import SimpleTextArea from '../partial/SimpleTextArea.vue'
 
     export default {
+        props: ['formSchema'],
         components: { SimpleTextArea },
         computed: {
             readingElements() {
-                return {
-                    reading_temperature_living_room: 'Temperature spot check (living room)',
-                    reading_humidity_living_room: 'Relative humidity spot check (living room)',
-                    reading_surface_temperature_living_room: 'Average surface temperature (living room)',
-                    reading_temperature_bedroom: 'Temperature spot check (bedroom)',
-                    reading_humidity_bedroom: 'Relative humidity spot check (bedroom)',
-                    reading_surface_temperature_bedroom: 'Average surface temperature (bedroom)',
-                    reading_air_quality: 'Air Quality Reading'
-                }
+                return this.formSchema.health.readingElements;
             },
             textareaElements() {
-                return {
-                    'Temperature Readings': {
-                        health_surface_temperature_notes: 'Assessor note on surface temperature. Any cold spots?'
-                    },
-                    'Home Health Comment': {
-                        health_condensation: 'Condensation',
-                        health_damp: 'Damp',
-                        health_mold: 'Mold',
-                        health_ventilation: 'Ventilation',
-                        health_laundry: 'Laundry',
-                        health_air_quality: 'Air Quality'
-                    }
-                }
+                return this.formSchema.health.textareaElements;
             }
         }
     }

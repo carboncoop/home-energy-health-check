@@ -39,7 +39,7 @@ class PdfGenerator
             'assessment' => $assessment,
             'parts' => $parts,
             'sections' => $sections,
-            'healthFields' => Assessment::healthFields(),
+            'formSchema' => Assessment::formSchema(),
         ]);
 
         if ('file' == $method) {

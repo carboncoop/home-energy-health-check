@@ -57,63 +57,17 @@
     import ThreeWayToggle from '../partial/ThreeWayToggle'
 
     export default {
+        props: ['formSchema'],
         components: { RateOneToFour, SimpleTextArea, ThreeWayToggle },
         computed: {
             rateOneToFours() {
-                return {
-                    comfort_rate_comfort: 'Comfort',
-                    comfort_rate_health: 'Health',
-                    comfort_rate_environment: 'Environment',
-                    comfort_rate_saving_money: 'Saving Money'
-                }
+                return this.formSchema.comfort.rateOneToFour;
             },
             threeWayToggles() {
-                return {
-                    comfort_rate_temperature_summer: {
-                        label: 'Temperature in the Summer',
-                        helpText: ['Too hot', 'Too cold']
-                    },
-                    comfort_rate_temperature_winter: {
-                        label: 'Temperature in the Winter',
-                        helpText: ['Too hot', 'Too cold']
-                    },
-                    comfort_rate_humidity_summer: {
-                        label: 'Air in the Summer',
-                        helpText: ['Too dry', 'Too stuffy']
-                    },
-                    comfort_rate_humidity_winter: {
-                        label: 'Air in the Winter',
-                        helpText: ['Too dry', 'Too stuffy']
-                    },
-                    comfort_rate_airflow_summer: {
-                        label: 'Air in the Summer',
-                        helpText: ['Too draughty', 'Just right']
-                    },
-                    comfort_rate_airflow_winter: {
-                        label: 'Air in the Winter',
-                    	helpText: ['Too draughty', 'Just right']
-                    },
-                    comfort_rate_natural_light: {
-                        label: 'Natural light',
-                    	helpText: ['Too little', 'Too much']
-                    },
-                    comfort_rate_artificial_light: {
-                        label: 'Artificial light',
-                    	helpText: ['Too little', 'Too much']
-                    },
-                    comfort_rate_noise_levels: {
-                        label: 'Noise levels',
-                    	helpText: ['Too noisy', 'Too quiet']
-                    }
-                }
+                return this.formSchema.comfort.threeWayToggles;
             },
             otherInfo() {
-                return {
-                    comfort_general: 'General comfort',
-                    comfort_favourite_room: 'What is your favourite room?',
-                    comfort_least_loved_room: 'What is your least loved room?',
-                    comfort_other_comments: 'Any other comments'
-                }
+                return this.formSchema.comfort.otherInfo;
             }
         }
     }

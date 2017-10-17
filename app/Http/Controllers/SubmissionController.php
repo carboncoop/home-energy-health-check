@@ -54,6 +54,7 @@ class SubmissionController extends Controller
         $assImps = AssessmentImprovement::where('assessment_id', '=', $id)->get();
 
         return view('submission.edit', [
+            'json_form_schema' => json_encode(Assessment::formSchema()),
             'json_parts' => $parts->toJson(),
             'json_improvements' => $improvements->toJson(),
             'json_assessment' => $assessment->toJson(),
