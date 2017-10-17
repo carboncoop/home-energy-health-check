@@ -16811,6 +16811,19 @@ div.submission-vue .rate-one-to-four-vue .btn {
   border-top: none;
 }
 
+.generated-pdf-wrapper .improvement-value {
+  min-width: 160px;
+  font-size: 12px;
+}
+
+.generated-pdf-wrapper .improvement-value.improvement-have {
+  color: #00658B;
+}
+
+.generated-pdf-wrapper .improvement-value.improvement-need {
+  color: #FF0B90;
+}
+
 body {
   position: relative;
 }

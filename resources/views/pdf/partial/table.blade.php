@@ -9,9 +9,9 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($improvements as $imp)
+        @foreach ($improvements as $index => $imp)
             <tr>
-                <td>{{ $imp['title'] }}</td>
+                <td>{{ $index + 1 }}. {{ $imp['title'] }}</td>
                 <td>@if (array_key_exists('comment', $imp))
                     {{ $imp['comment'] }}
                 @endif </td>

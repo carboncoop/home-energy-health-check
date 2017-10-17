@@ -11,14 +11,14 @@ use App\Models\AssessmentImprovement;
 
 class PdfGenerator
 {
-    protected $pdf;
+    protected $pdf, $viewVars;
 
     public function __construct()
     {
         $this->now = Carbon::now()->toDateTimeString();
     }
 
-    public function process($id, $method = 'file')
+    public function process($id, $method = 'file', $debug = false)
     {
         $assessment = Assessment::findOrFail($id)->toArray();
         $parts = Part::with('improvements')->get()->toArray();
@@ -35,18 +35,21 @@ class PdfGenerator
                 }
             }
         }
-        $this->pdf = \Snappy::loadView('pdf.assessment', [
+
+        $this->viewVars = [
             'assessment' => $assessment,
             'parts' => $parts,
             'sections' => $sections,
             'formSchema' => Assessment::formSchema(),
-        ]);
+        ];
+
+        $this->pdf = \Snappy::loadView('pdf.assessment', $this->viewVars);
 
         if ('file' == $method) {
             return $this->outputToFile();
         }
         else if ('screen' == $method) {
-            return $this->outputToScreen();
+            return $this->outputToScreen($debug);
         }
         else if ('download' == $method) {
             return $this->outputToDownload();
@@ -61,8 +64,11 @@ class PdfGenerator
         ]);
     }
 
-    protected function outputToScreen()
+    protected function outputToScreen($debug = false)
     {
+        if ($debug) {
+            return view('pdf.assessment', $this->viewVars);
+        }
         return $this->pdf->inline();
     }
 

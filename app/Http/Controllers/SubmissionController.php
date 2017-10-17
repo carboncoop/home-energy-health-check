@@ -143,12 +143,14 @@ class SubmissionController extends Controller
 
     /**
      * Test the pdf output.
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function pdfTest($id)
+    public function pdfTest(Request $request, $id)
     {
-        return $this->pdf->process($id, 'screen');
+        $debug = $request->input('pdfdebug') == 'on';
+        return $this->pdf->process($id, 'screen', $debug);
     }
 
 }
