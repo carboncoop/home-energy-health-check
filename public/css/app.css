@@ -16758,6 +16758,25 @@ div.submission-vue .rate-one-to-four-vue .btn {
   font-size: 10px;
 }
 
+.generated-pdf-wrapper h1 {
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.generated-pdf-wrapper h2 {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.generated-pdf-wrapper h3 {
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.generated-pdf-wrapper .card {
+  border-color: #00ADEF;
+}
+
 body {
   position: relative;
 }

@@ -18,14 +18,13 @@
             @foreach ($sections as $index => $section)
                 <div class="section break-after-me">
 
-                    <h1 class="my-5">{{ $section['title'] }}</h1>
+                    <h1 class="my-4">{{ $section['title'] }}</h1>
 
                     @if (0 == $index)
                         <h1 class="display-1">TODO: Branding etc.</h1>
                     @endif
 
                     @if (3 == $index)
-                        <h1 class="display-1">TODO: tidy up data</h1>
                         @foreach ($parts as $part)
                             @unless (empty($part['improvements']))
                                 <h3 class="my-2">{{ $part['title'] }}</h3>

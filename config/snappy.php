@@ -7,7 +7,9 @@ return array(
         'enabled' => true,
         'binary'  => base_path() . '/vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64',
         'timeout' => false,
-        'options' => array(),
+        'options' => [
+            'viewport-size' => '1280x1024'
+        ],
         'env'     => array(),
     ),
     'image' => array(
