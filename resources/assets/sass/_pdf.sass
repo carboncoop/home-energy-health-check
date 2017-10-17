@@ -4,6 +4,15 @@
     background-color: white
     font-size: 10px
 
+    .break-after-me
+        overflow: hidden
+        page-break-after: always
+        &:last-child
+            page-break-after: avoid
+
+    .avoid-breaking-me
+        page-break-inside: avoid
+
     h1
         font-size: 25px
         line-height: 30px
@@ -16,5 +25,22 @@
         font-size: 15px
         line-height: 20px
 
+    table
+        td, th
+            border-width: 1px
+            border-color: #aaa
+
     .card
         border-color: $blue-0
+
+    .section-header
+        border-top: 3px solid $blue-0
+        color: $blue-0
+        padding-top: 15px
+
+    .part-header
+        border-top: 3px solid $blue-0
+        color: $blue-0
+        padding-top: 15px
+        &.no-top
+            border-top: none

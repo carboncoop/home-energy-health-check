@@ -1,20 +1,16 @@
-<table class="my-4 table table-sm">
+<table class="my-4 table table-striped table-bordered avoid-breaking-me">
     <thead>
         <tr>
-            <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th>Assessor's Comment</th>
             <th>Estimated Cost</th>
             <th>Benefits / Savings</th>
-            <th>Who can do this work></th>
+            <th>Who can do this work?</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($improvements as $imp)
             <tr>
-                <td>@if (array_key_exists('value', $imp))
-                    {{ strtoupper($imp['value']) }}
-                @endif </td>
                 <td>{{ $imp['title'] }}</td>
                 <td>@if (array_key_exists('comment', $imp))
                     {{ $imp['comment'] }}

@@ -2,35 +2,36 @@
 
 
 @section('content')
-    <style type="text/css">
-    .break-after-me {
-        overflow: hidden;
-        page-break-after: always;
-    }
-    .break-after-me:last-child {
-        page-break-after: avoid;
-    }
-    </style>
-
     <div class="generated-pdf-wrapper">
         <div class="container py-5">
 
             @foreach ($sections as $index => $section)
                 <div class="section break-after-me">
 
-                    <h1 class="my-4">{{ $section['title'] }}</h1>
+                    <h1 class="section-header my-3">
+                        {{ $section['title'] }}
+                    </h1>
 
                     @if (0 == $index)
                         <h1 class="display-1">TODO: Branding etc.</h1>
                     @endif
 
                     @if (3 == $index)
-                        @foreach ($parts as $part)
+                        @foreach ($parts as $i => $part)
                             @unless (empty($part['improvements']))
-                                <h3 class="my-2">{{ $part['title'] }}</h3>
-                                @include('pdf.partial.table', [
-                                    'improvements' => $part['improvements']
-                                ])
+                                @if (0 == $i)
+                                    <h2 class="part-header no-top my-3">{{ $part['title'] }}</h2>
+                                @else
+                                    <h2 class="part-header my-3">{{ $part['title'] }}</h2>
+                                @endif
+                                <div class="part break-after-me">
+                                    @include('pdf.partial.improvements', [
+                                        'improvements' => $part['improvements']
+                                    ])
+                                    @include('pdf.partial.table', [
+                                        'improvements' => $part['improvements']
+                                    ])
+                                </div>
                             @endunless
                         @endforeach
                     @else

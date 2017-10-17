@@ -16758,6 +16758,19 @@ div.submission-vue .rate-one-to-four-vue .btn {
   font-size: 10px;
 }
 
+.generated-pdf-wrapper .break-after-me {
+  overflow: hidden;
+  page-break-after: always;
+}
+
+.generated-pdf-wrapper .break-after-me:last-child {
+  page-break-after: avoid;
+}
+
+.generated-pdf-wrapper .avoid-breaking-me {
+  page-break-inside: avoid;
+}
+
 .generated-pdf-wrapper h1 {
   font-size: 25px;
   line-height: 30px;
@@ -16773,8 +16786,29 @@ div.submission-vue .rate-one-to-four-vue .btn {
   line-height: 20px;
 }
 
+.generated-pdf-wrapper table td, .generated-pdf-wrapper table th {
+  border-width: 1px;
+  border-color: #aaa;
+}
+
 .generated-pdf-wrapper .card {
   border-color: #00ADEF;
+}
+
+.generated-pdf-wrapper .section-header {
+  border-top: 3px solid #00ADEF;
+  color: #00ADEF;
+  padding-top: 15px;
+}
+
+.generated-pdf-wrapper .part-header {
+  border-top: 3px solid #00ADEF;
+  color: #00ADEF;
+  padding-top: 15px;
+}
+
+.generated-pdf-wrapper .part-header.no-top {
+  border-top: none;
 }
 
 body {
