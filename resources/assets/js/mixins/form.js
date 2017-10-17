@@ -44,8 +44,20 @@ export default {
                     resolve(response.data);
                 }).catch(error => {
                     this.submitAvailable = true
-                    this.respondToFailure(error.response.data);
-                    reject(error.response.data);
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    if (error.response) {
+                        console.warn("error response", error.response.status)
+                        this.respondToFailure(error.response.data)
+                    // The request was made but no response was received
+                    // `error.request` is an instance of XMLHttpRequest
+                    } else if (error.request) {
+                        console.warn("error request", error.request)
+                        this.respondToFailure(error.request, true)
+                    } else {
+                        console.warn("error other", error)
+                    }
+                    reject(error);
                 });
             });
         }

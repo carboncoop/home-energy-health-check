@@ -29213,8 +29213,20 @@ module.exports = Component.exports
                     resolve(response.data);
                 }).catch(function (error) {
                     _this.submitAvailable = true;
-                    _this.respondToFailure(error.response.data);
-                    reject(error.response.data);
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    if (error.response) {
+                        console.warn("error response", error.response.status);
+                        _this.respondToFailure(error.response.data);
+                        // The request was made but no response was received
+                        // `error.request` is an instance of XMLHttpRequest
+                    } else if (error.request) {
+                        console.warn("error request", error.request);
+                        _this.respondToFailure(error.request, true);
+                    } else {
+                        console.warn("error other", error);
+                    }
+                    reject(error);
                 });
             });
         }
@@ -47161,6 +47173,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -47173,6 +47192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             successful: false,
             unsuccessful: false,
             waiting: false,
+            connectionError: false,
             errors: []
         };
     },
@@ -47186,12 +47206,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
+        errorHasMessage: function errorHasMessage(error) {
+            return _.has(error, 'message');
+        },
         saveAndQuit: function saveAndQuit() {
             this.waiting = true;
             this.submitEditForm(false);
         },
         submit: function submit() {
             this.waiting = true;
+            this.connectionError = false;
             this.submitEditForm(true);
         },
         respondToSuccess: function respondToSuccess(data) {
@@ -47205,11 +47229,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, 1200);
         },
         respondToFailure: function respondToFailure(errors) {
+            var requestFailure = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
             this.waiting = false;
             this.successful = false;
             this.unsuccessful = true;
-            this.errors = errors;
-            this.$emit('formErrors', errors);
+            if (requestFailure) {
+                this.connectionError = true;
+            } else {
+                this.errors = errors;
+                this.$emit('formErrors', errors);
+            }
         }
     }
 });
@@ -47245,15 +47275,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "alert alert-info"
   }, [_vm._v("\n        I am processing your request, please wait...\n    ")]) : _vm._e(), _vm._v(" "), (_vm.successful) ? _c('div', {
     staticClass: "alert alert-success"
-  }, [_vm._v("\n        Assessment saved successfully. Returning home...\n    ")]) : _vm._e(), _vm._v(" "), (_vm.unsuccessful) ? [_c('div', {
+  }, [_vm._v("\n        Assessment saved successfully. Returning home...\n    ")]) : _vm._e(), _vm._v(" "), (_vm.unsuccessful) ? [(_vm.errorHasMessage(_vm.errors)) ? [_c('div', {
     staticClass: "alert alert-danger"
-  }, [_vm._v("\n            " + _vm._s(_vm.errors.message) + "\n        ")]), _vm._v(" "), _vm._l((_vm.errors.errors), function(msgs, key) {
+  }, [_vm._v("\n                " + _vm._s(_vm.errors.message) + "\n            ")]), _vm._v(" "), _vm._l((_vm.errors.errors), function(msgs, key) {
     return _c('div', {
       staticClass: "alert alert-warning"
-    }, [_vm._v("\n            " + _vm._s(key) + "\n            "), _vm._l((msgs), function(msg) {
-      return [_vm._v("\n                " + _vm._s(msg) + "\n            ")]
+    }, [_vm._v("\n                " + _vm._s(key) + "\n                "), _vm._l((msgs), function(msg) {
+      return [_vm._v("\n                    " + _vm._s(msg) + "\n                ")]
     })], 2)
-  })] : _vm._e()], 2)
+  })] : _vm._e(), _vm._v(" "), (_vm.connectionError) ? [_c('div', {
+    staticClass: "alert alert-danger"
+  }, [_vm._v("\n                Connection error.\n            ")])] : _vm._e()] : _vm._e()], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -47311,6 +47343,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_v_offline__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_v_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_v_offline__);
 //
 //
 //
@@ -47330,22 +47364,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['baseUrl', 'formSchema', 'assessment', 'parts', 'improvements', 'assessmentImprovements'],
-    components: { Navigation: __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default.a },
+    components: { Navigation: __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default.a, DetectNetwork: __WEBPACK_IMPORTED_MODULE_1_v_offline___default.a },
     data: function data() {
         return {
             initPath: '/details',
-            errors: []
+            errors: [],
+            onlineState: null
         };
     },
 
     computed: {
         ready: function ready() {
             return this.$store.getters.ready;
+        }
+    },
+    methods: {
+        detected: function detected(e) {
+            this.onlineState = e;
         }
     },
     mounted: function mounted() {
@@ -47647,7 +47699,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "parts": _vm.parts
     }
-  }), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), _c('detect-network', {
+    on: {
+      "detected-condition": _vm.detected
+    }
+  }, [_c('div', {
+    attrs: {
+      "slot": "offline"
+    },
+    slot: "offline"
+  }, [_c('div', {
+    staticClass: "container fixed-bottom"
+  }, [_c('div', {
+    staticClass: "alert alert-danger"
+  }, [_c('strong', {
+    staticClass: "text-uppercase"
+  }, [_vm._v("Warning:")]), _vm._v("\n                    No internet connection detected. You are currently working offline.\n                ")])])])]), _vm._v(" "), _c('div', {
     staticClass: "my-4 container"
   }, [_c('router-view', {
     attrs: {
@@ -47834,6 +47901,64 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */
+/***/ (function(module, exports) {
+
+module.exports = {
+    name: 'v-offline',
+
+    template: '<div>\
+        <div v-bind:class="onlineClass" v-if="state.online"><slot name="online"></slot></div>\
+        <div v-bind:class="offlineClass" v-if="!state.online"><slot name="offline"></slot></div>\
+    </div>',
+
+    props: {
+        onlineClass: {
+            type: String,
+            required: false
+        },
+        offlineClass: {
+            type: String,
+            required: false
+        }
+    },
+
+    data: function() {
+        return {
+            state: {
+                online: navigator.onLine,
+            },
+        };
+    },
+
+    mounted: function() {
+        const vm = this;
+        window.addEventListener('load', function() {
+            vm.updateOnlineStatus();
+            window.addEventListener('online', vm.updateOnlineStatus);
+            window.addEventListener('offline', vm.updateOnlineStatus);
+        });
+    },
+
+    beforeDestroy: function() {
+        window.removeEventListener('online', this.updateOnlineStatus);
+        window.removeEventListener('offline', this.updateOnlineStatus);
+    },
+
+    methods: {
+        updateOnlineStatus: function() {
+            const vm = this;
+            vm.state.online = navigator.onLine || false;
+            vm.$emit('detected-condition', vm.state.online);
+        }
+    }
+};
 
 /***/ })
 /******/ ]);

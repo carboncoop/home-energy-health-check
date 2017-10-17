@@ -28,15 +28,22 @@
         </div>
 
         <template v-if="unsuccessful">
-            <div class="alert alert-danger">
-                {{ errors.message }}
-            </div>
-            <div class="alert alert-warning" v-for="(msgs, key) in errors.errors">
-                {{ key }}
-                <template v-for="msg in msgs">
-                    {{ msg }}
-                </template>
-            </div>
+            <template v-if="errorHasMessage(errors)">
+                <div class="alert alert-danger">
+                    {{ errors.message }}
+                </div>
+                <div class="alert alert-warning" v-for="(msgs, key) in errors.errors">
+                    {{ key }}
+                    <template v-for="msg in msgs">
+                        {{ msg }}
+                    </template>
+                </div>
+            </template>
+            <template v-if="connectionError">
+                <div class="alert alert-danger">
+                    Connection error.
+                </div>
+            </template>
         </template>
 
     </div>
@@ -54,6 +61,7 @@
                 successful: false,
                 unsuccessful: false,
                 waiting: false,
+                connectionError: false,
                 errors: []
             }
         },
@@ -66,12 +74,16 @@
             }
         },
         methods: {
+            errorHasMessage(error) {
+                return _.has(error, 'message')
+            },
             saveAndQuit() {
                 this.waiting = true
                 this.submitEditForm(false)
             },
             submit() {
                 this.waiting = true
+                this.connectionError = false
                 this.submitEditForm(true)
             },
             respondToSuccess(data) {
@@ -82,12 +94,17 @@
                   window.location.replace(this.baseUrl)
                 }, 1200)
             },
-            respondToFailure(errors) {
+            respondToFailure(errors, requestFailure = false) {
                 this.waiting = false
                 this.successful = false
                 this.unsuccessful = true
-                this.errors = errors
-                this.$emit('formErrors', errors)
+                if (requestFailure) {
+                    this.connectionError = true
+                } else {
+                    this.errors = errors
+                    this.$emit('formErrors', errors)
+                }
+
             }
         }
     }

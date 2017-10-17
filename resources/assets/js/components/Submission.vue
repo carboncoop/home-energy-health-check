@@ -5,6 +5,17 @@
             :parts="parts">
         </navigation>
 
+        <detect-network v-on:detected-condition="detected">
+        	<div slot="offline">
+                <div class="container fixed-bottom">
+                    <div class="alert alert-danger">
+                        <strong class="text-uppercase">Warning:</strong>
+                        No internet connection detected. You are currently working offline.
+                    </div>
+                </div>
+            </div>
+        </detect-network>
+
         <div class="my-4 container">
             <router-view
                 :baseUrl="baseUrl"
@@ -19,22 +30,29 @@
 
 <script>
     import Navigation from './partial/Navigation.vue'
+    import DetectNetwork from 'v-offline'
 
     export default {
         props: [
             'baseUrl', 'formSchema', 'assessment', 'parts',
             'improvements', 'assessmentImprovements'
         ],
-        components: { Navigation },
+        components: { Navigation, DetectNetwork},
         data() {
             return {
                 initPath: '/details',
-                errors: []
+                errors: [],
+                onlineState: null
             }
         },
         computed: {
             ready() {
                 return this.$store.getters.ready
+            }
+        },
+        methods: {
+            detected(e) {
+                this.onlineState = e;
             }
         },
         mounted() {
