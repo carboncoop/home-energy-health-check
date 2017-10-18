@@ -15,14 +15,17 @@
             </div>
 
             <div class="col-sm-8" v-if="'date' == inputType">
-                <input class="form-control" v-model="attribute" placeholder="e.g. 2017-12-01">
+                <datepicker v-model="datepickerValue"
+                    input-class="form-control"
+                    format="D dsu MMMM yyyy"
+                    placeholder="select a date »"></datepicker>
                 <div class="mt-3 alert alert-danger" v-for="message in errors">
                     {{ message }}
                 </div>
             </div>
 
             <div class="col-sm-8" v-if="'text' == inputType">
-                <input class="form-control" v-model="attribute">
+                <input class="form-control" type="text" v-model="attribute">
                 <div class="mt-3 alert alert-danger" v-for="message in errors">
                     {{ message }}
                 </div>
@@ -41,9 +44,23 @@
 
 <script>
     import AttributeMixin from '../../mixins/attribute.js'
+    import Datepicker from 'vuejs-datepicker'
+    import Moment from 'moment'
 
     export default {
         props: ['attributeName', 'label', 'inputType', 'errors'],
-        mixins: [ AttributeMixin ]
+        components: { Datepicker },
+        mixins: [ AttributeMixin ],
+        computed: {
+            datepickerValue: {
+                get() {
+                    return this.attribute
+                },
+                set(value) {
+                    let str = Moment(value).format("YYYY-MM-DD")
+                    this.attribute = str
+                }
+            }
+        }
     }
 </script>
