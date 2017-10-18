@@ -24,11 +24,17 @@ class Assessment extends Model
             return "Submitted";
         } else {
             $now = Carbon::now()->toDateString();
-            $diff = Carbon::now()->diffInDays(new Carbon($this->assessment_date));
-            if ($now == $this->assessment_date) {
-                return "Due today.";
-            } else if ($now < $this->assessment_date) {
-                return "Due in $diff days.";
+            try {
+                $then = Carbon::createFromFormat('Y-m-d', $this->assessment_date);
+                $diff = Carbon::now()->diffInDays($then);
+                if ($now == $this->assessment_date) {
+                    return "Due today.";
+                } else if ($now < $this->assessment_date) {
+                    return "Due in $diff days.";
+                }
+            }
+            catch (\Exception $err) {
+                return "Invalid date format.";
             }
         }
         return "Overdue!";
