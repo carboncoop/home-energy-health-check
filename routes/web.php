@@ -26,7 +26,6 @@ $crudControllers = [
     'parts' => 'PartCrudController',
     'assessments' => 'AssessmentCrudController',
     'sections' => 'SectionCrudController',
-    'users' => 'UserCrudController',
 ];
 
 Route::group([
@@ -37,4 +36,14 @@ Route::group([
     foreach ($crudControllers as $slug => $controller) {
         \CRUD::resource($slug, $controller);
     }
+});
+
+// See AuthServiceProvider for manage-users policy.
+
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['admin', 'can:manage-users'],
+    'namespace' => 'Admin'
+], function() {
+    \CRUD::resource('users', 'UserCrudController');
 });

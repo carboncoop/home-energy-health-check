@@ -51,7 +51,16 @@ class User extends Authenticatable
             'password' => [
                 'label' => 'Password',
                 'type' => 'password',
-            ]
+            ],
+            'group' => [
+                'label' => "User Group",
+                'type' => 'select_from_array',
+                'options' => [
+                    'assessor' => 'Assessor',
+                    'superuser' => 'Superuser',
+                ],
+                'allows_null' => false,
+            ],
         ];
     }
 }

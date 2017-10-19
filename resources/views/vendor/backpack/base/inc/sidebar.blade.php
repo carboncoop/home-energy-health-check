@@ -31,9 +31,11 @@
               <span>Sections</span></a>
           </li>
 
-          <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/users') }}"><i class="fa fa-user"></i>
-              <span>Users</span></a>
-          </li>
+          @if (\Gate::allows('manage-users'))
+              <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/users') }}"><i class="fa fa-user"></i>
+                  <span>Users</span></a>
+              </li>
+          @endif
 
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>
