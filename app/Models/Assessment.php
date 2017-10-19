@@ -141,7 +141,7 @@ class Assessment extends Model
             ],
             'assessment_date' => [
                 'label' => 'Assessment Date',
-                'type' => 'text',
+                'type' => 'date',
                 'index' => true,
             ],
             'homeowner_name' => [

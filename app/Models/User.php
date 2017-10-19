@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Backpack\CRUD\CrudTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, CrudTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +27,31 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function setPasswordAttribute($pass)
+    {
+        $this->attributes['password'] = \Hash::make($pass);
+    }
+
+
+    public static function crudFields()
+    {
+        return [
+            'name' => [
+                'label' => 'Name',
+                'type' => 'text',
+                'index' => true,
+            ],
+            'email' => [
+                'label' => 'Email',
+                'type' => 'email',
+                'index' => true,
+            ],
+            'password' => [
+                'label' => 'Password',
+                'type' => 'password',
+            ]
+        ];
+    }
 }

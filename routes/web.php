@@ -26,6 +26,7 @@ $crudControllers = [
     'parts' => 'PartCrudController',
     'assessments' => 'AssessmentCrudController',
     'sections' => 'SectionCrudController',
+    'users' => 'UserCrudController',
 ];
 
 Route::group([
