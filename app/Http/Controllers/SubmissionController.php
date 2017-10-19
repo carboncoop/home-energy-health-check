@@ -17,6 +17,7 @@ class SubmissionController extends Controller
     public function __construct(PdfGenerator $pdf)
     {
         $this->pdf = $pdf;
+        $this->middleware('admin');
     }
 
     /**
