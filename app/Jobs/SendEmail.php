@@ -32,9 +32,8 @@ class SendEmail implements ShouldQueue
      */
     public function handle()
     {
-        print("Sending email..\n");
-        //var_dump($this->data);
-        \Mail::to("adam@appsynergy.net")->send(new AssessmentEmail($this->data));
-        print("Email sending complete!\n");
+        $emailTo = $this->data['assessment']['homeowner_email'];
+        \Mail::to($emailTo)->send(new AssessmentEmail($this->data));
+        //print("Email sending complete!\n");
     }
 }

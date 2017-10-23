@@ -138,7 +138,6 @@ class SubmissionController extends Controller
 
         return response()->json([
             'status' => 'OK',
-            'input' => $request->all(),
         ]);
     }
 

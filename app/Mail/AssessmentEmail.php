@@ -14,8 +14,8 @@ class AssessmentEmail extends Mailable
     public $attachment_path;
     public $subject = "Your Energy Assessment";
     public $from = [
-      "address" => "example@example.com",
-      "name" => "My Name",
+      "address" => "energyteam@plymouthenergycommunity.com",
+      "name" => "Plymouth Energy Community Energy Team",
     ];
 
     /**
