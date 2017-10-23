@@ -4,10 +4,11 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class CreateTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithoutMiddleware;
 
     protected $someGoodAssessmentData = [
         'assessment_date' => '2017-10-31',

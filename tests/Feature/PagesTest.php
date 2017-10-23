@@ -4,10 +4,11 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class PagesTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithoutMiddleware;
 
     public function testWeCanSeeHomepage()
     {
