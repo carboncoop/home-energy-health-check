@@ -11,7 +11,8 @@ class AssessmentEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $attachment_path;
+    public $attachment_path, $data;
+
     public $subject = "Your Energy Assessment";
     public $from = [
       "address" => "energyteam@plymouthenergycommunity.com",
@@ -26,6 +27,7 @@ class AssessmentEmail extends Mailable
      */
     public function __construct(Array $data)
     {
+        $this->data = $data;
         $this->attachment_path = $data['attachment_path'];
     }
 
@@ -39,7 +41,9 @@ class AssessmentEmail extends Mailable
         return $this
       ->from($this->from)
       ->subject($this->subject)
-      ->markdown('emails.assessment')
+      ->markdown('emails.assessment', [
+          'assessment' => $this->data['assessment'],
+      ])
       ->attach(storage_path($this->attachment_path), array(
         'mime' => 'application/pdf'
       ));
