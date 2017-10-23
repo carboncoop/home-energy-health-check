@@ -8,6 +8,7 @@ use App\Models\Part;
 use App\Models\Section;
 use App\Models\Assessment;
 use App\Models\AssessmentImprovement;
+use App\Jobs\SendEmail;
 
 class PdfGenerator
 {
@@ -59,11 +60,19 @@ class PdfGenerator
         else if ('download' == $method) {
             return $this->outputToDownload();
         }
+        else if ('email' == $method) {
+            $result = $this->outputToFile();
+            SendEmail::dispatch([
+                'assessment' => $assessment,
+                'attachment_path' => 'pdf/file.pdf',
+            ]);
+        }
     }
 
     protected function outputToFile()
     {
-        $this->pdf->save(storage_path('pdf/t'.$this->now.'.pdf'));
+        //$this->pdf->save(storage_path('pdf/t'.$this->now.'.pdf'));
+        $this->pdf->save(storage_path('pdf/file.pdf'), true);
         return response()->json([
             'status' => 'OK',
         ]);

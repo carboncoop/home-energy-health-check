@@ -133,7 +133,7 @@ class SubmissionController extends Controller
 
         // prepare pdf and send email
         if ($request->andProcess) {
-            return $this->pdf->process($id, 'file');
+            return $this->pdf->process($id, 'email');
         }
 
         return response()->json([
