@@ -3,6 +3,7 @@
 namespace App\Process;
 
 use Carbon\Carbon;
+use Vinkla\Hashids\Facades\Hashids;
 use App\Models\Improvement;
 use App\Models\Part;
 use App\Models\Section;
@@ -64,15 +65,21 @@ class PdfGenerator
             $result = $this->outputToFile();
             SendEmail::dispatch([
                 'assessment' => $assessment,
-                'attachment_path' => 'pdf/file.pdf',
+                'attachment_path' => $this->getStoragePath(),
             ]);
         }
     }
 
+    protected function getStoragePath()
+    {
+        $id = $this->viewVars['assessment']['id'];
+        $unique = Hashids::encode($id);
+        return 'pdf/' . $unique . '.pdf';
+    }
+
     protected function outputToFile()
     {
-        //$this->pdf->save(storage_path('pdf/t'.$this->now.'.pdf'));
-        $this->pdf->save(storage_path('pdf/file.pdf'), true);
+        $this->pdf->save(storage_path($this->getStoragePath()), true);
         return response()->json([
             'status' => 'OK',
         ]);
