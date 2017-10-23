@@ -1,5 +1,4 @@
 @extends('master')
-<?php //dd([$assessment, $sections, $parts]); ?>
 
 @section('content')
     <div class="generated-pdf-wrapper">

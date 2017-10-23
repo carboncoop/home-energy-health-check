@@ -15,7 +15,8 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
         "league/csv": "^9.0",
-        "parsedown/laravel": "^1.0"
+        "parsedown/laravel": "^1.0",
+        "vinkla/hashids": "^3.3"
     },
     "require-dev": {
         "backpack/generators": "^1.1",
