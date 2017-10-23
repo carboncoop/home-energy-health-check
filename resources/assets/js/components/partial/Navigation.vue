@@ -55,6 +55,9 @@
                             <i v-else-if="imp.value == 'need'"
                                 class="fa fa-exclamation-circle"
                                 aria-hidden="true"></i>
+                            <i v-else-if="imp.value == 'n/a'"
+                                class="fa fa-times-circle"
+                                aria-hidden="true"></i>
                             <i v-else
                                 class="fa fa-circle-o"
                                 aria-hidden="true"></i>

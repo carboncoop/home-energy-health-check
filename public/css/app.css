@@ -16713,31 +16713,32 @@ div.submission-vue .navbar .navbar-top-row, div.submission-vue .navbar .navbar-b
   width: 100%;
 }
 
-div.submission-vue .improvement-card .btn-primary.inactive, div.submission-vue .improvement-card .btn-danger.inactive {
+div.submission-vue .improvement-card .btn-primary.inactive, div.submission-vue .improvement-card .btn-danger.inactive, div.submission-vue .improvement-card .btn-warning.inactive {
   color: #fff;
   background-color: #555;
   border-color: #555;
 }
 
-div.submission-vue .improvement-card .btn-primary.inactive:hover, div.submission-vue .improvement-card .btn-danger.inactive:hover {
+div.submission-vue .improvement-card .btn-primary.inactive:hover, div.submission-vue .improvement-card .btn-danger.inactive:hover, div.submission-vue .improvement-card .btn-warning.inactive:hover {
   color: #fff;
   background-color: #333;
   border-color: #333;
 }
 
-div.submission-vue .improvement-card .btn-primary.inactive:focus, div.submission-vue .improvement-card .btn-primary.inactive.focus, div.submission-vue .improvement-card .btn-danger.inactive:focus, div.submission-vue .improvement-card .btn-danger.inactive.focus {
+div.submission-vue .improvement-card .btn-primary.inactive:focus, div.submission-vue .improvement-card .btn-primary.inactive.focus, div.submission-vue .improvement-card .btn-danger.inactive:focus, div.submission-vue .improvement-card .btn-danger.inactive.focus, div.submission-vue .improvement-card .btn-warning.inactive:focus, div.submission-vue .improvement-card .btn-warning.inactive.focus {
   -webkit-box-shadow: 0 0 0 3px rgba(85, 85, 85, 0.5);
           box-shadow: 0 0 0 3px rgba(85, 85, 85, 0.5);
 }
 
-div.submission-vue .improvement-card .btn-primary.inactive.disabled, div.submission-vue .improvement-card .btn-primary.inactive:disabled, div.submission-vue .improvement-card .btn-danger.inactive.disabled, div.submission-vue .improvement-card .btn-danger.inactive:disabled {
+div.submission-vue .improvement-card .btn-primary.inactive.disabled, div.submission-vue .improvement-card .btn-primary.inactive:disabled, div.submission-vue .improvement-card .btn-danger.inactive.disabled, div.submission-vue .improvement-card .btn-danger.inactive:disabled, div.submission-vue .improvement-card .btn-warning.inactive.disabled, div.submission-vue .improvement-card .btn-warning.inactive:disabled {
   background-color: #555;
   border-color: #555;
 }
 
 div.submission-vue .improvement-card .btn-primary.inactive:active, div.submission-vue .improvement-card .btn-primary.inactive.active,
 .show > div.submission-vue .improvement-card .btn-primary.inactive.dropdown-toggle, div.submission-vue .improvement-card .btn-danger.inactive:active, div.submission-vue .improvement-card .btn-danger.inactive.active,
-.show > div.submission-vue .improvement-card .btn-danger.inactive.dropdown-toggle {
+.show > div.submission-vue .improvement-card .btn-danger.inactive.dropdown-toggle, div.submission-vue .improvement-card .btn-warning.inactive:active, div.submission-vue .improvement-card .btn-warning.inactive.active,
+.show > div.submission-vue .improvement-card .btn-warning.inactive.dropdown-toggle {
   background-color: #333;
   background-image: none;
   border-color: #333;

@@ -29,11 +29,16 @@ class PdfGenerator
 
         foreach ($parts as $pkey => $p) {
             foreach ($p['improvements'] as $ikey => $imp) {
-                if (array_key_exists($imp['id'], $ai)) {
+                if (array_key_exists($imp['id'], $ai) && $ai[$imp['id']]['value'] != 'n/a') {
                     $parts[$pkey]['improvements'][$ikey]['value'] = $ai[$imp['id']]['value'];
                     $parts[$pkey]['improvements'][$ikey]['comment'] = $ai[$imp['id']]['comment'];
+                } else {
+                    // remove imps with n/a values
+                    unset($parts[$pkey]['improvements'][$ikey]);
                 }
             }
+            // reset array keys
+            $parts[$pkey]['improvements'] = array_values($parts[$pkey]['improvements']);
         }
 
         $this->viewVars = [
