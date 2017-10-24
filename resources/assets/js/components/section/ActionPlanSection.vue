@@ -3,7 +3,9 @@
 
         <h1 class="my-3">{{ currentPart.title }}</h1>
         <div class="lead">
-            <vue-markdown>{{ currentPart.description }}</vue-markdown>
+            <vue-markdown
+                v-bind:source="currentPart.description">
+            </vue-markdown>
         </div>
 
         <div class="improvement-card card mb-5"
@@ -21,7 +23,9 @@
 
             <div class="card-body">
 
-                <vue-markdown>{{ imp.description }}</vue-markdown>
+                <vue-markdown
+                    v-bind:source="imp.description">
+                </vue-markdown>
 
                 <div v-if="imp.assessor_guidance" class="alert alert-warning">
                     <span>{{ imp.assessor_guidance }}</span>
