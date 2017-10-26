@@ -1,5 +1,7 @@
 @extends('master')
 
+@section('pageTitle', 'Edit and submit an assessment')
+
 @section('content')
 
 <div id="submission-edit">

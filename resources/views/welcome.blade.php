@@ -1,16 +1,16 @@
 @extends('master')
 
+@section('pageTitle', 'Welcome')
+
 @section('content')
     <div class="container">
         <div class="my-4 p-4 card">
-            <h1>PECHAT - Alpha Test Version 0.1</h1>
-
-            <p>Here's what you can do so far:</p>
+            <h1>{{ config('app.name') }} &middot; Version {{ env('VER') }}</h1>
 
             <ol class="list-group">
                 <li class="list-group-item">
                     <a class="btn btn-primary" href="{{ url('admin') }}">
-                        Log in to the administration area.
+                        Go to the Administration area.
                     </a>
                 </li>
                 <li class="list-group-item">
