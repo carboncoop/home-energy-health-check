@@ -18,6 +18,16 @@ class Assessment extends Model
         return $this->hasMany(AssessmentImprovement::class);
     }
 
+    public static function boot()
+    {
+        parent::boot();
+        Assessment::deleting(function($ass) {
+            foreach ($ass->assessment_improvements as $ai) {
+                $ai->delete();
+            }
+        });
+    }
+
     public function getStatusAttribute()
     {
         if ($this->submitted) {
