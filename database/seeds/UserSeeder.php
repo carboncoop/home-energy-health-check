@@ -14,7 +14,13 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Adam',
             'email' => 'adam@appsynergy.net',
-            'password' => bcrypt('admin'),
+            'password' => env('PW_INIT', 'change me'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Jonathan',
+            'email' => 'jonathan@carbon.coop',
+            'password' => env('PW_INIT', 'change me'),
         ]);
     }
 }
