@@ -1,6 +1,7 @@
 <template>
     <div class="submission-comment-vue">
         <textarea :placeholder="improvement.assessor_comment"
+            rows="3"
             v-model="comment"
             class="form-control">
         </textarea>

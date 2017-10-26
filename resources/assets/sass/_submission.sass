@@ -56,6 +56,16 @@ div.submission-vue
                 +button-variant(#555, #555, #333, #333)
         .card-footer
             background-color: white
+        .fade-enter-active, .fade-leave-active
+            transition: opacity .5s
+        .fade-enter, .fade-leave-to
+            opacity: 0
+
+
+    .submission-comment-vue
+        height: 100%
+        textarea
+            height: calc(100% - 14px)
 
     .three-way-toggle-vue
         .btn

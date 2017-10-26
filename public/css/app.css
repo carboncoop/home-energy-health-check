@@ -16748,6 +16748,23 @@ div.submission-vue .improvement-card .card-footer {
   background-color: white;
 }
 
+div.submission-vue .improvement-card .fade-enter-active, div.submission-vue .improvement-card .fade-leave-active {
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+div.submission-vue .improvement-card .fade-enter, div.submission-vue .improvement-card .fade-leave-to {
+  opacity: 0;
+}
+
+div.submission-vue .submission-comment-vue {
+  height: 100%;
+}
+
+div.submission-vue .submission-comment-vue textarea {
+  height: calc(100% - 14px);
+}
+
 div.submission-vue .three-way-toggle-vue .btn {
   width: 30%;
   border-color: white;

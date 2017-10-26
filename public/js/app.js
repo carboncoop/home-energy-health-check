@@ -65376,8 +65376,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_ImprovementButtons_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partial_ImprovementButtons_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partial_ImprovementComment_vue__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partial_ImprovementComment_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partial_ImprovementComment_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_markdown__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_markdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_markdown__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partial_ImprovementDescription_vue__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partial_ImprovementDescription_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partial_ImprovementDescription_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_markdown__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_markdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_markdown__);
 //
 //
 //
@@ -65431,6 +65433,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -65438,7 +65452,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['partId', 'parts'],
-    components: { ImprovementButtons: __WEBPACK_IMPORTED_MODULE_0__partial_ImprovementButtons_vue___default.a, ImprovementComment: __WEBPACK_IMPORTED_MODULE_1__partial_ImprovementComment_vue___default.a, VueMarkdown: __WEBPACK_IMPORTED_MODULE_2_vue_markdown___default.a },
+    components: { ImprovementButtons: __WEBPACK_IMPORTED_MODULE_0__partial_ImprovementButtons_vue___default.a, ImprovementComment: __WEBPACK_IMPORTED_MODULE_1__partial_ImprovementComment_vue___default.a, ImprovementDescription: __WEBPACK_IMPORTED_MODULE_2__partial_ImprovementDescription_vue___default.a, VueMarkdown: __WEBPACK_IMPORTED_MODULE_3_vue_markdown___default.a },
     computed: {
         currentPart: function currentPart() {
             return _.find(this.parts, this.matchesPartId);
@@ -65676,6 +65690,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -65721,7 +65736,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "placeholder": _vm.improvement.assessor_comment
+      "placeholder": _vm.improvement.assessor_comment,
+      "rows": "3"
     },
     domProps: {
       "value": (_vm.comment)
@@ -84743,19 +84759,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "badge improvement-no mr-3"
     }, [_vm._v("\n                    " + _vm._s(index + 1) + "\n                ")]), _vm._v("\n                " + _vm._s(imp.title) + "\n            ")])]), _vm._v(" "), _c('div', {
       staticClass: "card-body"
-    }, [_c('vue-markdown', {
+    }, [_c('improvement-description', {
       attrs: {
-        "source": imp.description
+        "description": imp.description
       }
     }), _vm._v(" "), (imp.assessor_guidance) ? _c('div', {
+      staticClass: "row row-eq-height"
+    }, [_c('div', {
+      staticClass: "col-12 col-sm-5"
+    }, [_c('div', {
       staticClass: "alert alert-warning"
-    }, [_c('span', [_vm._v(_vm._s(imp.assessor_guidance))])]) : _vm._e(), _vm._v(" "), _c('improvement-comment', {
+    }, [_c('span', [_vm._v(_vm._s(imp.assessor_guidance))])])]), _vm._v(" "), _c('div', {
+      staticClass: "col-12 col-sm-7"
+    }, [_c('improvement-comment', {
       attrs: {
         "improvement": imp,
         "partIndex": _vm.currentPartIndex,
         "improvementIndex": index
       }
-    })], 1), _vm._v(" "), _c('div', {
+    })], 1)]) : _c('div', [_c('improvement-comment', {
+      attrs: {
+        "improvement": imp,
+        "partIndex": _vm.currentPartIndex,
+        "improvementIndex": index
+      }
+    })], 1)], 1), _vm._v(" "), _c('div', {
       staticClass: "card-footer"
     }, [_c('improvement-buttons', {
       attrs: {
@@ -86853,6 +86881,151 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(386),
+  /* template */
+  __webpack_require__(387),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/partial/ImprovementDescription.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ImprovementDescription.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-26bcabf5", Component.options)
+  } else {
+    hotAPI.reload("data-v-26bcabf5", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 386 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_markdown__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_markdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_markdown__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['description'],
+    components: { VueMarkdown: __WEBPACK_IMPORTED_MODULE_0_vue_markdown___default.a },
+    data: function data() {
+        return {
+            visible: false
+        };
+    },
+
+    computed: {
+        hasDescription: function hasDescription() {
+            return this.description.length > 0;
+        },
+        getClass: function getClass() {
+            if (this.visible) {
+                return 'btn btn-warning mb-2 float-right';
+            }
+            return 'btn mb-4';
+        }
+    },
+    methods: {
+        toggleVisible: function toggleVisible() {
+            this.visible = !this.visible;
+        }
+    }
+});
+
+/***/ }),
+/* 387 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return (_vm.hasDescription) ? _c('div', {
+    staticClass: "improvement-description-vue"
+  }, [_c('button', {
+    class: _vm.getClass,
+    attrs: {
+      "type": "button"
+    },
+    on: {
+      "click": function($event) {
+        _vm.toggleVisible()
+      }
+    }
+  }, [(_vm.visible) ? _c('span', [_c('i', {
+    staticClass: "fa fa-times"
+  })]) : _c('span', [_c('i', {
+    staticClass: "fa fa-plus pr-2"
+  }), _vm._v(" Show Description\n        ")])]), _vm._v(" "), _c('transition', {
+    attrs: {
+      "name": "fade"
+    }
+  }, [(_vm.visible) ? [_c('vue-markdown', {
+    attrs: {
+      "source": _vm.description
+    }
+  })] : _vm._e()], 2)], 1) : _vm._e()
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-26bcabf5", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
