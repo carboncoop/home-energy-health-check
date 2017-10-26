@@ -31,6 +31,10 @@ export default {
             }
             return false
         },
+        deleteLocalAssessment(assessment_id) {
+            let assessments = this.localAssessments
+            this.localAssessments = _.reject(assessments, {id: assessment_id})
+        },
         saveLocally() {
             let formData = this.$store.getters.getEditFormData
             let id = formData.assessment.id

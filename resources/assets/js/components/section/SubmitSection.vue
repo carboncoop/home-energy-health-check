@@ -106,6 +106,7 @@
                 this.waiting = false
                 this.successful = true
                 this.unsuccessful = false
+                this.deleteLocalAssessment(this.assessment.id)
                 setTimeout(() => {
                   window.location.replace(this.baseUrl)
                 }, 1200)

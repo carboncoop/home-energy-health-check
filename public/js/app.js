@@ -86193,6 +86193,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.waiting = false;
             this.successful = true;
             this.unsuccessful = false;
+            this.deleteLocalAssessment(this.assessment.id);
             setTimeout(function () {
                 window.location.replace(_this.baseUrl);
             }, 1200);
@@ -87166,6 +87167,10 @@ if (false) {
                 }
             }
             return false;
+        },
+        deleteLocalAssessment: function deleteLocalAssessment(assessment_id) {
+            var assessments = this.localAssessments;
+            this.localAssessments = _.reject(assessments, { id: assessment_id });
         },
         saveLocally: function saveLocally() {
             var formData = this.$store.getters.getEditFormData;
