@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SubmissionRequest;
+use App\Http\Requests\SubmissionCreateRequest;
 use App\Models\Assessment;
 use App\Models\Improvement;
 use App\Models\Part;
@@ -69,7 +70,7 @@ class SubmissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SubmissionRequest $request)
+    public function store(SubmissionCreateRequest $request)
     {
         // create assessment data on the main table
         if ($request->has('assessment')) {
