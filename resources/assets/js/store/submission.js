@@ -7,7 +7,8 @@ const store = new Vuex.Store({
     state: {
         ready: false,
         assessment: {},
-        parts: []
+        parts: [],
+        descriptionsVisible: {}
     },
     mutations: {
         init(state, obj) {
@@ -28,6 +29,14 @@ const store = new Vuex.Store({
             if (obj.part_index in state.parts) {
                 let part = state.parts[obj.part_index]
                 part.improvements[obj.improvement_index].comment = obj.comment
+            }
+        },
+        toggleVisible(state, impId) {
+            if (impId in state.descriptionsVisible) {
+                state.descriptionsVisible[impId] = !state.descriptionsVisible[impId]
+            } else {
+                Vue.set(state.descriptionsVisible, impId, true)
+                //state.descriptionsVisible[impId] = true
             }
         }
     },
@@ -54,6 +63,14 @@ const store = new Vuex.Store({
                     let part = state.parts[obj.part_index]
                     return part.improvements[obj.improvement_index].comment
                 }
+            }
+        },
+        getVisible(state) {
+            return (impId) => {
+                if (_.has(state.descriptionsVisible, impId)) {
+                    return state.descriptionsVisible[impId]
+                }
+                return false
             }
         },
         getCompletedParts(state) {

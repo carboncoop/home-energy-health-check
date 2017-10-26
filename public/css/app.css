@@ -16749,8 +16749,8 @@ div.submission-vue .improvement-card .card-footer {
 }
 
 div.submission-vue .improvement-card .fade-enter-active, div.submission-vue .improvement-card .fade-leave-active {
-  -webkit-transition: opacity .5s;
-  transition: opacity .5s;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
 }
 
 div.submission-vue .improvement-card .fade-enter, div.submission-vue .improvement-card .fade-leave-to {

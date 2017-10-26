@@ -25,14 +25,12 @@
 <script>
     import VueMarkdown from 'vue-markdown'
     export default {
-        props: ['description'],
+        props: ['id', 'description'],
         components: { VueMarkdown },
-        data() {
-            return {
-                visible: false
-            }
-        },
         computed: {
+            visible() {
+                return this.$store.getters.getVisible(this.id)
+            },
             hasDescription() {
                 return this.description.length > 0
             },
@@ -45,7 +43,7 @@
         },
         methods: {
             toggleVisible() {
-                this.visible = !this.visible
+                this.$store.commit('toggleVisible', this.id)
             }
         }
     }

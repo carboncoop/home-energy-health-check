@@ -65238,7 +65238,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     state: {
         ready: false,
         assessment: {},
-        parts: []
+        parts: [],
+        descriptionsVisible: {}
     },
     mutations: {
         init: function init(state, obj) {
@@ -65259,6 +65260,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
             if (obj.part_index in state.parts) {
                 var part = state.parts[obj.part_index];
                 part.improvements[obj.improvement_index].comment = obj.comment;
+            }
+        },
+        toggleVisible: function toggleVisible(state, impId) {
+            if (impId in state.descriptionsVisible) {
+                state.descriptionsVisible[impId] = !state.descriptionsVisible[impId];
+            } else {
+                __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(state.descriptionsVisible, impId, true);
+                //state.descriptionsVisible[impId] = true
             }
         }
     },
@@ -65285,6 +65294,14 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
                     var part = state.parts[obj.part_index];
                     return part.improvements[obj.improvement_index].comment;
                 }
+            };
+        },
+        getVisible: function getVisible(state) {
+            return function (impId) {
+                if (_.has(state.descriptionsVisible, impId)) {
+                    return state.descriptionsVisible[impId];
+                }
+                return false;
             };
         },
         getCompletedParts: function getCompletedParts(state) {
@@ -65380,6 +65397,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__partial_ImprovementDescription_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__partial_ImprovementDescription_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_markdown__ = __webpack_require__(221);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_markdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_markdown__);
+//
 //
 //
 //
@@ -84761,6 +84779,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "card-body"
     }, [_c('improvement-description', {
       attrs: {
+        "id": imp.id,
         "description": imp.description
       }
     }), _vm._v(" "), (imp.assessor_guidance) ? _c('div', {
@@ -86962,15 +86981,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['description'],
+    props: ['id', 'description'],
     components: { VueMarkdown: __WEBPACK_IMPORTED_MODULE_0_vue_markdown___default.a },
-    data: function data() {
-        return {
-            visible: false
-        };
-    },
-
     computed: {
+        visible: function visible() {
+            return this.$store.getters.getVisible(this.id);
+        },
         hasDescription: function hasDescription() {
             return this.description.length > 0;
         },
@@ -86983,7 +86999,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         toggleVisible: function toggleVisible() {
-            this.visible = !this.visible;
+            this.$store.commit('toggleVisible', this.id);
         }
     }
 });

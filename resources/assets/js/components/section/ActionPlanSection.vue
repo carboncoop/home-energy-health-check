@@ -23,6 +23,7 @@
 
             <div class="card-body">
                 <improvement-description
+                    :id="imp.id"
                     :description="imp.description">
                 </improvement-description>
 
