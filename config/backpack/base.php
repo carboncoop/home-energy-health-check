@@ -12,11 +12,11 @@ return [
     */
 
     // Project name. Shown in the breadcrumbs and a few other places.
-    'project_name' => 'Plymouth Energy Community - Home Assessment Tool',
+    'project_name' => 'Home Energy Health Check',
 
     // Menu logos
-    'logo_lg'   => '<b>PEC</b>hat',
-    'logo_mini' => '<b>PEC</b>',
+    'logo_lg'   => '<b>HEHC</b>',
+    'logo_mini' => '<b>HEHC</b>',
 
     // Developer or company name. Shown in footer.
     'developer_name' => false,
@@ -28,7 +28,7 @@ return [
     'show_powered_by' => false,
 
     // The AdminLTE skin. Affects menu color and primary/secondary colors used throughout the application.
-    'skin' => 'skin-blue-light',
+    'skin' => 'skin-yellow-light',
     // Options: skin-black, skin-blue, skin-purple, skin-red, skin-yellow, skin-green, skin-blue-light, skin-black-light, skin-purple-light, skin-green-light, skin-red-light, skin-yellow-light
 
     // Date & Datetime Format Syntax: https://github.com/jenssegers/date#usage

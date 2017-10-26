@@ -6,12 +6,6 @@
                 <span>Home</span>
             </a>
         </li>
-        <li>
-            <a href="{{ url('submit/1/edit') }}">
-                <i class="fa fa-check-square-o"></i>
-                <span>Sample Assessment Form</span>
-            </a>
-        </li>
     </ul>
 </div>
 
