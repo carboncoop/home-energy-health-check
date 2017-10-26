@@ -30,14 +30,16 @@
 
 <script>
     import Navigation from './partial/Navigation.vue'
+    import LocalSaveMixin from '../mixins/localSave.js'
     import DetectNetwork from 'v-offline'
 
     export default {
         props: [
             'baseUrl', 'formSchema', 'assessment', 'parts',
-            'improvements', 'assessmentImprovements'
+            'improvements', 'assessmentImprovements', 'loadLocal'
         ],
         components: { Navigation, DetectNetwork},
+        mixins: [LocalSaveMixin],
         data() {
             return {
                 initPath: '/details',
@@ -53,40 +55,53 @@
         methods: {
             detected(e) {
                 this.onlineState = e;
+            },
+            loadLocalData() {
+                let assessment = _.find(this.localAssessments, {id: this.assessment.id})
+                this.$store.commit('init', {
+                    parts: [], // @TODO
+                    assessment: assessment.data.assessment
+                })
+            },
+            loadDatabaseData() {
+                // prepare initial improvements
+                const initImprovements = _.chain(this.improvements)
+                    .map((imp) => {
+                        let assImp = _.find(this.assessmentImprovements, function(x) {
+                            return x.improvement_id == imp.id
+                        })
+                        let data = { value: null, comment: null }
+                        if (assImp && _.has(assImp, 'value')) {
+                            data.value = assImp.value
+                        }
+                        if (assImp && _.has(assImp, 'comment')) {
+                            data.comment = assImp.comment
+                        }
+                        return _.extend(imp, data)
+                    })
+                    .groupBy(function (imp) {
+                        return imp.part_id
+                    })
+                    .value()
+
+                // nest the improvements inside their parts
+                const initParts = _.map(this.parts, (x) => {
+                    return _.extend(x, {improvements: initImprovements[x.id]})
+                })
+
+                // seed the store with this data
+                this.$store.commit('init', {
+                    parts: initParts,
+                    assessment: this.assessment
+                })
             }
         },
         mounted() {
-            // prepare initial improvements
-            const initImprovements = _.chain(this.improvements)
-                .map((imp) => {
-                    let assImp = _.find(this.assessmentImprovements, function(x) {
-                        return x.improvement_id == imp.id
-                    })
-                    let data = { value: null, comment: null }
-                    if (assImp && _.has(assImp, 'value')) {
-                        data.value = assImp.value
-                    }
-                    if (assImp && _.has(assImp, 'comment')) {
-                        data.comment = assImp.comment
-                    }
-                    return _.extend(imp, data)
-                })
-                .groupBy(function (imp) {
-                    return imp.part_id
-                })
-                .value()
-
-            // nest the improvements inside their parts
-            const initParts = _.map(this.parts, (x) => {
-                return _.extend(x, {improvements: initImprovements[x.id]})
-            })
-
-            // seed the store with this data
-            this.$store.commit('init', {
-                parts: initParts,
-                assessment: this.assessment
-            })
-
+            if (this.loadLocal) {
+                this.loadLocalData()
+            } else {
+                this.loadDatabaseData()
+            }
             // and load the initial view
             this.$router.replace({ path: this.initPath })
         }

@@ -17,8 +17,9 @@
                         <td>{{ local.data.assessment.homeowner_name }}</td>
                         <td>Saved Locally</td>
                         <td><div class="btn-group">
-                            <a class="btn btn-warning">Edit</a>
-                            <a class="btn btn-danger text-white">Remove</a>
+                            <a class="btn btn-warning" :href="baseUrl+'/submit/'+local.data.assessment.id+'/edit?loadLocal'">
+                                Go to form
+                            </a>
                         </div></td>
                     </tr>
                 </tbody>
@@ -31,7 +32,7 @@
     import LocalSaveMixin from '../mixins/localSave.js'
 
     export default {
-        props: [],
+        props: ['baseUrl'],
         mixins: [LocalSaveMixin],
         computed: {
             haveLocalAssessments() {

@@ -7,6 +7,7 @@
 <div id="submission-edit">
     <submission-edit
         base-url='{{ URL::to('/') }}'
+        :load-local='{{ $load_local }}'
         :form-schema='{{ $json_form_schema }}'
         :assessment='{{ $json_assessment }}'
         :parts='{{ $json_parts }}'

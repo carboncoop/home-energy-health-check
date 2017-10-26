@@ -22,14 +22,15 @@
                 </li>
                 <li class="list-group-item py-5">
                     <div id="locally-saved-assessments">
-                        <locally-saved-assessments>
+                        <locally-saved-assessments
+                            base-url='{{ URL::to('/') }}'>
                         </locally-saved-assessments>
                     </div>
                 </li>
                 <li class="list-group-item pt-5">
                     <p>From the form page, you can edit and submit assessments.</p>
                     <p>You can also view a preview of the pdf this assessment will generate.</p>
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Assessment Date</th>

@@ -86323,8 +86323,9 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_v_offline__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_v_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_v_offline__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_localSave_js__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_v_offline__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_v_offline___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_v_offline__);
 //
 //
 //
@@ -86355,13 +86356,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['baseUrl', 'formSchema', 'assessment', 'parts', 'improvements', 'assessmentImprovements'],
-    components: { Navigation: __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default.a, DetectNetwork: __WEBPACK_IMPORTED_MODULE_1_v_offline___default.a },
+    props: ['baseUrl', 'formSchema', 'assessment', 'parts', 'improvements', 'assessmentImprovements', 'loadLocal'],
+    components: { Navigation: __WEBPACK_IMPORTED_MODULE_0__partial_Navigation_vue___default.a, DetectNetwork: __WEBPACK_IMPORTED_MODULE_2_v_offline___default.a },
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_localSave_js__["a" /* default */]],
     data: function data() {
         return {
             initPath: '/details',
@@ -86378,39 +86381,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         detected: function detected(e) {
             this.onlineState = e;
+        },
+        loadLocalData: function loadLocalData() {
+            var assessment = _.find(this.localAssessments, { id: this.assessment.id });
+            this.$store.commit('init', {
+                parts: [], // @TODO
+                assessment: assessment.data.assessment
+            });
+        },
+        loadDatabaseData: function loadDatabaseData() {
+            var _this = this;
+
+            // prepare initial improvements
+            var initImprovements = _.chain(this.improvements).map(function (imp) {
+                var assImp = _.find(_this.assessmentImprovements, function (x) {
+                    return x.improvement_id == imp.id;
+                });
+                var data = { value: null, comment: null };
+                if (assImp && _.has(assImp, 'value')) {
+                    data.value = assImp.value;
+                }
+                if (assImp && _.has(assImp, 'comment')) {
+                    data.comment = assImp.comment;
+                }
+                return _.extend(imp, data);
+            }).groupBy(function (imp) {
+                return imp.part_id;
+            }).value();
+
+            // nest the improvements inside their parts
+            var initParts = _.map(this.parts, function (x) {
+                return _.extend(x, { improvements: initImprovements[x.id] });
+            });
+
+            // seed the store with this data
+            this.$store.commit('init', {
+                parts: initParts,
+                assessment: this.assessment
+            });
         }
     },
     mounted: function mounted() {
-        var _this = this;
-
-        // prepare initial improvements
-        var initImprovements = _.chain(this.improvements).map(function (imp) {
-            var assImp = _.find(_this.assessmentImprovements, function (x) {
-                return x.improvement_id == imp.id;
-            });
-            var data = { value: null, comment: null };
-            if (assImp && _.has(assImp, 'value')) {
-                data.value = assImp.value;
-            }
-            if (assImp && _.has(assImp, 'comment')) {
-                data.comment = assImp.comment;
-            }
-            return _.extend(imp, data);
-        }).groupBy(function (imp) {
-            return imp.part_id;
-        }).value();
-
-        // nest the improvements inside their parts
-        var initParts = _.map(this.parts, function (x) {
-            return _.extend(x, { improvements: initImprovements[x.id] });
-        });
-
-        // seed the store with this data
-        this.$store.commit('init', {
-            parts: initParts,
-            assessment: this.assessment
-        });
-
+        if (this.loadLocal) {
+            this.loadLocalData();
+        } else {
+            this.loadDatabaseData();
+        }
         // and load the initial view
         this.$router.replace({ path: this.initPath });
     }
@@ -87434,11 +87450,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: [],
+    props: ['baseUrl'],
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_localSave_js__["a" /* default */]],
     computed: {
         haveLocalAssessments: function haveLocalAssessments() {
@@ -87459,18 +87476,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Locally Saved Assessments")]), _vm._v(" "), _c('table', {
     staticClass: "table table-striped"
   }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.localAssessments), function(local) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(local.data.assessment.assessment_date))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(local.data.assessment.homeowner_name))]), _vm._v(" "), _c('td', [_vm._v("Saved Locally")]), _vm._v(" "), _vm._m(1, true)])
+    return _c('tr', [_c('td', [_vm._v(_vm._s(local.data.assessment.assessment_date))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(local.data.assessment.homeowner_name))]), _vm._v(" "), _c('td', [_vm._v("Saved Locally")]), _vm._v(" "), _c('td', [_c('div', {
+      staticClass: "btn-group"
+    }, [_c('a', {
+      staticClass: "btn btn-warning",
+      attrs: {
+        "href": _vm.baseUrl + '/submit/' + local.data.assessment.id + '/edit?loadLocal'
+      }
+    }, [_vm._v("\n                            Go to form\n                        ")])])])])
   }))])] : _vm._e()], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("Assessment Date")]), _vm._v(" "), _c('th', [_vm._v("Homeowner")]), _vm._v(" "), _c('th', [_vm._v("Status")]), _vm._v(" "), _c('th', [_vm._v("Actions")])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('td', [_c('div', {
-    staticClass: "btn-group"
-  }, [_c('a', {
-    staticClass: "btn btn-warning"
-  }, [_vm._v("Edit")]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-danger text-white"
-  }, [_vm._v("Remove")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

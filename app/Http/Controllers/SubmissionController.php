@@ -43,7 +43,7 @@ class SubmissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $assessment = Assessment::findOrFail($id);
         $parts = Part::get([
@@ -55,12 +55,15 @@ class SubmissionController extends Controller
         ]);
         $assImps = AssessmentImprovement::where('assessment_id', '=', $id)->get();
 
+        $loadLocal = $request->exists('loadLocal');
+
         return view('submission.edit', [
             'json_form_schema' => json_encode(Assessment::formSchema()),
             'json_parts' => $parts->toJson(),
             'json_improvements' => $improvements->toJson(),
             'json_assessment' => $assessment->toJson(),
             'json_assessment_improvements' => $assImps->toJson(),
+            'load_local' => ($loadLocal) ? 'true' : 'false',
         ]);
     }
 
