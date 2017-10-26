@@ -10,10 +10,13 @@ window.Vue = require('vue')
 
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+import VueLocalStorage from 'vue-localstorage'
+
 import store from './store/submission.js'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
+Vue.use(VueLocalStorage)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

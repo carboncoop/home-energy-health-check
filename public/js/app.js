@@ -48880,17 +48880,19 @@ module.exports = __webpack_require__(379);
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_submission_js__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_section_SubmitSection_vue__ = __webpack_require__(366);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_section_SubmitSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_section_SubmitSection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_localstorage__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_localstorage___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_localstorage__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store_submission_js__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_section_ActionPlanSection_vue__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_section_ActionPlanSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_section_ActionPlanSection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_section_DetailsSection_vue__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_section_DetailsSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_section_DetailsSection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_section_ComfortSection_vue__ = __webpack_require__(354);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_section_ComfortSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_section_ComfortSection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_section_HealthSection_vue__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_section_HealthSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_section_HealthSection_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_section_SubmitSection_vue__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_section_SubmitSection_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_section_SubmitSection_vue__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -48905,8 +48907,11 @@ window.Vue = __webpack_require__(42);
 
 
 
+
+
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */]);
 Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_localstorage___default.a);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -48924,13 +48929,13 @@ if (document.getElementById('submission-edit') != null) {
 
     Vue.component('submission-edit', __webpack_require__(369));
 
-    var routes = [{ name: 'part', path: '/part/:partId', component: __WEBPACK_IMPORTED_MODULE_3__components_section_ActionPlanSection_vue___default.a, props: true }, { name: 'details', path: '/details', component: __WEBPACK_IMPORTED_MODULE_4__components_section_DetailsSection_vue___default.a, props: true }, { name: 'comfort', path: '/comfort', component: __WEBPACK_IMPORTED_MODULE_5__components_section_ComfortSection_vue___default.a, props: true }, { name: 'health', path: '/health', component: __WEBPACK_IMPORTED_MODULE_6__components_section_HealthSection_vue___default.a, props: true }, { name: 'submit', path: '/submit', component: __WEBPACK_IMPORTED_MODULE_7__components_section_SubmitSection_vue___default.a, props: true }];
+    var routes = [{ name: 'part', path: '/part/:partId', component: __WEBPACK_IMPORTED_MODULE_4__components_section_ActionPlanSection_vue___default.a, props: true }, { name: 'details', path: '/details', component: __WEBPACK_IMPORTED_MODULE_5__components_section_DetailsSection_vue___default.a, props: true }, { name: 'comfort', path: '/comfort', component: __WEBPACK_IMPORTED_MODULE_6__components_section_ComfortSection_vue___default.a, props: true }, { name: 'health', path: '/health', component: __WEBPACK_IMPORTED_MODULE_7__components_section_HealthSection_vue___default.a, props: true }, { name: 'submit', path: '/submit', component: __WEBPACK_IMPORTED_MODULE_8__components_section_SubmitSection_vue___default.a, props: true }];
 
     var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({ routes: routes });
 
     var app = new Vue({
         el: '#submission-edit',
-        store: __WEBPACK_IMPORTED_MODULE_2__store_submission_js__["a" /* default */],
+        store: __WEBPACK_IMPORTED_MODULE_3__store_submission_js__["a" /* default */],
         router: router
     });
 }
@@ -48941,7 +48946,7 @@ if (document.getElementById('submission-create') != null) {
 
     var _app = new Vue({
         el: '#submission-create',
-        store: __WEBPACK_IMPORTED_MODULE_2__store_submission_js__["a" /* default */]
+        store: __WEBPACK_IMPORTED_MODULE_3__store_submission_js__["a" /* default */]
     });
 }
 
@@ -86066,6 +86071,7 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_form_js__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_localSave_js__ = __webpack_require__(388);
 //
 //
 //
@@ -86117,12 +86123,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['assessment', 'baseUrl'],
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_js__["a" /* default */]],
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_form_js__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__mixins_localSave_js__["a" /* default */]],
     data: function data() {
         return {
             submitAvailable: true,
@@ -86140,6 +86167,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         completedImprovements: function completedImprovements() {
             return this.$store.getters.getCompletedImprovements;
+        },
+        haveLocalAssessments: function haveLocalAssessments() {
+            return !_.isEmpty(this.localAssessments);
+        },
+        localAssessments: function localAssessments() {
+            return this.$localStorage.savedAssessments;
         }
     },
     methods: {
@@ -86188,7 +86221,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "submit-section-vue"
-  }, [_c('p', {
+  }, [(_vm.haveLocalAssessments) ? [_c('h4', {
+    staticClass: "text-uppercase"
+  }, [_vm._v("Locally saved Assessments:")]), _vm._v(" "), _vm._l((_vm.localAssessments), function(local) {
+    return _c('div', [_c('div', {
+      staticClass: "card my-2"
+    }, [_vm._v("\n                " + _vm._s(local.id) + " " + _vm._s(local.data.assessment.homeowner_name) + "\n            ")])])
+  })] : _vm._e(), _vm._v(" "), _c('p', {
+    staticClass: "lead"
+  }, [_vm._v("\n        If you're offline, you can save this assessment on your device temporarily until you get back online.\n    ")]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-warning mb-3",
+    on: {
+      "click": function($event) {
+        _vm.saveLocally()
+      }
+    }
+  }, [_vm._v("Save Locally")]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('p', {
     staticClass: "lead"
   }, [_vm._v("\n        If you wish to save your changes and return to the home page, use the following link.\n    ")]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-warning mb-3",
@@ -86197,7 +86245,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.saveAndQuit()
       }
     }
-  }, [_vm._v("Save and Quit")]), _vm._v(" "), _c('p', {
+  }, [_vm._v("Save and Quit")]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('p', {
     staticClass: "lead"
   }, [_vm._v("\n        If this assessment is complete and you wish to start the submission process, use the following link.\n    ")]), _vm._v(" "), (_vm.assessment.submitted) ? _c('div', {
     staticClass: "alert alert-warning"
@@ -87042,6 +87090,265 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-26bcabf5", module.exports)
   }
 }
+
+/***/ }),
+/* 388 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    localStorage: {
+        savedAssessments: {
+            type: Array,
+            default: []
+        }
+    },
+    methods: {
+        saveLocally: function saveLocally() {
+            var assessments = this.$localStorage.get('savedAssessments');
+            var formData = this.$store.getters.getEditFormData;
+            var id = formData.assessment.id;
+            var exists = _.filter(assessments, { id: id });
+            //console.log(exists, _.isEmpty(exists))
+            if (_.isEmpty(exists)) {
+                assessments.push({
+                    id: id,
+                    data: formData
+                });
+                console.warn("new", assessments, id, formData);
+            } else {
+                var index = _.findIndex(assessments, { id: id });
+                Vue.set(assessments, index, { id: id, data: formData });
+                console.warn("exists", assessments, id, formData);
+            }
+
+            this.$localStorage.set('savedAssessments', assessments);
+        }
+    }
+});
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * vue-local-storage v0.5.0
+ * (c) 2017 Alexander Avakov
+ * @license MIT
+ */
+(function (global, factory) {
+	 true ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.VueLocalStorage = factory());
+}(this, (function () { 'use strict';
+
+var VueLocalStorage = function VueLocalStorage () {
+  this._properties = {};
+};
+
+/**
+ * Get value from localStorage
+ *
+ * @param {String} lsKey
+ * @param {*} defaultValue
+ * @returns {*}
+ */
+VueLocalStorage.prototype.get = function get (lsKey, defaultValue) {
+    var this$1 = this;
+    if ( defaultValue === void 0 ) defaultValue = null;
+
+  if (window.localStorage[lsKey]) {
+    var type = String;
+
+    for (var key in this$1._properties) {
+      if (key === lsKey) {
+        type = this$1._properties[key].type;
+        break
+      }
+    }
+
+    return this._process(type, window.localStorage[lsKey])
+  }
+
+  return defaultValue !== null ? defaultValue : null
+};
+
+/**
+ * Set localStorage value
+ *
+ * @param {String} lsKey
+ * @param {*} value
+ * @returns {*}
+ */
+VueLocalStorage.prototype.set = function set (lsKey, value) {
+    var this$1 = this;
+
+  for (var key in this$1._properties) {
+    var type = this$1._properties[key].type;
+
+    if ((key === lsKey) && [Array, Object].includes(type)) {
+      window.localStorage.setItem(lsKey, JSON.stringify(value));
+
+      return value
+    }
+  }
+
+  window.localStorage.setItem(lsKey, value);
+
+  return value
+};
+
+/**
+ * Remove value from localStorage
+ *
+ * @param {String} lsKey
+ */
+VueLocalStorage.prototype.remove = function remove (lsKey) {
+  return window.localStorage.removeItem(lsKey)
+};
+
+/**
+ * Add new property to localStorage
+ *
+ * @param {String} key
+ * @param {function} type
+ * @param {*} defaultValue
+ */
+VueLocalStorage.prototype.addProperty = function addProperty (key, type, defaultValue) {
+    if ( defaultValue === void 0 ) defaultValue = undefined;
+
+  type = type || String;
+
+  this._properties[key] = { type: type };
+
+  if (!window.localStorage[key] && defaultValue !== null) {
+    window.localStorage.setItem(
+      key,
+      [Array, Object].includes(type) ? JSON.stringify(defaultValue) : defaultValue
+    );
+  }
+};
+
+/**
+ * Process the value before return it from localStorage
+ *
+ * @param {String} type
+ * @param {*} value
+ * @returns {*}
+ * @private
+ */
+VueLocalStorage.prototype._process = function _process (type, value) {
+  switch (type) {
+    case Boolean:
+      return value === 'true'
+    case Number:
+      return parseInt(value, 10)
+    case Array:
+      try {
+        var array = JSON.parse(value);
+
+        return Array.isArray(array) ? array : []
+      } catch (e) {
+        return []
+      }
+    case Object:
+      try {
+        return JSON.parse(value)
+      } catch (e) {
+        return {}
+      }
+    default:
+      return value
+  }
+};
+
+var VueLocalStorage$1 = new VueLocalStorage();
+
+var index = {
+  /**
+   * Install vue-local-storage plugin
+   *
+   * @param {Vue} Vue
+   * @param {Object} options
+   */
+  install: function (Vue, options) {
+    if ( options === void 0 ) options = {};
+
+    if (typeof process !== 'undefined' &&
+      (
+        process.server ||
+        process.SERVER_BUILD ||
+        (Object({"NODE_ENV":"development"}) && Object({"NODE_ENV":"development"}).VUE_ENV === 'server')
+      )
+    ) {
+      return
+    }
+
+    try {
+      var test = '__vue-localstorage-test__';
+
+      window.localStorage.setItem(test, test);
+      window.localStorage.removeItem(test);
+    } catch (e) {
+      console.error('Local storage is not supported');
+    }
+
+    var name = options.name || 'localStorage';
+    var bind = options.bind;
+
+    Vue.mixin({
+      beforeCreate: function beforeCreate () {
+        var this$1 = this;
+
+        if (this.$options[name]) {
+          Object.keys(this.$options[name]).forEach(function (key) {
+            var config = this$1.$options[name][key];
+            var ref = [config.type, config.default];
+            var type = ref[0];
+            var defaultValue = ref[1];
+
+            VueLocalStorage$1.addProperty(key, type, defaultValue);
+
+            var existingProp = Object.getOwnPropertyDescriptor(VueLocalStorage$1, key);
+
+            if (!existingProp) {
+              var prop = {
+                get: function () { return Vue.localStorage.get(key, defaultValue); },
+                set: function (val) { return Vue.localStorage.set(key, val); },
+                configurable: true
+              };
+
+              Object.defineProperty(VueLocalStorage$1, key, prop);
+              Vue.util.defineReactive(VueLocalStorage$1, key, defaultValue);
+            } else if (!Vue.config.silent) {
+              console.log((key + ": is already defined and will be reused"));
+            }
+
+            if ((bind || config.bind) && config.bind !== false) {
+              this$1.$options.computed = this$1.$options.computed || {};
+
+              if (!this$1.$options.computed[key]) {
+                this$1.$options.computed[key] = {
+                  get: function () { return Vue.localStorage[key]; },
+                  set: function (val) { Vue.localStorage[key] = val; }
+                };
+              }
+            }
+          });
+        }
+      }
+    });
+
+    Vue[name] = VueLocalStorage$1;
+    Vue.prototype[("$" + name)] = VueLocalStorage$1;
+  }
+};
+
+return index;
+
+})));
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(195)))
 
 /***/ })
 /******/ ]);

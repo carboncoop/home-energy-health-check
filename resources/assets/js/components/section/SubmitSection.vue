@@ -1,12 +1,32 @@
 <template>
     <div class="submit-section-vue">
 
+        <template v-if="haveLocalAssessments">
+            <h4 class="text-uppercase">Locally saved Assessments:</h4>
+            <div v-for="local in localAssessments">
+                <div class="card my-2">
+                    {{ local.id }} {{ local.data.assessment.homeowner_name }}
+                </div>
+            </div>
+        </template>
+
+        <p class="lead">
+            If you're offline, you can save this assessment on your device temporarily until you get back online.
+        </p>
+
+        <button class="btn btn-warning mb-3"
+            v-on:click="saveLocally()">Save Locally</button>
+
+        <hr>
+
         <p class="lead">
             If you wish to save your changes and return to the home page, use the following link.
         </p>
 
         <button class="btn btn-warning mb-3"
             v-on:click="saveAndQuit()">Save and Quit</button>
+
+        <hr>
 
         <p class="lead">
             If this assessment is complete and you wish to start the submission process, use the following link.
@@ -51,10 +71,11 @@
 
 <script>
     import FormMixin from '../../mixins/form.js'
+    import LocalSaveMixin from '../../mixins/localSave.js'
 
     export default {
         props: ['assessment', 'baseUrl'],
-        mixins: [FormMixin],
+        mixins: [FormMixin, LocalSaveMixin],
         data() {
             return {
                 submitAvailable: true,
@@ -71,6 +92,12 @@
             },
             completedImprovements() {
                 return this.$store.getters.getCompletedImprovements
+            },
+            haveLocalAssessments() {
+                return !_.isEmpty(this.localAssessments)
+            },
+            localAssessments() {
+                return this.$localStorage.savedAssessments
             }
         },
         methods: {
