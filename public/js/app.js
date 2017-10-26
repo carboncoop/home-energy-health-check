@@ -86138,11 +86138,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -86167,12 +86162,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         completedImprovements: function completedImprovements() {
             return this.$store.getters.getCompletedImprovements;
-        },
-        haveLocalAssessments: function haveLocalAssessments() {
-            return !_.isEmpty(this.localAssessments);
-        },
-        localAssessments: function localAssessments() {
-            return this.$localStorage.savedAssessments;
         }
     },
     methods: {
@@ -86221,15 +86210,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "submit-section-vue"
-  }, [(_vm.haveLocalAssessments) ? [_c('h4', {
-    staticClass: "text-uppercase"
-  }, [_vm._v("Locally saved Assessments:")]), _vm._v(" "), _vm._l((_vm.localAssessments), function(local) {
-    return _c('div', [_c('div', {
-      staticClass: "card my-2"
-    }, [_vm._v("\n                " + _vm._s(local.id) + " " + _vm._s(local.data.assessment.homeowner_name) + "\n            ")])])
-  })] : _vm._e(), _vm._v(" "), _c('p', {
+  }, [_c('p', {
     staticClass: "lead"
-  }, [_vm._v("\n        If you're offline, you can save this assessment on your device temporarily until you get back online.\n    ")]), _vm._v(" "), _c('button', {
+  }, [_vm._v("\n        If you're offline, you can save this assessment on your device temporarily until you get back online.\n    ")]), _vm._v(" "), (_vm.isSavedLocally) ? _c('div', {
+    staticClass: "alert alert-warning"
+  }, [_vm._v("\n        This assessment has been saved locally, you'll be able to recall it later.\n    ")]) : _vm._e(), _vm._v(" "), _c('button', {
     staticClass: "btn btn-warning mb-3",
     on: {
       "click": function($event) {
@@ -87097,32 +87082,45 @@ if (false) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            isSavedLocally: false
+        };
+    },
+
     localStorage: {
         savedAssessments: {
             type: Array,
             default: []
         }
     },
+    computed: {
+        localAssessments: {
+            get: function get() {
+                return this.$localStorage.get('savedAssessments');
+            },
+            set: function set(value) {
+                this.$localStorage.set('savedAssessments', value);
+            }
+        }
+    },
     methods: {
         saveLocally: function saveLocally() {
-            var assessments = this.$localStorage.get('savedAssessments');
             var formData = this.$store.getters.getEditFormData;
             var id = formData.assessment.id;
-            var exists = _.filter(assessments, { id: id });
-            //console.log(exists, _.isEmpty(exists))
-            if (_.isEmpty(exists)) {
+            var assessments = this.localAssessments;
+            var exists = _.filter(this.localAssessments, { id: id });
+            if (!_.isEmpty(exists)) {
+                var index = _.findIndex(assessments, { id: id });
+                Vue.set(assessments, index, { id: id, data: formData });
+            } else {
                 assessments.push({
                     id: id,
                     data: formData
                 });
-                console.warn("new", assessments, id, formData);
-            } else {
-                var index = _.findIndex(assessments, { id: id });
-                Vue.set(assessments, index, { id: id, data: formData });
-                console.warn("exists", assessments, id, formData);
             }
-
-            this.$localStorage.set('savedAssessments', assessments);
+            this.localAssessments = assessments;
+            this.isSavedLocally = true;
         }
     }
 });

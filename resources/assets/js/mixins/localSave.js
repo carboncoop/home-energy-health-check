@@ -1,30 +1,42 @@
 export default {
+    data() {
+        return {
+            isSavedLocally: false
+        }
+    },
     localStorage: {
         savedAssessments: {
             type: Array,
             default: []
         }
     },
+    computed: {
+        localAssessments: {
+            get() {
+                return this.$localStorage.get('savedAssessments')
+            },
+            set(value) {
+                this.$localStorage.set('savedAssessments', value)
+            }
+        }
+    },
     methods: {
         saveLocally() {
-            let assessments = this.$localStorage.get('savedAssessments')
             let formData = this.$store.getters.getEditFormData
             let id = formData.assessment.id
-            let exists = _.filter(assessments, {id: id})
-            //console.log(exists, _.isEmpty(exists))
-            if (_.isEmpty(exists)) {
+            let assessments = this.localAssessments
+            let exists = _.filter(this.localAssessments, {id: id})
+            if (!_.isEmpty(exists)) {
+                let index = _.findIndex(assessments, {id: id})
+                Vue.set(assessments, index, {id: id, data: formData})
+            } else {
                 assessments.push({
                     id: id,
                     data: formData
                 })
-                console.warn("new", assessments, id, formData)
-            } else {
-                let index = _.findIndex(assessments, {id: id})
-                Vue.set(assessments, index, {id: id, data: formData})
-                console.warn("exists", assessments, id, formData)
             }
-
-            this.$localStorage.set('savedAssessments', assessments)
+            this.localAssessments = assessments
+            this.isSavedLocally = true
         }
     }
 }
