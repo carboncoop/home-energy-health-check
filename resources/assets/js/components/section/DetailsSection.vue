@@ -66,6 +66,10 @@
                         homeowner_email: {
                             label: 'Homeowner Email',
                             type: 'text'
+                        },
+                        homeowner_uniqueid: {
+                            label: 'Unique Code Identifier',
+                            type: 'text'
                         }
                     }
                 }
