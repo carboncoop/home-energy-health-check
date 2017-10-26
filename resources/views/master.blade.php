@@ -7,12 +7,12 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>pechat</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,600" type="text/css">
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/app.css?v=') . env('VER', '0') }}" type="text/css">
     </head>
     <body>
         <div class="page">
             @yield('content')
         </div>
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/app.js?v=') . env('VER', '0') }}"></script>
     </body>
 </html>
