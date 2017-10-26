@@ -86382,18 +86382,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         detected: function detected(e) {
             this.onlineState = e;
         },
-        loadLocalData: function loadLocalData() {
-            var assessment = _.find(this.localAssessments, { id: this.assessment.id });
-            this.$store.commit('init', {
-                parts: [], // @TODO
-                assessment: assessment.data.assessment
-            });
-        },
-        loadDatabaseData: function loadDatabaseData() {
+        initImprovements: function initImprovements() {
             var _this = this;
 
-            // prepare initial improvements
-            var initImprovements = _.chain(this.improvements).map(function (imp) {
+            return _.chain(this.improvements).map(function (imp) {
                 var assImp = _.find(_this.assessmentImprovements, function (x) {
                     return x.improvement_id == imp.id;
                 });
@@ -86408,6 +86400,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).groupBy(function (imp) {
                 return imp.part_id;
             }).value();
+        },
+        loadLocalData: function loadLocalData() {
+            var _this2 = this;
+
+            var assessment = _.find(this.localAssessments, { id: this.assessment.id });
+
+            // prepare initial improvements
+            var initImprovements = this.initImprovements();
+
+            // nest the improvements inside their parts
+            var initParts = _.map(this.parts, function (x) {
+                return _.extend(x, { improvements: initImprovements[x.id] });
+            });
+
+            // update improvements with local data
+            var updatedParts = _.map(initParts, function (part) {
+                var updatedImprovements = _.map(part.improvements, function (imp) {
+                    var localImp = _this2.getLocalImprovementData(_this2.assessment.id, imp.id);
+                    imp.value = localImp.value;
+                    imp.comment = localImp.comment;
+                    return imp;
+                });
+                part.improvements = updatedImprovements;
+                return part;
+            });
+
+            this.$store.commit('init', {
+                parts: updatedParts,
+                assessment: assessment.data.assessment
+            });
+        },
+        loadDatabaseData: function loadDatabaseData() {
+            // prepare initial improvements
+            var initImprovements = this.initImprovements();
 
             // nest the improvements inside their parts
             var initParts = _.map(this.parts, function (x) {
@@ -87131,6 +87157,16 @@ if (false) {
         }
     },
     methods: {
+        getLocalImprovementData: function getLocalImprovementData(assessment_id, improvement_id) {
+            var assessment = _.find(this.localAssessments, { id: assessment_id });
+            if (assessment) {
+                var improvement = _.find(assessment.data.improvements, { improvement_id: improvement_id });
+                if (improvement) {
+                    return improvement;
+                }
+            }
+            return false;
+        },
         saveLocally: function saveLocally() {
             var formData = this.$store.getters.getEditFormData;
             var id = formData.assessment.id;

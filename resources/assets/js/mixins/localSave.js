@@ -21,6 +21,16 @@ export default {
         }
     },
     methods: {
+        getLocalImprovementData(assessment_id, improvement_id) {
+            let assessment = _.find(this.localAssessments, {id: assessment_id})
+            if (assessment) {
+                let improvement = _.find(assessment.data.improvements, {improvement_id: improvement_id})
+                if (improvement) {
+                    return improvement
+                }
+            }
+            return false
+        },
         saveLocally() {
             let formData = this.$store.getters.getEditFormData
             let id = formData.assessment.id

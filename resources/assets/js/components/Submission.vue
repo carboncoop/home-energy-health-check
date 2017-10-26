@@ -56,16 +56,8 @@
             detected(e) {
                 this.onlineState = e;
             },
-            loadLocalData() {
-                let assessment = _.find(this.localAssessments, {id: this.assessment.id})
-                this.$store.commit('init', {
-                    parts: [], // @TODO
-                    assessment: assessment.data.assessment
-                })
-            },
-            loadDatabaseData() {
-                // prepare initial improvements
-                const initImprovements = _.chain(this.improvements)
+            initImprovements() {
+                return _.chain(this.improvements)
                     .map((imp) => {
                         let assImp = _.find(this.assessmentImprovements, function(x) {
                             return x.improvement_id == imp.id
@@ -83,6 +75,38 @@
                         return imp.part_id
                     })
                     .value()
+            },
+            loadLocalData() {
+                const assessment = _.find(this.localAssessments, {id: this.assessment.id})
+
+                // prepare initial improvements
+                const initImprovements = this.initImprovements()
+
+                // nest the improvements inside their parts
+                const initParts = _.map(this.parts, (x) => {
+                    return _.extend(x, {improvements: initImprovements[x.id]})
+                })
+
+                // update improvements with local data
+                const updatedParts = _.map(initParts, (part) => {
+                    let updatedImprovements = _.map(part.improvements, (imp) => {
+                        let localImp = this.getLocalImprovementData(this.assessment.id, imp.id)
+                        imp.value = localImp.value
+                        imp.comment = localImp.comment
+                        return imp
+                    })
+                    part.improvements = updatedImprovements
+                    return part
+                })
+
+                this.$store.commit('init', {
+                    parts: updatedParts,
+                    assessment: assessment.data.assessment
+                })
+            },
+            loadDatabaseData() {
+                // prepare initial improvements
+                const initImprovements = this.initImprovements()
 
                 // nest the improvements inside their parts
                 const initParts = _.map(this.parts, (x) => {
