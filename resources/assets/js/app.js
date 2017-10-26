@@ -62,3 +62,13 @@ if (document.getElementById('submission-create') != null) {
         store
     });
 }
+
+if (document.getElementById('locally-saved-assessments') != null) {
+
+    Vue.component('locally-saved-assessments', require('./components/LocallySavedAssessments.vue'));
+
+    const app = new Vue({
+        el: '#locally-saved-assessments',
+        store
+    });
+}

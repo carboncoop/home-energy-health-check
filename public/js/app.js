@@ -48950,6 +48950,16 @@ if (document.getElementById('submission-create') != null) {
     });
 }
 
+if (document.getElementById('locally-saved-assessments') != null) {
+
+    Vue.component('locally-saved-assessments', __webpack_require__(390));
+
+    var _app2 = new Vue({
+        el: '#locally-saved-assessments',
+        store: __WEBPACK_IMPORTED_MODULE_3__store_submission_js__["a" /* default */]
+    });
+}
+
 /***/ }),
 /* 188 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -87347,6 +87357,128 @@ return index;
 })));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(195)))
+
+/***/ }),
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(2)(
+  /* script */
+  __webpack_require__(391),
+  /* template */
+  __webpack_require__(392),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/home/adam/Dev/pechat/resources/assets/js/components/LocallySavedAssessments.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] LocallySavedAssessments.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3dc0d19e", Component.options)
+  } else {
+    hotAPI.reload("data-v-3dc0d19e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 391 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_localSave_js__ = __webpack_require__(388);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: [],
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_localSave_js__["a" /* default */]],
+    computed: {
+        haveLocalAssessments: function haveLocalAssessments() {
+            return !_.isEmpty(this.localAssessments);
+        }
+    }
+});
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "locally-saved-assessments-vue"
+  }, [(_vm.haveLocalAssessments) ? [_c('h4', {
+    staticClass: "text-uppercase"
+  }, [_vm._v("Locally Saved Assessments")]), _vm._v(" "), _c('table', {
+    staticClass: "table table-striped"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.localAssessments), function(local) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(local.data.assessment.assessment_date))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(local.data.assessment.homeowner_name))]), _vm._v(" "), _c('td', [_vm._v("Saved Locally")]), _vm._v(" "), _vm._m(1, true)])
+  }))])] : _vm._e()], 2)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("Assessment Date")]), _vm._v(" "), _c('th', [_vm._v("Homeowner")]), _vm._v(" "), _c('th', [_vm._v("Status")]), _vm._v(" "), _c('th', [_vm._v("Actions")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('td', [_c('div', {
+    staticClass: "btn-group"
+  }, [_c('a', {
+    staticClass: "btn btn-warning"
+  }, [_vm._v("Edit")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-danger text-white"
+  }, [_vm._v("Remove")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3dc0d19e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

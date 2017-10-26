@@ -5,20 +5,28 @@
 @section('content')
     <div class="container">
         <div class="my-4 p-4 card">
-            <h1>{{ config('app.name') }} &middot; Version {{ env('VER') }}</h1>
+            <h1 class="mb-5">
+                {{ config('app.name') }} &middot; Version {{ env('VER') }}
+            </h1>
 
             <ol class="list-group">
-                <li class="list-group-item">
+                <li class="list-group-item py-3">
                     <a class="btn btn-primary" href="{{ url('admin') }}">
                         Go to the Administration area.
                     </a>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item py-3">
                     <a class="btn btn-warning" href="{{ url('submit/create') }}">
                         Create a new assessment.
                     </a>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item py-5">
+                    <div id="locally-saved-assessments">
+                        <locally-saved-assessments>
+                        </locally-saved-assessments>
+                    </div>
+                </li>
+                <li class="list-group-item pt-5">
                     <p>From the form page, you can edit and submit assessments.</p>
                     <p>You can also view a preview of the pdf this assessment will generate.</p>
                     <table class="table">
