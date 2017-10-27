@@ -137,7 +137,9 @@ class SubmissionController extends Controller
 
         // prepare pdf and send email
         if ($request->andProcess) {
-            return $this->pdf->process($id, 'email');
+            if ($assessment->homeowner_email != null) {
+                return $this->pdf->process($id, 'email');
+            }
         }
 
         return response()->json([
