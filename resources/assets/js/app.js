@@ -29,6 +29,7 @@ import DetailsSection from './components/section/DetailsSection.vue'
 import ComfortSection from './components/section/ComfortSection.vue'
 import HealthSection from './components/section/HealthSection.vue'
 import SubmitSection from './components/section/SubmitSection.vue'
+import MiscCommentsSection from './components/section/MiscCommentsSection.vue'
 
 
 if (document.getElementById('submission-edit') != null) {
@@ -40,7 +41,8 @@ if (document.getElementById('submission-edit') != null) {
       { name: 'details', path: '/details', component: DetailsSection, props: true },
       { name: 'comfort', path: '/comfort', component: ComfortSection, props: true },
       { name: 'health', path: '/health', component: HealthSection, props: true },
-      { name: 'submit', path: '/submit', component: SubmitSection, props: true }
+      { name: 'submit', path: '/submit', component: SubmitSection, props: true },
+      { name: 'comments', path: '/comments', component: MiscCommentsSection, props: true }
     ]
 
     const router = new VueRouter({ routes })

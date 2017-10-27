@@ -63,6 +63,16 @@
                     @endif
 
                 </div>
+
+                @if (3 == $index)
+                    <div class="section break-after-me">
+                        <h1 class="section-header my-3">
+                            Assessor Comments
+                        </h1>
+                        @parsedown($assessment['misc_comments'])
+                    </div>
+                @endif
+
             @endforeach
 
         </div>

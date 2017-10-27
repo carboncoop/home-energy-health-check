@@ -20,7 +20,7 @@
                         Create a new assessment.
                     </a>
                 </li>
-                <li class="list-group-item py-5">
+                <li class="list-group-item py-3">
                     <div id="locally-saved-assessments">
                         <locally-saved-assessments
                             base-url='{{ URL::to('/') }}'>

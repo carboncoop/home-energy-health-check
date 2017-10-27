@@ -36,6 +36,11 @@
                             <span class="pl-1">{{ index + 1 }}</span>
                         </router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link to="/comments" class="nav-link">
+                            Comments
+                        </router-link>
+                    </li>
                 </ul>
 
                 <router-link to="/submit" tag="button" class="btn btn-warning ml-3">

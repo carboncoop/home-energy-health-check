@@ -7,7 +7,7 @@
             </label>
 
             <div class="col-sm-8" v-if="'textarea' == inputType">
-                <textarea class="form-control" v-model="attribute" rows="4">
+                <textarea class="form-control" v-model="attribute" :rows="rows">
                 </textarea>
                 <div class="mt-3 alert alert-danger" v-for="message in errors">
                     {{ message }}
@@ -48,10 +48,16 @@
     import Moment from 'moment'
 
     export default {
-        props: ['attributeName', 'label', 'inputType', 'errors'],
+        props: ['attributeName', 'label', 'inputType', 'errors', 'textAreaRows'],
         components: { Datepicker },
         mixins: [ AttributeMixin ],
         computed: {
+            rows() {
+                if (this.textAreaRows) {
+                    return this.textAreaRows
+                }
+                return 4
+            },
             datepickerValue: {
                 get() {
                     return this.attribute
