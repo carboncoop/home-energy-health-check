@@ -85403,6 +85403,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -85802,6 +85818,58 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _vm._l((_vm.errors), function(message) {
+    return _c('div', {
+      staticClass: "mt-3 alert alert-danger"
+    }, [_vm._v("\n                " + _vm._s(message) + "\n            ")])
+  })], 2) : _vm._e(), _vm._v(" "), ('boolean' == _vm.inputType) ? _c('div', {
+    staticClass: "col-sm-8"
+  }, [_c('div', {
+    staticClass: "form-check form-check-inline"
+  }, [_c('label', {
+    staticClass: "form-check-label mr-4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.attribute),
+      expression: "attribute"
+    }],
+    staticClass: "form-check-input",
+    attrs: {
+      "type": "radio",
+      "value": "1"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.attribute, "1")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.attribute = "1"
+      }
+    }
+  }), _vm._v("\n                    Yes\n                ")]), _vm._v(" "), _c('label', {
+    staticClass: "form-check-label mr-4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.attribute),
+      expression: "attribute"
+    }],
+    staticClass: "form-check-input",
+    attrs: {
+      "type": "radio",
+      "value": "0"
+    },
+    domProps: {
+      "checked": _vm._q(_vm.attribute, "0")
+    },
+    on: {
+      "__c": function($event) {
+        _vm.attribute = "0"
+      }
+    }
+  }), _vm._v("\n                    No\n                ")])]), _vm._v(" "), _vm._l((_vm.errors), function(message) {
     return _c('div', {
       staticClass: "mt-3 alert alert-danger"
     }, [_vm._v("\n                " + _vm._s(message) + "\n            ")])
@@ -86776,12 +86844,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['assessment'],
-    components: { SimpleTextArea: __WEBPACK_IMPORTED_MODULE_0__partial_SimpleTextArea___default.a }
+    props: ['assessment', 'formSchema'],
+    components: { SimpleTextArea: __WEBPACK_IMPORTED_MODULE_0__partial_SimpleTextArea___default.a },
+    computed: {
+        formElements: function formElements() {
+            return this.formSchema.checklist;
+        }
+    },
+    methods: {
+        getType: function getType(attrName) {
+            if (attrName == 'checklist_further_visit') {
+                return "boolean";
+            }
+            return "textarea";
+        }
+    }
 });
 
 /***/ }),
@@ -86793,9 +86892,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "misc-comments-section-vue"
   }, [_c('h1', {
     staticClass: "my-3"
-  }, [_vm._v("Miscellaneous Comments")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Comments & Notes")]), _vm._v(" "), _c('div', {
     staticClass: "card my-4"
-  }, [_c('div', {
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "card-body"
   }, [_c('simple-text-area', {
     attrs: {
@@ -86804,8 +86903,32 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "inputType": "textarea",
       "textAreaRows": "12"
     }
-  })], 1)])])
-},staticRenderFns: []}
+  })], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "card my-4"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "card-body"
+  }, [_vm._l((_vm.formElements), function(label, attrName) {
+    return [_c('simple-text-area', {
+      attrs: {
+        "attributeName": attrName,
+        "label": label,
+        "inputType": _vm.getType(attrName)
+      }
+    })]
+  })], 2)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
+  }, [_c('h3', {
+    staticClass: "my-3"
+  }, [_vm._v("Miscellaneous Comments")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header"
+  }, [_c('h3', {
+    staticClass: "my-3"
+  }, [_vm._v("Home Visit Checklist")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

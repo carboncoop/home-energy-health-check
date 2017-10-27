@@ -38,6 +38,22 @@
                 </div>
             </div>
 
+            <div class="col-sm-8" v-if="'boolean' == inputType">
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label mr-4">
+                        <input class="form-check-input" type="radio" value="1" v-model="attribute">
+                        Yes
+                    </label>
+                    <label class="form-check-label mr-4">
+                        <input class="form-check-input" type="radio" value="0" v-model="attribute">
+                        No
+                    </label>
+                </div>
+                <div class="mt-3 alert alert-danger" v-for="message in errors">
+                    {{ message }}
+                </div>
+            </div>
+
         </div>
     </div>
 </template>

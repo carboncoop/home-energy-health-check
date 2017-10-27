@@ -55,6 +55,7 @@ class Assessment extends Model
         return [
             'comfort' => self::comfortFields(),
             'health' => self::healthFields(),
+            'checklist' => self::homeVisitChecklist(),
         ];
     }
 
@@ -145,16 +146,17 @@ class Assessment extends Model
     public static function homeVisitChecklist()
     {
         return [
-            'health' => 'Health Conditions? Warm and Well',
-            'warm_discount' => 'Eligible for Warm Home Discount?',
-            'priority' => 'Priority Services Register?',
-            'fuel_debt' => 'Fuel Debt?',
-            'supplier_issues' => 'Issues with supplier?',
-            'water_debt' => 'Water Debt Gateway referral?',
-            'switching' => 'Switching / tariff and bills discussed?',
-            'income_max' => 'Income Maximisation further discussion/assistance needed?',
-            'fire_safety' => 'Fire Safety check – smoke/Co2 monitor?',
-            'further_visit' => 'Further Home Visit by PEC required',
+            'checklist_health' => 'Health Conditions? Warm and Well',
+            'checklist_warm_discount' => 'Eligible for Warm Home Discount?',
+            'checklist_priority' => 'Priority Services Register?',
+            'checklist_fuel_debt' => 'Fuel Debt?',
+            'checklist_supplier_issues' => 'Issues with supplier?',
+            'checklist_water_debt' => 'Water Debt Gateway referral?',
+            'checklist_switching' => 'Switching / tariff and bills discussed?',
+            'checklist_income_max' => 'Income Maximisation further discussion/assistance needed?',
+            'checklist_fire_safety' => 'Fire Safety check – smoke/Co2 monitor?',
+            'checklist_further_visit' => 'Further Home Visit by PEC required',
+            'checklist_further_assistance' => 'Notes/ any further assistance we can offer?',
         ];
     }
 
