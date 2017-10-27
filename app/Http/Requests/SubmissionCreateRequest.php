@@ -32,8 +32,8 @@ class SubmissionCreateRequest extends FormRequest
             $rules['assessment.assessment_date'] = 'required|date';
             $rules['assessment.assessor_name'] = 'required';
             $rules['assessment.homeowner_name'] = 'required';
-            $rules['assessment.homeowner_email'] = 'required|email';
-            $rules['assessment.homeowner_phone'] = 'required';
+            $rules['assessment.homeowner_email'] = 'email';
+            //$rules['assessment.homeowner_phone'] = 'required';
             $rules['assessment.homeowner_address'] = 'required';
 
             $rules['assessment.homeowner_uniqueid'] = 'required|unique:assessments,homeowner_uniqueid,';
