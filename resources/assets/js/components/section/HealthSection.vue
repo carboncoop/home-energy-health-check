@@ -8,7 +8,7 @@
                 <h3 class="my-3">{{ legend }}</h3>
             </div>
             <div class="card-body">
-                <template v-if="'Temperature Readings' == legend"
+                <template v-if="'Temperature & Air Quality Readings' == legend"
                     v-for="(label, attrName) in readingElements">
                     <simple-text-area
                         :attributeName="attrName"

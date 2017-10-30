@@ -12,11 +12,11 @@
             </button>
             <button type="button" :class="buttonClass(2)"
                 v-on:click="attribute = 2">
-                &nbsp;.&nbsp;.&nbsp;.
+                {{ helpText[1] }}
             </button>
             <button type="button" :class="buttonClass(3)"
                 v-on:click="attribute = 3">
-                {{ helpText[1] }}
+                {{ helpText[2] }}
             </button>
         </div>
 

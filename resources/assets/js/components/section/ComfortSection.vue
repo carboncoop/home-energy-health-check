@@ -21,6 +21,7 @@
         <div class="card my-4">
             <div class="card-header">
                 <h3 class="my-3">How do you find your home?</h3>
+                <p class="lead">Thinking about the general conditions in your home, is it usually...?</p>
             </div>
             <div class="card-body">
                 <template v-for="(obj, attrName) in threeWayToggles">

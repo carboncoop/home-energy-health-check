@@ -75,36 +75,36 @@ class Assessment extends Model
                 ],
                 'comfort_rate_temperature_winter' => [
                     'label' => 'Temperature in the Winter',
-                    'helpText' => ['Too hot', 'Too cold']
+                    'helpText' => ['Too hot', 'Just right', 'Too cold']
                 ],
                 'comfort_rate_humidity_summer' => [
-                    'label' => 'Air in the Summer',
-                    'helpText' => ['Too dry', 'Too stuffy']
+                    'label' => 'Air Quality in the Summer',
+                    'helpText' => ['Too dry', 'Just right', 'Too stuffy']
                 ],
                 'comfort_rate_humidity_winter' => [
-                    'label' => 'Air in the Winter',
-                    'helpText' => ['Too dry', 'Too stuffy']
+                    'label' => 'Air Quality in the Winter',
+                    'helpText' => ['Too dry', 'Just right',  'Too stuffy']
                 ],
                 'comfort_rate_airflow_summer' => [
-                    'label' => 'Air in the Summer',
-                    'helpText' => ['Too draughty', 'Just right']
+                    'label' => 'Air Movement in the Summer',
+                    'helpText' => ['Too draughty', 'Just right',  'Just right']
                 ],
                 'comfort_rate_airflow_winter' => [
-                    'label' => 'Air in the Winter',
-                    'helpText' => ['Too draughty', 'Just right']
+                    'label' => 'Air Movement in the Winter',
+                    'helpText' => ['Too draughty', 'Just right',  'Just right']
                 ],
-                'comfort_rate_natural_light' => [
+                /*'comfort_rate_natural_light' => [
                     'label' => 'Natural light',
-                    'helpText' => ['Too little', 'Too much']
-                ],
+                    'helpText' => ['Too little', 'Just right',  'Too much']
+                ],*/
                 'comfort_rate_artificial_light' => [
                     'label' => 'Artificial light',
-                    'helpText' => ['Too little', 'Too much']
+                    'helpText' => ['Too little', 'Just right',  'Too much']
                 ],
-                'comfort_rate_noise_levels' => [
+                /*'comfort_rate_noise_levels' => [
                     'label' => 'Noise levels',
-                    'helpText' => ['Too noisy', 'Too quiet']
-                ]
+                    'helpText' => ['Too noisy', 'Just right',  'Too quiet']
+                ]*/
             ],
             'otherInfo' => [
                 'comfort_general' => 'General comfort',
@@ -121,15 +121,15 @@ class Assessment extends Model
             'readingElements' => [
                 'reading_temperature_living_room' => 'Temperature spot check (living room)',
                 'reading_humidity_living_room' => 'Relative humidity spot check (living room)',
-                'reading_surface_temperature_living_room' => 'Average surface temperature (living room)',
+                //'reading_surface_temperature_living_room' => 'Average surface temperature (living room)',
                 'reading_temperature_bedroom' => 'Temperature spot check (bedroom)',
                 'reading_humidity_bedroom' => 'Relative humidity spot check (bedroom)',
-                'reading_surface_temperature_bedroom' => 'Average surface temperature (bedroom)',
-                'reading_air_quality' => 'Air Quality Reading'
+                //'reading_surface_temperature_bedroom' => 'Average surface temperature (bedroom)',
+                //'reading_air_quality' => 'Air Quality Reading'
             ],
             'textareaElements' => [
-                'Temperature Readings' => [
-                    'health_surface_temperature_notes' => 'Assessor note on surface temperature. Any cold spots?'
+                'Temperature & Air Quality Readings' => [
+                    'health_surface_temperature_notes' => 'Assessor note - any noticeable cold spots or draughts? - any noticeable stuffiness?'
                 ],
                 'Home Health Comment' => [
                     'health_condensation' => 'Condensation',
@@ -137,7 +137,7 @@ class Assessment extends Model
                     'health_mold' => 'Mold',
                     'health_ventilation' => 'Ventilation',
                     'health_laundry' => 'Laundry',
-                    'health_air_quality' => 'Air Quality'
+                    //'health_air_quality' => 'Air Quality'
                 ],
             ],
         ];
