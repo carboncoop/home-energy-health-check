@@ -87,11 +87,11 @@ class Assessment extends Model
                 ],
                 'comfort_rate_airflow_summer' => [
                     'label' => 'Air Movement in the Summer',
-                    'helpText' => ['Too draughty', 'Just right',  'Just right']
+                    'helpText' => ['Too draughty', 'Just right',  'Too still']
                 ],
                 'comfort_rate_airflow_winter' => [
                     'label' => 'Air Movement in the Winter',
-                    'helpText' => ['Too draughty', 'Just right',  'Just right']
+                    'helpText' => ['Too draughty', 'Just right',  'Too still']
                 ],
                 /*'comfort_rate_natural_light' => [
                     'label' => 'Natural light',
