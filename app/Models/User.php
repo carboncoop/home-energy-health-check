@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'group'
     ];
 
     /**
@@ -31,7 +31,12 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($pass)
     {
-        $this->attributes['password'] = \Hash::make($pass);
+        if (trim($pass) == "") {
+            return;
+        } else {
+            $hash = \Hash::make($pass);
+            $this->attributes['password'] = $hash;
+        }
     }
 
 
@@ -60,6 +65,7 @@ class User extends Authenticatable
                     'superuser' => 'Superuser',
                 ],
                 'allows_null' => false,
+                'index' => true,
             ],
         ];
     }
