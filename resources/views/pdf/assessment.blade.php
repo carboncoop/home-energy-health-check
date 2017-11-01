@@ -11,10 +11,6 @@
                         {{ $section['title'] }}
                     </h1>
 
-                    @if (0 == $index)
-                        <h1 class="display-1">TODO: Branding etc.</h1>
-                    @endif
-
                     @if (3 == $index)
                         @foreach ($parts as $i => $part)
                             @unless (empty($part['improvements']))
@@ -56,10 +52,6 @@
                             'assessment' => $assessment,
                             'healthSchema' => $formSchema['health'],
                         ])
-                    @endif
-
-                    @if (4 == $index)
-                        <h1 class="display-1">TODO: Your Support data??</h1>
                     @endif
 
                 </div>
