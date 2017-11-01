@@ -44,7 +44,8 @@ class AssessmentEmail extends Mailable
           'assessment' => $this->data['assessment'],
       ])
       ->attach(storage_path($this->attachment_path), array(
-        'mime' => 'application/pdf'
+        'mime' => 'application/pdf',
+        'as' => config('app.assessment_filename'),
       ));
     }
 }
