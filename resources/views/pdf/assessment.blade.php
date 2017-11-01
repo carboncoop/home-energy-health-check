@@ -1,5 +1,9 @@
 @extends('master')
 
+@section('pageTitle')
+    {{ config('app.assessment_title') }}
+@endsection
+
 @section('content')
     <div class="generated-pdf-wrapper">
         <div class="container py-5">

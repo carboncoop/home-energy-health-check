@@ -11,10 +11,7 @@ class AssessmentEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $attachment_path, $data;
-
-    public $subject = "Your Energy Assessment";
-    public $from;
+    public $attachment_path, $data, $subject, $from;
 
     /**
      * Create a new message instance.
@@ -26,6 +23,7 @@ class AssessmentEmail extends Mailable
     {
         $this->data = $data;
         $this->attachment_path = $data['attachment_path'];
+        $this->subject = config('app.assessment_title');
         $this->from = [
           "address" => config('mail.from.address'),
           "name" => config('mail.from.name'),
