@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Jobs\CreatePdfDocument;
 use App\Jobs\SendEmail;
+use App\Models\Assessment;
 
 class TestJobCommand extends Command
 {
@@ -39,9 +40,11 @@ class TestJobCommand extends Command
      */
     public function handle()
     {
-        $test = ['foo' => 'bar', 'fii' => 42];
+        $assessment = Assessment::findOrFail(4);
         $this->comment("Testing Job..");
-        $email_job = [new SendEmail($test)];
-        CreatePdfDocument::withChain($email_job)->dispatch($test);
+        SendEmail::dispatch([
+            'assessment' => $assessment,
+            'attachment_path' => 'pdf/ND.pdf',
+        ]);
     }
 }
