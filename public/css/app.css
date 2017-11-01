@@ -16775,9 +16775,17 @@ div.submission-vue .rate-one-to-four-vue .btn {
   border-color: white;
 }
 
+@font-face {
+  font-family: 'Creighton';
+  src: url("../fonts/creighton/Creighton.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .generated-pdf-wrapper {
   background-color: white;
-  font-size: 10px;
+  font-size: 12px;
+  line-height: 12px;
 }
 
 .generated-pdf-wrapper .break-after-me {
@@ -16793,19 +16801,28 @@ div.submission-vue .rate-one-to-four-vue .btn {
   page-break-inside: avoid;
 }
 
+.generated-pdf-wrapper h1, .generated-pdf-wrapper h2, .generated-pdf-wrapper h3, .generated-pdf-wrapper h4, .generated-pdf-wrapper h5, .generated-pdf-wrapper h6 {
+  font-family: 'Creighton', sans-serif;
+}
+
 .generated-pdf-wrapper h1 {
-  font-size: 25px;
-  line-height: 30px;
+  font-size: 40px;
+  line-height: 40px;
 }
 
 .generated-pdf-wrapper h2 {
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 36px;
+  line-height: 36px;
 }
 
 .generated-pdf-wrapper h3 {
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 32px;
+  line-height: 32px;
+}
+
+.generated-pdf-wrapper h4 {
+  font-size: 28px;
+  line-height: 28px;
 }
 
 .generated-pdf-wrapper table td, .generated-pdf-wrapper table th {

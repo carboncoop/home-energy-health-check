@@ -1,4 +1,4 @@
-@extends('master')
+@extends('pdf.master')
 
 @section('pageTitle')
     {{ config('app.assessment_title') }}
