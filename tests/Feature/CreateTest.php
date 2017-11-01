@@ -17,6 +17,7 @@ class CreateTest extends TestCase
         'homeowner_email' => 'Trevor@example.com',
         'homeowner_phone' => '(+44)7624 123123',
         'homeowner_address' => 'House name\nstreet name\nvillage\nPOST CODE',
+        'homeowner_uniqueid' => 'SHM001',
     ];
 
     public function testGetCreateForm()

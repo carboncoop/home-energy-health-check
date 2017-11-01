@@ -14,10 +14,7 @@ class AssessmentEmail extends Mailable
     public $attachment_path, $data;
 
     public $subject = "Your Energy Assessment";
-    public $from = [
-      "address" => "energyteam@plymouthenergycommunity.com",
-      "name" => "Plymouth Energy Community Energy Team",
-    ];
+    public $from;
 
     /**
      * Create a new message instance.
@@ -29,6 +26,10 @@ class AssessmentEmail extends Mailable
     {
         $this->data = $data;
         $this->attachment_path = $data['attachment_path'];
+        $this->from = [
+          "address" => config('mail.from.address'),
+          "name" => config('mail.from.name'),
+        ];
     }
 
     /**

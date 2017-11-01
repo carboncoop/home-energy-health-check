@@ -28,7 +28,7 @@ class EmailTest extends TestCase
             return (
                 $mail->hasTo($emailTo)
                 && $mail->subject == "Your Energy Assessment"
-                && $mail->from["address"] == "energyteam@plymouthenergycommunity.com"
+                && $mail->from["address"] == "adams@localhost"
             );
         });
     }
