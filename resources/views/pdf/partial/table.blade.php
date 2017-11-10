@@ -10,6 +10,7 @@
     </thead>
     <tbody>
         @foreach ($improvements as $index => $imp)
+            @if ($imp['value'] == 'need')
             <tr>
                 <td>{{ $index + 1 }}. {{ $imp['title'] }}</td>
                 <td>@if (array_key_exists('comment', $imp))
@@ -19,6 +20,7 @@
                 <td>{{ $imp['benefits'] }}</td>
                 <td>{{ $imp['who_can_do'] }}</td>
             </tr>
+            @endif
         @endforeach
     </tbody>
 </table>
