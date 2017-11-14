@@ -32,13 +32,18 @@
           </li>
 
           @if (\Gate::allows('manage-users'))
-              <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/users') }}"><i class="fa fa-user"></i>
+              <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/users') }}"><i class="fa fa-users"></i>
                   <span>Users</span></a>
               </li>
           @endif
 
           <!-- ======================================= -->
           <li class="header">{{ trans('backpack::base.user') }}</li>
+
+          <li><a href="{{ route('backpack.account.info') }}"><i class="fa fa-user"></i>
+              {{ trans('backpack::base.my_account') }}</a>
+          </li>
+
           <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><i class="fa fa-sign-out"></i> <span>{{ trans('backpack::base.logout') }}</span></a></li>
         </ul>
       </part>
