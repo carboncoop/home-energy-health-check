@@ -1,19 +1,34 @@
 @import 'variables'
 
+$blue: #25275d
+
 @font-face
-    font-family: 'Creighton'
-    src: url('../fonts/creighton/Creighton.ttf')
+    font-family: 'Creighton-Bold'
+    src: url('../fonts/creighton/Creighton-Bold.ttf')
+    font-weight: normal
+    font-style: normal
+
+@font-face
+    font-family: 'Creighton-BoldItalic'
+    src: url('../fonts/creighton/Creighton-BoldItalic.ttf')
     font-weight: normal
     font-style: normal
 
 =font-size($x)
     font-size: $x
-    line-height: $x
+    line-height: $x*1.2
 
 
-.generated-pdf-wrapper
+body .generated-pdf-wrapper
     background-color: white
-    +font-size(12px)
+    +font-size(13px)
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif
+    color: $blue
+
+    .container
+        max-width: calc(100% - 166px)
+        padding-left: 0
+        padding-right: 0
 
     .break-after-me
         overflow: hidden
@@ -24,49 +39,78 @@
     .avoid-breaking-me
         page-break-inside: avoid
 
-    h1, h2, h3, h4, h5, h6
-        font-family: 'Creighton', sans-serif
+    h1, h2
+        font-family: 'Creighton-Bold', sans-serif
+    h1, h2, h3, h4
+        color: $blue
 
     h1
         +font-size(40px)
     h2
         +font-size(36px)
     h3
-        +font-size(32px)
+        +font-size(18px)
+        font-weight: bold
     h4
-        +font-size(28px)
+        +font-size(16px)
+        font-weight: bold
 
     table
+        th
+            border-top: 2px solid $blue-0
+            border-bottom: 1px dashed $blue-0
+        td
+            border-bottom: 1px dashed $blue-0
+            border-top: none
         td, th
-            border-width: 1px
-            border-color: #aaa
+            padding: 25px 0
+            width: 20%
 
     .lead
         font-size: 12px
         line-height: 14px
 
     .card
-        border-color: $blue-0
+        +border-radius(0)
+        border-left: none
+        border-right: none
+        border-bottom: none
+        border-top: 2px solid $blue-0
+        &.improvement
+            border-top: none
+
+    .padded-row
+        padding: 16px 0
+
+    .response-row
+        border-bottom: 1px dashed $blue-0
 
     .section-header
         border-top: 3px solid $blue-0
-        color: $blue-0
         padding-top: 15px
+
+    .improvement-header
+        color: $blue-0
+        +font-size(24px)
 
     .part-header
         border-top: 3px solid $blue-0
-        color: $blue-0
         padding-top: 15px
         &.no-top
             border-top: none
+
+    .table-header
+        margin-top: 60px
+        +font-size(15px)
 
     .improvement
         p
             margin-bottom: 0.25em
         .improvement-value
-            min-width: 160px
-            font-size: 12px
+            min-width: 200px
+            +font-size(16px)
+            font-family: 'Creighton-BoldItalic', sans-serif
             &.improvement-have
                 color: $blue-3
             &.improvement-need
-                color: $pink-2
+                color: magenta

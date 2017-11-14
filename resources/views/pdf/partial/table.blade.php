@@ -1,8 +1,10 @@
-<table class="my-4 table table-striped table-bordered avoid-breaking-me">
+<h3 class=" mb-4 table-header">Summary table</h3>
+
+<table class="my-4 table avoid-breaking-me">
     <thead>
         <tr>
-            <th>&nbsp;</th>
-            <th>Assessor's Comment</th>
+            <th>Measures</th>
+            <th>Comment</th>
             <th>Estimated Cost</th>
             <th>Benefits / Savings</th>
             <th>Who can do this work?</th>
