@@ -16865,9 +16865,17 @@ body .generated-pdf-wrapper table td, body .generated-pdf-wrapper table th {
   width: 20%;
 }
 
+body .generated-pdf-wrapper .front-page {
+  position: relative;
+}
+
 body .generated-pdf-wrapper .front-page .front-page-title {
   font-size: 100px;
   line-height: 85px;
+}
+
+body .generated-pdf-wrapper .front-page .img-logo {
+  max-width: 30%;
 }
 
 body .generated-pdf-wrapper .front-page .top-section, body .generated-pdf-wrapper .front-page .bottom-section {
