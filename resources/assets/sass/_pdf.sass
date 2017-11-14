@@ -26,7 +26,7 @@ body .generated-pdf-wrapper
     color: $blue
 
     .container
-        max-width: calc(100% - 166px)
+        max-width: 100%
         padding-left: 0
         padding-right: 0
 
@@ -56,16 +56,30 @@ body .generated-pdf-wrapper
         font-weight: bold
 
     table
+        color: black
         th
-            border-top: 2px solid $blue-0
+            border-top: 1px solid $blue-0
             border-bottom: 1px dashed $blue-0
         td
             border-bottom: 1px dashed $blue-0
             border-top: none
         td, th
-            padding: 25px 0
+            padding: 17px 0
             width: 20%
 
+    // Front
+    .front-page
+        .front-page-title
+            font-size: 100px
+            line-height: 85px
+        .middle-section
+            img
+        .top-section, .bottom-section
+            background-color: $blue-0
+            color: white
+
+
+    // Other Components
     .lead
         font-size: 12px
         line-height: 14px
@@ -85,6 +99,8 @@ body .generated-pdf-wrapper
     .response-row
         border-bottom: 1px dashed $blue-0
 
+    .section
+
     .section-header
         border-top: 3px solid $blue-0
         padding-top: 15px
@@ -102,6 +118,7 @@ body .generated-pdf-wrapper
     .table-header
         margin-top: 60px
         +font-size(15px)
+        color: black
 
     .improvement
         p

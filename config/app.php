@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Home Energy Health Check'),
-    'assessment_title' => env('APP_ASSESSMENT_TITLE', 'Your Energy Assessment'),
+    'assessment_title' => env('APP_ASSESSMENT_TITLE', 'Your Home Energy Report'),
     'assessment_filename' => env('APP_ASSESSMENT_FILENAME', 'yourEnergyAssessment.pdf'),
 
     /*

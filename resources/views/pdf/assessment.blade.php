@@ -6,59 +6,67 @@
 
 @section('content')
     <div class="generated-pdf-wrapper">
-        <div class="container py-5">
 
             @foreach ($sections as $index => $section)
-                <div class="section break-after-me">
 
-                    <h1 class="section-header my-3">
-                        {{ $section['title'] }}
-                    </h1>
+                @if (0 == $index)
+                    @include('pdf.partial.front-page', [
 
-                    @if (3 == $index)
-                        @foreach ($parts as $i => $part)
-                            @unless (empty($part['improvements']))
-                                @if (0 == $i)
-                                    <h2 class="part-header no-top my-3">{{ $part['title'] }}</h2>
-                                @else
-                                    <h2 class="part-header my-3">{{ $part['title'] }}</h2>
-                                @endif
+                    ])
+                @else
+                    <div class="container pb-5 section break-after-me">
 
-                                <div class="lead">
-                                    @parsedown($part['description'])
-                                </div>
+                        @if ($index > 0)
+                        <h1 class="section-header my-3">
+                            {{ $section['title'] }}
+                        </h1>
+                        @endif
 
-                                <div class="part break-after-me">
-                                    @include('pdf.partial.improvements', [
-                                        'improvements' => $part['improvements']
-                                    ])
-                                    @include('pdf.partial.table', [
-                                        'improvements' => $part['improvements']
-                                    ])
-                                </div>
-                            @endunless
-                        @endforeach
-                    @else
-                        <div class="my-3">
-                            @parsedown($section['body'])
-                        </div>
-                    @endif
+                        @if (3 == $index)
+                            @foreach ($parts as $i => $part)
+                                @unless (empty($part['improvements']))
+                                    @if (0 == $i)
+                                        <h2 class="part-header no-top my-3">{{ $part['title'] }}</h2>
+                                    @else
+                                        <h2 class="part-header my-3">{{ $part['title'] }}</h2>
+                                    @endif
 
-                    @if (1 == $index)
-                        @include('pdf.partial.comfort', [
-                            'assessment' => $assessment,
-                            'comfortSchema' => $formSchema['comfort'],
-                        ])
-                    @endif
+                                    <div class="lead">
+                                        @parsedown($part['description'])
+                                    </div>
 
-                    @if (2 == $index)
-                        @include('pdf.partial.health', [
-                            'assessment' => $assessment,
-                            'healthSchema' => $formSchema['health'],
-                        ])
-                    @endif
+                                    <div class="part break-after-me">
+                                        @include('pdf.partial.improvements', [
+                                            'improvements' => $part['improvements']
+                                        ])
+                                        @include('pdf.partial.table', [
+                                            'improvements' => $part['improvements']
+                                        ])
+                                    </div>
+                                @endunless
+                            @endforeach
+                        @else
+                            <div class="my-3">
+                                @parsedown($section['body'])
+                            </div>
+                        @endif
 
-                </div>
+                        @if (1 == $index)
+                            @include('pdf.partial.comfort', [
+                                'assessment' => $assessment,
+                                'comfortSchema' => $formSchema['comfort'],
+                            ])
+                        @endif
+
+                        @if (2 == $index)
+                            @include('pdf.partial.health', [
+                                'assessment' => $assessment,
+                                'healthSchema' => $formSchema['health'],
+                            ])
+                        @endif
+
+                    </div>
+                @endif
 
                 @if (3 == $index)
                     <div class="section break-after-me">
@@ -71,6 +79,5 @@
 
             @endforeach
 
-        </div>
     </div>
 @endsection

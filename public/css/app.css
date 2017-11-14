@@ -16798,7 +16798,7 @@ body .generated-pdf-wrapper {
 }
 
 body .generated-pdf-wrapper .container {
-  max-width: calc(100% - 166px);
+  max-width: 100%;
   padding-left: 0;
   padding-right: 0;
 }
@@ -16846,8 +16846,12 @@ body .generated-pdf-wrapper h4 {
   font-weight: bold;
 }
 
+body .generated-pdf-wrapper table {
+  color: black;
+}
+
 body .generated-pdf-wrapper table th {
-  border-top: 2px solid #00ADEF;
+  border-top: 1px solid #00ADEF;
   border-bottom: 1px dashed #00ADEF;
 }
 
@@ -16857,8 +16861,18 @@ body .generated-pdf-wrapper table td {
 }
 
 body .generated-pdf-wrapper table td, body .generated-pdf-wrapper table th {
-  padding: 25px 0;
+  padding: 17px 0;
   width: 20%;
+}
+
+body .generated-pdf-wrapper .front-page .front-page-title {
+  font-size: 100px;
+  line-height: 85px;
+}
+
+body .generated-pdf-wrapper .front-page .top-section, body .generated-pdf-wrapper .front-page .bottom-section {
+  background-color: #00ADEF;
+  color: white;
 }
 
 body .generated-pdf-wrapper .lead {
@@ -16910,6 +16924,7 @@ body .generated-pdf-wrapper .table-header {
   margin-top: 60px;
   font-size: 15px;
   line-height: 18px;
+  color: black;
 }
 
 body .generated-pdf-wrapper .improvement p {

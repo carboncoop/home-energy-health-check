@@ -51,6 +51,10 @@ class PdfGenerator
         ];
 
         $this->pdf = \Snappy::loadView('pdf.assessment', $this->viewVars);
+        $this->pdf->setOption('margin-left', 22);
+        $this->pdf->setOption('margin-right', 22);
+        $this->pdf->setOption('margin-top', 17);
+        $this->pdf->setOption('margin-bottom', 17);
 
         if ('file' == $method) {
             return $this->outputToFile();
