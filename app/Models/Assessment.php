@@ -71,7 +71,7 @@ class Assessment extends Model
             'threeWayToggles' => [
                 'comfort_rate_temperature_summer' => [
                     'label' => 'Temperature in the Summer',
-                    'helpText' => ['Too hot', 'Too cold']
+                    'helpText' => ['Too hot', 'Just right', 'Too cold']
                 ],
                 'comfort_rate_temperature_winter' => [
                     'label' => 'Temperature in the Winter',
