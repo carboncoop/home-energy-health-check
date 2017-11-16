@@ -16878,9 +16878,18 @@ body .generated-pdf-wrapper .front-page .img-logo {
   max-width: 30%;
 }
 
+body .generated-pdf-wrapper .front-page .middle-section {
+  text-align: center;
+}
+
+body .generated-pdf-wrapper .front-page .middle-section img {
+  max-height: 350px;
+  margin: 2px 0 !important;
+}
+
 body .generated-pdf-wrapper .front-page .top-section, body .generated-pdf-wrapper .front-page .bottom-section {
   background-color: #00ADEF;
-  color: white;
+  color: #25275d;
 }
 
 body .generated-pdf-wrapper .lead {
