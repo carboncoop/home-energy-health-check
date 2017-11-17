@@ -49568,12 +49568,7 @@ return zhTw;
                     // that falls out of the range of 2xx
                     if (error.response) {
                         console.warn("error response", error.response);
-                        _this.respondToFailure({
-                            message: error.response.statusText,
-                            errors: {
-                                serverError: [error.response.data.message]
-                            }
-                        });
+                        _this.respondToFailure(error.response.data);
                         // The request was made but no response was received
                         // `error.request` is an instance of XMLHttpRequest
                     } else if (error.request) {
