@@ -47,8 +47,13 @@ export default {
                     // The request was made and the server responded with a status code
                     // that falls out of the range of 2xx
                     if (error.response) {
-                        console.warn("error response", error.response.status)
-                        this.respondToFailure(error.response.data)
+                        console.warn("error response", error.response)
+                        this.respondToFailure({
+                            message: error.response.statusText,
+                            errors: {
+                                serverError: [error.response.data.message]
+                            }
+                        })
                     // The request was made but no response was received
                     // `error.request` is an instance of XMLHttpRequest
                     } else if (error.request) {
