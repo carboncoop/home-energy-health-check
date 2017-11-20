@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b337478ff05c72cea516cfed42936a62",
-    "content-hash": "c0081cdc8f6c35649f445e97ddd92fd0",
+    "hash": "42b9ac00062bb942d021f3d77eb7dd82",
+    "content-hash": "a50f98b8aff49092be681e2f8eff66b7",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -713,16 +713,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.6.2",
+            "version": "v2.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "1a4ee83a5a709555f2c6f9057a3aacf892451c7e"
+                "reference": "e3eed9b1facbb0ced3a0995244843a189e7d1b13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/1a4ee83a5a709555f2c6f9057a3aacf892451c7e",
-                "reference": "1a4ee83a5a709555f2c6f9057a3aacf892451c7e",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/e3eed9b1facbb0ced3a0995244843a189e7d1b13",
+                "reference": "e3eed9b1facbb0ced3a0995244843a189e7d1b13",
                 "shasum": ""
             },
             "require": {
@@ -782,7 +782,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-08-28 11:02:56"
+            "time": "2017-11-19 13:38:54"
         },
         {
             "name": "doctrine/inflector",
@@ -4172,7 +4172,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/4e9ce5db9d93475ca27b993a92de3b15090aa139",
+                "url": "https://api.github.com/repos/laracasts/Laravel-5-Generators-Extended/zipball/8d99c3f9891abce5cc84d5d1d4a7c26cf514ab6e",
                 "reference": "4e9ce5db9d93475ca27b993a92de3b15090aa139",
                 "shasum": ""
             },
