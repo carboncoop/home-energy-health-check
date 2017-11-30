@@ -38,9 +38,9 @@
                                     @if ($assessment[$field] == 1)
                                         ({{ $obj['helpText'][0] }})
                                     @elseif ($assessment[$field] == 2)
-                                        (Just right)
-                                    @elseif ($assessment[$field] == 3)
                                         ({{ $obj['helpText'][1] }})
+                                    @elseif ($assessment[$field] == 3)
+                                        ({{ $obj['helpText'][2] }})
                                     @endif
                                 </div>
                             </div>
