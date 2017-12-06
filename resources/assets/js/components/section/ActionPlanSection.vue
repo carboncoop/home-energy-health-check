@@ -17,7 +17,7 @@
                     <span class="badge improvement-no mr-3">
                         {{ index + 1 }}
                     </span>
-                    {{ imp.title }}
+                    {!! imp.title !!}
                 </h3>
             </div>
 

@@ -14,7 +14,7 @@
             @foreach ($improvements as $index => $imp)
                 @if ($imp['value'] == 'need')
                 <tr>
-                    <td>{{ $index + 1 }}. {{ $imp['title'] }}</td>
+                    <td>{{ $index + 1 }}. {!! $imp['title'] !!}</td>
                     <td>@if (array_key_exists('comment', $imp))
                         {{ $imp['comment'] }}
                     @endif </td>

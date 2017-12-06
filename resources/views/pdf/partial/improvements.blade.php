@@ -6,7 +6,7 @@
 
             <div class="d-flex flex-row justify-content-between">
                 <h2 class="improvement-header mb-0">
-                    <strong>{{ $index + 1 }}.</strong> {{ $imp['title'] }}
+                    <strong>{{ $index + 1 }}.</strong> {!! $imp['title'] !!}
                 </h2>
                 @if ('need' == $imp['value'])
                     <div class="improvement-value improvement-need pr-2 ml-auto">

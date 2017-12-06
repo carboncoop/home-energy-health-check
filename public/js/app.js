@@ -85219,7 +85219,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "my-3"
     }, [_c('span', {
       staticClass: "badge improvement-no mr-3"
-    }, [_vm._v("\n                    " + _vm._s(index + 1) + "\n                ")]), _vm._v("\n                " + _vm._s(imp.title) + "\n            ")])]), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n                    " + _vm._s(index + 1) + "\n                ")]), _vm._v("\n                {!! imp.title !!}\n            ")])]), _vm._v(" "), _c('div', {
       staticClass: "card-body"
     }, [_c('improvement-description', {
       attrs: {
