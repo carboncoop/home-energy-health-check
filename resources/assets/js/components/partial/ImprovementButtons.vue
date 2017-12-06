@@ -6,8 +6,11 @@
                 <span v-if="choice == 'n/a'">
                     Not applicable
                 </span>
+                <span v-else-if="choice == 'need'">
+                    Something to Consider
+                </span>
                 <span v-else>
-                    Something you {{ choice }}
+                    Something you have
                 </span>
                 <i v-if="value == choice && value == 'have'"
                     class="pl-2 fa fa-lg fa-check-circle" aria-hidden="true"></i>

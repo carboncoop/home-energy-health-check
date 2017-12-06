@@ -11,7 +11,7 @@
                 @if ('need' == $imp['value'])
                     <div class="improvement-value improvement-need pr-2 ml-auto">
                         <i class="pl-2 fa fa-lg fa-check" aria-hidden="true"></i>
-                        <strong>Something you need.</strong>
+                        <strong>Something to Consider.</strong>
                     </div>
                 @elseif ('have' == $imp['value'])
                     <div class="improvement-value improvement-have pr-2 ml-auto">

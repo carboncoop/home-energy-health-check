@@ -66327,6 +66327,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['partIndex', 'improvementIndex'],
@@ -66391,7 +66394,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.clickButton(choice)
         }
       }
-    }, [(choice == 'n/a') ? _c('span', [_vm._v("\n                Not applicable\n            ")]) : _c('span', [_vm._v("\n                Something you " + _vm._s(choice) + "\n            ")]), _vm._v(" "), (_vm.value == choice && _vm.value == 'have') ? _c('i', {
+    }, [(choice == 'n/a') ? _c('span', [_vm._v("\n                Not applicable\n            ")]) : (choice == 'need') ? _c('span', [_vm._v("\n                Something to Consider\n            ")]) : _c('span', [_vm._v("\n                Something you have\n            ")]), _vm._v(" "), (_vm.value == choice && _vm.value == 'have') ? _c('i', {
       staticClass: "pl-2 fa fa-lg fa-check-circle",
       attrs: {
         "aria-hidden": "true"
