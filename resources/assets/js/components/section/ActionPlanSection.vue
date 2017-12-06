@@ -17,7 +17,7 @@
                     <span class="badge improvement-no mr-3">
                         {{ index + 1 }}
                     </span>
-                    {!! imp.title !!}
+                    {{ imp.title }}
                 </h3>
             </div>
 
@@ -33,7 +33,7 @@
                             <span>{{ imp.assessor_guidance }}</span>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-7">
+                    <div class="col-12 col-sm-7" v-if="showAssessorsComments(imp, index)">
                         <improvement-comment
                             :improvement="imp"
                             :partIndex="currentPartIndex"
@@ -42,11 +42,13 @@
                     </div>
                 </div>
                 <div v-else>
-                    <improvement-comment
-                        :improvement="imp"
-                        :partIndex="currentPartIndex"
-                        :improvementIndex="index"
-                    ></improvement-comment>
+                    <template v-if="showAssessorsComments(imp, index)">
+                        <improvement-comment
+                            :improvement="imp"
+                            :partIndex="currentPartIndex"
+                            :improvementIndex="index"
+                        ></improvement-comment>
+                    </template>
                 </div>
 
             </div>
@@ -83,6 +85,19 @@
         methods: {
             matchesPartId(part) {
                 return part.id == this.partId
+            },
+            getValue(imp, index) {
+                return this.$store.getters.getValue({
+                    part_index: this.currentPartIndex,
+                    improvement_index: index
+                })
+            },
+            showAssessorsComments(imp, index) {
+                let val = this.getValue(imp, index)
+                if ('n/a' == val || 'have' == val) {
+                    return false
+                }
+                return true
             }
         }
     }

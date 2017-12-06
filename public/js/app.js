@@ -66233,6 +66233,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -66253,6 +66255,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         matchesPartId: function matchesPartId(part) {
             return part.id == this.partId;
+        },
+        getValue: function getValue(imp, index) {
+            return this.$store.getters.getValue({
+                part_index: this.currentPartIndex,
+                improvement_index: index
+            });
+        },
+        showAssessorsComments: function showAssessorsComments(imp, index) {
+            var val = this.getValue(imp, index);
+            if ('n/a' == val || 'have' == val) {
+                return false;
+            }
+            return true;
         }
     }
 });
@@ -85219,7 +85234,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "my-3"
     }, [_c('span', {
       staticClass: "badge improvement-no mr-3"
-    }, [_vm._v("\n                    " + _vm._s(index + 1) + "\n                ")]), _vm._v("\n                {!! imp.title !!}\n            ")])]), _vm._v(" "), _c('div', {
+    }, [_vm._v("\n                    " + _vm._s(index + 1) + "\n                ")]), _vm._v("\n                " + _vm._s(imp.title) + "\n            ")])]), _vm._v(" "), _c('div', {
       staticClass: "card-body"
     }, [_c('improvement-description', {
       attrs: {
@@ -85232,7 +85247,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "col-12 col-sm-5"
     }, [_c('div', {
       staticClass: "alert alert-warning"
-    }, [_c('span', [_vm._v(_vm._s(imp.assessor_guidance))])])]), _vm._v(" "), _c('div', {
+    }, [_c('span', [_vm._v(_vm._s(imp.assessor_guidance))])])]), _vm._v(" "), (_vm.showAssessorsComments(imp, index)) ? _c('div', {
       staticClass: "col-12 col-sm-7"
     }, [_c('improvement-comment', {
       attrs: {
@@ -85240,13 +85255,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "partIndex": _vm.currentPartIndex,
         "improvementIndex": index
       }
-    })], 1)]) : _c('div', [_c('improvement-comment', {
+    })], 1) : _vm._e()]) : _c('div', [(_vm.showAssessorsComments(imp, index)) ? [_c('improvement-comment', {
       attrs: {
         "improvement": imp,
         "partIndex": _vm.currentPartIndex,
         "improvementIndex": index
       }
-    })], 1)], 1), _vm._v(" "), _c('div', {
+    })] : _vm._e()], 2)], 1), _vm._v(" "), _c('div', {
       staticClass: "card-footer"
     }, [_c('improvement-buttons', {
       attrs: {
