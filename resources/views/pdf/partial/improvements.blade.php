@@ -4,21 +4,25 @@
 
         <div class="card-body p-0">
 
-            <div class="d-flex flex-row justify-content-between">
-                <h2 class="improvement-header mb-0">
-                    <strong>{{ $index + 1 }}.</strong> {!! $imp['title'] !!}
-                </h2>
-                @if ('need' == $imp['value'])
-                    <div class="improvement-value improvement-need pr-2 ml-auto">
-                        <i class="pl-2 fa fa-lg fa-check" aria-hidden="true"></i>
-                        <strong>Something to Consider.</strong>
-                    </div>
-                @elseif ('have' == $imp['value'])
-                    <div class="improvement-value improvement-have pr-2 ml-auto">
-                        <i class="pl-2 fa fa-lg fa-check" aria-hidden="true"></i>
-                        <strong>Something you have.</strong>
-                    </div>
-                @endif
+            <div class="row">
+                <div class="col col-8">
+                    <h2 class="improvement-header mb-0">
+                        <strong>{{ $index + 1 }}.</strong> {!! $imp['title'] !!}
+                    </h2>
+                </div>
+                <div class="col col-4">
+                    @if ('need' == $imp['value'])
+                        <div class="improvement-value improvement-need pr-2 ml-auto">
+                            <i class="pl-2 fa fa-lg fa-check" aria-hidden="true"></i>
+                            <strong>Something to Consider.</strong>
+                        </div>
+                    @elseif ('have' == $imp['value'])
+                        <div class="improvement-value improvement-have pr-2 ml-auto">
+                            <i class="pl-2 fa fa-lg fa-check" aria-hidden="true"></i>
+                            <strong>Something you have.</strong>
+                        </div>
+                    @endif
+                </div>
             </div>
 
             @parsedown($imp['description'])
