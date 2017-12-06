@@ -14,7 +14,7 @@ class WelcomeController extends Controller
 
     public function welcome() {
         return view('welcome', [
-            'assessments' => Assessment::all(),
+            'assessments' => Assessment::orderBy('created_at', 'desc')->get(),
         ]);
     }
 }
