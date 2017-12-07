@@ -56,6 +56,10 @@ class PdfGenerator
         $this->pdf->setOption('margin-top', 17);
         $this->pdf->setOption('margin-bottom', 17);
 
+        $this->pdf->setOption('footer-right', 'Page [page] of [toPage]');
+        $this->pdf->setOption('footer-font-size', 11);
+        $this->pdf->setOption('footer-font-name', 'Arial');
+
         if ('file' == $method) {
             return $this->outputToFile();
         }
