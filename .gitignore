@@ -22,3 +22,8 @@ storage/pdf/*
 
 .php_cs.cache
 php-cs-fixer
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
