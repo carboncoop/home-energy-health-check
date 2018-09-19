@@ -21,8 +21,16 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Jonathan',
-            'email' => 'jonathan@carbon.coop',
+            'name' => 'Anna',
+            'email' => 'anna@carbon.coop',
+            'password' => \Hash::make(env('PW_INIT', 'change me')),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Aneaka',
+            'email' => 'aneaka@carbon.coop',
             'password' => \Hash::make(env('PW_INIT', 'change me')),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
