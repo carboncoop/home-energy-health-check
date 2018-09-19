@@ -23,6 +23,7 @@
     "bootstrap": "^4.0.0-beta",
     "font-awesome": "^4.7.0",
     "moment": "^2.19.1",
+    "popper.js": "^1.14.4",
     "v-offline": "^1.0.4",
     "vue-localstorage": "^0.5.0",
     "vue-markdown": "^2.2.4",
