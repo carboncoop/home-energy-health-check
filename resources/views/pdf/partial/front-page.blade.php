@@ -2,7 +2,7 @@
     <div class="top-section">
         <div class="container p-3">
             <img class="img-fluid img-logo" alt="{{ config('app.assessment_title') }}"
-                src="{{ asset('img/plymouth-energy-community-logo.jpg') }}">
+                src="{{ asset('img/HHLogo_High_resolution.jpg') }}">
             <h1 class="front-page-title my-4">
                 {{ config('app.assessment_title') }}
             </h1>
