@@ -28,6 +28,7 @@ import ActionPlanSection from './components/section/ActionPlanSection.vue'
 import DetailsSection from './components/section/DetailsSection.vue'
 import ComfortSection from './components/section/ComfortSection.vue'
 import HealthSection from './components/section/HealthSection.vue'
+import PriorityWorkSection from './components/section/PriorityWorkSection.vue'
 import SubmitSection from './components/section/SubmitSection.vue'
 import MiscCommentsSection from './components/section/MiscCommentsSection.vue'
 
@@ -41,6 +42,7 @@ if (document.getElementById('submission-edit') != null) {
       { name: 'details', path: '/details', component: DetailsSection, props: true },
       { name: 'comfort', path: '/comfort', component: ComfortSection, props: true },
       { name: 'health', path: '/health', component: HealthSection, props: true },
+      { name: 'priority', path: '/priority', component: PriorityWorkSection, props: true },
       { name: 'submit', path: '/submit', component: SubmitSection, props: true },
       { name: 'comments', path: '/comments', component: MiscCommentsSection, props: true }
     ]

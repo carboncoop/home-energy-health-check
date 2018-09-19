@@ -55,6 +55,7 @@ class Assessment extends Model
         return [
             'comfort' => self::comfortFields(),
             'health' => self::healthFields(),
+            'priorityWork' => self::priorityWork(),
             'checklist' => self::homeVisitChecklist(),
         ];
     }
@@ -164,6 +165,45 @@ class Assessment extends Model
                 'health_yn_fall_stroke_parkinsons' => 'Diagnosis of stroke or Parkinson\'s Disease?',
                 'health_yn_fall_balance' => 'Any problems with his/her balance?',
                 'health_yn_fall_permission_refer' => 'If YES ask permission to refer to Falls Team.',
+            ],
+        ];
+    }
+
+    public static function priorityWork()
+    {
+        return [
+            'Exterior' => [
+                'priority_work_gutters' => 'Blocked overflow / gutters',
+                'priority_work_exterior_hazards' => 'Slips / Trip / Fall hazards',
+                'priority_work_re_pointing' => 'Re-Pointing',
+                'priority_work_fencing' => 'Repairs to Fencing/Gates',
+            ],
+            'Security' => [
+                'priority_work_gate_bolts' => 'Gate bolts and locks',
+                'priority_work_door_locks' => 'Locks and bolts on front/rear doors',
+                'priority_work_spy_hole' => 'Spy Hole',
+                'priority_work_door_chain' => 'Door chain (front/rear/both)',
+                'priority_work_door_bars' => 'Door bars (front/rear/both)',
+                'priority_work_door_bell' => 'Door Bell',
+                'priority_work_security_lights' => 'Security Light Repairs',
+                'priority_work_curtain_poles' => 'Curtain pole/ track',
+            ],
+            'Interior Safety' => [
+                'priority_work_interior_hazards' => 'Slips / Trip / Fall hazards',
+                'priority_work_carpet_trims' => 'Carpet trims (trip hazards to be identified & colour)',
+                'priority_work_cm_alarm' => 'CM Alarm',
+                'priority_work_bannister_rails' => 'Bannister Rails / Grab Rails (with location)',
+                'priority_work_interior_lights' => 'Interior Lights/Sockets',
+            ],
+            'Interior' => [
+                'priority_work_re_seal' => 'Re seal Bath/sink/windows',
+                'priority_work_toilet_seat' => 'Toilet seat',
+            ],
+            'Quote' => [
+                'priority_work_quote_tap_repairs' => 'Tap Repairs',
+                'priority_work_quote_plumbing_leaks' => 'Plumbing Leaks',
+                'priority_work_quote_toilet_repairs' => 'Toilet Repairs',
+                'priority_work_quote_other' => 'Other',
             ],
         ];
     }

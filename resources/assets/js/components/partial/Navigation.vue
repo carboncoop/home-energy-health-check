@@ -19,6 +19,11 @@
                             <span class="pl-1">Health</span>
                         </router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link to="/priority" class="nav-link">
+                            <span class="pl-1">Priority Work</span>
+                        </router-link>
+                    </li>
                 </ul>
 
                 <span class="navbar-text pr-3">Action Plan:</span>
