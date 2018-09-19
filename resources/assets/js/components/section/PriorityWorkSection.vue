@@ -11,13 +11,14 @@
                 <div class="card-body">
                     <div v-for="(label, attrName) in fields">
                         <yes-no-toggle
+                            v-if="'Other' != label"
                             :attributeName="attrName + '_yn'"
                             :label="label"
                             :helpText="['Yes', 'No']">
                         </yes-no-toggle>
                         <simple-text-area
                             :attributeName="attrName + '_comment'"
-                            label="Comments"
+                            :label="('Other' == label) ? 'Other' : 'Comments'"
                             inputType="textarea">
                         </simple-text-area>
                     </div>
