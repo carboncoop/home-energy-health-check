@@ -24,14 +24,13 @@ To get ready to deploy onto Elastic Beanstalk:
 The `.ebextensions` directory holds a set of scripts that AWS runs on each deploy.
 
 At the moment there is:
- * `05node.config` which installs node 10 + latest npm
- * `10artisan.config` which contains a command to re-build the database (`artisan migrate:refresh --seed --force`).
+ * `10predeploy.config` which contains a command to re-build the database (`artisan migrate:refresh --seed --force`).  This should probably change to `artisan migrate --force` when the app has live data.
 
-The latter should probably change to `artisan migrate --force` when the app has live data.
+If other things need to be run pre-deploy then they can be added to that file.  `composer install` is run automatically by AWS already.
 
-If other things need to be run pre-deploy then that can be done by adding more config files.  `composer install` is run automatically by AWS already.
+At the moment, `public/css/app.css` and `public/js/app.js` aren't built on the server, but whatever version you have locally is uploaded as part of the deploy.  This is because it's difficult to build them on the server (AWS' setup does not make this easy for some reason).
 
-There is documentation here:
+There is some documentation here:
 
 * https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/customize-containers-ec2.html#customize-containers-format-packages
 * http://blog.goforyt.com/laravel-5-aws-elastic-beanstalk-production-guide/
