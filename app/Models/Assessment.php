@@ -140,6 +140,7 @@ class Assessment extends Model
                     //'health_air_quality' => 'Air Quality'
                 ],
             ],
+            'yesNoElements' => self::prependHealthFieldsYesNo(),
         ];
     }
 
