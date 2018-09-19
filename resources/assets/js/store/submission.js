@@ -8,12 +8,14 @@ const store = new Vuex.Store({
         ready: false,
         assessment: {},
         parts: [],
+        priorityWorkSubs: [],
         descriptionsVisible: {}
     },
     mutations: {
         init(state, obj) {
             state.assessment = obj.assessment
             state.parts = obj.parts
+            state.priorityWorkSubs = obj.priorityWorkSubs
             state.ready = true
         },
         setAssessmentAttribute(state, obj) {
@@ -85,6 +87,11 @@ const store = new Vuex.Store({
                 return _.map(sec.improvements, (imp) => {
                     return (imp.value != null)
                 })
+            })
+        },
+        getCompletedPriorityWorkSubs(state) {
+            return _.map(state.priorityWorkSubs, (sub) => {
+                return true
             })
         },
         getEditFormData(state) {

@@ -27,7 +27,7 @@
                     <li v-for="(part, key, index) in formSchema.priorityWork" class="nav-item">
                         <router-link :to="'/priority/'+(index + 1)"
                             class="nav-link">
-                            <i v-if="completedParts[index]"
+                            <i v-if="completedPriorityWorkSubs[index]"
                                 class="fa fa-check-square-o"
                                 aria-hidden="true"></i>
                             <i v-else
@@ -103,6 +103,9 @@
         computed: {
             completedParts() {
                 return this.$store.getters.getCompletedParts
+            },
+            completedPriorityWorkSubs() {
+                return this.$store.getters.getCompletedPriorityWorkSubs
             },
             currentPart() {
                 return _.find(this.parts, this.matchesPartId)

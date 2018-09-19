@@ -51,6 +51,9 @@
         computed: {
             ready() {
                 return this.$store.getters.ready
+            },
+            priorityWorkSubs() {
+                return _.values(this.formSchema.priorityWork)
             }
         },
         methods: {
@@ -102,7 +105,8 @@
 
                 this.$store.commit('init', {
                     parts: updatedParts,
-                    assessment: assessment.data.assessment
+                    assessment: assessment.data.assessment,
+                    priorityWorkSubs: this.priorityWorkSubs,
                 })
             },
             loadDatabaseData() {
@@ -117,7 +121,8 @@
                 // seed the store with this data
                 this.$store.commit('init', {
                     parts: initParts,
-                    assessment: this.assessment
+                    assessment: this.assessment,
+                    priorityWorkSubs: this.priorityWorkSubs,
                 })
             }
         },
