@@ -42,7 +42,7 @@ if (document.getElementById('submission-edit') != null) {
       { name: 'details', path: '/details', component: DetailsSection, props: true },
       { name: 'comfort', path: '/comfort', component: ComfortSection, props: true },
       { name: 'health', path: '/health', component: HealthSection, props: true },
-      { name: 'priority', path: '/priority', component: PriorityWorkSection, props: true },
+      { name: 'priority', path: '/priority/:prioritySubId', component: PriorityWorkSection, props: true },
       { name: 'submit', path: '/submit', component: SubmitSection, props: true },
       { name: 'comments', path: '/comments', component: MiscCommentsSection, props: true }
     ]

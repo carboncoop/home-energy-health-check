@@ -3,8 +3,8 @@
 
         <h1 class="my-3">Priority Work</h1>
 
-        <template v-for="(fields, legend) in priortyWorkElements">
-            <div class="card my-4">
+        <template v-for="(fields, legend, index) in priortyWorkElements">
+            <div class="card my-4" v-if="index == (prioritySubId - 1).toString()">
                 <div class="card-header">
                     <h3 class="my-3">{{ legend }}</h3>
                 </div>
@@ -33,7 +33,7 @@
     import YesNoToggle from '../partial/YesNoToggle.vue'
 
     export default {
-        props: ['formSchema'],
+        props: ['formSchema', 'prioritySubId'],
         components: { SimpleTextArea, YesNoToggle },
         computed: {
             priortyWorkElements() {

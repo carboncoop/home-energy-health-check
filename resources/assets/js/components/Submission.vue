@@ -2,7 +2,8 @@
     <div class="submission-vue submission-edit-vue" v-if="ready">
 
         <navigation
-            :parts="parts">
+            :parts="parts"
+            :formSchema="formSchema">
         </navigation>
 
         <detect-network v-on:detected-condition="detected">

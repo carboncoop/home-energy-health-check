@@ -19,9 +19,21 @@
                             <span class="pl-1">Health</span>
                         </router-link>
                     </li>
-                    <li class="nav-item">
-                        <router-link to="/priority" class="nav-link">
-                            <span class="pl-1">Priority Work</span>
+                </ul>
+
+                <span class="navbar-text pr-3">Priority Work:</span>
+
+                <ul class="nav nav-tabs">
+                    <li v-for="(part, key, index) in formSchema.priorityWork" class="nav-item">
+                        <router-link :to="'/priority/'+(index + 1)"
+                            class="nav-link">
+                            <i v-if="completedParts[index]"
+                                class="fa fa-check-square-o"
+                                aria-hidden="true"></i>
+                            <i v-else
+                                class="fa fa-square-o"
+                                aria-hidden="true"></i>
+                            <span class="pl-1">{{ index + 1 }}</span>
                         </router-link>
                     </li>
                 </ul>
@@ -87,7 +99,7 @@
 
 <script>
     export default {
-        props: ['parts'],
+        props: ['formSchema', 'parts'],
         computed: {
             completedParts() {
                 return this.$store.getters.getCompletedParts
