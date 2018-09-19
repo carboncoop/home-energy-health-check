@@ -12,6 +12,9 @@ yarn-error.log
 .env*
 .~lock.*
 
+public/css/app.css
+public/js/app.js
+
 bower_components/
 
 storage/pdf/*
