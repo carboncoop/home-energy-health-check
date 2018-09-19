@@ -170,17 +170,12 @@ class Assessment extends Model
     public static function homeVisitChecklist()
     {
         return [
-            'checklist_health' => 'Health Conditions? Warm and Well',
-            'checklist_warm_discount' => 'Eligible for Warm Home Discount?',
-            'checklist_priority' => 'Priority Services Register?',
-            'checklist_fuel_debt' => 'Fuel Debt?',
-            'checklist_supplier_issues' => 'Issues with supplier?',
-            'checklist_water_debt' => 'Water Debt Gateway referral?',
-            'checklist_switching' => 'Switching / tariff and bills discussed?',
-            'checklist_income_max' => 'Income Maximisation further discussion/assistance needed?',
-            'checklist_fire_safety' => 'Fire Safety check – smoke/Co2 monitor?',
-            'checklist_further_visit' => 'Further Home Visit by PEC required',
-            'checklist_further_assistance' => 'Notes/ any further assistance we can offer?',
+            'checklist_hia_referral' => 'HIA Referral',
+            'checklist_prepayment_meter' => 'Do you have a prepayment meter',
+            'checklist_switch_save' => 'Refer to switch? Save money on your bill',
+            'checklist_boiler_check' => 'Free Boiler Check needed',
+            'checklist_fire_service_refer' => 'Refer to the Fire Service for a fire safety check, plus free smoke alarm?',
+            'checklist_deliver_grit' => 'Grit to be delivered',
         ];
     }
 
