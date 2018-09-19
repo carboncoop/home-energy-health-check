@@ -143,6 +143,30 @@ class Assessment extends Model
         ];
     }
 
+    public static function prependHealthFieldsYesNo()
+    {
+        return [
+            'Personal Health Check' => [
+                'health_yn_well' => 'Are you generally well?',
+                'health_yn_meds_sufficient' => 'Do you keep sufficient medication?',
+                'health_yn_meds_deliver' => 'Does the pharmacy deliver you medication for you?',
+                'health_yn_access_gp' => 'Are you able to access your GP?',
+                'health_yn_food_34days' => 'Would you have enough food to last 3 to 4 days without having to go out?',
+                'health_yn_food_help' => 'If NO would you have anyone who could get food for you?',
+                'health_yn_severe_weather' => 'In the event of severe weather and or heavy snow fall for a prolonged period would you like a call to see how you are coping?',
+                'health_yn_flu_jab' => 'Have you had a flu jab?',
+                // @TODO: Ask If not ask why not (encourage people to have one)
+            ],
+            'Fall Risk Assessment' => [
+                'health_yn_fall_history' => 'History of any fall in the last year?',
+                'health_yn_fall_4plus_meds' => 'Four or more medications per day?',
+                'health_yn_fall_stroke_parkinsons' => 'Diagnosis of stroke or Parkinson\'s Disease?',
+                'health_yn_fall_balance' => 'Any problems with his/her balance?',
+                'health_yn_fall_permission_refer' => 'If YES ask permission to refer to Falls Team.',
+            ],
+        ];
+    }
+
     public static function homeVisitChecklist()
     {
         return [
