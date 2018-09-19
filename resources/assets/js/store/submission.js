@@ -89,9 +89,12 @@ const store = new Vuex.Store({
                 })
             })
         },
-        getCompletedPriorityWorkSubs(state) {
+        getCompletedPriorityWorkSubs(state, getters) {
             return _.map(state.priorityWorkSubs, (sub) => {
-                return true
+                return _.every(sub, (label, attributeName) => {
+                    let attributeValue = getters.getAssessmentAttribute(attributeName + '_yn')
+                    return (attributeValue != null)
+                })
             })
         },
         getEditFormData(state) {
