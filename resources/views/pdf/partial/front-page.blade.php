@@ -9,8 +9,7 @@
         </div>
     </div>
     <div class="middle-section">
-        <img class="img-fluid"
-            src="{{ asset('img/608_PEC_House_Heat_V2.jpg') }}">
+
     </div>
     <div class="bottom-section">
         <div class="container p-3">
