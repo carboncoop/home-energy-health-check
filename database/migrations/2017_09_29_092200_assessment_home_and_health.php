@@ -53,6 +53,35 @@ class AssessmentHomeAndHealth extends Migration
             'health_ventilation' => 'longText',
             'health_laundry' => 'longText',
             'health_air_quality' => 'longText',
+
+            // new fields for Helping Hands
+            'health_yn_well_yn' => 'boolean',
+            'health_yn_meds_sufficient_yn' => 'boolean',
+            'health_yn_meds_deliver_yn' => 'boolean',
+            'health_yn_access_gp_yn' => 'boolean',
+            'health_yn_food_34days_yn' => 'boolean',
+            'health_yn_food_help_yn' => 'boolean',
+            'health_yn_severe_weather_yn' => 'boolean',
+            'health_yn_flu_jab_yn' => 'boolean',
+            'health_yn_fall_history_yn' => 'boolean',
+            'health_yn_fall_4plus_meds_yn' => 'boolean',
+            'health_yn_fall_stroke_parkinsons_yn' => 'boolean',
+            'health_yn_fall_balance_yn' => 'boolean',
+            'health_yn_fall_permission_refer_yn' => 'boolean',
+
+            'health_yn_well_comment' => 'longText',
+            'health_yn_meds_sufficient_comment' => 'longText',
+            'health_yn_meds_deliver_comment' => 'longText',
+            'health_yn_access_gp_comment' => 'longText',
+            'health_yn_food_34days_comment' => 'longText',
+            'health_yn_food_help_comment' => 'longText',
+            'health_yn_severe_weather_comment' => 'longText',
+            'health_yn_flu_jab_comment' => 'longText',
+            'health_yn_fall_history_comment' => 'longText',
+            'health_yn_fall_4plus_meds_comment' => 'longText',
+            'health_yn_fall_stroke_parkinsons_comment' => 'longText',
+            'health_yn_fall_balance_comment' => 'longText',
+            'health_yn_fall_permission_refer_comment' => 'longText',
         ];
     }
     /**
@@ -70,6 +99,8 @@ class AssessmentHomeAndHealth extends Migration
                     $table->longText($name)->nullable();
                 } else if ('float' == $type) {
                     $table->float($name)->nullable();
+                } else if ('boolean' == $type) {
+                    $table->boolean($name)->nullable();
                 } else {
                     $table->string($name)->nullable();
                 }

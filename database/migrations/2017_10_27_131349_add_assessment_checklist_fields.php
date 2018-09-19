@@ -13,17 +13,12 @@ class AddAssessmentChecklistFields extends Migration
      */
 
      protected $fields = [
-         'checklist_health' => 'longText',
-         'checklist_warm_discount' => 'longText',
-         'checklist_priority' => 'longText',
-         'checklist_fuel_debt' => 'longText',
-         'checklist_supplier_issues' => 'longText',
-         'checklist_water_debt' => 'longText',
-         'checklist_switching' => 'longText',
-         'checklist_income_max' => 'longText',
-         'checklist_fire_safety' => 'longText',
-         'checklist_further_visit' => 'boolean',
-         'checklist_further_assistance' => 'longText',
+         'checklist_hia_referral' => 'longText',
+         'checklist_prepayment_meter' => 'longText',
+         'checklist_switch_save' => 'longText',
+         'checklist_boiler_check' => 'longText',
+         'checklist_fire_service_refer' => 'longText',
+         'checklist_deliver_grit' => 'longText',
      ];
 
      public function up()
