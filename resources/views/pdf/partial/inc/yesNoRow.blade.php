@@ -8,9 +8,9 @@
                     </div>
                     <div class="col col-6">
                         @if (array_key_exists($field . '_yn', $assessment))
-                            @if ($assessment[$field . '_yn'] == 1)
+                            @if ($assessment[$field . '_yn'] === 1)
                                 <strong class="yes">Yes</strong>
-                            @elseif ($assessment[$field . '_yn'] == 0)
+                            @elseif ($assessment[$field . '_yn'] === 0)
                                 <strong class="no">No</strong>
                             @endif
                         @endif
