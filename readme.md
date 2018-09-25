@@ -18,6 +18,15 @@ To get ready to deploy onto Elastic Beanstalk:
 * If your work is committed to git, run `eb deploy`.
 * If your work is staged but not committed, run `eb deploy --staged`.
 
+#### With built-in asset compilation:
+
+At the moment, `public/css/app.css` and `public/js/app.js` aren't built on the server, but whatever version you have locally is uploaded as part of the deploy.
+
+To ensure you're uploading the correct files, you can run `npm run prod` first, or do it all in one:
+
+* If your work is committed to git, run `npm run deploy`.
+* If your work is staged but not committed, run `npm run deploy-staged`.
+
 
 ### Running commands on deploy
 
@@ -27,8 +36,6 @@ At the moment there is:
  * `10predeploy.config` which contains a command to re-build the database (`artisan migrate:refresh --seed --force`).  This should probably change to `artisan migrate --force` when the app has live data.
 
 If other things need to be run pre-deploy then they can be added to that file.  `composer install` is run automatically by AWS already.
-
-At the moment, `public/css/app.css` and `public/js/app.js` aren't built on the server, but whatever version you have locally is uploaded as part of the deploy.
 
 There is some documentation here:
 
