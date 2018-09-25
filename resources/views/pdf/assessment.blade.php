@@ -22,7 +22,7 @@
                         </h1>
                         @endif
 
-                        @if (3 == $index)
+                        @if (4 == $index)
                             @foreach ($parts as $i => $part)
                                 @unless (empty($part['improvements']))
                                     @if (0 == $i)
@@ -65,10 +65,16 @@
                             ])
                         @endif
 
+                        @if (3 == $index)
+                            @include('pdf.partial.priorityWork', [
+                                'assessment' => $assessment,
+                                'priorityWorkSchema' =>$formSchema['priorityWork'],
+                            ])
+                        @endif
                     </div>
                 @endif
 
-                @if (3 == $index)
+                @if (4 == $index)
                     <div class="section break-after-me">
                         <h1 class="section-header my-3">
                             Assessor Comments
