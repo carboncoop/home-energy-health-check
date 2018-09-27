@@ -156,8 +156,7 @@ class Assessment extends Model
                 'health_yn_food_34days' => 'Would you have enough food to last 3 to 4 days without having to go out?',
                 'health_yn_food_help' => 'If NO would you have anyone who could get food for you?',
                 'health_yn_severe_weather' => 'In the event of severe weather and or heavy snow fall for a prolonged period would you like a call to see how you are coping?',
-                'health_yn_flu_jab' => 'Have you had a flu jab?',
-                // @TODO: Ask If not ask why not (encourage people to have one)
+                'health_yn_flu_jab' => 'Have you had a flu jab? If not ask why not (encourage people to have one)'
             ],
             'Fall Risk Assessment' => [
                 'health_yn_fall_history' => 'History of any fall in the last year?',
@@ -216,7 +215,7 @@ class Assessment extends Model
             'checklist_switch_save' => 'Refer to switch? Save money on your bill',
             'checklist_boiler_check' => 'Free Boiler Check needed',
             'checklist_fire_service_refer' => 'Refer to the Fire Service for a fire safety check, plus free smoke alarm?',
-            'checklist_deliver_grit' => 'Grit to be delivered',
+            'checklist_deliver_grit' => 'Grit to be delivered (winter only)',
         ];
     }
 

@@ -71,6 +71,13 @@
                                 'priorityWorkSchema' =>$formSchema['priorityWork'],
                             ])
                         @endif
+
+                        @if (5 == $index)
+                            @include('pdf.partial.checklist', [
+                                'assessment' => $assessment,
+                                'checklistSchema' =>$formSchema['checklist'],
+                            ])
+                        @endif
                     </div>
                 @endif
 
